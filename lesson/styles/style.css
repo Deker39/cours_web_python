@@ -1,0 +1,23 @@
+/* #header1{
+    color: yellow;
+}
+#header2{
+    color: red;
+}
+#header3{
+    color: blue;
+} */
+body{
+    margin: 0;
+}
+#div2{
+    background-color: blue;
+}
+.new{
+    background-color: rgba(95, 224, 9, 0.4);
+}
+#div1{
+    background-color:yellow;
+    height: 300px;
+
+}
