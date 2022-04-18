@@ -6,7 +6,7 @@ body {
 }
 
 .box{
-    width: 900px;
+    width: 50%;
     margin: 15px auto;
     margin-top: 0px;
 } 
@@ -35,7 +35,12 @@ dfn{
     font-style: normal;
 }
 
+header{
+    position: sticky;
+    top:0px;
+}
 ul {
+
     list-style-type: none;
     margin: 0;
     padding: 0;

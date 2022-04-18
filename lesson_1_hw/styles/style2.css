@@ -73,3 +73,7 @@ a:active{
 .menu:active{
     background-color: rgb(180, 180, 180);
 }
+header{
+    position: sticky;
+    top:0px;
+}

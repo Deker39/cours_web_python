@@ -1,23 +1,22 @@
-/* #header1{
-    color: yellow;
+ol{
+    font-weight: 600;
 }
-#header2{
-    color: red;
+ul{
+    font-weight: 200;
 }
-#header3{
+#winter {
     color: blue;
-} */
-body{
-    margin: 0;
+    list-style-image: url('../icons/winter_16.png');
 }
-#div2{
-    background-color: blue;
+#spring{
+    color: green;
+    list-style-image: url('../icons/spring_16.png');
 }
-.new{
-    background-color: rgba(95, 224, 9, 0.4);
+#summer{
+    color: yellow;
+    list-style-image: url('../icons/summer_16.png');
 }
-#div1{
-    background-color:yellow;
-    height: 300px;
-
+#autumn{
+    color: orangered;
+    list-style-image: url('../icons/autumn_16.png');
 }
