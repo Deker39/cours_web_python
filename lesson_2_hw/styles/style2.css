@@ -13,8 +13,9 @@
 }
 .to_do_list{
     list-style-position: inside;
-    list-style-image: url(../image/icons/unchecked_16.png);
+    /* list-style-image: url(../image/icons/unchecked_16.png); */
     background-color: rgb(165, 204, 218);
+    list-style-type: none;
 
 }
 .to_do_list li:nth-child(odd){
@@ -23,7 +24,14 @@
 .to_do_list li{
     padding: 10px 0px 10px 30px;
 }
-.to_do_list li:hover{
+
+.checkbox{
+    position: absolute;
+    z-index: -1;
+   opacity: 0;
+    list-style-image: url(../image/icons/unchecked_16.png);
+}
+/* .to_do_list li:hover{
     background-color: rgb(0, 145, 198);
 }
 .to_do_list li:active{
@@ -36,7 +44,10 @@
     background-color: rgb(226,226,226);
     list-style-image: url(../image/icons/checked_16.png);
     text-decoration: line-through 2px;
-}
+
+} */
+
+
 
 
 .to_do_list li::after{
@@ -47,7 +58,6 @@
 /* Не баг, а фича:
     line-through не распространяется на блочные и плавающие элементы */
 }
-
 
 header{
     position: sticky;
