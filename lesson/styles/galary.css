@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
+*{
+    font: 18px Arial,sans-serif;
+}
+
+img{
+    /* display: inline-table; */
+    width: 350px;
+    height: 400px;
+    border: 1px solid black;
+    margin: auto;
+    /* margin-left: 50px; */
+    box-shadow: 0px 50px 15px -12px rgb(172, 172, 172);
+}
+.container{
+    display: flex;
+    margin:  100px auto auto auto;
+    padding: 50px;
+    max-width: 100%;
+    background-color: #bebebe8a;
+    
+    /* box-shadow: 0px 50px 15px -12px rgb(172, 172, 172); */
+}
+
+body{
+    margin: 0px;
+}
+header{
+    max-width: 100%;
+    height: 75px;
+    background-color: #bebebe;
+    display: flex;
+    flex-direction: row;
+}
+.menu-container{
+    align-items: center;
+    height: 40px;
+    margin: auto;
+
+}
+.menu{
+    padding: 0px;
+    margin-top: 5px;
+    list-style-type: none;
+
+}
+
+.menu-item a,li{
+    color: rgb(65, 65, 65);
+    text-decoration: none;
+    margin-left: 25px;
+    margin-right: 25px;
+    font: 20px 'Ubuntu', sans-serif !important;
+    padding-left: 20px;
+    display: inline;
+    
+}
+
+.item-link:hover{
+    text-decoration: underline;
+
+}
+

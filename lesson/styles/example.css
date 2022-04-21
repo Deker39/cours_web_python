@@ -1,0 +1,43 @@
+*{
+    text-align: center;
+    color: white;
+}
+
+
+.one{
+    width: 50px;
+    height: 70px;
+    background-color: rgb(5, 201, 5);
+    
+}
+.two{
+    width: 70px;
+    height: 50px;
+    background-color: rgb(255, 174, 0);
+}
+.three{
+    width: 70px;
+    height: 70px;
+    background-color: rgb(253, 37, 37);
+}
+.four{
+    width: 100px;
+    height: 80px;
+    background-color: rgb(93, 93, 248);
+}
+
+.container{
+    width: 700px;
+    height: 500px;
+    background-color: rgb(182, 182, 182);
+    display: flex;
+    align-items:flex-end;
+    
+}
+
+.container div{
+    margin: 5px;
+    flex-basis: 120px;
+    height: 120px;
+    
+}

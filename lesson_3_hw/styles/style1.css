@@ -1,0 +1,16 @@
+ * {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+body{
+    font-size: 35xp;
+    width: 50%;
+    margin: 15px auto;
+}
+
+li::marker{
+    font-weight: bold;
+    color: black;
+}
+.main-list{
+    color: blue;
+}
