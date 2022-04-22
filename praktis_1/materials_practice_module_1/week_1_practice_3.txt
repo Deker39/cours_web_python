@@ -6,7 +6,7 @@ A linear equation is any equation that can be written in the form
 
   ax + b = 0  
 
-where a and b are real numbers and x is a variable. This form is sometimes called the standard form of a linear equation. Note that most linear equations will not start off in this form. Also, the variable may or may not be an x so don’t get too locked into always seeing an x there.
+where a and b are real numbers and x is a variable. This form is sometimes called the standard form of a linear equation. Note that most linear equations will not start off in this form. Also, the variable may or may not be an x so donï¿½t get too locked into always seeing an x there.
 
 Quadratic Equation
 
