@@ -1,35 +1,26 @@
- body{
+body{
     margin:  0;
     font-family: Arial, Helvetica, sans-serif;
     background-color:rgb(231, 230, 230);
+   
 }
-
 .container{
-        font-size: large;
-    width: 70%;
-    margin: 15px auto;
-}
-h1{
-    text-align: center;
-}
-.cont-formula{
     width: 50%;
     margin: 15px auto;
+    line-height: 1.5;
+    
+}
+h2{
     text-align: center;
 }
-.formula{
-    background-color: rgba(255, 0, 0, 0.418);
-    font-size:x-large;  
-    display: inline;
-    padding: 5px;
-}
-span{
-    font-style: italic;
+li::marker{
     font-weight: bold;
-    color: red;
-    font-size: large;
-
+    color: black;
 }
+.main-list{
+    color: blue;
+}
+
 .menu_had{
     list-style-type: none;
     margin: 0;
@@ -37,7 +28,6 @@ span{
     overflow: hidden;
     background-color: rgb(120, 120, 120);;
 }
-
 .menu{
     float: left;
     display: block;
