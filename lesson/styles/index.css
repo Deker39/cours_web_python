@@ -30,9 +30,8 @@ header{
     text-decoration: none;
     margin-left: 25px;
     margin-right: 25px;
-        !important;
     padding-left: 20px;
-    display: inline;
+    display: inline !important;
     
 }
 

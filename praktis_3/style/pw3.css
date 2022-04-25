@@ -1,36 +1,35 @@
-body{
+  body{
     margin: 0px;
     font-family: Arial, Helvetica, sans-serif;
     background-color:rgb(231, 230, 230);
 }
-h1{
-    margin: 0px;
-    text-align: center;
-    border: 1px solid rgba(128, 128, 128, 0.75);
-}
-iframe{
-    width: 756px;
-    height: 500px;
-    border: 1px solid rgba(128, 128, 128, 0.75);
-}
-iframe html body{
+.container{
+    width: 50%;
+    margin: 15px auto;
+    line-height: 1.5; 
     display: flex;
     justify-content: center;
-    align-content: center;
-}
-/* iframe{
-    width: 100%;
-    height: 500px;
-    border: 1px solid rgba(128, 128, 128, 0.75);
-    display: flex;
-    justify-content: center;
-}
-.main-win{
-    margin: 0px;
-    width: 100%;
+    flex-direction: column;
     
-} */
-.gallety-win{
+} 
+h1{
+    text-align: center;
+    margin: 0px;
+    border: 1px solid rgba(128, 128, 128, 0.75);
+}
+
+.main-win {
+    display: flex;
+    justify-content: center;
+    border: 1px solid rgba(128, 128, 128, 0.75);
+}
+.frame{
+    padding-top: 30px;
+    max-width: 100%;
+    height: 300px;
+    border: none;
+}  
+ .gallety-win{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -38,13 +37,7 @@ iframe html body{
 }
 .cat-link{
     border: 1px solid rgba(128, 128, 128, 0.75);
-    padding: 25px;
-}
-.container{
-    width: 70%;
-    margin: 15px auto;
-    line-height: 1.5;
-    
+    padding: 24px;
 }
 
 .menu_had{
