@@ -1,0 +1,13 @@
+div{
+    margin: 20px;
+    /* background-image: url("https://www.teahub.io/photos/full/17-175304_mount-cook.jpg");
+    background-repeat:no-repeat;  
+    background-position:right;
+    background-attachment: fixed; */
+    /* background: url("https://www.teahub.io/photos/full/17-175304_mount-cook.jpg") no-repeat bottom fixed; */
+    background-color: lightgrey;
+    /* border: 5px red; */
+    border:  5px solid red;
+    border-radius: 5px ;
+  
+}
