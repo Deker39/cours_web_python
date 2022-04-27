@@ -3,7 +3,7 @@
     font: 18px Arial,sans-serif;
 }
 
-img{
+ img{
     /* display: inline-table; */
     width: 350px;
     height: 400px;
@@ -11,11 +11,11 @@ img{
     margin: auto;
     /* margin-left: 50px; */
     box-shadow: 0px 50px 15px -12px rgb(172, 172, 172);
-}
+} 
 .container{
     display: flex;
     margin:  100px auto auto auto;
-    padding: 50px;
+    /* padding: 50px; */
     max-width: 100%;
     background-color: #bebebe8a;
     
@@ -60,4 +60,10 @@ header{
     text-decoration: underline;
 
 }
-
+.parent {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    grid-template-rows: repeat(2, 0.5fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    }
