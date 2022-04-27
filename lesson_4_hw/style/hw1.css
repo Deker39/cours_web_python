@@ -1,13 +1,36 @@
-div{
-    margin: 20px;
-    /* background-image: url("https://www.teahub.io/photos/full/17-175304_mount-cook.jpg");
-    background-repeat:no-repeat;  
-    background-position:right;
-    background-attachment: fixed; */
-    /* background: url("https://www.teahub.io/photos/full/17-175304_mount-cook.jpg") no-repeat bottom fixed; */
-    background-color: lightgrey;
-    /* border: 5px red; */
-    border:  5px solid red;
-    border-radius: 5px ;
-  
+h1{
+    text-align: center;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.prod{
+    display:flex;
+    flex-wrap: wrap;
+    width: 100%;
+} 
+
+/* @media screen and (min-width:1000px) {
+    .container{
+        max-width: 80%;
+    }
+} */
+/* @media screen and (max-width:800px) {
+    .container{
+        max-width: 100%;
+    }
+    
+} */
+.goods{
+    border: 1px solid rgba(0, 0, 0, 0.75);
+    border-radius:25px;
+    padding: 20px;
+    margin: 10px;
+}
+p{
+    text-align: center;
+    font-weight:bold;
 }

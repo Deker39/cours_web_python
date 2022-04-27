@@ -1,0 +1,6 @@
+div {
+    height: 200px;
+    max-width: 500px;
+    background-color: powderblue;
+    outline: 1px solid red;
+}
