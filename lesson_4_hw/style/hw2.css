@@ -38,6 +38,7 @@
     
 }
 .menu-setting:hover .link{
+    margin-left: 20px;
     display: inline;
 }
 /* .container .menu-setting a{
