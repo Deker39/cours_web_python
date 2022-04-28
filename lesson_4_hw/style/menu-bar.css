@@ -37,7 +37,7 @@ body{
 .menu:active{
     background-color: rgb(180, 180, 180);
 }
-header{
+.cont-menu{
     position: sticky;
     top:0px;
 }

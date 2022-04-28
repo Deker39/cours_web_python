@@ -1,0 +1,74 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    color: white; 
+}
+.container header{
+    margin: 10px;
+    background-color:rgb(95, 158, 160); 
+}
+nav{
+    margin: 0px 10px;
+    background-color:rgb(65, 105, 110);
+}
+.menu-1{
+    margin: 10px 10px 0px 10px;
+    display: flex;   
+    flex-direction: row;
+    justify-content: space-between;  
+}
+.main-content{
+    padding: 30px;
+    width: 600px;
+    background-color:rgb(110, 185, 185);
+}
+.into-menu{
+    margin: 20px;
+    padding: 10px 50px 30px 20px;
+    background-color:rgb(130, 215, 215);
+}
+
+.cont-aside-left{
+    float: left;
+    clear: left;
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* align-content: stretch; */
+    
+    
+}
+.cont-aside-left div{
+    max-width: 100%;
+    margin-bottom: 20px;
+    background-color:rgb(110, 185, 185);
+}
+.cont-aside-right{
+    width: 300px;
+    padding: 25px;
+    text-align: center;
+    float: right;   
+    clear: right;
+    background-color:rgb(110, 185, 185);
+}
+.aside-1{
+    width: 200px;
+    padding: 25px 25px 25px 50px;
+}
+.aside-2{
+    padding: 25px 25px 25px 50px;
+    height: 200px;
+}
+footer{
+    margin: 10px;
+    background-color:rgb(65, 105, 110);
+}
+.cont-aside-right h2{
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    margin: auto;
+ 
+}
+h1{
+    text-indent: 50px;
+}
+
