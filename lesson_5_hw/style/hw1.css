@@ -1,3 +1,4 @@
+
 table{
     border-collapse: collapse;
 }
@@ -6,13 +7,14 @@ th,td{
     text-align: center;
 }
 .menu-left{
+    
     position: sticky;
     left: 0;
-    top: 50.51px;
+    top: 50.68px;
 }
 .menu-top{
     position: sticky;
-    top: 50.51px;
+    top: 50.68px;
 }
 tr{
     background-color: rgb(255, 255, 255)
