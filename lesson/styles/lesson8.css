@@ -1,0 +1,72 @@
+body{
+    background-color: rgb(226,95,75);
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+}
+input{
+    display: block;
+    padding: 5px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+.container, .form-login, .form-count{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+.container{
+    height: 600px;
+}
+
+.form-count{
+    background-color: rgb(187, 186, 186);
+    box-shadow: 0px 0px 45px -12px rgba(0,0,0,0.75);
+    padding: 10px 40px 20px 40px;
+}
+.inpt-login, .inpt-pass{
+    border: none;
+    height: 25px;
+    width: 210px;
+    font-weight: bold;
+}
+.inpt-login::placeholder, .inpt-pass::placeholder{
+    color: gainsboro;
+}
+.input-btn{
+    background-color: rgb(47, 161, 47);
+    border: none;    
+    border-bottom: 2px solid rgb(1, 105, 1);
+    color: white;
+    font-weight: bold;
+    width: 220px;
+    
+}
+.face{
+    background-color: rgb(59, 89, 152);
+    padding: 10px 35px 10px 35px;
+    margin-right: 30px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0px 0px 45px -12px rgba(0,0,0,0.75);
+}
+.twi{
+    background-color: rgb(0, 172, 238);
+    padding: 10px 35px 10px 35px;
+    /* margin-right: 30px; */
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0px 0px 45px -12px rgba(0,0,0,0.75);
+}
+.forgot{
+    font-size: 10px;
+    color: rgb(226,95,75);
+    text-decoration: none;
+    font-weight: bold;
+}
+.par{
+    color:rgb(228, 226, 226);
+}
