@@ -1,0 +1,43 @@
+body{
+    margin: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color:rgb(231, 230, 230);
+}
+.menu_had{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #cc0000;
+}
+.menu{
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+    background-color: #cc0000;
+}
+.menu-link {
+    display: block;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+}
+.menu:hover{
+    background-color: #990000;
+}
+.menu-link:hover {
+    background-color: #990000;
+}
+.menu-link:active{
+    background-color: #ff1a1a
+}
+.menu:active{
+    background-color: #ff1a1a;
+}
+header{
+    position: sticky;
+    top:0px;
+}
