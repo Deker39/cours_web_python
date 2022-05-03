@@ -34,7 +34,7 @@
     margin: 25px;
 }
 #face{
-    background-image: url(/image/icons_hw_module_3/fb_gray.png);
+    background-image: url(../image/icons_hw_module_3/fb_gray.png);
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -42,14 +42,14 @@
 }
 
 #inst{
-    background-image: url(/image/icons_hw_module_3/insta_gray.png);
+    background-image: url(../image/icons_hw_module_3/insta_gray.png);
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
 }
 #youtube{
-    background-image: url(/image/icons_hw_module_3/youtube_gray.png);
+    background-image: url(../image/icons_hw_module_3/youtube_gray.png);
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -61,7 +61,7 @@ h6{
     padding-bottom: 20px;
 }
 .cont-img #face:hover{
-    background-image: url(/image/icons_hw_module_3/fb.png);
+    background-image: url(../image/icons_hw_module_3/fb.png);
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -69,7 +69,7 @@ h6{
     
 }
 .cont-img #inst:hover{
-    background-image: url(/image/icons_hw_module_3/insta.png);
+    background-image: url(../image/icons_hw_module_3/insta.png);
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -77,7 +77,7 @@ h6{
     
 }
 .cont-img #youtube:hover{
-    background-image: url(/image/icons_hw_module_3/youtube.png);
+    background-image: url(../image/icons_hw_module_3/youtube.png);
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
