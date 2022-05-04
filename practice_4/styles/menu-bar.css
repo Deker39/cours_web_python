@@ -10,7 +10,7 @@ body{
     overflow: hidden;
     background-color: rgb(120, 120, 120);;
 }
-.menu{
+.menu-1{
     float: left;
     display: block;
     color: white;
@@ -19,22 +19,22 @@ body{
     text-decoration: none;
     background-color: rgb(120, 120, 120);
 }
-.menu-link {
+.menu-1 > .menu-link {
     display: block;
     color: white;
     text-align: center;
     text-decoration: none;
 }
-.menu:hover{
+.menu-1:hover{
     background-color: rgb(90, 90, 90);
 }
-.menu-link:hover {
+.menu-1 >.menu-link:hover {
     background-color: rgb(90, 90, 90);
 }
-.menu-link:active{
+.menu-1 > .menu-link:active{
     background-color: rgb(180, 180, 180);
 }
-.menu:active{
+.menu-1:active{
     background-color: rgb(180, 180, 180);
 }
 header{
