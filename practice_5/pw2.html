@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/hw2.css">
     <link rel="stylesheet" href="style/menu-bar.css">
-    <title>Document</title>
+    <title>Contact form</title>
 </head>
 <body>
     <header class="cont-menu">
@@ -20,33 +20,25 @@
     <section>
         <h1>Contact form</h1>
         <p>Please fill in your information and we'll be sending your order.</p>
-        <div class="left-text">
-            <p>Your name</p>
-            <p>Your email</p>
-            <p>Phone *</p>
-            <p>Message subject *</p>
-            <p>Message *</p>
-        </div>
-        <form class="grid-cont"> 
-            <!-- <div class="grid-item">
-                <p>Your name</p>
-                <p>Your email</p>
-                <p>Phone *</p>
-                <p>Message subject *</p>
-                <p>Message *</p>
-            </div> -->
+      
+        <form class="grid-cont">             
+            <div class="grid-item-01 grid-item"><p>Your name</p></div>
             <input class="grid-item-1" type="text" placeholder="first name"> 
             <input class="grid-item-2" type="text" placeholder="last name"> 
+            <div class="grid-item-02 grid-item"><p>Your email</p></div>
             <input class="grid-item-3" type="email" placeholder="email"> 
-            <input class="grid-item-4" type="number" placeholder="000">
-            <input class="grid-item-5" type="number" placeholder="000">
-            <input class="grid-item-6" type="number" placeholder="000">
+            <div class="grid-item-03 grid-item"><p>Phone *</p></div>
+            <input class="grid-item-4" type="tel"  placeholder="+38(___)___-__-__"  maxlength="13">
+            <input class="grid-item-5" type="tel"  placeholder="+38(___)___-__-__" maxlength="13">
+            <input class="grid-item-6" type="tel"  placeholder="+38(___)___-__-__" maxlength="13">
+            <div class="grid-item-04 grid-item"><p>Message subject *</p></div>
             <select class="grid-item-7"name="" id="" >
                 <option>Other</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
+                <option>Experience</option>
+                <option>A life</option>
+                <option>Project</option>
             </select>
+            <div class="grid-item-05 grid-item"><p>Message *</p></div>
             <textarea class="grid-item-8"name="message" rows="10" cols="30"></textarea>
         </form>
         <hr>
