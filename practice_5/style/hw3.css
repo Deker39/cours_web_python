@@ -1,0 +1,100 @@
+.head{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 50px 10px 50px;
+    background-color: rgb(15, 67, 113);
+    color: whitesmoke;
+}
+.layout-cont{
+    max-width: 75%;
+    margin: 15px auto;
+    margin-bottom: 20px;
+}
+.nav-1{
+    padding: 15px;
+    padding-left: 0px;
+}
+.nav-1 > input{
+    margin-left: 0px;
+}
+.nav-1 > label{
+    margin-right: 20px;
+}
+.nav-2{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items:stretch;
+    margin-bottom: 20px;
+}
+.nav-2 > *{
+    width: 130px;
+    padding: 10px;
+    border: none;
+    border: 1px solid rgb(190, 190, 190);
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px gray;
+}
+.nav-2 > select{
+    color: rgb(117, 117, 117);
+}
+.nav-2-btn{
+    background-color: rgb(15, 67, 113);
+    color: whitesmoke; 
+}
+.nav-2-btn:hover{
+    background-color: rgb(20, 90, 150);
+}
+.left-section{
+    float: left;
+    background-color: white;
+    border: 1px solid rgb(190, 190, 190);
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px gray;
+    padding: 20px;
+    margin-bottom: 50px;
+} 
+.cont-stop, .cont-price, .cont-airlines{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px
+}
+.title-layout{
+    color: rgb(20, 90, 150);
+    font-weight: bold;
+    margin: 15px 0px;
+}
+.left-section > li,a,ul {
+    padding-left: 0px;
+    margin: 0px;
+    text-decoration: none;
+    list-style-type: none;
+    color: black;
+}
+.layout-price{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+.layout-price-man-mix{
+    display: flex;
+    justify-content: flex-start;
+    padding-bottom: 5px;
+}
+.layout-price-man-mix > span{
+    width: 100px; 
+}
+.layout-price > .layout-price-scale > input{
+    width: 50px;
+    padding: 10px;
+    border: none;
+    border: 1px solid rgb(190, 190, 190);
+    border-radius: 5px;
+    box-shadow: 0px 0px 1px gray;
+}
+
+.main-section{
+
+}

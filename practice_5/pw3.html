@@ -18,193 +18,207 @@
     </header>
     <div class="cont">
         <div class="head">
-            <h1>Flights - Search List</h1>
-            <p>Home/Flights Search List</p>
+            <h2>Flights - Search List</h2>
+            <h5>Home/Flights Search List</h5>
         </div>
-        <div class="nav">
-            <input type="text" placeholder="From"> 
-            <input type="text" placeholder="To">
-            <input type="text" placeholder="Depart Date">
-            <input type="text" placeholder="Return Date">
-            <select name="" id="">
-                <option value="Economy Class"></option>
-                <option value="Business Class"></option>
-            </select>
-            <input type="submit" value="Search">
-        </div>
-        <div class="left-section">
-            <h2>Filter</h2>
-            <div class="layout-stop">
-                <span>No.of Stops</span>
-                <div class="chekbox-stop">
+        <div class="layout-cont">
+            <div class="nav-1">
+                <input type="radio" name="radio-one-way" id="">
+                <label for="radio-one-way">One Way</label>
+                <input type="radio" name="radio-round-trip" id="">
+                <label for="radio-one-way">Round Trip</label>
+            </div>
+            <div class="nav-2">
+                <input type="text" placeholder="From"> 
+                <input type="text" placeholder="To">
+                <input type="date" placeholder="Depart Date">
+                <input type="date" placeholder="Return Date">
+                <select name="" id="">
+                    <option disabled selected hidden>Choice Class</option>
+                    <option>Economy Class</option>
+                    <option>Business Class</option>
+                </select>
+                <input class="nav-2-btn"type="submit" value="Search">
+            </div>
+            <div class="left-section">
+                <h2>Filter</h2>
+                <div class="cont-stop">
+                    <span class="title-layout">No.of Stops</span>
+                    <div class="chekbox-stop">
+                        <ul>
+                            <li>
+                                <a href="#">
+                                <input type="checkbox" name="chekbox-stop1" id="chekbox-stop1">
+                                    <label for="chekbox-stop1">
+                                        Non Stops
+                                    </label>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                <input type="checkbox" name="chekbox-stop2" id="chekbox-stop2">
+                                    <label for="chekbox-stop2">
+                                        1 Stop
+                                    </label>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                <input type="checkbox" name="chekbox-stop3" id="chekbox-stop3">
+                                    <label for="chekbox-stop3">
+                                        2+ Stop
+                                    </label>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <hr>
+                <div class="cont-price">
+                    <span class="title-layout">Price</span>
+                    <div class="layout-price">
+                        <div class="layout-price-man-mix">
+                            <span>Min:</span>
+                            <span>Max:</span>
+                        </div>
+                        <div class="layout-price-scale">
+                            <input type="text" placeholder="0">
+                            <span>$ -</span>
+                            <input type="text" placeholder="1000">
+                            <span>$</span>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="cont-airlines">
+                    <span class="title-layout">Airlines</span>
+                    <div class="checkbox-airlines">
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <input type="checkbox" name="checkbox-airlines1" id="checkbox-airlines1">
+                                    <label for="checkbox-airlines1">
+                                        Asiana Airlines
+                                    </label>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <input type="checkbox" name="checkbox-airlines2" id="checkbox-airlines2">
+                                    <label for="checkbox-airlines2">
+                                        American Airlines
+                                    </label>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <input type="checkbox" name="checkbox-airlines3" id="checkbox-airlines3">
+                                    <label for="checkbox-airlines3">
+                                        Air Canada
+                                    </label>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <input type="checkbox" name="checkbox-airlines4" id="checkbox-airlines4">
+                                    <label for="checkbox-airlines4">
+                                        Air India
+                                    </label>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <input type="checkbox" name="checkbox-airlines5" id="checkbox-airlines5">
+                                    <label for="checkbox-airlines5">
+                                        Jet Airways
+                                    </label>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <input type="checkbox" name="checkbox-airlines6" id="checkbox-airlines6">
+                                    <label for="checkbox-airlines6">
+                                        Spicejet
+                                    </label>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <input type="checkbox" name="checkbox-airlines7" id="checkbox-airlines7">
+                                    <label for="checkbox-airlines7">
+                                        IndiGo
+                                    </label>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <input type="checkbox" name="checkbox-airlines8" id="checkbox-airlines8">
+                                    <label for="checkbox-airlines8">
+                                        Multiple Airlines
+                                    </label>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="main-section">
+                <h1>Dehli to Sydney</h1>
+                <div class="layout-title">
                     <ul>
                         <li>
-                            <a href="#">
-                            <input type="checkbox" name="chekbox-stop1" id="chekbox-stop1">
-                                <label for="chekbox-stop1">
-                                    Non Stops
-                                </label>
-                            </a>
+                            <a href="#">Airlines</a>
                         </li>
                         <li>
-                            <a href="#">
-                            <input type="checkbox" name="chekbox-stop2" id="chekbox-stop2">
-                                <label for="chekbox-stop2">
-                                    1 Stop
-                                </label>
-                            </a>
+                            <a href="#">Departure</a>
                         </li>
                         <li>
-                            <a href="#">
-                            <input type="checkbox" name="chekbox-stop3" id="chekbox-stop3">
-                                <label for="chekbox-stop3">
-                                    2+ Stop
-                                </label>
-                            </a>
+                            <a href="#">Duration</a>
+                        </li>
+                        <li>
+                            <a href="#">Arrival</a>
+                        </li>
+                        <li>
+                            <a href="#">Price</a>
                         </li>
                     </ul>
                 </div>
-            </div>
-            <hr>
-            <div class="layout-price">
-                <span>Price</span>
-                <span>Min:</span>
-                <span>Max:</span>
-                <input type="text" placeholder="0">
-                <span>$ -</span>
-                <input type="text" placeholder="1000">
-                <span>$</span>
-            </div>
-            <hr>
-            <div class="layout-airlines">
-                <span>Airlines</span>
-                <div class="checkbox-airlines">
+                <div class="layout-item">
                     <ul>
                         <li>
-                            <a href="#">
-                                <input type="checkbox" name="checkbox-airlines1" id="checkbox-airlines1">
-                                <label for="checkbox-airlines1">
-                                    Asiana Airlines
-                                </label>
-                            </a>
+                            <div class="layout-item-group">
+                                <div class="layout-item-one-level">
+                                    <ul>
+                                        <li>IndiGo</li>
+                                        <li>23:30</li>
+                                        <li>18h 55m</li>
+                                        <li>18:15</li>
+                                    </ul>
+                                </div>
+                                <div  class="layout-item-two-level">
+                                    <ul>
+                                        <li>6E-2489</li>
+                                        <li>Dehli</li>
+                                        <li>Non Stop/li>
+                                        <li>Sydney</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </li>
                         <li>
-                            <a href="#">
-                                <input type="checkbox" name="checkbox-airlines2" id="checkbox-airlines2">
-                                <label for="checkbox-airlines2">
-                                    American Airlines
-                                </label>
-                            </a>
+                            <span>$980</span>
                         </li>
                         <li>
-                            <a href="#">
-                                <input type="checkbox" name="checkbox-airlines3" id="checkbox-airlines3">
-                                <label for="checkbox-airlines3">
-                                    Air Canada
-                                </label>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <input type="checkbox" name="checkbox-airlines4" id="checkbox-airlines4">
-                                <label for="checkbox-airlines4">
-                                    Air India
-                                </label>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <input type="checkbox" name="checkbox-airlines5" id="checkbox-airlines5">
-                                <label for="checkbox-airlines5">
-                                    Jet Airways
-                                </label>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <input type="checkbox" name="checkbox-airlines6" id="checkbox-airlines6">
-                                <label for="checkbox-airlines6">
-                                    Spicejet
-                                </label>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <input type="checkbox" name="checkbox-airlines7" id="checkbox-airlines7">
-                                <label for="checkbox-airlines7">
-                                    IndiGo
-                                </label>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <input type="checkbox" name="checkbox-airlines8" id="checkbox-airlines8">
-                                <label for="checkbox-airlines8">
-                                    Multiple Airlines
-                                </label>
-                            </a>
+                            <div>
+                                <a href="#">Book</a>
+                                <span>Flight Details</span>
+                            </div>
                         </li>
                     </ul>
+                    
                 </div>
             </div>
         </div>
-        <div class="main-section">
-            <h1>Dehli to Sydney</h1>
-            <div class="layout-title">
-                <ul>
-                    <li>
-                        <a href="#">Airlines</a>
-                    </li>
-                    <li>
-                        <a href="#">Departure</a>
-                    </li>
-                    <li>
-                        <a href="#">Duration</a>
-                    </li>
-                    <li>
-                        <a href="#">Arrival</a>
-                    </li>
-                    <li>
-                        <a href="#">Price</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="layout-item">
-                <ul>
-                    <li>
-                        <div class="layout-item-group">
-                            <div class="layout-item-one-level">
-                                <ul>
-                                    <li>IndiGo</li>
-                                    <li>23:30</li>
-                                    <li>18h 55m</li>
-                                    <li>18:15</li>
-                                </ul>
-                            </div>
-                            <div  class="layout-item-two-level">
-                                <ul>
-                                    <li>6E-2489</li>
-                                    <li>Dehli</li>
-                                    <li>Non Stop/li>
-                                    <li>Sydney</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <span>$980</span>
-                    </li>
-                    <li>
-                        <div>
-                            <a href="#">Book</a>
-                            <span>Flight Details</span>
-                        </div>
-                    </li>
-                </ul>
-                
-            </div>
-        </div>
-
     </div>
 
 
