@@ -1,5 +1,5 @@
 body{
-    background: url(/image/pexels-photo-2387873.jpeg) no-repeat center center fixed; 
+    background: url(../image/pexels-photo-2387873.jpeg) no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -7,7 +7,7 @@ body{
     color: whitesmoke;
 }
 section{
-    max-width: 70%;
+    max-width: 900px;
     margin: 15px auto;
     margin-top: 50px;
     margin-bottom: 50px;
@@ -96,7 +96,7 @@ textarea{
     padding: 10px;
     color: white;
     font-weight: bold;
-    width: 710px;
+    width: 670px;
     margin: 10px 20px 0px 215px;
 }
 .btn:hover{
