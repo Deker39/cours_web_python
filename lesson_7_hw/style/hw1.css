@@ -18,6 +18,7 @@ body{
     margin: 20px 0px;
 }
 .layout-menu-lable {
+    
     word-spacing: -6px;
     display: flex;
     flex-direction: row;
@@ -86,6 +87,7 @@ body{
     background-color: rgb(55, 62, 72);
     padding: 15px;
     margin: 10px;
+    line-height: 1.3em;
 }
 .layout-main-left-par > h3{
     margin-top: 0px;
@@ -103,7 +105,7 @@ body{
     margin: 0px 0px 0px auto;
 }
 .layout-main-top-par,.layout-main-top-form,.layout-main-top-table,.layout-main-top-list,.layout-main-top-image{
-    padding: 15px
+    padding: 15px;
 }
 .layout-main-top-par > p> a{
     color: #af6096;
@@ -121,12 +123,15 @@ img{
     background-color:rgba(245, 245, 245, 0.15);
     border: 10px outset   rgba(226, 216, 255, 0.50);
     margin: 0px 15px;
+    padding: 15px;
     height: 200px;
     max-width: 100%;
 }
 .layout-main-top-list > div{
     display: flex;
     flex-direction: row;
+    justify-content: space-evenly;
+    line-height: 1.4em;
 }
 .layout-main-top-list > div > ul:nth-child(2){
     list-style: decimal;
@@ -196,7 +201,7 @@ img{
 .layout-footer > a{
     color: #af6096;
 }
-@media all and (max-width: 1440px){
+@media all and (max-width: 1280px){
 
     .layout-main-left{
         max-width: 100%;
@@ -266,7 +271,8 @@ img{
         width: 100%;
     }
     .layout-main-top-form > form >input,select,textarea{
-        width: 80%;
+        width: 100%;
+        margin-right: 10px;
     }
 
 }
