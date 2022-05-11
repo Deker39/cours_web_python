@@ -1,0 +1,45 @@
+/* Вертикальное меню спрятано */
+.menu{
+  display: flex;/* технология флексбокс */
+  align-items: center; /* выравнивание по центру */
+  justify-content: center; /* выравнивание по центру */
+  background-color: #e38ec9;
+  width: 100vw; /* ширина блока меню */
+  z-index: 10;/* слой ниже кнопки */
+    position: fixed; /* блок зафиксирован */
+  left: -100vw;/* скрывание блока с меню */
+    top: 0; /* позиция от левого верха */
+  transition: all 0.5s;/* плавное выдвижение блока */
+    opacity: .95;/* блок имеет прозрачность */
+}
+/* Активный класс меню видимое */
+.menu-active{
+      left: 0; /* блок с меню видимый */
+}
+/* Стилизация списка меню */
+ul {
+  list-style: none; /* убрать маркеры */
+  padding: 0;
+  margin-top: 60px;
+  height: 100vh; /* блок занимает всю высоту браузера */
+}
+/* Стилизация ссылок меню */
+a{
+  display: block; /* из строчного в блочный */
+  color: #6f2d35;
+  line-height: 50px;
+  text-decoration: none;
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  transition: all 0.3s;
+  width: 100vw; /* блоки с ссылками на всю ширину */
+  display: flex;
+  justify-content: center; /* выравнивание по центру */
+}
+/* Эффект наведения мыши на ссылки */
+a:hover{
+  background-color: #efc5fa;
+  width: 100vw;
+}

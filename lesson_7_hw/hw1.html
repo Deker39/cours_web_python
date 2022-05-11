@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/hw1.css" type="text/css">
+    <link rel="stylesheet" href="/style/hw1.css" type="text/css">
    
     <title>Exam</title>
+   
 </head>
 <body>
     <header class="layout-menu">
@@ -16,13 +17,21 @@
                 <span class="gray">.com</span>
         </p>
         <ul class="layout-menu-list">
-            <li><a >Home</a></li>
+            <li><a href="#"> Home</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Blogs</a></li>
             <li><a href="#">Work</a></li>
             <li><a href="#">News</a></li>
             <li><a href="#">Contacts</a></li>
         </ul>
+        <div class="layout-menu-mobile"> 
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <!-- <a href="#">
+                <img src="/img/menu.png" alt="">
+            </a> -->
+        </div>
     </header>
     <section class="layout-main">
         <section class="layout-main-left">
@@ -155,5 +164,24 @@
         <span>&#169; Footer content</span> 
         <a href="#">Link footer</a>
     </footer> 
+ 
 </body>
+<script>
+    const hamburger = document.querySelector(".layout-menu-mobile");
+    const navMenu = document.querySelector(".layout-menu-list");
+    const navLink = document.querySelectorAll(".layout-menu-list li a");
+    
+    hamburger.addEventListener("click", mobileMenu);
+    navLink.forEach(n => n.addEventListener("click", closeMenu));
+
+    function mobileMenu() {
+        hamburger.classList.toggle("active");
+        navMenu.classList.toggle("active");
+    }
+
+    function closeMenu() {
+        hamburger.classList.remove("active");
+        navMenu.classList.remove("active");
+}
+    </script>
 </html>
