@@ -53,11 +53,17 @@ body{
 .layout-menu-list > li > a:last-child{
     padding-right: 10px;
 }
+.layout-menu-list >li:hover a{
+    color: #bb69a2;
+    font-weight: bold; 
+}
 .layout-menu-mobile{
-    display: none;
+    /* display: none; */
+    position: absolute;
+    right: 5%;
 }
 .layout-menu-mobile > a {
-    display: block;
+    display: none;
     text-decoration: none;
     background-image: url(/img/menu.png);
     -webkit-background-size: cover;
@@ -66,22 +72,7 @@ body{
     background-size: cover;
     padding: 10px;
     margin: 10px;
-    
-    /* margin-right: 10px; */
-    /* border: none; */
-    /* margin: 0px; */
-    /* height: 100%; */
-    /* padding: 10px; */
-    /* width: 20px; */
 }
-/* .layout-menu-mobile > a > img{
-    border: none;
-    margin: 0px;
-    height: 100%;
-    padding: 10px;
-    max-width: 20px;
-} */
-
 .layout-main{
     background-color: rgba(226, 216, 255, 0.132);
     border: 1px solid rgba(226, 216, 255, 0.132);
@@ -242,17 +233,29 @@ img{
     }
 }
 @media all and (max-width: 1100px){
-    .layout-menu-mobile{
-        display: block;
-        position: relative;
-    }
-    .layout-menu-list{
-        display: none;
-    }
     .layout-menu{
         flex-direction: row;
         align-items: center;
-    
+    }
+    .layout-menu-mobile > a{
+        display: block;
+    }
+    .layout-menu-mobile:hover .layout-menu-list{
+        visibility:visible;
+        opacity: 1;
+        border-radius: 5px;      
+    }
+
+    .layout-menu-list {
+        right: 1%;
+        top: 55%;
+        visibility:hidden;
+        flex-direction: column;
+        opacity:1;
+        transition-property: opacity, visibility;
+        position: inherit;
+        text-align: center;
+        background-color: rgb(229, 229, 229);
     }
     .layout-menu-list > li{
         padding: 10px;
@@ -261,16 +264,15 @@ img{
     .layout-menu-list > li > a{
         padding: 10px;
     }
-    .layout-menu-mobile:hover +.layout-menu-list{
-        position: absolute;
-        right: 5%;
-        top: 45px;
-        display: block;
-        flex-direction: column;
-        background-color: rgb(229, 229, 229);
-        border-radius: 5px;
-    } 
-    
+
+    .layout-menu-list > li:active .layout-menu-mobile > a{
+        background-image: url(../img/close.png);
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+
     .layout-menu-mobile > a:hover{
         background-image: url(../img/close.png);
         -webkit-background-size: cover;
@@ -278,14 +280,7 @@ img{
         -o-background-size: cover;
         background-size: cover;
     }
-    .layout-menu-mobile:active +.layout-menu-list{
-        display: none;
-    }
-    .layout-menu-list >li:hover a{
-        color: #bb69a2;
-        font-weight: bold; 
-    }
-   
+
 }
 @media all and (max-width: 850px){
     .layout-main-top-image > div{
