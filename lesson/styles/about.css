@@ -1,4 +1,4 @@
-.s-1{
+/* .s-1{
     margin-top: 25px;
     height: 400px;
     max-width: 100%;
@@ -20,12 +20,12 @@ table{
     width: 70%;
     /* text-align: center; */
     /* border-collapse: separate; */
-    /* border-spacing: 50px; */
+    /* border-spacing: 50px; 
     border-collapse: collapse;
 }
 td,th{
     text-align: center;
-}
-/* td{
+} 
+ td{
     background-color: gray;  
 } */

@@ -142,13 +142,102 @@
 //     return a+b
 // }
 // setTimeout(mess, 2000, 5 ,10)
-var id  = setInterval(test, 2000)
-var i =0 
-function test(){
-    if(i == 5){
-        clearInterval(id)
-        console.log('interval stoped')
-    }
-    i++
+// var id  = setInterval(test, 2000)
+// var i =0 
+// function test(){
+//     if(i == 5){
+//         clearInterval(id)
+//         console.log('interval stoped')
+//     }
+//     i++
     
+// }
+// console.log(Math.round(Math.random()*10)+1);
+// let a  = []
+// for(let i=0; i <= 10; i++){
+//         a.push(Math.round(Math.random()*10))
+//         console.log(a[i]);
+// }
+// let date_now = new Date()
+// let date_old = new Date(date_now.getUTCFullYear()+"T13:13:11")
+// console.log(date_now)
+// console.log(date_now.valueOf())
+// console.log(date_old.getHours() +":"+date_old.getMinutes() + ":"+ date_old.getSeconds());
+// console.log(Date.parse(date_now))
+// console.log(date_now.getTime());
+// let now = new Date()
+// console.log(now.toLocaleString());
+// console.log(now);
+// console.log(now.toLocaleDateString());
+// console.log(now.toLocaleTimeString());
+
+// function createPerson(name, age){
+//     this.name = name;
+//     this.age = age;
+//     this.show = function(){
+//         console.log('Name: ' + this.name + '\nAge: ' + this.age);
+//     }
+// }
+
+// let obj1 = {
+//     name: 'Alex',
+//     age : 21,
+//     show: function(){
+//         console.log('Name: ' + this.name + '\nAge: ' + this.age);
+//     }
+// }
+
+
+// let obj2 = {
+//     name: 'Jhon',
+//     age : 30,
+//     show: function(){
+//         console.log('Name: ' + this.name + '\nAge: ' + this.age);
+//     }
+// }
+// let obj3 = new createPerson('Den',23)
+// console.log(obj1,obj2,obj3);
+// obj1.show()
+// obj2.show()
+
+class Person{
+    // name = 'default';
+    // age = 'default';
+    #live;
+    #name;
+    #age;
+    constructor(name,age, live){
+        console.log('Call Construction');
+        this.#name = name;
+        this.#age = age;
+        this.#live = live
+    }
+    work(place){
+        console.log(`Person going to ${place}`);
+    }
+    move(){
+        console.log("He move");
+    }
+    name(){
+        return this.#name
+    }
+    setName(){
+        this.#name = name;
+    }
+    age(){
+        return this.#live
+    }
+    setAge(){
+        if(age < 0 || age > 150)
+            console.log('Unvalid age')
+        else
+            this.#age = age
+    }
 }
+
+let obj = new Person('jhon',40,true)
+// obj.name = 'alex'
+// obj.age = 23
+obj.work('oficce')
+obj.move()
+console.log(obj);
