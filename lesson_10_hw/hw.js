@@ -46,6 +46,14 @@ switch (chose) {
             denominator: 0,
         }
 
+        function gcd(n, m) {
+            return m == 0 ? n : gcd(m, n % m);
+        }
+
+        function nok(n, m) {
+            return n * m / gcd(n, m);
+        }
+
         firs_fraction = Object.assign({}, fraction)
         second_fraction = Object.assign({}, fraction)
         result = Object.assign({}, fraction)
@@ -59,24 +67,18 @@ switch (chose) {
         console.log(`Первая дробь ${firs_fraction.numerator}/${firs_fraction.denominator}`);
         console.log(`Вторая дробь ${second_fraction.numerator}/${second_fraction.denominator}`);
 
-        function gcd(n, m) {
-            return m == 0 ? n : gcd(m, n % m);
-        }
 
-        function nok(n, m) {
-            return n * m / gcd(n, m);
-        }
 
         function multiplication(){
             result.numerator = firs_fraction.numerator * second_fraction.numerator;
             result.denominator = firs_fraction.denominator * second_fraction.denominator;
-            console.log(`Multiplication = ${result.numerator}/${result.denominator}`);
+            console.log(`Multiplication = ${cuts(result.numerator,result.denominator)}`);
         }
 
         function  division(){
             result.numerator = firs_fraction.numerator * second_fraction.denominator;
             result.denominator = firs_fraction.denominator * second_fraction.numerator;
-            console.log(`Division  = ${result.numerator}/${result.denominator}`);
+            console.log(`Division  = ${cuts(result.numerator,result.denominator)}`);
         }
 
         function additions(){
@@ -84,50 +86,64 @@ switch (chose) {
 
             NOK = nok(firs_fraction.denominator, second_fraction.denominator);
 
-            let first_additions = NOK / firstFraction.denominator;
-            let second_additions = NOK / secondFraction.denominator;
+            let first_additions = NOK / firs_fraction.denominator;
+            let second_additions = NOK / second_fraction.denominator;
+
+            if (firs_fraction.denominator === second_fraction.denominator ) {
+
+                result.numerator = firs_fraction.numerator + second_fraction.numerator;
+                result.denominator = firs_fraction.denominator;
+
+            } else if ((firs_fraction.denominator < second_fraction.denominator ) || (firs_fraction.denominator > second_fraction.denominator )) {
+
+                result.numerator = (firs_fraction.numerator * first_additions) + (second_fraction.numerator * second_additions);
+                result.denominator = NOK;
+
+            } else {
+                document.write('You entered null or something else for denominator.')
+            }
+            console.log(`Additions  = ${cuts(result.numerator,result.denominator)}`);
+        }
+        function  subtraction(){
+            let NOK = 0;
+
+            NOK = nok(firs_fraction.denominator, second_fraction.denominator);
+
+            let first_additions = NOK / firs_fraction.denominator;
+            let second_additions = NOK / second_fraction.denominator;
+
+            if (firs_fraction.denominator === second_fraction.denominator ) {
+
+                result.numerator = firs_fraction.numerator - second_fraction.numerator;
+                result.denominator = firs_fraction.denominator;
+
+            } else if ((firs_fraction.denominator < second_fraction.denominator ) || (firs_fraction.denominator > second_fraction.denominator )) {
+
+                result.numerator = (firs_fraction.numerator * first_additions) - (second_fraction.numerator * second_additions);
+                result.denominator = NOK;
+
+            } else {
+                document.write('неправильное значение')
+            }
+            console.log(`Subtraction  = ${cuts(result.numerator,result.denominator)}`);
+        }
+        function  cuts(m, n){
+            let M = m;
+            let N = n;
+
+            for (let i = 2; i <= m; i++) {
+                if (m % i === 0 && n % i === 0) {
+                    M = m / i, N = n / i ;
+                }
+            }
+
+            return [M, N].join('/');
+        
         }
         multiplication()
         division()
-
-
-        //     additions(){
-        //        let result_numerator = (this.numerator1*this.denominator2) + (this.numerator2*this.denominator1)
-        //        let result_denominator = this.denominator1 * this.denominator2
-        //        console.log(`Additions ${result_numerator}/${result_denominator}`);
-        //     }
-        //     subtraction(){
-        //         let result_numerator = (this.numerator1*this.denominator2) - (this.numerator2*this.denominator1)
-        //         let result_denominator = this.denominator1 * this.denominator2
-        //         console.log(`Subtraction ${result_numerator}/${result_denominator}`);
-        //     }
-        //     multiplication(){
-        //         let result_numerator =  this.numerator1 * this.numerator2
-        //         let result_denominator = this.denominator1 * this.denominator2
-        //         console.log(`Multiplication ${result_numerator}/${result_denominator}`);
-        //     }
-        //     division(){
-        //         let result_numerator =  this.numerator1 * this.denominator2
-        //         let result_denominator = this.denominator1 * this.numerator2
-        //         console.log(`Division ${result_numerator}/${result_denominator}`);
-        //     }
-        //     cuts(){
-        //         let m = this.numerator1
-        //         let n = this.denominator1
-        //         for (i = 2; i <= m;i++){
-        //             if(m % i === 0 && n % i ===0){
-        //                 m = m / i, n = n / i
-        //             }
-        //         }
-        //         console.log(`Cuts ${m}/${n}`);
-        //     }
-        // }
-        // console.log(fractions);
-        // fractions.additions()
-        // fractions.subtraction()
-        // fractions.multiplication()
-        // fractions.division()
-        // fractions.cuts()
+        additions()
+        subtraction()
         break;
 
 /*--------------------------*/
@@ -136,20 +152,64 @@ switch (chose) {
         var time = {
             hours: 0,
             minuts:0,
-            seconds:0,
-            show_time(){
-        
-            },
-            time_change_seconds: function(){
-        
-            },
-            time_change_minuts: function(){
-        
-            },
-            time_change_hours: function(){
-        
-            }
+            seconds:0
         }
+        entered_time = Object.assign({}, time)
+        let add_seconds = 0
+        let add_minutes = 0
+        let add_hours = 0
+
+        entered_time.hours = +prompt('Введи часы');
+        entered_time.minutes = +prompt('Введи минуты');
+        entered_time.seconds = +prompt('Введи секунды');
+
+        function show_time(){
+            console.log(`Время ${entered_time.hours}:${entered_time.minutes}:${ entered_time.seconds}`);
+            }
+        function time_change_seconds(){
+            add_seconds = +prompt('Введи секунды которые хочешь добавить(от 0 до 60)');
+            if(add_seconds >= 0 && add_seconds <=60){
+                entered_time.seconds += add_seconds
+                if(entered_time.seconds >= 60){
+                    entered_time.seconds = entered_time.seconds - 60
+                    entered_time.minutes +=1
+                    // console.log(`Время ${entered_time.hours}:${entered_time.minutes}:${ entered_time.seconds}`);
+                }
+                else{}
+            }else{
+                show_time()
+            }
+            console.log(`Время ${entered_time.hours}:${entered_time.minutes}:${ entered_time.seconds}`);
+            }
+        function time_change_minuts(){
+            add__minuts = +prompt('Введи минуты которые хочешь добавить(от 0 до 60)');
+            if(add__minuts >= 0 && add__minuts <=60){
+                entered_time.minutes += add__minuts
+                if(entered_time.minutes >= 60){
+                    entered_time.minutes = entered_time.minutes - 60
+                    entered_time.hours +=1
+                    // console.log(`Время ${entered_time.hours}:${entered_time.minutes}:${ entered_time.seconds}`);
+                }
+                else{}
+            }else{
+                show_time()
+            }
+            console.log(`Время ${entered_time.hours}:${entered_time.minutes}:${ entered_time.seconds}`);
+            }
+        function time_change_hours(){
+            add_hours = +prompt('Введи часы которые хочешь добавить(от 0 до 60)');
+            if(add_hours >= 0 && add_hours <=60){
+                entered_time.hours += add_hours
+            }else{
+                show_time()
+            }
+            console.log(`Время ${entered_time.hours}:${entered_time.minutes}:${ entered_time.seconds}`);
+            }
+        
+        show_time()
+        time_change_seconds()
+        time_change_minuts()
+        time_change_hours()
         break;
      
 }
