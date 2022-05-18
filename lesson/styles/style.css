@@ -13,6 +13,7 @@ ul{
     list-style-image: url('../icons/spring_16.png');
 }
 #summer{
+    display: block;
     color: yellow;
     list-style-image: url('../icons/summer_16.png');
 }
