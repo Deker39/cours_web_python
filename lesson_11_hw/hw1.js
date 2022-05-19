@@ -53,39 +53,23 @@ self_closing: ${this.#self_closing},
 text_content: ${this.#text_content},
 array_attributes${this.#array_attributes},
 array_style: ${this.#array_style},
-array_nested_tag: ${this.#array_nested_tag},
-        `);
+array_nested_tag: ${this.#array_nested_tag}`);
     }
     attribute_setting(){
-        if(this.#self_closing == true){
-            if( this.#text_content !== null){
-                if( this.#array_nested_tag !== null){
-                    var main_string =`<${this.#tag_name} ${this.#array_attributes} ${this.#array_style}>\
-                    ${this.#text_content} ${this.#array_nested_tag} </${this.#tag_name}>`
-                }
-                else{
-                    var main_string =`<${this.#tag_name} ${this.#array_attributes} ${this.#array_style}>\
-                    ${this.#text_content}</${this.#tag_name}>`
-                }
-               
-            }else{
-                var main_string =`<${this.#tag_name} ${this.#array_attributes} ${this.#array_style}>\
-               ${this.#array_nested_tag} </${this.#tag_name}>`
-            }
-            
-        }else{
-            main_string =`<${this.#tag_name}>`
-        }
-        return main_string
-       
+        var i = document.createElement(this.#tag_name)
+        i =document.setA
+        console.log(i);
     }
 
-    style_setting(){
-        this.attribute_setting()
-  
-    }
+    style_setting(){}
     add_nested_element_to_end(){}
     add_nested_element_to_start(){}
+
+    getHtml(){
+        var elem = document.createElement(this.#tag_name)
+        this.attribute_setting()
+        console.log(elem)
+    }
 
 
     set tag_name(tag_name){
@@ -135,17 +119,14 @@ array_nested_tag: ${this.#array_nested_tag},
     get array_nested_tag(){
         return this.#array_nested_tag
     }
-
-    getHtml(){
-        document.write(this. attribute_setting())
-        console.log(this. attribute_setting());
     }
 
 
-    }
+// let img = new HtmlElement('img',false,null,' src=\'lipsum.jpg\' alt=\'Lorem Impsum\'','style=\'width:100%;\'',null)
 let h3 = new HtmlElement('h2',true,'What is Lorem Ipsum?',null,null,null)
-let div2 = new HtmlElement('div',true,null,null,'style=\'wigth:300px; margin:10px\'',h3.attribute_setting())
-let div1 = new HtmlElement('div',true,null,'id=\'wrapper\'','style=\'display:flex;\'',div2.attribute_setting())
-div2.show()
+// let div2 = new HtmlElement('div',true,null,null,'style=\'wigth:300px; margin:10px\'',(h3,img))
+let div1 = new HtmlElement('div',true,null,'id=\'wrapper\'','style=\'display:flex;\'',h3)
 div1.show()
 div1.getHtml()
+
+
