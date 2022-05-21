@@ -39,38 +39,13 @@ class HtmlElement{
     #array_nested_tag
     constructor(tag_name,self_closing,text_content,array_attributes,
                 array_style,array_nested_tag){
-                this.#tag_name = tag_name  || null
-                this.#self_closing = self_closing || null
+                this.#tag_name = tag_name   || null
+                this.#self_closing = self_closing  || null
                 this.#text_content = text_content || null
                 this.#array_attributes = array_attributes || null
                 this.#array_style = array_style  || null
                 this.#array_nested_tag = array_nested_tag  || null
             }
-
-    show(){
-        console.log(`tag_name: ${this.#tag_name},
-self_closing: ${this.#self_closing},
-text_content: ${this.#text_content},
-array_attributes${this.#array_attributes},
-array_style: ${this.#array_style},
-array_nested_tag: ${this.#array_nested_tag}`);
-    }
-    attribute_setting(){
-        var i = document.createElement(this.#tag_name)
-        i =document.setA
-        console.log(i);
-    }
-
-    style_setting(){}
-    add_nested_element_to_end(){}
-    add_nested_element_to_start(){}
-
-    getHtml(){
-        var elem = document.createElement(this.#tag_name)
-        this.attribute_setting()
-        console.log(elem)
-    }
-
 
     set tag_name(tag_name){
         this.#tag_name = tag_name
@@ -119,14 +94,68 @@ array_nested_tag: ${this.#array_nested_tag}`);
     get array_nested_tag(){
         return this.#array_nested_tag
     }
+
+    show(){
+        console.log(`tag_name: ${this.#tag_name},
+self_closing: ${this.#self_closing}, 
+text_content: ${this.#text_content},
+array_attributes: ${this.#array_attributes},
+array_style: ${this.#array_style},
+array_nested_tag: ${this.#array_nested_tag}`);
+    }
+
+    attribute_setting(tag){  
+        if (this.#array_attributes !== null){
+            for (var i = 0;i<this.#array_attributes.length;i++){
+                // console.log(this.#array_attributes[i][0], this.#array_attributes[i][1]);
+                tag.setAttribute(this.#array_attributes[i][0], this.#array_attributes[i][1])
+            }
+        }
+        else{}
+       
+    }
+
+    style_setting(tag){
+        if (this.#array_style !== null){
+            for (var i = 0;i<this.#array_style.length;i++){
+                // console.log(this.#array_attributes[i][0], this.#array_attributes[i][1]);
+                tag.style[this.#array_style[i][0]] = this.#array_style[i][1] 
+            }
+        }
+        else{}
+    }
+
+    add_nested_element_to_end(){
+        if(this.#array_nested_tag !== null){
+            document.body.prepend(this.#array_nested_tag[0])
+        }
+        else{}
+
+    }
+    add_nested_element_to_start(){
+        if(this.#array_nested_tag !== null){
+            document.body.append(this.#array_nested_tag[0])
+        }
+        else{}
+    }
+
+    getHtml(){
+        const elem = document.createElement(this.#tag_name)
+        document.body.append(elem)
+        this.attribute_setting(elem)
+        this. style_setting(elem)
+        this. add_nested_element_to_end()
+        elem.innerHTML = this.#text_content
+        console.log(elem);
+    }
+
     }
 
 
-// let img = new HtmlElement('img',false,null,' src=\'lipsum.jpg\' alt=\'Lorem Impsum\'','style=\'width:100%;\'',null)
-let h3 = new HtmlElement('h2',true,'What is Lorem Ipsum?',null,null,null)
-// let div2 = new HtmlElement('div',true,null,null,'style=\'wigth:300px; margin:10px\'',(h3,img))
-let div1 = new HtmlElement('div',true,null,'id=\'wrapper\'','style=\'display:flex;\'',h3)
+let h3 = new HtmlElement('h3',true,'What is Lorem Ipsum?',null,null,null)
+let div1 = new HtmlElement('div',true,null,[['id','wrapper'],['class','kek']],[['display','flex']],[h3.getHtml()])
 div1.show()
 div1.getHtml()
+
 
 
