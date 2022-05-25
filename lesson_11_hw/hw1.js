@@ -1,3 +1,5 @@
+// Uncomment the code to see the work
+/*          Exercise 1              */
 class Circle{
 
     #radius
@@ -25,18 +27,21 @@ class Circle{
 }
 
 let kek  = new Circle(4)
-kek.square_circle()
-kek.length_circle()
+// kek.square_circle()
+// kek.length_circle()
+
+/*----------------------------------*/
+/*          Exercise 2              */
 
 class HtmlElement{
 
-    static main_string = new String
     #tag_name
     #self_closing
     #text_content
     #array_attributes
     #array_style
     #array_nested_tag
+    static main_string = new String
     constructor(tag_name,self_closing,text_content,array_attributes,
                 array_style,array_nested_tag){
                 this.#tag_name = tag_name   || null
@@ -96,81 +101,114 @@ class HtmlElement{
     }
 
     show(){
-        console.log(`tag_name: ${this.#tag_name},
-self_closing: ${this.#self_closing}, 
-text_content: ${this.#text_content},
-array_attributes: ${this.#array_attributes},
-array_style: ${this.#array_style},
-array_nested_tag: ${this.#array_nested_tag}`);
+        console.log(`tag_name: ${this.#tag_name},\nself_closing: ${this.#self_closing},\
+        \ntext_content: ${this.#text_content},\narray_attributes: ${this.#array_attributes},\
+        \narray_style: ${this.#array_style},\narray_nested_tag: ${this.#array_nested_tag}`);
     }
-
-    attribute_setting(tag){  
+    attribute_setting(){  
+        let att = []
+        
         if (this.#array_attributes !== null){
             for (var i = 0;i<this.#array_attributes.length;i++){
-                tag.setAttribute(this.#array_attributes[i][0], this.#array_attributes[i][1])
+                att[i] = `${this.#array_attributes[i][0]}="${this.#array_attributes[i][1]}"`
             }
+            att = att.join('')
         }
-        else{}
-       
+        else att = ""
+
+        return att
     }
 
-    style_setting(tag){
+    style_setting(){
+        let sty = []
+        let sty_res
+
         if (this.#array_style !== null){
             for (var i = 0;i<this.#array_style.length;i++){
-                tag.style[this.#array_style[i][0]] = this.#array_style[i][1] 
+                sty[i] = `${this.#array_style[i][0]}:${this.#array_style[i][1]};`
+                sty_res = `style="${sty}"`
             }
         }
-        else{}
+        else sty_res = ""
+
+        return sty_res
     }
-    getHtml(){
-        const elem = document.createElement(this.#tag_name)
-        this.attribute_setting(elem)
-        this.style_setting(elem)
-        document.body.prepend(elem)
-        elem.innerHTML = this.#text_content
-        this.add_nested_element_to_end()
-        console.log(elem);
+
+    add_nested_element_to_start(){
+        let nes_tag = []
+
+        if (this.#array_nested_tag !== null){
+            for (var i = 0;i<this.#array_nested_tag.length;i++){
+                nes_tag[i]= `${this.#array_nested_tag[i]}`  
+            }
+            nes_tag = nes_tag.join('')
+           
+        }
+        else nes_tag = ""
+        
+        return nes_tag
     }
 
     add_nested_element_to_end(){
+        let nes_tag = []
         if (this.#array_nested_tag !== null){
-            
-            let ml = this.#array_nested_tag
-            console.log(ml[`this.#array_style`]);
-            // this.attribute_setting(this.#array_nested_tag)
+            for (var i = 0;i<this.#array_nested_tag.length;i++){
+                nes_tag[i]= `${this.#array_nested_tag[i]}`  
+            }
+            nes_tag = nes_tag.join('')
+        
         }
-      
-    }
-    add_nested_element_to_start(){
-        // let name = this.#tag_name
-        // if(this.#array_nested_tag !== null){
-        //     document.name.append(this.#array_nested_tag[0])
-        // }
-        // else{}
-    }
+        else nes_tag = ""
 
-   
+        return nes_tag 
+    }
+    getHtml(){
+        let main_string
+        let end_tag
+        let tc
+
+        if (this.#self_closing == true){
+            end_tag = `</${this.#tag_name}>`
+        }
+        else   end_tag = ""
+
+        if (this.#text_content !== null){
+            tc = `${this.#text_content}`
+             
+         }
+         else tc = ""
+        
+        return main_string = `<${this.#tag_name} ${this.attribute_setting()} ${this.style_setting()}>\
+        ${tc} ${this.add_nested_element_to_end()} ${end_tag}`
+    }
 
     }
 
 let text = ' Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia quis assumenda totam doloribus aut maxime \
             repellendus minus numquam porro, natus ex delectus accusantium error sapiente corporis asperiores, a adipisci suscipit.'
 
+const a = new HtmlElement('a',true,'More...',[['href','https://ru.lipsum.com/'],['target','_blank']],null,null)
+const p = new HtmlElement('p',true,text,[['class','text']],[['text-align','justify']],[a.getHtml()])
+const img  = new HtmlElement('img',false,null,[['class','img'],['alt','lorem ipsum'],['src','lipsum.jpg']],[['width','100%']],null)
+const h3 = new HtmlElement('h3',true,'What is Lorem Ipsum?',null,null,null) 
+const div2 = new HtmlElement('div',true,null,[['class','block']],[['width','50%'],['margin','10px']],[h3.getHtml(),img.getHtml(),p.getHtml()])
+const div1 = new HtmlElement('div',true,null,[['id','wrapper'],['class','wrap']],[['display','flex']],[div2.getHtml()])
 
-let p = new HtmlElement('p',true,text,null,[['text-align','justify']],null)
-let img  = new HtmlElement('img',false,null,[['alt','lorem ipsum'],['src','lipsum.jpg']],[['width','100%']],null)
-let h3 = new HtmlElement('h3',true,'What is Lorem Ipsum?',null,null,null)
-let div2 = new HtmlElement('div',true,null,null,[['width','300px'],['margin','10px']],[h3,img,p])
-let div1 = new HtmlElement('div',true,null,[['id','wrapper']],[['display','flex']],[div2])
+// // div1.show()
+// console.log(div1.getHtml());
+// document.write(div1.getHtml())
 
-// div1.show()
-div1.getHtml()
+/*----------------------------------*/
+/*          Exercise 3              */
 
-class CssClass{
+class CssClass extends HtmlElement{
 
     #name_class
     #stayle_array
-    constructor(name_class,stayle_array){
+    constructor(name_class,stayle_array,tag_name,self_closing,text_content,array_attributes,
+        array_style,array_nested_tag){
+        super(tag_name,self_closing,text_content,array_attributes,
+            array_style,array_nested_tag)
         this.#name_class = name_class || null
         this.#stayle_array = stayle_array || null 
     }
@@ -190,19 +228,17 @@ class CssClass{
         return this.#stayle_array
     }
     show(){
-        console.log(`name_class: ${this.#name_class},
-array_style: ${this.#stayle_array}`);
+        console.log(`name_class: ${this.#name_class},\narray_style: ${this.#stayle_array}`);
     }
 
-    style_setting(name_sty){
+    style_setting(){
         var name_sty = new String
         if (this.#stayle_array !== null){
-           
             for (var i = 0;i<this.#stayle_array.length;i++){
-                name_sty = name_sty + `${this.#stayle_array[i][0]}:${this.#stayle_array[i][1]};`
+                name_sty = name_sty + `${this.#stayle_array[i][0]}:${this.#stayle_array[i][1]}; `
             }
         }
-        else{}
+        else name_sty = ""
 
         return name_sty
     }
@@ -214,40 +250,89 @@ array_style: ${this.#stayle_array}`);
         let second = rem.indexOf(`}`,rem.indexOf(`${this.#name_class}`))
         rem = rem.substring (first,second+1)
         rem = rem1.replace(rem,'')
+        
         let style = document.body.querySelector('style')
         style.replaceChildren(rem,'')
 
     }
 
     getCss(){
-        let sty = `.${this.#name_class}`
-        let sty_arr = this.style_setting(sty)
-        // this.style_remove()
-        sty += `{${sty_arr}}` 
+        let sty
+        this.#name_class !== null ? sty = `.${this.#name_class}`: sty = ""
+        let sty_arr = this.style_setting()
+        sty_arr !== null ? sty += `{${sty_arr}}` : sty=""
         console.log(sty);
-        let style
-        if(document.getElementsByTagName('style').length == 0) {  
-
-            style = document.createElement('style');
-            style.append(` ${sty}`)
-            console.log(style);
-        
-        }
-        else{ 
-            style = document.body.querySelector('style')
-            style.append(` ${sty}`)
-            
-        }
-        document.body.prepend(style)
-
+        return sty
     }
 }
 
-let css = new CssClass('wrap',[['display','flex'],['margin','10px']])
-let css1 = new CssClass('kke',[['display','flex'],['margin','20px']])
+let css = new CssClass('wrap',[['display','flex']])
+let css1 = new CssClass('block',[['width','300px'],['margin','10px']])
+let css2 = new CssClass('img',[['width','100%']])
+let css3 = new CssClass('text',[['text-algin','justify']])
+
 // css.show()
 // css.getCss()
 // css1.getCss()
+// css2.getCss()
+// css3.getCss()
 // css1.style_remove()
+
+
+/*----------------------------------*/
+/*          Exercise 4              */
+
+
+class HtmlBlock extends CssClass{
+
+    #obj_css
+    #obj_html
+    constructor(obj_css,obj_html){
+        super()
+        this.obj_css = obj_css
+        this.obj_html = obj_html
+    }
+
+    set obj_css(obj_css){
+        this.#obj_css = obj_css
+    }
+    get obj_css(){
+        return this.#obj_css
+    }
+    set obj_html(obj_html){
+        this.#obj_html = obj_html
+    }
+    get obj_html(){
+        return this.#obj_html
+    }
+
+    getCode(){
+        let style 
+        let sty =[]
+        
+        for(var i =0;i<this.#obj_css.length;i++){
+            sty[i] = this.#obj_css[i].getCss()
+        }      
+        if(document.getElementsByTagName('style').length == 0 || document.getElementsByTagName('style') !== true) { 
+            style = document.createElement('style');
+            style.append(` ${sty.join('')}`)
+        }
+        else{ 
+            style = document.body.querySelector('style')
+            style.append(` ${sty.join('')}`)   
+        }
+        document.body.prepend(style)
+        document.write(this.#obj_html.getHtml())
+        
+    }
+ 
+}
+const obj = new HtmlBlock([css,css1,css2,css3],div1)
+obj.getCode()
+
+
+
+
+
 
 

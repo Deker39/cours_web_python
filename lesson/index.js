@@ -451,12 +451,102 @@
 // block.addEventListener('click',handler)
 
 
-const selectElement = document.querySelector("#inp")
+// const selectElement = document.querySelector("#inp")
 
-selectElement.addEventListener('input',function(e){
+// selectElement.addEventListener('input',function(e){
     
-    console.log(e);
-})
-function foo(tag){
-    console.log(tag);
+//     console.log(e);
+// })
+// function foo(tag){
+//     console.log(tag);
+// }
+
+// menu.onclick = function(event) {
+//     if (event.target.nodeName != 'A') return;
+  
+//     let href = event.target.getAttribute('href');
+//     alert( href ); // может быть подгрузка с сервера, генерация интерфейса и т.п.
+  
+//     return false; // отменить действие браузера (переход по ссылке)
+//   };
+// var an = (a,b) => a+b
+// var s = new Array()
+// s.map(item => item*2).
+// console.log(an);
+// document.body.onkeydown = (e) => {
+//     if(e.shiftKey || e.ctrlKey) e.preventDefault()
+//     document.body.addEventListener('click',  (e) =>{
+//         console.log(e)
+//     })
+
+//     document.body.oncontextmenu = (e) => e.preventDefault()
+
+// }
+// var v = 0
+// var l = 0
+// var d = document.getElementById("div1")
+// document.body.onkeydown = (e) => {
+//     if(e.key =='s') {
+//         v += 5 
+//         d.style.top = v + 'px'
+//     }else
+//     if(e.key =='w') {
+//         v -= 5 
+//         d.style.top = v + 'px'
+//     }else
+//     if(e.key =='a') {
+//         l += 5 
+//         d.style.left = l +'px'
+//     }else
+//     if(e.key =='d') {
+//         l -= 5 
+//         d.style.left = l +'px'
+//     }
+
+// }
+var words = [
+    'hello',
+    'world',
+    'python',
+    'prog',
+    'jsckript'
+]
+var word = words[Math.floor(Math.random()*words.length)]
+var lines = '_'.repeat(word.length).split('')
+var tryes
+console.log(lines);
+var ph = document.getElementById('bin')
+var answer
+function game(e){
+    document.getElementById('guess').innerHTML= lines.join(' ')
+    console.log(ph.textContent);
+    if(e !== undefined ){
+        if (!ph.textContent.includes(e.key)){
+        ph.append(e.key + '')
+    }
+    }
+   
+    if(e.key){
+        for (let i = 0; i < word.length; i++) {
+            if(e.key === word[i]){
+                lines[i] = e.key
+            }
+            
+        }
+        if(answer === word.toString()){
+            lines = word.split('')
+            alert(`you win, your tryes: ${tryes}`)
+            
+        }
+        
+    }
+    tryes++
+   
 }
+document.body.onkeydown = (e) => game(e)
+
+window.onload = game()
+
+
+
+

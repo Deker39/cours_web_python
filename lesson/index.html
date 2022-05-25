@@ -6,21 +6,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        #d1 {
-            width: 150px;
-            height: 150px;
-            background-color: black;
-        }
+       .container{
+           width: 50%;
+           margin: auto;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           flex-direction: column;
+           margin-top: 150px;
+       }
+       #field_answer{
+           height: 75px;
+           border-radius: 8px;
+           font-size: 24px;
+           padding: 0px;
+           margin: 0px;
+       }
+       #guess{
+        height: 85px;
+        font-size: 85px;
+       }
+       #bin{
+        /* height: 85px;
+        width: 85px; */
+        font-size: 85px;
+       }
     </style>
   
     
 </head>
 <body>
+    <section class="container">
+        <h1 id="guess"></h1>
+        <p id="bin"></p>
+        <!-- <input type="text" name="field_answer" id ="field_answer"> -->
+    </section>
+    
+ 
+    <!-- <div id="div1"></div> -->
     <!-- <div id="d1"></div>
     <p id="p1"></p> -->
     <!-- <img src="image/Dq6o3uI.jpg" alt="" id="img1"> -->
 
-        <input type="text" name="inp" id="inp" on>
+        <!-- <input type="text" name="inp" id="inp" on> -->
     <!-- <p id="demo">JavaScript can change HTML content.</p>
     <button onclick="kek()">ckick me</button>
     <ul id = "ul"style="display: none;">
@@ -47,6 +75,15 @@
         console.log(++number)
         console.log(number)
         </scrip> -->
+        <!-- <ul id="menu" class="menu">
+            <li><a href="/html">HTML</a></li>
+            <li><a href="/javascript">JavaScript</a></li>
+            <li><a href="/css">CSS</a></li>
+          </ul> -->
+
+          
+
+
 </body>
 <script src="index.js"></script>
 </html>
