@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>modal</title>
+    <style>
+        .hystmodal{
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            overflow: hidden;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: center; 
+            align-items: center;
+            z-index: 99;
+            padding:30px 0;
+        }
+        .hystmodal__window {
+            background:rgba(255, 0, 0, 0.215);
+            box-shadow:  0 5px 10px 0px rgba(128, 128, 128, 0.50);
+            /* width: 600px; */
+            max-width: 100%;
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.15s ease 0s, opacity 0.15s ease 0s;
+            transform: scale(1);
+        }
+        button{
+            padding: 5px;
+            width: 100%;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255, 0, 0, 0.215);
+            box-shadow:  0 5px 10px 0px rgba(128, 128, 128, 0.50);
+            font-weight: bold;
+        }
+        button:hover{
+            color: white;
+            background-color: rgba(255, 0, 0, 0.743); 
+        }
+        button:active{
+            color: rgba(255, 0, 0, 0.743);
+            background-color: #fff;
+        }
+        /* .hystmodal--active{
+            visibility: visible;
+        }
+        .hystmodal--active .hystmodal__window{
+            transform: scale(1);
+            opacity: 1;
+        } */
+    </style>
+</head>
+<body>
+    <div class="hystmodal" id="myModal">
+        <div class="hystmodal__window">
+            <p>Hello fromm Modal Windows!</p>
+            <button id="close" class="hystmodal__close" onclick="foo()">Close</button>  
+        </div> 
+    </div>
+
+    <script src="hw1.js"></script>
+</body>
+</html>
