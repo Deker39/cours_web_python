@@ -205,10 +205,8 @@ class CssClass extends HtmlElement{
 
     #name_class
     #stayle_array
-    constructor(name_class,stayle_array,tag_name,self_closing,text_content,array_attributes,
-        array_style,array_nested_tag){
-        super(tag_name,self_closing,text_content,array_attributes,
-            array_style,array_nested_tag)
+    constructor(name_class,stayle_array){
+        super()
         this.#name_class = name_class || null
         this.#stayle_array = stayle_array || null 
     }
@@ -328,6 +326,8 @@ class HtmlBlock extends CssClass{
  
 }
 const obj = new HtmlBlock([css,css1,css2,css3],div1)
+const l =new HtmlBlock()
+const i = new CssClass()
 obj.getCode()
 
 

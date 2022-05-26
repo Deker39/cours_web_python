@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
+    <!-- <style>
        .container{
            width: 50%;
            margin: auto;
@@ -31,16 +31,70 @@
         width: 85px; */
         font-size: 85px;
        }
-    </style>
-  
+    </style> -->
+    <style>
+        iframe{
+        border:1px solid navy;
+        height:500px;
+        margin:30px;
+        width:500px;
+        }
+        button{
+        margin:10px 150px;
+        }
+        </style>
     
 </head>
-<body>
-    <section class="container">
+<body id="b">
+    <iframe src="" id="f1"></iframe>
+   
+    <button  >
+    Next
+    </button>
+    <script>
+        // var i =0
+        // var arr_url = ['https://itstep.org','https://rezka.ag','https://html5css.ru/']
+        // function foo(){
+        //     const new_url = window.frames[0]
+        //     // console.log(new_url.history);
+        //     document.getElementById('f1').src = arr_url[i]
+        //     i++
+        // }
+        var i = 0
+        document.getElementById('body').addEventListener('clock', () =>{
+            i++
+            console.log(i);
+        } )
+
+    </script>
+   
+        <!-- <p id="p1"  >open</p>
+    <script>
+        // function aaa()
+        // {window.open('https://www.google.com.ua/?hl=ru',"_blank","popup=yes")
+        // window.moveTo(500,500)}
+        
+        // console.log(window);
+        // document.getElementById('p1'),addEventListener('click', ()=> {
+        //     var uAgent = navigator.userAgent
+        //     var b 
+        //     if (uAgent.indexOf('Chrome' > -1)){
+        //             b = 'u tebya chrom'
+        //     }
+        //     console.log(b);
+        //     console.log(navigator.connection);
+           
+        
+
+        // })
+        // console.log(history);
+        
+    </script> -->
+    <!-- <section class="container">
         <h1 id="guess"></h1>
         <p id="bin"></p>
-        <!-- <input type="text" name="field_answer" id ="field_answer"> -->
-    </section>
+        <input type="text" name="field_answer" id ="field_answer"> -->
+    <!-- </section> -->
     
  
     <!-- <div id="div1"></div> -->

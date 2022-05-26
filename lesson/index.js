@@ -504,48 +504,48 @@
 //     }
 
 // }
-var words = [
-    'hello',
-    'world',
-    'python',
-    'prog',
-    'jsckript'
-]
-var word = words[Math.floor(Math.random()*words.length)]
-var lines = '_'.repeat(word.length).split('')
-var tryes
-console.log(lines);
-var ph = document.getElementById('bin')
-var answer
-function game(e){
-    document.getElementById('guess').innerHTML= lines.join(' ')
-    console.log(ph.textContent);
-    if(e !== undefined ){
-        if (!ph.textContent.includes(e.key)){
-        ph.append(e.key + '')
-    }
-    }
+// var words = [
+//     'hello',
+//     'world',
+//     'python',
+//     'prog',
+//     'jsckript'
+// ]
+// var word = words[Math.floor(Math.random()*words.length)]
+// var lines = '_'.repeat(word.length).split('')
+// var tryes
+// console.log(lines);
+// var ph = document.getElementById('bin')
+// var answer
+// function game(e){
+//     document.getElementById('guess').innerHTML= lines.join(' ')
+//     console.log(ph.textContent);
+//     if(e !== undefined ){
+//         if (!ph.textContent.includes(e.key)){
+//         ph.append(e.key + '')
+//     }
+//     }
    
-    if(e.key){
-        for (let i = 0; i < word.length; i++) {
-            if(e.key === word[i]){
-                lines[i] = e.key
-            }
+//     if(e.key){
+//         for (let i = 0; i < word.length; i++) {
+//             if(e.key === word[i]){
+//                 lines[i] = e.key
+//             }
             
-        }
-        if(answer === word.toString()){
-            lines = word.split('')
-            alert(`you win, your tryes: ${tryes}`)
+//         }
+//         if(answer === word.toString()){
+//             lines = word.split('')
+//             alert(`you win, your tryes: ${tryes}`)
             
-        }
+//         }
         
-    }
-    tryes++
+//     }
+//     tryes++
    
-}
-document.body.onkeydown = (e) => game(e)
+// }
+// document.body.onkeydown = (e) => game(e)
 
-window.onload = game()
+// window.onload = game()
 
 
 

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        section{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; 
+            margin: 100px auto;
+        }
+        #name{
+            padding: 10px;
+            font-size: 24px;
+            text-align: center;
+            border-radius: 15px;
+        }
+        button{
+            padding: 10px;
+            font-size: 24px;
+            text-align: center;
+            border-radius: 15px;
+            background-color: white;
+            box-shadow:  0 5px 10px 0px rgba(128, 128, 128, 0.50);
+        }
+        button:hover{
+            color: rgba(128, 128, 128, 0.5);
+            border: 3px inset;
+            border-color: rgba(128, 128, 128, 0.5);
+        }
+        button:active{
+            color: white;
+            background-color: rgba(128, 128, 128, 0.5);;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <p>#First 1</p>
+        <p>Enter your name (name can't contain digits)</p>
+        <input id="name" type="text" placeholder="your name">
+    </section>
+    <section>
+        <p>#First 2</p>
+        <button>Open wind</button>
+    </section>
+    <section>
+        <p>#First 3</p>
+    </section>
+    <section>
+        <p>#First 4</p>
+    </section>
+    <section>
+        <p>#First 5</p>
+    </section>
+    <section>
+        <p>#First 6</p>
+    </section>
+    <script src="hw1.js"></script>
+</body>
+</html>
