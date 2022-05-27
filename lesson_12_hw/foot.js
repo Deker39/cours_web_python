@@ -1,7 +1,6 @@
 
 field.onclick = function(event){
     let fieldCoords = this.getBoundingClientRect();
-    console.log(fieldCoords);
 
     let ballCoords = {
         top: event.clientY - fieldCoords.top - field.clientTop - ball.clientHeight / 2,

@@ -1,0 +1,126 @@
+*{
+    box-sizing: border-box;
+}
+section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; 
+    margin: 50px auto;
+}
+#name{
+    padding: 10px;
+    font-size: 24px;
+    text-align: center;
+    border-radius: 15px;
+}
+#open,#play,#next{
+    padding: 10px;
+    font-size: 24px;
+    text-align: center;
+    border: 3px solid black;
+    border-radius: 15px;
+    background-color: white;
+    box-shadow:  0 5px 10px 0px rgba(128, 128, 128, 0.50);
+}
+#open:hover{
+    color: rgba(128, 128, 128, 0.5);
+    border: 3px inset;
+    border-color: rgba(128, 128, 128, 0.5);
+}
+#open:active{
+    color: white;
+    background-color: rgba(128, 128, 128, 0.5);;
+}
+#play:hover{
+    color: rgba(80, 147, 88, 0.5);
+    border: 3px inset;
+    border-color: rgba(80, 147, 88, 0.5);
+}
+#play:active{
+    color: white;
+    background-color: rgba(80, 147, 88, 0.5);
+}
+
+ .hystmodal{
+    /* opacity: 0; */
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    overflow: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center; 
+    align-items: center;
+    z-index: 99;
+    padding:30px 0;
+    background: rgba(71, 71, 71, 0.77);
+    display: none;
+}
+.hystmodal > .hystmodal__window > p,.hystmodal__close{
+    font-size: 24px;
+}
+.hystmodal__window {
+    background:rgb(162, 227, 243);
+    box-shadow:  0 5px 10px 0px rgba(128, 128, 128, 0.50);
+    /* width: 600px; */
+    max-width: 100%;
+    padding: 25px;
+    text-align: center;
+    transition: transform 0.15s ease 0s, opacity 0.15s ease 0s;
+    transform: scale(1);
+    border-radius: 15px;
+}
+.hystmodal__close{
+    padding: 5px;
+    width: 100%;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(184, 238, 252);
+    box-shadow:  0 5px 10px 0px rgba(128, 128, 128, 0.50);
+    font-weight: bold;
+}
+.hystmodal__close:hover{
+    color: white;
+    border: none;
+    background-color: rgb(66, 146, 167); 
+}
+.hystmodal__close:active{
+    color: rgb(66, 146, 167); 
+    background-color: #fff;
+} 
+.cont{
+    display: flex;
+    flex-direction: row;
+}
+.traffic-light{
+    display: flex;
+    flex-direction: row;
+    border: 1px solid black;
+    border-radius: 15px;
+    margin: 10px;
+}
+.cicle{
+    border-radius: 50px;
+    margin: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: gray;
+}
+#next{
+    margin: 10px;
+}
+#next:hover{
+    color: rgba(78, 141, 150, 0.5);
+    border: 3px inset;
+    border-color: rgba(78, 141, 150, 0.5);
+}
+#next:active{
+    color: white;
+    background-color: rgba(78, 141, 150, 0.5);
+}

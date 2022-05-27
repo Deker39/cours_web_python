@@ -37,11 +37,17 @@ let win = document.getElementById('myModal')
 /*-----------------------------------------------*/
 let k = document.getElementById('play')
 
-function play(){
-  document.addEventListener('click', function(e) {
-    if(k){
-      window.open('footbal.html')
-    }
-})
+function play(){document.addEventListener('click', (e) =>  window.open('footbal.html'))}
+
+/*-----------------------------------------------*/
+let color=['red','orange','green']
+let n = document.getElementById('next')
+let round = document.querySelectorAll('.cicle')
+let i = -1
+function next(){
+  i++
+  if(round[i-1]) round[i-1].style.backgroundColor = ''
+  if(i == color.length) i = 0
+  round[i].style.backgroundColor = color[i]
 }
 /*-----------------------------------------------*/
