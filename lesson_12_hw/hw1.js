@@ -34,3 +34,14 @@ let win = document.getElementById('myModal')
     }
     })
   }
+/*-----------------------------------------------*/
+let k = document.getElementById('play')
+
+function play(){
+  document.addEventListener('click', function(e) {
+    if(k){
+      window.open('footbal.html')
+    }
+})
+}
+/*-----------------------------------------------*/
