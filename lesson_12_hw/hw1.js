@@ -11,21 +11,26 @@ p.addEventListener('input', function(e){
 });
 
 /*-----------------------------------------------*/
+let b = document.getElementById('open')
+let c = document.getElementById('close')
+let win = document.getElementById('myModal')
 
   function foo(){
-    let b = document.getElementById('open')
-    let c = document.getElementById('close')
-    let win = document.getElementById('myModal')
     document.addEventListener('click', function(e) {
       if (b){
-        window.open('modal_win.html')
-            
-      }
-      if(c){
-        window.open('hw1.html')
+        win.style.display = 'flex'
+      }else{
+        win.style.display = 'none'
       }
   
     })
   }
- 
-
+  function f1(){
+    document.addEventListener('click', function(e) {
+    if(c){
+      win.style.display = 'none'
+    }else {
+      win.style.display = 'flex'
+    }
+    })
+  }
