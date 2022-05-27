@@ -11,33 +11,19 @@ p.addEventListener('input', function(e){
 });
 
 /*-----------------------------------------------*/
-let b = document.getElementById('open')
-let c = document.getElementById('close')
 let win = document.getElementById('myModal')
 
   function foo(){
-    document.addEventListener('click', function(e) {
-      if (b){
-        win.style.display = 'flex'
-      }else{
-        win.style.display = 'none'
-      }
-  
-    })
+    win.style.display = 'flex'
   }
   function f1(){
-    document.addEventListener('click', function(e) {
-    if(c){
-      win.style.display = 'none'
-    }else {
-      win.style.display = 'flex'
-    }
-    })
+    win.style.display = 'none'
   }
 /*-----------------------------------------------*/
-let k = document.getElementById('play')
 
-function play(){document.addEventListener('click', (e) =>  window.open('footbal.html'))}
+function play() {
+  window.open('footbal.html')
+}
 
 /*-----------------------------------------------*/
 let color=['red','orange','green']
@@ -50,4 +36,19 @@ function next(){
   if(i == color.length) i = 0
   round[i].style.backgroundColor = color[i]
 }
+
+/*-----------------------------------------------*/
+var list = document.querySelectorAll('.bookList li');
+
+function setSelected() {
+	document.querySelectorAll('.bookList li.selected').forEach(function (el) {
+  	el.classList.remove('selected');
+  });
+  this.classList.add('selected');
+}
+
+list.forEach(function(li) {
+	li.onclick = setSelected;
+});
+
 /*-----------------------------------------------*/
