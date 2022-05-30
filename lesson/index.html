@@ -4,140 +4,50 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     <title>Document</title>
-    <!-- <style>
-       .container{
-           width: 50%;
-           margin: auto;
-           display: flex;
-           justify-content: center;
-           align-items: center;
-           flex-direction: column;
-           margin-top: 150px;
-       }
-       #field_answer{
-           height: 75px;
-           border-radius: 8px;
-           font-size: 24px;
-           padding: 0px;
-           margin: 0px;
-       }
-       #guess{
-        height: 85px;
-        font-size: 85px;
-       }
-       #bin{
-        /* height: 85px;
-        width: 85px; */
-        font-size: 85px;
-       }
-    </style> -->
     <style>
-        iframe{
-        border:1px solid navy;
-        height:500px;
-        margin:30px;
-        width:500px;
+        body{
+            height: 1000px;
         }
-        button{
-        margin:10px 150px;
+        .blok{
+            background-color: rgb(149, 149, 149);
         }
-        </style>
-    
+        .select{
+            background-color:rgba(186, 48, 48, 0.536)
+        }
+    </style>
+   
 </head>
-<body id="b">
-    <iframe src="" id="f1"></iframe>
-   
-    <button  >
-    Next
-    </button>
-    <script>
-        // var i =0
-        // var arr_url = ['https://itstep.org','https://rezka.ag','https://html5css.ru/']
-        // function foo(){
-        //     const new_url = window.frames[0]
-        //     // console.log(new_url.history);
-        //     document.getElementById('f1').src = arr_url[i]
-        //     i++
-        // }
-        var i = 0
-        document.getElementById('body').addEventListener('clock', () =>{
-            i++
-            console.log(i);
-        } )
-
-    </script>
-   
-        <!-- <p id="p1"  >open</p>
-    <script>
-        // function aaa()
-        // {window.open('https://www.google.com.ua/?hl=ru',"_blank","popup=yes")
-        // window.moveTo(500,500)}
-        
-        // console.log(window);
-        // document.getElementById('p1'),addEventListener('click', ()=> {
-        //     var uAgent = navigator.userAgent
-        //     var b 
-        //     if (uAgent.indexOf('Chrome' > -1)){
-        //             b = 'u tebya chrom'
-        //     }
-        //     console.log(b);
-        //     console.log(navigator.connection);
-           
-        
-
-        // })
-        // console.log(history);
-        
-    </script> -->
-    <!-- <section class="container">
-        <h1 id="guess"></h1>
-        <p id="bin"></p>
-        <input type="text" name="field_answer" id ="field_answer"> -->
-    <!-- </section> -->
-    
- 
-    <!-- <div id="div1"></div> -->
-    <!-- <div id="d1"></div>
-    <p id="p1"></p> -->
-    <!-- <img src="image/Dq6o3uI.jpg" alt="" id="img1"> -->
-
-        <!-- <input type="text" name="inp" id="inp" on> -->
-    <!-- <p id="demo">JavaScript can change HTML content.</p>
-    <button onclick="kek()">ckick me</button>
-    <ul id = "ul"style="display: none;">
-        <li><p>link1</p></li>
-        <li><p>link2</p></li>
-        <li><p>link3</p></li>
-        <li><p>link4</p></li>
-        <li><p>link5</p></li>
-    </ul> -->
-
-    <!-- <p id="p1">Hello world</p> -->
-
-    <!-- <script>
-        //aler() promt() confirm()
-        // alert("2"+"2")
-        // var number = 51;
-        // alert(name)
-        // console.log(number)
-        // var kek =prompt("Enter sm","kek")
-        // var kek = confirm("Your are admin")
-        var number = 2
-        console.log(number)
-        console.log(number++)
-        console.log(++number)
-        console.log(number)
-        </scrip> -->
-        <!-- <ul id="menu" class="menu">
-            <li><a href="/html">HTML</a></li>
-            <li><a href="/javascript">JavaScript</a></li>
-            <li><a href="/css">CSS</a></li>
-          </ul> -->
-
-          
-
+<body class="d-flex flex-column justify-content-center container ">
+  <section class="blok">
+      <div class="container">
+        <h1 class="text-center">List</h1>
+        <ul class="list-group">
+            <li class="list-group-item">1</li>
+            <li class="list-group-item">2</li>
+            <li class="list-group-item">3</li>
+            <li class="list-group-item">4</li>
+            <li class="list-group-item">5</li>
+        </ul>
+      </div>
+  </section>
 
 </body>
-<script src="index.js"></script>
+<script>
+    var list = document.querySelector('.list-group')
+    var list_elem = document.querySelectorAll('.list-group-item')
+    list_elem.forEach(item=> item.draggable = true)
+    list.addEventListener('dragstart', e => {
+        e.target.classList.add('select')
+    })
+    list_elem.forEach(item=> item.draggable = true)
+    list.addEventListener('dragend', e => {
+        e.target.classList.remove('select')
+    })
+</script>
+<script src="script.js"></script>
 </html>

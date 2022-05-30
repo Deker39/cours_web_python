@@ -200,40 +200,40 @@
 // obj1.show()
 // obj2.show()
 
-class Person{
-    // name = 'default';
-    // age = 'default';
-    #live;
-    #name;
-    #age;
-    constructor(name,age, live){
-        console.log('Call Construction');
-        this.#name = name;
-        this.#age = age;
-        this.#live = live
-    }
-    work(place){
-        console.log(`Person going to ${place}`);
-    }
-    move(){
-        console.log("He move");
-    }
-    name(){
-        return this.#name
-    }
-    setName(){
-        this.#name = name;
-    }
-    age(){
-        return this.#live
-    }
-    setAge(){
-        if(age < 0 || age > 150)
-            console.log('Unvalid age')
-        else
-            this.#age = age
-    }
-}
+// class Person{
+//     // name = 'default';
+//     // age = 'default';
+//     #live;
+//     #name;
+//     #age;
+//     constructor(name,age, live){
+//         console.log('Call Construction');
+//         this.#name = name;
+//         this.#age = age;
+//         this.#live = live
+//     }
+//     work(place){
+//         console.log(`Person going to ${place}`);
+//     }
+//     move(){
+//         console.log("He move");
+//     }
+//     name(){
+//         return this.#name
+//     }
+//     setName(){
+//         this.#name = name;
+//     }
+//     age(){
+//         return this.#live
+//     }
+//     setAge(){
+//         if(age < 0 || age > 150)
+//             console.log('Unvalid age')
+//         else
+//             this.#age = age
+//     }
+// }
 
 // let obj = new Person('jhon',40,true)
 // // obj.name = 'alex'
@@ -249,4 +249,10 @@ class Person{
 //     // document.write(5+6)
 //     // alert(2)
 //     console.log(3%6);
+// }
+
+// console.log(document);
+// let elem = document.documentElement.childNodes
+// for (let i = 0; i < elem.length;i++ ){
+//     document.write(`<p> ${i+1} ${elem[i].tagName} ${elem[i].nodeName} </p>`)
 // }
