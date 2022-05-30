@@ -56,9 +56,66 @@ function fifth(){
     }
     document.write(result)
 }
+function sixth(){
+    let ans
+    do {
+        ans = prompt('Solve the equation 2+2*2 \nyour answer')
+    } while (ans != 6);
+    alert('that\'s the right decision 2 + 2 * 2 = 6')
+}
+function seventh(){
+    let d 
+    let c = 0 
+    let a = 1000
+    do {
+        d = a / 2
+        a = d
+        c++
+    } while (a > 50);
+    alert(`value: ${a}, amount: ${c}`)
+}
+function eighth(){
+   let a = prompt('Enter your value')
 
+    for (let i = 1; i <= 100; i++) {
+        if(i%a == 0){
+            document.write(`${i} \n`);
+        }
+    }
+
+}
+function ninth(){
+    let a = prompt('Enter your min-value')
+    let b = prompt('Enter your max-value')
+    let c = 0
+    for (a; a <= b; a++) {
+       if(c == 4){
+        document.write(`${a} \n`);
+        c=0
+       }
+       c++
+    }
+}
+function tenth(){
+    let num = prompt('Enter your value')
+
+    let flag = true;
+    for (let i = 2; i < num; i++) {
+        if (num % i == 0) {
+            flag = false;
+            alert(`your value is not simple: ${num}`)
+            break; 
+        }        
+    }
+    alert(`your value is simple: ${num}`)
+}
 // first()
 // second()
 // third()
 // fourth()
-fifth()
+// fifth()
+// sixth()
+// seventh()
+// eighth()
+// ninth()
+// tenth()
