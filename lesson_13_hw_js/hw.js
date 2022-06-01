@@ -11,12 +11,13 @@ ul.forEach(function(el){
  var li_ul =  document.querySelectorAll('#second .list-group ul')
  
 function setSelected(){
-    li.forEach(function (el) {
-        el.style.fontWeight = "bold";
-        li_ul.forEach(function(el){
-            el.style.display = 'block'
-        })
-    });
+    this.style.fontWeight = "bold";
+    // li.forEach(function (el) {
+    //     el.style.fontWeight = "bold";
+    //     li_ul.forEach(function(el){
+    //         el.style.display = 'block'
+    //     })
+    // });
  }
 
 //обращаеться ко всем а не к одному
