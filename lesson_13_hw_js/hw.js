@@ -7,23 +7,59 @@ ul.forEach(function(el){
 })
 
 /*-------------------------------------------------*/
- var li =  document.querySelectorAll('#second .list-group .list-group-item')
- var li_ul =  document.querySelectorAll('#second .list-group ul')
- 
-function setSelected(){
-    this.style.fontWeight = "bold";
+var first_list = document.getElementById('first_list')
+var second_list  = document.getElementById('second_list')
+var third_list = document.querySelectorAll('#third_list')
+
+ console.log(third_list);
+first_list.onclick = function(){
+    // second_list.classList.toggle('display-none')
+    second_list.classList.add('display-block')
+}
+
+second_list.onclick = function(){
+//     // second_list.classList.toggle('display-none')
+    // third_list.classList.add('display-block')
+    third_list.forEach(function(el) {
+        el.classList.add('display-block')
+    })
+
+}
+
+
+
+function setBold(){
+    this.classList.add('bold');
+}
+function outBold(){
+    this.classList.remove('bold');
+}
+
+// function setOpen(){
+//     document.querySelectorAll('#second .list-group ul.open').forEach(function (el) {
+//         el.classList.remove('open');
+//     });
+//     document.querySelectorAll('#second .list-group ul').forEach(function (el) {
+//         console.log(el);
+//         el.classList.add('open');
+//     });
+
+    
+// }
+    // this.style.fontWeight = "bold";
     // li.forEach(function (el) {
-    //     el.style.fontWeight = "bold";
-    //     li_ul.forEach(function(el){
-    //         el.style.display = 'block'
-    //     })
+        // el.style.fontWeight = "bold";
+        // li_ul.forEach(function(el){
+            // this.classList.add('open')
+        // })
     // });
- }
+ 
 
-//обращаеться ко всем а не к одному
-li.forEach(function(el){
-    el.onclick  = setSelected
-})
+// li.forEach(function(el){
+//     el.onmouseover  = setBold
+//     el.onmouseout = outBold
+//     // el.onclick  = li_ul.setOpen
+// })
 
- console.log(li);
+
 

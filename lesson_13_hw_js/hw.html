@@ -14,12 +14,16 @@
             margin: 20px auto;
         }
         #first  a{
-            text-decoration: none;
-            /* border-bottom: 1px dotted black; */
-            
+            text-decoration: none;           
         }
-        #second > .list-group  ul{
+        .display-none{
             display: none;
+        }
+        .bold{
+            font-weight: bold;
+        }
+        .display-block{
+            display: block;
         }
     </style>
 </head>
@@ -36,22 +40,29 @@
     </section>
     <section class="container" id="second">
         <h1>#Exercise 2</h1>
-        <ul class="list-group">
-            <li class="list-group-item">Local Disk (C:)
-                <ul>
-                    <li >Program Files</li>
-                    <li >Users</li>
-                    <li >Windows</li>
+        <ul class="list-group" id="first_list">
+            <li class="list-group-item">
+                This PC
+                <ul class="list-group-flush display-none" id="second_list">
+                    <li class="list-group-item">Local Disk (C:)
+                        <ul class="list-group-flush display-none" id="third_list">
+                            <li class="list-group-item">Program Files</li>
+                            <li class="list-group-item">Users</li>
+                            <li class="list-group-item">Windows</li>
+                        </ul>
+                    </li>
+                    <li class="list-group-item">Local Disk (D:)
+                        <ul class="list-group-flush display-none" id="third_list"> 
+                            <li class="list-group-item">New Folder 1</li>
+                            <li class="list-group-item">New Folder 2</li>
+                            <li class="list-group-item">New Folder 3</li>
+                        </ul>
+                    </li>
+                    <li class="list-group-item">
+                        Local Disk (E:)
+                    </li>
                 </ul>
             </li>
-            <li class="list-group-item">Local Disk (D:)
-                <ul> 
-                    <li >New Folder 1</li>
-                    <li >New Folder 2</li>
-                    <li >New Folder 3</li>
-                </ul>
-            </li>
-            <li class="list-group-item">Local Disk (E:)</li>
         </ul>
     </section>
     
