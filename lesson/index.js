@@ -547,6 +547,34 @@
 
 // window.onload = game()
 
+// var list = document.querySelector('.list-group')
+// var list_elem = document.querySelectorAll('.list-group-item')
 
+// list_elem.forEach(item=> item.draggable = true)
+
+// list.addEventListener('dragstart', e => {
+//     e.target.classList.add('select')
+// })
+// list_elem.forEach(item=> item.draggable = true)
+
+// list.addEventListener('dragend', e => {
+//     e.target.classList.remove('select')
+// })
+
+// list.addEventListener('dragover', e => {
+//     e.preventDefault()
+
+//     let elem = list.querySelector(".select")
+//     let currentElem =e.target
+
+//     let isMove = elem !== currentElem && currentElem.classList.contains('list-group-item')
+//     if(!isMove){
+//         return
+//     }
+
+//     let nextElem =
+//     (currentElem === elem.nextElementSibling) ? currentElem.nextElementSibling: currentElem
+//     list.insertBefore(elem, nextElem)
+// })
 
 

@@ -15,39 +15,19 @@
         }
         .blok{
             background-color: rgb(149, 149, 149);
-        }
-        .select{
-            background-color:rgba(186, 48, 48, 0.536)
+            padding: 20px;
         }
     </style>
-   
 </head>
 <body class="d-flex flex-column justify-content-center container ">
   <section class="blok">
-      <div class="container">
-        <h1 class="text-center">List</h1>
-        <ul class="list-group">
-            <li class="list-group-item">1</li>
-            <li class="list-group-item">2</li>
-            <li class="list-group-item">3</li>
-            <li class="list-group-item">4</li>
-            <li class="list-group-item">5</li>
-        </ul>
-      </div>
+   
   </section>
 
 </body>
 <script>
-    var list = document.querySelector('.list-group')
-    var list_elem = document.querySelectorAll('.list-group-item')
-    list_elem.forEach(item=> item.draggable = true)
-    list.addEventListener('dragstart', e => {
-        e.target.classList.add('select')
-    })
-    list_elem.forEach(item=> item.draggable = true)
-    list.addEventListener('dragend', e => {
-        e.target.classList.remove('select')
-    })
+   
+
 </script>
 <script src="script.js"></script>
 </html>
