@@ -256,3 +256,4 @@
 // for (let i = 0; i < elem.length;i++ ){
 //     document.write(`<p> ${i+1} ${elem[i].tagName} ${elem[i].nodeName} </p>`)
 // }
+

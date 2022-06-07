@@ -104,7 +104,7 @@ function tenth(){
         if (num % i == 0) {
             flag = false;
             alert(`your value is not simple: ${num}`)
-            break; 
+            return 
         }        
     }
     alert(`your value is simple: ${num}`)

@@ -19,15 +19,33 @@
         }
     </style>
 </head>
-<body class="d-flex flex-column justify-content-center container ">
-  <section class="blok">
-   
-  </section>
+<body class="d-flex flex-row justify-content-center align-items-center bg-secondary">
+  <form onsubmit="event.preventDefault(); check(event); " id="f1">
+    <label for="name">Email:</label>
+    <input type="text" name="iEmail" id="email">
+    <label for="pass">Password</label>
+    <input type="text" name="iPass" id="pass">
+    <input type="submit" value="Send">
+  </form>
 
 </body>
 <script>
-   
+   const  check = (e) => {
+       const form= e.currentTurget
+       let login= document.getElementById('email').value
+       if(login.length == 0){
+       alert('zero len')
+       return 0
+       }
+       document.getElementById('f1').submit()
+   }
+   let temp = new RegExp(/([0-3][0-1]|[1-2][0-9]|[0][0-9])\.([0][1-9]|[0-1][1-2])\.\d\d\d\d/gm)
+    console.log(temp.test('20.02.2020'));
+    console.log(temp.exec("20.02.2020"));
+    console.log("20.02.2020".match(temp));
+    let line = "Mon Jun 06 2022 21:01:25 GTM+0300"
+    console.log(/\d/gm);
 
 </script>
-<script src="script.js"></script>
+<!-- <script src="script.js"></script> -->
 </html>
