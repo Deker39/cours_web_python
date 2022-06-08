@@ -257,3 +257,37 @@
 //     document.write(`<p> ${i+1} ${elem[i].tagName} ${elem[i].nodeName} </p>`)
 // }
 
+// const  check = (e) => {
+//     const form= e.currentTurget
+//     let login= document.getElementById('email').value
+//     if(login.length == 0){
+//     alert('zero len')
+//     return 0
+//     }
+//     document.getElementById('f1').submit()
+// }
+// let temp = new RegExp(/([0-3][0-1]|[1-2][0-9]|[0][0-9])\.([0][1-9]|[0-1][1-2])\.\d\d\d\d/gm)
+//  console.log(temp.test('20.02.2020'));
+//  console.log(temp.exec("20.02.2020"));
+//  console.log("20.02.2020".match(temp));
+//  let line = "Mon Jun 06 2022 21:01:25 GTM+0300"
+
+
+ // let date = new Date()
+    // console.log(date);
+    // date.setMinutes(date.getMinutes()+1)
+    // let name1 = 'Alex1'
+    // let name2 = 'Alex2'
+    // let name3 = 'Alex3'
+    // document.cookie = `name1=${encodeURIComponent(name1)};expires=${date};`
+    // document.cookie = `name2=${encodeURIComponent(name2)};expires=${date};`
+    // document.cookie = `name3=${encodeURIComponent(name3)};expires=${date};`
+
+    // console.log(document.cookie.split(';'));
+    // let arr_cookie = document.cookie.split(';')
+    // arr_cookie.forEach(item =>{
+    //     let pair = item.split('='),
+    //         key = pair[0]
+    //         value = pair [1]
+    //     console.log(`key: ${key}\tvalue: ${value}\t`);
+    // }) 

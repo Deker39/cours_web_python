@@ -26,26 +26,31 @@
     <label for="pass">Password</label>
     <input type="text" name="iPass" id="pass">
     <input type="submit" value="Send">
+    <img id = i1>
   </form>
 
 </body>
 <script>
-   const  check = (e) => {
-       const form= e.currentTurget
-       let login= document.getElementById('email').value
-       if(login.length == 0){
-       alert('zero len')
-       return 0
-       }
-       document.getElementById('f1').submit()
+   let obj = {
+       "name":"Person",
+       "age":20
    }
-   let temp = new RegExp(/([0-3][0-1]|[1-2][0-9]|[0][0-9])\.([0][1-9]|[0-1][1-2])\.\d\d\d\d/gm)
-    console.log(temp.test('20.02.2020'));
-    console.log(temp.exec("20.02.2020"));
-    console.log("20.02.2020".match(temp));
-    let line = "Mon Jun 06 2022 21:01:25 GTM+0300"
-    console.log(/\d/gm);
+//    var serializedJSON = JSON.stringify(obj)
+//    console.log(serializedJSON);
+//    var parsedData = JSON.parse(serializedJSON)
+//    console.log(persedData);
+//    https://rickandmortyapi.com/api/character
+//    wdwf
+   document.getElementById('i1')
+   var result ={}
+   const resp = fetch("https://rickandmortyapi.com/api/character")
+   .then( resp => result=  resp.json())
+   .then(body => console.log(body,body['results'][0]['image']))
+   .then(item => i1.setAttribute('src',item['results'][0]['image']))
+//    document.write(`<img src=${item['results'][0]['image']}  alt="">`)
 
+
+   
 </script>
 <!-- <script src="script.js"></script> -->
 </html>
