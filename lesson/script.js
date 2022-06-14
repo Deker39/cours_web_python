@@ -291,3 +291,32 @@
     //         value = pair [1]
     //     console.log(`key: ${key}\tvalue: ${value}\t`);
     // }) 
+
+    //    let obj = {
+//        "name":"Person",
+//        "age":20
+//    }
+// <!-- <body class="d-flex flex-row justify-content-center align-items-center bg-secondary">
+//   <form onsubmit="event.preventDefault(); check(event); " id="f1">
+//     <label for="name">Email:</label>
+//     <input type="text" name="iEmail" id="email">
+//     <label for="pass">Password</label>
+//     <input type="text" name="iPass" id="pass">
+//     <input type="submit" value="Send">
+//     <img id = i1>
+//   </form>
+
+// </body> --></input>
+//    var serializedJSON = JSON.stringify(obj)
+//    console.log(serializedJSON);
+//    var parsedData = JSON.parse(serializedJSON)
+//    console.log(persedData);
+//    https://rickandmortyapi.com/api/character
+//    wdwf
+//    document.getElementById('i1')
+//    var result ={}
+//    const resp = fetch("https://rickandmortyapi.com/api/character")
+//    .then( resp => result=  resp.json())
+//    .then(body => console.log(body,body['results'][0]['image']))
+//    .then(item => i1.setAttribute('src',item['results'][0]['image']))
+//    document.write(`<img src=${item['results'][0]['image']}  alt="">`)

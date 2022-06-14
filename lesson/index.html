@@ -1,56 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
     <title>Document</title>
     <style>
-        body{
-            height: 1000px;
-        }
-        .blok{
-            background-color: rgb(149, 149, 149);
-            padding: 20px;
-        }
+
     </style>
 </head>
-<body class="d-flex flex-row justify-content-center align-items-center bg-secondary">
-  <form onsubmit="event.preventDefault(); check(event); " id="f1">
-    <label for="name">Email:</label>
-    <input type="text" name="iEmail" id="email">
-    <label for="pass">Password</label>
-    <input type="text" name="iPass" id="pass">
-    <input type="submit" value="Send">
-    <img id = i1>
-  </form>
 
+<body>
+    <table class="table" id="body-table">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Status</th>
+            <th scope="col">Gender</th>
+          </tr>
+
+      </table>
 </body>
 <script>
-   let obj = {
-       "name":"Person",
-       "age":20
-   }
-//    var serializedJSON = JSON.stringify(obj)
-//    console.log(serializedJSON);
-//    var parsedData = JSON.parse(serializedJSON)
-//    console.log(persedData);
-//    https://rickandmortyapi.com/api/character
-//    wdwf
-   document.getElementById('i1')
-   var result ={}
-   const resp = fetch("https://rickandmortyapi.com/api/character")
-   .then( resp => result=  resp.json())
-   .then(body => console.log(body,body['results'][0]['image']))
-   .then(item => i1.setAttribute('src',item['results'][0]['image']))
-//    document.write(`<img src=${item['results'][0]['image']}  alt="">`)
 
+    let request;
+    request = new XMLHttpRequest();
+    request.open("GET", "https://rickandmortyapi.com/api/character");
+    request.responseType = "json";
 
-   
+    request.onload = function(event){
+        // console.log(`Download ${event.loaded}`);
+        const body = request.response
+        let tb = document.getElementById('body-table')
+
+        for (let i = 0; i < body['results'].length; i++) {
+
+            let row_id = body['results'][i]['id']
+            let row_name = body['results'][i]['name']
+            let row_status = body['results'][i]['status']
+            let row_gender = body['results'][i]['gender']
+
+            const row = document.createElement('tr')
+            row.innerHTML= `<tr>
+            <td>${row_id}</td>
+            <td>${row_name}</td>
+            <td>${row_status}</td>
+            <td>${row_gender}</td>
+            </tr>`
+
+            tb.appendChild(row)
+        }
+        
+    }
+  
+
+    request.send()
+
 </script>
 <!-- <script src="script.js"></script> -->
+
 </html>

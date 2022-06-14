@@ -8,18 +8,8 @@
         "number house": "100"
     },
     "childerm":[
-        {
-            "name":"kek1",
-            "age":1
-        },
-        {
-            "name":"kek2",
-            "age":2
-        },
-        {
-            "name":"kek3",
-            "age":3
-        }
-        
+        {"name":"kek1","age":1},
+        {"name":"kek2","age":2},
+        {"name":"kek3", "age":3}
     ]
 }
