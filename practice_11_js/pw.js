@@ -45,8 +45,7 @@ function twelfth(obj,valueX,valueY){
     var p4 = [obj.rigthUperPointX,obj.rigthUperPointY]
 
     return getCross(p1,p2,newPoint) * getCross(p3,p4,newPoint) >= 0 && 
-        getCross(p2,p3,newPoint) * getCross(p4,p1,newPoint) >=0
-     
+        getCross(p2,p3,newPoint) * getCross(p4,p1,newPoint) >=0  
 }
 
 let rectangle = {
