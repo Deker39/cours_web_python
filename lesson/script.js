@@ -320,3 +320,34 @@
 //    .then(body => console.log(body,body['results'][0]['image']))
 //    .then(item => i1.setAttribute('src',item['results'][0]['image']))
 //    document.write(`<img src=${item['results'][0]['image']}  alt="">`)
+ // let request;
+    // request = new XMLHttpRequest();
+    // request.open("GET", "https://rickandmortyapi.com/api/character");
+    // request.responseType = "json";
+
+    // request.onload = function(event){
+    //     // console.log(`Download ${event.loaded}`);
+    //     const body = request.response
+    //     let tb = document.getElementById('body-table')
+
+    //     for (let i = 0; i < body['results'].length; i++) {
+
+    //         let row_id = body['results'][i]['id']
+    //         let row_name = body['results'][i]['name']
+    //         let row_status = body['results'][i]['status']
+    //         let row_gender = body['results'][i]['gender']
+
+    //         const row = document.createElement('tr')
+    //         row.innerHTML= `<tr>
+    //         <td>${row_id}</td>
+    //         <td>${row_name}</td>
+    //         <td>${row_status}</td>
+    //         <td>${row_gender}</td>
+    //         </tr>`
+    //         tb.appendChild(row)
+    //     }
+        
+    // }
+  
+
+    // request.send()
