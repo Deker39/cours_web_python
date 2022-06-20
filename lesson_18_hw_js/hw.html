@@ -17,29 +17,33 @@
         #btn-firts{
             width: 100%;
         }
-        input:invalid {
+        
+        /* input:invalid {
          border: red solid 3px;
         }
+        input:valid {
+         border: green solid 3px;
+        } */
     </style>
 </head>
 <body>
     <section class="container mb-5" id="section-first">
         <h2 class="d-flex justify-content-center">Creat new color</h2>
-        <form class="form-horizontal needs-validation">
-            <div class=" form-group mb-3">
+        <form class="form-horizontal needs-validation" onsubmit="return checkForm(event)">
+            <div class=" form-group mb-3" id="color">
                 <!-- <div class="float-end">
                     <title id="colorError" class="text-danger">
                       Color can only contain letters
                     </title>      
                 </div> -->
             <label for="colorId" class="form-label">Color:</label>
-            <input type="text" class="form-control" id="colorId" pattern="[a-zA-Z]" 
-            title="Color can only contain letters" required>
+            <input type="text" class="form-control" id="colorId" 
+            pattern="[A-Za-z]{0,}"  title="Color can only contain letters" placeholder="Yellow" required>
             </div>
             <div class="form-group mb-3">
                 <label for="typeId" class="form-label">Type:</label>
-                <select class="form-control" id="typeId">
-                    <option selected="true" disabled="disabled">Choose type...</option>
+                <select class="form-control" id="typeId" required>
+                    <option value="0" selected="true" disabled="disabled">Choose type...</option>
                     <option value="rgb">RGB</option>
                     <option value="rgba">RGBA</option>
                     <option value="hex">HEX</option>
@@ -48,14 +52,13 @@
             <div class="form-group mb-3">
                 <label for="codeId" class="form-label">Code:</label>
                 <input type="text" class="form-control" id="codeId" required>
-              </div>
-           
+            </div>
             <button type="submit" class="btn btn-primary" id="btn-firts">Save</button>
           </form>
     </section>
-    <section class="container d-flex justify-content-center align-content-center flex-wrap">
+    <section class="container d-flex justify-content-center align-content-center flex-wrap" >
         <h2 class="justify-content-center">All colors</h2>
-        <div class="container d-flex flex-wrap justify-content-center">
+        <div class="container d-flex flex-wrap justify-content-center" id="view">
             <div class="m-3" style="background-color: red; width :300px; height: 200px;"></div>
             <div class="m-3" style="background-color: blue; width :300px; height: 200px;"></div>
             <div class="m-3" style="background-color: green; width :300px; height: 200px;"></div>
