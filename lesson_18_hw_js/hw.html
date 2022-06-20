@@ -17,33 +17,37 @@
         #btn-firts{
             width: 100%;
         }
+        input:invalid {
+         border: red solid 3px;
+        }
     </style>
 </head>
 <body>
     <section class="container mb-5" id="section-first">
         <h2 class="d-flex justify-content-center">Creat new color</h2>
-        <form class="form-horizontal needs-validation" novalidate>
+        <form class="form-horizontal needs-validation">
             <div class=" form-group mb-3">
-                <div class="float-end">
-                    <small id="colorError" class="text-danger">
+                <!-- <div class="float-end">
+                    <title id="colorError" class="text-danger">
                       Color can only contain letters
-                    </small>      
-                </div>
-              <label for="colorId" class="form-label">Color:</label>
-              <input type="text" class="form-control" id="colorId" required>
+                    </title>      
+                </div> -->
+            <label for="colorId" class="form-label">Color:</label>
+            <input type="text" class="form-control" id="colorId" pattern="[a-zA-Z]" 
+            title="Color can only contain letters" required>
             </div>
-            
             <div class="form-group mb-3">
                 <label for="typeId" class="form-label">Type:</label>
                 <select class="form-control" id="typeId">
-                  <option value="1">RGB</option>
-                  <option value="2">HEX</option>
-                  <option value="3">HSL</option>
+                    <option selected="true" disabled="disabled">Choose type...</option>
+                    <option value="rgb">RGB</option>
+                    <option value="rgba">RGBA</option>
+                    <option value="hex">HEX</option>
                 </select>
             </div>
             <div class="form-group mb-3">
                 <label for="codeId" class="form-label">Code:</label>
-                <input type="text" class="form-control" id="codeId">
+                <input type="text" class="form-control" id="codeId" required>
               </div>
            
             <button type="submit" class="btn btn-primary" id="btn-firts">Save</button>
