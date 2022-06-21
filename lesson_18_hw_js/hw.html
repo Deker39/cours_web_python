@@ -17,7 +17,9 @@
         #btn-firts{
             width: 100%;
         }
-        
+        .display-none{
+             display: none;
+        }
         /* input:invalid {
          border: red solid 3px;
         }
@@ -29,29 +31,30 @@
 <body>
     <section class="container mb-5" id="section-first">
         <h2 class="d-flex justify-content-center">Creat new color</h2>
-        <form class="form-horizontal needs-validation" onsubmit="return checkForm(event)">
+        <form class="form-horizontal" id="form" action="" novalidate>
             <div class=" form-group mb-3" id="color">
-                <!-- <div class="float-end">
-                    <title id="colorError" class="text-danger">
+                <div class="float-end display-none" id="colorError">
+                    <p class="text-danger mb-0">
                       Color can only contain letters
-                    </title>      
-                </div> -->
-            <label for="colorId" class="form-label">Color:</label>
-            <input type="text" class="form-control" id="colorId" 
-            pattern="[A-Za-z]{0,}"  title="Color can only contain letters" placeholder="Yellow" required>
+                    </p>      
+                </div>
+                <label for="colorId" class="form-label">Color:</label>
+                <input type="text" class="form-control" id="colorId">
             </div>
             <div class="form-group mb-3">
                 <label for="typeId" class="form-label">Type:</label>
                 <select class="form-control" id="typeId" required>
-                    <option value="0" selected="true" disabled="disabled">Choose type...</option>
+                    <option value="" selected="true" disabled="disabled">Choose type...</option>
                     <option value="rgb">RGB</option>
                     <option value="rgba">RGBA</option>
                     <option value="hex">HEX</option>
                 </select>
             </div>
             <div class="form-group mb-3">
+                <div class="float-end display-none" id="codeError">
+                </div>
                 <label for="codeId" class="form-label">Code:</label>
-                <input type="text" class="form-control" id="codeId" required>
+                <input type="text" class="form-control" id="codeId" >
             </div>
             <button type="submit" class="btn btn-primary" id="btn-firts">Save</button>
           </form>
