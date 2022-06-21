@@ -18,8 +18,9 @@ let form = document.querySelector('#form'),
     inputColorCode  = document.querySelector('#codeId'),
     emptyInputs = Array.from(formInputs).filter(input => input.value === ''),
     colorError  = document.querySelector('#colorError'),
+    typeError = document.querySelector('#typeError'),
     codeError = document.querySelector('#codeError')
-
+    
 function validtateColorName(name){
     let reg = /[a-zA-Z]/
     return reg.test(name)
@@ -42,10 +43,10 @@ function validtateHEX(code){
 
 form.onsubmit  = function(){
     let colorNameValue = inputColorName.value,
-        colorColorType = inputColorType.value,
-        colorColorCode = inputColorCode.value
+        colorTypeValue = inputColorType.value,
+        colorCodeValue = inputColorCode.value
 
-    // console.log(colorNameValue,colorColorType,colorColorCode);
+    // console.log(colorNameValue,colorTypeValue,colorCodeValue);
 
     formInputs.forEach(function (input){
         if(input.value === '' || input.value === ' '){
@@ -55,8 +56,6 @@ form.onsubmit  = function(){
         }
         
     });
-
-    
 
     if (!validtateColorName(colorNameValue)){
         inputColorName.classList.add('is-invalid')
@@ -70,66 +69,87 @@ form.onsubmit  = function(){
        
     } 
 
-
-    if(colorColorType == 'rgb'){
-        if(!validtateRGB(colorColorCode)){
-            var p = document.createElement('p')
-            codeError.appendChild(p)
-            p.innerText ='RGB code must match the pattern [0-255],[0-255],[0-255]'
-            p.classList.add('text-danger')
-            
-            codeError.classList.remove('display-none')
-            inputColorCode.classList.add('is-invalid')
-            console.log('Code RGB not valid')
-            return false
-        }else{
-            codeError.classList.add('display-none')
-            inputColorCode.classList.remove('is-invalid') 
-            inputColorCode.classList.add('is-valid')
-        }
+    if(!document.querySelector('#typeError p')){
+        var pType = document.createElement('p')
+        pType.classList.add('text-danger','mb-0')
+        typeError.appendChild(pType)
+    }else{
+        pType = document.querySelector('#typeError p')
     }
-
-    if(colorColorType == 'rgba'){
-        if(!validtateRGBA(colorColorCode)){
-            var p = document.createElement('p')
-            codeError.appendChild(p)
-            p.innerText ='RGBA code must match the pattern [0-255],[0-255],[0-255],[0-1]'
-            p.classList.add('text-danger')
-
-            codeError.classList.remove('display-none')
-            inputColorCode.classList.add('is-invalid')
-            console.log('Code RGBA not valid')
-            return false
-        }else{
-            codeError.classList.add('display-none')
-            inputColorCode.classList.remove('is-invalid') 
-            inputColorCode.classList.add('is-valid')
-        }
+  
+    if(!document.querySelector('#codeError p')){
+        var pCode = document.createElement('p')
+        pCode.classList.add('text-danger','mb-0','fs-6')
+        codeError.appendChild(pCode)
+    }else{
+        pCode = document.querySelector('#codeError p')
     }
-    // 'HEX code must match the hexadecimal pattern #[0-F],[0-F],[0-F],[0-F],[0-F],[0-F]'
-    if(colorColorType == 'hex'){
-        if(!validtateHEX(colorColorCode)){
-            var p = document.createElement('p')
-            codeError.appendChild(p)
-            p.innerText ='HEX code must match the hexadecimal pattern #[0-F],[0-F],[0-F],[0-F],[0-F],[0-F]'
-            p.classList.add('text-danger')
-
-            codeError.classList.remove('display-none')
-            inputColorCode.classList.add('is-invalid')
-            console.log('Code HEX not valid')
-            return false
-        }else{
-            codeError.classList.add('display-none')
-            inputColorCode.classList.remove('is-invalid') 
-            inputColorCode.classList.add('is-valid')
-        }
-    }
-
+   
     
+    if (colorTypeValue == "") {
+
+        pType.innerText = 'Need to select the type'
+        pCode.innerText = "Type not selected"
+
+        codeError.classList.remove('display-none')
+        typeError.classList.remove('display-none')
+        inputColorType.classList.add('is-invalid')
+        console.log('Type not valid')
+        return false
+    } else {
+
+        typeError.classList.add('display-none')
+        codeError.classList.add('display-none')
+        inputColorType.classList.add('is-valid')
+
+        if (colorTypeValue == 'rgb') {
+            if (!validtateRGB(colorCodeValue)) {
+                pCode.innerText = 'RGB code must match the pattern [0-255],[0-255],[0-255]'
+
+                codeError.classList.remove('display-none')
+                inputColorCode.classList.add('is-invalid')
+                console.log('Code RGB not valid')
+                return false
+            } else {
+                codeError.classList.add('display-none')
+                inputColorCode.classList.remove('is-invalid')
+                inputColorCode.classList.add('is-valid')
+            }
+
+        }
+        if (colorTypeValue == 'rgba') {
+            if (!validtateRGBA(colorCodeValue)) {
+                pCode.innerText = 'RGBA code must match the pattern [0-255],[0-255],[0-255],[0-1]'
+
+                codeError.classList.remove('display-none')
+                inputColorCode.classList.add('is-invalid')
+                console.log('Code RGBA not valid')
+                return false
+            } else {
+                codeError.classList.add('display-none')
+                inputColorCode.classList.remove('is-invalid')
+                inputColorCode.classList.add('is-valid')
+            }
+        }
+        if (colorTypeValue == 'hex') {
+            if (!validtateHEX(colorCodeValue)) {
+                pCode.innerText = 'HEX code must match the hexadecimal pattern #[0-F],[0-F],[0-F],[0-F],[0-F],[0-F]'
+
+                codeError.classList.remove('display-none')
+                inputColorCode.classList.add('is-invalid')
+                console.log('Code HEX not valid')
+                return false
+            } else {
+                codeError.classList.add('display-none')
+                inputColorCode.classList.remove('is-invalid')
+                inputColorCode.classList.add('is-valid')
+            }
+        }
+    }
 
     if(emptyInputs.length !== 0){
         console.log('input not filled');
-        // return false
+        return false
     }
 
     return false
