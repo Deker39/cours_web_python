@@ -29,14 +29,14 @@
 
 <body>
     <!-- Jquery -->
-    <div class="container">
+    <!-- <div class="container"> -->
         <!-- <button id="s">Show</button><button id="h">Hide</button>
         <p>Menu</p>
         <div class="list-item">
             <p>Item1</p>
             <p>Item2</p>
             <p>Item3</p>
-        </div> -->
+         </div> 
         <ul>
             <li class="li-item">Header1
                 <p>descript1</p>
@@ -47,18 +47,49 @@
             <li class="li-item">Header1
                 <p>descriptw</p>
             </li>
-        </ul>
-
+        </ul> -->
+    <div class="container d-flex justify-content-center flex-column" id="cont"></div>
 </body>
 <script>
+    $(document).ready(()=>{
+
+        $.fn.Test = function (option) { 
+            // alert('my plagin')
+            // console.log($(this).html())
+            return  $(this).css('border','3px solid black')
+            
+        }
+
+        $('div').css({"height":"100px",'width':'100px'})
+        .css("background-color",'red').Test()
+
+    })
+
+    
+    // jQuery.get('https://rickandmortyapi.com/api/character',(responseText,status,xhr) =>{
+    //     if(status === 'success'){
+    //     const results = responseText['results']
+    //     console.log(responseText);
+    //     for(let i = 0; i < results.length; i++){
+    //         const content = document.createElement('p')
+    //         content.innerText = results[i]['name']
+    //         const elem = document.createElement('div')
+    //         elem.appendChild(content)
+    //         const cont = document.getElementById('cont')
+    //         cont.appendChild(elem)
+    //     }
+    // }
+    // })
+    
+
     // $() .action
     // $('p').hide()
-    $(document).ready(() =>{
+    // $(document).ready(() =>{
 
-        $(".li-item").on('click', (e) =>{
-            $(e.currentTarget).children('p').toggle(300)
-        })
-    })
+    //     $(".li-item").on('click', (e) =>{
+    //         $(e.currentTarget).children('p').toggle(300)
+    //     })
+    // })
     //     $("#s").click(()=>{
     //         $(".list-item").show()
     //     })

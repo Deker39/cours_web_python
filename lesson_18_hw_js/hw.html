@@ -26,15 +26,14 @@
         .cont-color{
             width :300px; 
             height: 200px;
+            /* 230yf== 140 */
+                        
         }
-        #kek1{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 0px 40px;
+        .cont-into-color{
+            width :230px; 
+            height: 140px;
         }
-        
+
     </style>
 </head>
 <body>
@@ -42,11 +41,7 @@
         <h2 class="d-flex justify-content-center">Creat new color</h2>
         <form class="form-horizontal" id="form" action="" novalidate>
             <div class=" form-group mb-3" id="color">
-                <div class="float-end display-none" id="colorError">
-                    <p class="text-danger mb-0 fs-9">
-                      Color can only contain letters
-                    </p>      
-                </div>
+                <div class="float-end display-none" id="colorError"> </div>
                 <label for="colorId" class="form-label">Color:</label>
                 <input type="text" class="form-control" id="colorId">
             </div>
@@ -70,18 +65,7 @@
     </section>
     <section class="container d-flex justify-content-center align-content-center flex-wrap" >
         <h2 class="justify-content-center">All colors</h2>
-        <div class="container d-flex flex-wrap justify-content-center" id="view">
-            <div class="m-3 d-flex justify-content-center align-items-center cont-color" style="background-color: red;">
-                <div  style="background-color: rgb(250, 90, 90);" id="kek1">
-                    <p style="font-size: 24px; font-weight: bold;">RED</p>
-                    <p>RGB</p>
-                    <p style="font-size: 24px;">(255,255,255)</p>
-                </div>
-            </div>
-            <div class="m-3" style="background-color: blue; width :300px; height: 200px;"></div>
-            <div class="m-3" style="background-color: green; width :300px; height: 200px;"></div>
-            <div class="m-3" style="background-color: yellow; width :300px; height: 200px;"></div>
-        </div>
+        <div class="container d-flex flex-wrap justify-content-center" id="view"></div>
     </section>
     
     
