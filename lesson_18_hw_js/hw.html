@@ -20,12 +20,21 @@
         .display-none{
              display: none;
         }
-        /* input:invalid {
-         border: red solid 3px;
+        .fs-9{
+            font-size: 14px !important;
         }
-        input:valid {
-         border: green solid 3px;
-        } */
+        .cont-color{
+            width :300px; 
+            height: 200px;
+        }
+        #kek1{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0px 40px;
+        }
+        
     </style>
 </head>
 <body>
@@ -34,7 +43,7 @@
         <form class="form-horizontal" id="form" action="" novalidate>
             <div class=" form-group mb-3" id="color">
                 <div class="float-end display-none" id="colorError">
-                    <p class="text-danger mb-0">
+                    <p class="text-danger mb-0 fs-9">
                       Color can only contain letters
                     </p>      
                 </div>
@@ -62,7 +71,13 @@
     <section class="container d-flex justify-content-center align-content-center flex-wrap" >
         <h2 class="justify-content-center">All colors</h2>
         <div class="container d-flex flex-wrap justify-content-center" id="view">
-            <div class="m-3" style="background-color: red; width :300px; height: 200px;"></div>
+            <div class="m-3 d-flex justify-content-center align-items-center cont-color" style="background-color: red;">
+                <div  style="background-color: rgb(250, 90, 90);" id="kek1">
+                    <p style="font-size: 24px; font-weight: bold;">RED</p>
+                    <p>RGB</p>
+                    <p style="font-size: 24px;">(255,255,255)</p>
+                </div>
+            </div>
             <div class="m-3" style="background-color: blue; width :300px; height: 200px;"></div>
             <div class="m-3" style="background-color: green; width :300px; height: 200px;"></div>
             <div class="m-3" style="background-color: yellow; width :300px; height: 200px;"></div>

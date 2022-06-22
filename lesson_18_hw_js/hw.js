@@ -19,7 +19,8 @@ let form = document.querySelector('#form'),
     emptyInputs = Array.from(formInputs).filter(input => input.value === ''),
     colorError  = document.querySelector('#colorError'),
     typeError = document.querySelector('#typeError'),
-    codeError = document.querySelector('#codeError')
+    codeError = document.querySelector('#codeError'),
+    divViewColor = document.querySelector('#view')
     
 function validtateColorName(name){
     let reg = /[a-zA-Z]/
@@ -53,6 +54,7 @@ form.onsubmit  = function(){
             input.classList.add('is-invalid')
         }else{
             input.classList.remove('is-invalid')
+
         }
         
     });
@@ -71,7 +73,7 @@ form.onsubmit  = function(){
 
     if(!document.querySelector('#typeError p')){
         var pType = document.createElement('p')
-        pType.classList.add('text-danger','mb-0')
+        pType.classList.add('text-danger','mb-0','fs-9')
         typeError.appendChild(pType)
     }else{
         pType = document.querySelector('#typeError p')
@@ -79,7 +81,7 @@ form.onsubmit  = function(){
   
     if(!document.querySelector('#codeError p')){
         var pCode = document.createElement('p')
-        pCode.classList.add('text-danger','mb-0','fs-6')
+        pCode.classList.add('text-danger','mb-0','fs-9')
         codeError.appendChild(pCode)
     }else{
         pCode = document.querySelector('#codeError p')
@@ -133,7 +135,7 @@ form.onsubmit  = function(){
         }
         if (colorTypeValue == 'hex') {
             if (!validtateHEX(colorCodeValue)) {
-                pCode.innerText = 'HEX code must match the hexadecimal pattern #[0-F],[0-F],[0-F],[0-F],[0-F],[0-F]'
+                pCode.innerText = 'HEX code must match the pattern #[0-F],[0-F],[0-F],[0-F],[0-F],[0-F]'
 
                 codeError.classList.remove('display-none')
                 inputColorCode.classList.add('is-invalid')
@@ -147,10 +149,22 @@ form.onsubmit  = function(){
         }
     }
 
-    if(emptyInputs.length !== 0){
+    if(emptyInputs.length == 0){
         console.log('input not filled');
         return false
     }
+
+    if(validtateColorName(colorNameValue) && colorTypeValue != "" && 
+    (validtateRGB(colorCodeValue)||validtateRGBA(colorCodeValue)||validtateHEX(colorCodeValue))){
+        console.log("alina BUbka");
+        var divItemColor = document.createElement('div')
+        divItemColor.classList.add('m-3','cont-color')
+        // divViewColor
+        
+    }
+
+
+
 
     return false
 }
