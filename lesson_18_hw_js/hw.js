@@ -212,7 +212,12 @@ form.onsubmit  = function(){
         
         arrayName.push(colorNameValue)
         console.log(arrayName);
-        document.cookie = ``
+
+        let cookieDuration = 3*60*60*1000;
+        let expires = new Date(now + cookieDuration);
+
+        document.cookie =`${encodeURIComponent(colorNameValue,colorTypeValue,colorCodeValue)}; path=/;`
+        console.log(document.cookie);
         
 
 
