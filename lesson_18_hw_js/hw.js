@@ -1,16 +1,3 @@
-var colorReg = RegExp(/[a-zA-Z]/)
-var rgbReg  = RegExp(/(\d{1,3}),(\d{1,3}),(\d{1,3})/)
-var rgbareg = RegExp(/(\d{1,3}),(\d{1,3}),(\d{1,3}),(1|1\.?\.0|0\.?\.\d{0,}|0)/ )
-var hexReg = RegExp(/#[0-9A-Fa-f]{6}/)
-
-
-// var mainDiv = document.getElementById('view')
-// var creatDiv = document.createElement('div')
-// var colorName = document.getElementById('colorId')
-// var colorType = document.getElementById('typeId')
-// var colorCode = document.getElementById('codeId')
-// console.log(colorName.textContent);
-
 let form = document.querySelector('#form'),
     formInputs = document.querySelectorAll(".form-control"),
     inputColorName  = document.querySelector('#colorId'), 
@@ -20,9 +7,25 @@ let form = document.querySelector('#form'),
     colorError  = document.querySelector('#colorError'),
     typeError = document.querySelector('#typeError'),
     codeError = document.querySelector('#codeError'),
-    divViewColor = document.querySelector('#view'),
-    arrayName = new Array()
-   
+    divViewColor = document.querySelector('#view')
+
+let arrayName = new Array(),
+    cookieDuration = 3*60*60*1000,
+    userColors = [],
+    counter = 0
+
+class ColorObject  {
+    constructor(name,type,code,back_value){
+        this.name = name;
+        this.type = type;
+        this.code = code
+        this.back_value = back_value
+    }
+    toString(){
+        return `${this.name};${this.type};${this.code};${this.back_value}`
+        }
+    
+}
     
 function validtateColorName(name){
     let reg = /^[a-zA-Zа-яА-ЯёЁ]+$/g
@@ -44,15 +47,81 @@ function validtateHEX(code){
     return reg.test(code)
 }
 
+function creatContainer(name,type,code,back) {
+    
+    var divItemColor = document.createElement('div'),
+        infoDivItem = document.createElement('div'),
+        pInfoName = document.createElement('p'),
+        pInfoType = document.createElement('p'),
+        pInfoCode = document.createElement('p')
+
+    divViewColor.appendChild(divItemColor)
+    divItemColor.appendChild(infoDivItem)
+    infoDivItem.appendChild(pInfoName,pInfoType,pInfoCode)
+
+    divItemColor.classList.add('m-3','cont-color',"d-flex", "justify-content-center","align-items-center")
+    infoDivItem.classList.add("d-flex", "flex-column" ,"justify-content-center","align-items-center","cont-into-color")
+    pInfoName.classList.add("fs-4", "fw-bold")
+    pInfoCode.classList.add("fs-4")
+
+    divItemColor.style.backgroundColor = back //backValue  
+    infoDivItem.style.backgroundColor = 'rgba(225, 225, 225, 0.25)'
+
+    pInfoName.innerHTML = name.toUpperCase() //colorTypeValue
+    pInfoType.innerHTML = type.toUpperCase() //colorTypeValue
+    pInfoCode.innerHTML = `(${code})` //colorCodeValue
+
+    infoDivItem.appendChild(pInfoName)
+    infoDivItem.appendChild(pInfoType)
+    infoDivItem.appendChild(pInfoCode)
+}
+
+function getColorsfromCookie(){
+
+    let cookieString = decodeURIComponent(document.cookie);
+    let cookieArray = cookieString.split("; ")
+    console.log(cookieArray);
+
+    if(cookieArray.length < 0) return;
+    else{
+        for (let i = 0; i < cookieArray.length; i++) {
+    
+            if(/^color/.test(cookieArray[i])){
+              let colorItem = cookieArray[i].split("=");
+              console.log(colorItem);
+              let colorValues = colorItem[1].split(";");
+              
+              userColors.push(new ColorObject(colorValues[0], colorValues[1], colorValues[2],colorValues[3]),)
+              arrayName.push(colorValues[0])
+            }
+            if(/^counter/.test(cookieArray[i])){
+                let counterItem = cookieArray[i].split("=");
+                let counterValue = +(counterItem[1]);
+                counter += counterValue;
+              }
+          }
+    }
+  }
+
+
+
+getColorsfromCookie()
+console.log(userColors);
+if(userColors.length > 0){
+    userColors.forEach(item =>{
+        creatContainer(item.name,item.type,item.code,item.back_value)
+    })
+    
+}
+
+  
 form.onsubmit  = function(){
     let colorNameValue = inputColorName.value.toLowerCase(),
         colorTypeValue = inputColorType.value.toLowerCase(),
         colorCodeValue = inputColorCode.value.toLowerCase(),
         backValue = new String()
-       
-// переделать на функции все так 
-    // console.log(colorNameValue,colorTypeValue,colorCodeValue);
 
+       
     formInputs.forEach(function (input){
         if(input.value === '' || input.value === ' '){
             input.classList.add('is-invalid')
@@ -62,8 +131,6 @@ form.onsubmit  = function(){
         }
         
     });
-
-
 
 
     if(!document.querySelector('#colorError p')){
@@ -184,45 +251,23 @@ form.onsubmit  = function(){
 
     if(validtateColorName(colorNameValue) && colorTypeValue != "" && 
     (validtateRGB(colorCodeValue)||validtateRGBA(colorCodeValue)||validtateHEX(colorCodeValue))){
-        
-        var divItemColor = document.createElement('div'),
-            infoDivItem = document.createElement('div'),
-            pInfoName = document.createElement('p'),
-            pInfoType = document.createElement('p'),
-            pInfoCode = document.createElement('p')
 
-        divViewColor.appendChild(divItemColor)
-        divItemColor.appendChild(infoDivItem)
-        infoDivItem.appendChild(pInfoName,pInfoType,pInfoCode)
-        
-        divItemColor.classList.add('m-3','cont-color',"d-flex", "justify-content-center","align-items-center")
-        infoDivItem.classList.add("d-flex", "flex-column" ,"justify-content-center","align-items-center","cont-into-color")
-        pInfoName.classList.add("fs-4", "fw-bold")
-        pInfoCode.classList.add("fs-4")
-
-        
-        divItemColor.style.backgroundColor = backValue  
-        infoDivItem.style.backgroundColor = 'rgba(225, 225, 225, 0.25)'
-        pInfoName.innerHTML = colorNameValue.toUpperCase()
-        pInfoType.innerHTML = colorTypeValue.toUpperCase()
-        pInfoCode.innerHTML = `(${colorCodeValue})`
-        infoDivItem.appendChild(pInfoName)
-        infoDivItem.appendChild(pInfoType)
-        infoDivItem.appendChild(pInfoCode)
-        
+        creatContainer(colorNameValue,colorTypeValue,colorCodeValue,backValue)
         arrayName.push(colorNameValue)
         console.log(arrayName);
 
-        let cookieDuration = 3*60*60*1000;
+        let newcolor = new ColorObject(colorNameValue,colorTypeValue,colorCodeValue,backValue)
+        userColors.push(newcolor)
+
+        let now = +(new Date());
         let expires = new Date(now + cookieDuration);
-
-        document.cookie =`${encodeURIComponent(colorNameValue,colorTypeValue,colorCodeValue)}; path=/;`
-        console.log(document.cookie);
         
+        let colorkey = "color" + counter;
+        counter++
 
+        document.cookie = `${colorkey}=${encodeURIComponent(newcolor.toString())}; expires=${expires.toGMTString()}; path=/`;
+        document.cookie = `counter=${counter}; expires=${expires.toGMTString()}; path=/`;
 
-        
-       return false
     }
 
     if(emptyInputs.length == 0){
