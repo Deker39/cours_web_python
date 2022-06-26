@@ -21,24 +21,26 @@
         #section-first {
             width: 400px;
         }
-    
-        #img {
-            width: 150px;
-            height: 250px;
-            background: url(https://m.media-amazon.com/images/M/MV5BODJmZmFiNzQtMDJiYS00ZTgzLTljZGMtNjEzNzM4NmEyYjNiXkEyXkFqcGdeQXVyNjE5MjUyOTM@._V1_SX300.jpg) center/cover no-repeat;
+        .display-none{
+             display: none;
+        }
+        .fs-9{
+            font-size: 14px !important;
         }
     </style>
     </head>
 
 <body>
     <section class="container mb-3" id="section-first">
-        <h2 class="d-flex justify-content-center">Search</h2>
+        <h2 class="d-flex justify-content-center ">Search</h2>
         <form class="form-horizontal" id="form" action="" novalidate>
+            <div class="float-end display-none" id="titleError"> </div>
             <div class=" form-group mb-3" id="color">
                 <label for="titleId" class="form-label">Title:</label>
                 <input type="text" class="form-control" id="titleId">
             </div>
             <div class="form-group mb-3">
+                <div class="float-end display-none" id="typeError"></div>
                 <label for="typeId" class="form-label">Type:</label>
                 <select class="form-control" id="typeId" required>
                     <option value="" selected="true" disabled="disabled">Choose type...</option>
