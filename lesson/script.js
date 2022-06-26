@@ -320,7 +320,8 @@
 //    .then(body => console.log(body,body['results'][0]['image']))
 //    .then(item => i1.setAttribute('src',item['results'][0]['image']))
 //    document.write(`<img src=${item['results'][0]['image']}  alt="">`)
- // let request;
+ 
+// let request;
     // request = new XMLHttpRequest();
     // request.open("GET", "https://rickandmortyapi.com/api/character");
     // request.responseType = "json";
