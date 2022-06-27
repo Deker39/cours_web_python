@@ -121,7 +121,7 @@ function creatListMovies(img,name,type,year) {
     contTextItem.appendChild(textYear)
     contTextItem.appendChild(btnDetails)
 
-    contMovieItem.setAttribute('id','num')
+    contMovieItem.setAttribute('id','page')
     contMovieItem.classList.add('d-flex', 'flex-row',  'mb-3', 'border', 'ms-3', 'bg-light')
     contImg.classList.add('m-2')
     contTextItem.classList.add('m-2', 'position-relative')
@@ -174,8 +174,6 @@ function detailRequest(name){
     request.send();
     return false
 }
-
-
 
 
 form.onsubmit = function(){
@@ -271,63 +269,6 @@ form.onsubmit = function(){
     return false
 }
 
-
-var count = 10; //всего записей
-var cnt = 2; //сколько отображаем сначала
-var cnt_page = Math.ceil(count / cnt); //кол-во страниц
-
-//выводим список страниц
-var paginator = document.querySelector(".paginator"),
-     kek1 = "<li class=\"page-item\"><a class=\"page-link\" href=\"#\" aria-label=\"Previous\"><span aria-hidden=\"true\">&laquo;</span></a></li>",
-     kek2 = "<li class=\"page-item\"><a class=\"page-link\" href=\"#\" aria-label=\"Previous\"><span aria-hidden=\"true\">&raquo;</span></a></li>",
-     page = kek1
-
-for (var i = 0; i < cnt_page; i++) {
-    page += "<li class=\"page-item\" data-page=" + i * cnt + "  id=\"page" + (i + 1) + "\"><a class=\"page-link\" href=\"#\">" + (i + 1) + "</li>"; 
-}
-    
-page += kek2
-paginator.innerHTML = page
-
-//выводим первые записи {cnt}
-var div_num = document.querySelectorAll("#num");
-console.log(div_num);
-for (var i = 0; i < div_num.length; i++) {
-    if (i < cnt) {
-        div_num[i].style.display = "block";// сюда записать страницы 
-    }
-}
-
-var main_page = document.getElementById("page1");
-main_page.classList.add("paginator_active");
-
-//листаем
-function pagination(event) {
-    var e = event || window.event;
-    var target = e.target;
-    var id = target.id;
-
-    if (target.tagName.toLowerCase() != "li") return;
-
-    var num_ = id.substr(4);
-    var data_page = +target.dataset.page;
-    main_page.classList.remove("paginator_active");
-    main_page = document.getElementById(id);
-    main_page.classList.add("paginator_active");
-
-    var j = 0;
-    for (var i = 0; i < div_num.length; i++) {
-        var data_num = div_num[i].dataset.num;
-        if (data_num <= data_page || data_num >= data_page)
-            div_num[i].style.display = "none";
-
-    }
-    for (var i = data_page; i < div_num.length; i++) {
-        if (j >= cnt) break;
-        div_num[i].style.display = "block";
-        j++;
-    }
-}
 
 
 
