@@ -9,11 +9,13 @@ let form = document.querySelector('#form'),
     btnSearch = document.querySelector('#search'),
     token = '55f2a631',
     sectMovieList = document.createElement('section'),
-    navPag = document.querySelector('#pag')
+    navPag = document.querySelector('#pag'),
+    sec_pag = document.querySelector('#sec_pag'),
+    sectMovieInfo= document.createElement('section')
 
 function creatDetailMovie(img,title,relesed,gener,country,director,writer,actors,awards){
-    let sectMovieInfo= document.createElement('section'),
-        contInfo = document.createElement('div'),
+    // let sectMovieInfo= document.createElement('section'),
+    let contInfo = document.createElement('div'),
         contImgInfo = document.createElement('div'),
         contTextInfo = document.createElement('div'),
         textTitle = document.createElement('p'),
@@ -25,7 +27,6 @@ function creatDetailMovie(img,title,relesed,gener,country,director,writer,actors
         textActors = document.createElement('p'),
         textAwards = document.createElement('p')
     
-   
 
     if (!document.querySelector('#secFilmInfo h2')) {
         let textInfo = document.createElement('h2')
@@ -34,13 +35,13 @@ function creatDetailMovie(img,title,relesed,gener,country,director,writer,actors
         sectMovieInfo.appendChild(textInfo)
     } else {
         textInfo = document.querySelector('section h2')
-    }
-   
-    sectMovieInfo.classList.add('container', 'mb-5', 'd-flex','flex-column','align-content-center')
+    }  
 
-    document.body.appendChild(sectMovieInfo)
+
+    sectMovieInfo.classList.add('container', 'mb-5', 'd-flex','flex-column','align-content-center')
     sectMovieInfo.setAttribute('id','secFilmInfo')
 
+    document.body.appendChild(sectMovieInfo) 
     sectMovieInfo.appendChild(contInfo)
     contInfo.appendChild(contImgInfo)
     contInfo.appendChild(contTextInfo)
@@ -101,8 +102,8 @@ function creatListMovies(img,name,type,year) {
         btnDetails = document.createElement('button')
 
     sectMovieList.classList.add('container', 'mb-5', 'd-flex')
-    document.body.appendChild(sectMovieList)
-    navPag.classList.remove('display-none')
+    document.body.insertBefore(sectMovieList,sec_pag)
+    
 
     if (!document.querySelector('#form + h2')) {
         let textList = document.createElement('h2')
@@ -113,6 +114,7 @@ function creatListMovies(img,name,type,year) {
         textList = document.querySelector('#form + h2')
     }
   
+
     sectMovieList.appendChild(contMovieItem)
     contMovieItem.appendChild(contImg)
     contMovieItem.appendChild(contTextItem)
@@ -144,7 +146,6 @@ function creatListMovies(img,name,type,year) {
     textYear.innerText = `Year made: ${year}`
     btnDetails.textContent = 'Details'
 
-
     btnDetails.addEventListener('click', function(e){
         detailRequest(name)// add url
     });
@@ -166,6 +167,7 @@ function detailRequest(name){
     request.onload = function () {
         if (request.readyState === 4 &&request.status == 200) {
             let person = request.response;
+            sectMovieInfo.innerHTML = ""
             console.log(person);
             creatDetailMovie(person['Poster'],person['Title'],person['Released'],person['Genre'],person['Country'],
                 person['Director'],person['Writer'],person['Actors'],person['Awards'])
@@ -248,12 +250,8 @@ form.onsubmit = function(){
             }else{
                 titleError.classList.add('display-none')
                 inputTitle.classList.add('is-valid')
-
-              
-                for(var i = 0; i < person['Search']['length']; i++){
-                    creatListMovies(person['Search'][i]['Poster'],person['Search'][i]['Title'],
-                                    person['Search'][i]['Type'],person['Search'][i]['Year'])//creatListMovies(img,name,type,year)
-                }
+                generPagination(person)
+               
             }
             
             
@@ -272,64 +270,53 @@ form.onsubmit = function(){
 }
 
 
-var count = 10; //всего записей
-var cnt = 2; //сколько отображаем сначала
-var cnt_page = Math.ceil(count / cnt); //кол-во страниц
 
-//выводим список страниц
-var paginator = document.querySelector(".paginator"),
-     kek1 = "<li class=\"page-item\"><a class=\"page-link\" href=\"#\" aria-label=\"Previous\"><span aria-hidden=\"true\">&laquo;</span></a></li>",
-     kek2 = "<li class=\"page-item\"><a class=\"page-link\" href=\"#\" aria-label=\"Previous\"><span aria-hidden=\"true\">&raquo;</span></a></li>",
-     page = kek1
-
-for (var i = 0; i < cnt_page; i++) {
-    page += "<li class=\"page-item\" data-page=" + i * cnt + "  id=\"page" + (i + 1) + "\"><a class=\"page-link\" href=\"#\">" + (i + 1) + "</li>"; 
-}
+function generPagination(person){
+    var amount = 3; //сколько отображаем сначала
+    var amount_page = Math.ceil(person['Search']['length'] / amount); //кол-во страниц
     
-page += kek2
-paginator.innerHTML = page
+    //выводим список страниц
+    var paginator = document.querySelector(".paginator"),
+        tag_start = "<li class=\"page-item\"><a class=\"page-link\" href=\"#\" aria-label=\"Previous\"><span aria-hidden=\"true\">&laquo;</span></a></li>",
+        tag_end = "<li class=\"page-item\"><a class=\"page-link\" href=\"#\" aria-label=\"Previous\"><span aria-hidden=\"true\">&raquo;</span></a></li>",
+        tag = tag_start
+    
+    for (var i = 0; i < amount_page; i++) {
+        tag += "<li class=\"page-item\" data-page=" + i * amount + "  id=\"page" + (i + 1) + "\"><a class=\"page-link\" href=\"#\">" + (i + 1) + "</li>";
+    }
 
-//выводим первые записи {cnt}
-var div_num = document.querySelectorAll("#num");
-console.log(div_num);
-for (var i = 0; i < div_num.length; i++) {
-    if (i < cnt) {
-        div_num[i].style.display = "block";// сюда записать страницы 
+    tag += tag_end
+    paginator.innerHTML = tag
+
+    let items = document.querySelectorAll('.paginator li'),
+        notes = person['Search'].slice(0, 3)
+     
+
+
+    for (let item of items) {
+        item.addEventListener('click', function () {
+            
+
+            let pageNum = +this.textContent,
+                start = (pageNum - 1) * amount,
+                end = start + amount
+            notes = person['Search'].slice(start, end)
+
+            console.log(notes,start,end);
+        
+            sectMovieList.innerHTML = ""
+
+            for(let note of notes){
+                creatListMovies(note['Poster'],note['Title'],
+                                note['Type'],note['Year'])//creatListMovies(img,name,type,year)
+            }
+            
+        });
+    }
+    
+    for(let note of notes){
+        creatListMovies(note['Poster'],note['Title'],
+                        note['Type'],note['Year'])//creatListMovies(img,name,type,year)
     }
 }
-
-var main_page = document.getElementById("page1");
-main_page.classList.add("paginator_active");
-
-//листаем
-function pagination(event) {
-    var e = event || window.event;
-    var target = e.target;
-    var id = target.id;
-
-    if (target.tagName.toLowerCase() != "li") return;
-
-    var num_ = id.substr(4);
-    var data_page = +target.dataset.page;
-    main_page.classList.remove("paginator_active");
-    main_page = document.getElementById(id);
-    main_page.classList.add("paginator_active");
-
-    var j = 0;
-    for (var i = 0; i < div_num.length; i++) {
-        var data_num = div_num[i].dataset.num;
-        if (data_num <= data_page || data_num >= data_page)
-            div_num[i].style.display = "none";
-
-    }
-    for (var i = data_page; i < div_num.length; i++) {
-        if (j >= cnt) break;
-        div_num[i].style.display = "block";
-        j++;
-    }
-}
-
-
-
-
 
