@@ -9,11 +9,13 @@ let form = document.querySelector('#form'),
     btnSearch = document.querySelector('#search'),
     token = '55f2a631',
     sectMovieList = document.createElement('section'),
-    navPag = document.querySelector('#pag')
+    navPag = document.querySelector('#pag'),
+    sec_pag = document.querySelector('#sec_pag'),
+    sectMovieInfo= document.createElement('section')
 
 function creatDetailMovie(img,title,relesed,gener,country,director,writer,actors,awards){
-    let sectMovieInfo= document.createElement('section'),
-        contInfo = document.createElement('div'),
+    // let sectMovieInfo= document.createElement('section'),
+    let contInfo = document.createElement('div'),
         contImgInfo = document.createElement('div'),
         contTextInfo = document.createElement('div'),
         textTitle = document.createElement('p'),
@@ -25,7 +27,6 @@ function creatDetailMovie(img,title,relesed,gener,country,director,writer,actors
         textActors = document.createElement('p'),
         textAwards = document.createElement('p')
     
-   
 
     if (!document.querySelector('#secFilmInfo h2')) {
         let textInfo = document.createElement('h2')
@@ -34,13 +35,13 @@ function creatDetailMovie(img,title,relesed,gener,country,director,writer,actors
         sectMovieInfo.appendChild(textInfo)
     } else {
         textInfo = document.querySelector('section h2')
-    }
-   
-    sectMovieInfo.classList.add('container', 'mb-5', 'd-flex','flex-column','align-content-center')
+    }  
 
-    document.body.appendChild(sectMovieInfo)
+
+    sectMovieInfo.classList.add('container', 'mb-5', 'd-flex','flex-column','align-content-center')
     sectMovieInfo.setAttribute('id','secFilmInfo')
 
+    document.body.appendChild(sectMovieInfo) 
     sectMovieInfo.appendChild(contInfo)
     contInfo.appendChild(contImgInfo)
     contInfo.appendChild(contTextInfo)
@@ -84,8 +85,6 @@ function creatDetailMovie(img,title,relesed,gener,country,director,writer,actors
     textWriter.innerText = `Writer: \t${writer}`
     textTitle.innerText = `Actors: \t${actors}`
     textActors.innerText = `Awards: \t${awards}`
-
-
     
 
 }
@@ -100,9 +99,9 @@ function creatListMovies(img,name,type,year) {
         textYear = document.createElement('p'),
         btnDetails = document.createElement('button')
 
-    sectMovieList.classList.add('container', 'mb-5', 'd-flex')
-    document.body.appendChild(sectMovieList)
-    navPag.classList.remove('display-none')
+    sectMovieList.classList.add('container', 'mb-5', 'd-flex','justify-content-center')
+    document.body.insertBefore(sectMovieList,sec_pag)
+    
 
     if (!document.querySelector('#form + h2')) {
         let textList = document.createElement('h2')
@@ -113,6 +112,7 @@ function creatListMovies(img,name,type,year) {
         textList = document.querySelector('#form + h2')
     }
   
+
     sectMovieList.appendChild(contMovieItem)
     contMovieItem.appendChild(contImg)
     contMovieItem.appendChild(contTextItem)
@@ -121,7 +121,7 @@ function creatListMovies(img,name,type,year) {
     contTextItem.appendChild(textYear)
     contTextItem.appendChild(btnDetails)
 
-    contMovieItem.setAttribute('id','page')
+    contMovieItem.setAttribute('id','num')
     contMovieItem.classList.add('d-flex', 'flex-row',  'mb-3', 'border', 'ms-3', 'bg-light')
     contImg.classList.add('m-2')
     contTextItem.classList.add('m-2', 'position-relative')
@@ -129,6 +129,7 @@ function creatListMovies(img,name,type,year) {
     btnDetails.classList.add('btn', 'btn-firts', 'btn-primary', 'position-absolute', 'bottom-0', 'end-0')
     
     contMovieItem.style.minWidth = "320px"
+    contMovieItem.style.maxWidth = "350px"
     contMovieItem.style.height = "270px"
     contImg.style.minWidth  = "150px"
     contImg.style.height = "250px"
@@ -143,7 +144,6 @@ function creatListMovies(img,name,type,year) {
     textName.innerText = `Title: ${name}`
     textYear.innerText = `Year made: ${year}`
     btnDetails.textContent = 'Details'
-
 
     btnDetails.addEventListener('click', function(e){
         detailRequest(name)// add url
@@ -166,6 +166,7 @@ function detailRequest(name){
     request.onload = function () {
         if (request.readyState === 4 &&request.status == 200) {
             let person = request.response;
+            sectMovieInfo.innerHTML = ""
             console.log(person);
             creatDetailMovie(person['Poster'],person['Title'],person['Released'],person['Genre'],person['Country'],
                 person['Director'],person['Writer'],person['Actors'],person['Awards'])
@@ -174,6 +175,8 @@ function detailRequest(name){
     request.send();
     return false
 }
+
+
 
 
 form.onsubmit = function(){
@@ -246,12 +249,8 @@ form.onsubmit = function(){
             }else{
                 titleError.classList.add('display-none')
                 inputTitle.classList.add('is-valid')
-
-              
-                for(var i = 0; i < person['Search']['length']; i++){
-                    creatListMovies(person['Search'][i]['Poster'],person['Search'][i]['Title'],
-                                    person['Search'][i]['Type'],person['Search'][i]['Year'])//creatListMovies(img,name,type,year)
-                }
+                generPagination(person)
+               
             }
             
             
@@ -271,6 +270,52 @@ form.onsubmit = function(){
 
 
 
+function generPagination(person){
+    var amount = 3; //сколько отображаем сначала
+    var amount_page = Math.ceil(person['Search']['length'] / amount); //кол-во страниц
+    
+    //выводим список страниц
+    var paginator = document.querySelector(".paginator"),
+        tag_start = "<li class=\"page-item\"><a class=\"page-link\" href=\"#\" aria-label=\"Previous\"><span aria-hidden=\"true\">&laquo;</span></a></li>",
+        tag_end = "<li class=\"page-item\"><a class=\"page-link\" href=\"#\" aria-label=\"Previous\"><span aria-hidden=\"true\">&raquo;</span></a></li>",
+        tag = tag_start
+    
+    for (var i = 0; i < amount_page; i++) {
+        tag += "<li class=\"page-item\" data-page=" + i * amount + "  id=\"page" + (i + 1) + "\"><a class=\"page-link\" href=\"#\">" + (i + 1) + "</li>";
+    }
+
+    tag += tag_end
+    paginator.innerHTML = tag
+
+    let items = document.querySelectorAll('.paginator li'),
+        notes = person['Search'].slice(0, amount)
+     
 
 
+    for (let item of items) {
+        item.addEventListener('click', function () {
+            
+
+            let pageNum = +this.textContent,
+                start = (pageNum - 1) * amount,
+                end = start + amount
+            notes = person['Search'].slice(start, end)
+
+            console.log(notes,start,end);
+
+            sectMovieList.innerHTML = ""
+
+            for(let note of notes){
+                creatListMovies(note['Poster'],note['Title'],
+                                note['Type'],note['Year'])//creatListMovies(img,name,type,year)
+            }
+            
+        });
+    }
+    
+    for(let note of notes){
+        creatListMovies(note['Poster'],note['Title'],
+                        note['Type'],note['Year'])//creatListMovies(img,name,type,year)
+    }
+}
 

@@ -85,8 +85,6 @@ function creatDetailMovie(img,title,relesed,gener,country,director,writer,actors
     textWriter.innerText = `Writer: \t${writer}`
     textTitle.innerText = `Actors: \t${actors}`
     textActors.innerText = `Awards: \t${awards}`
-
-
     
 
 }
@@ -101,7 +99,7 @@ function creatListMovies(img,name,type,year) {
         textYear = document.createElement('p'),
         btnDetails = document.createElement('button')
 
-    sectMovieList.classList.add('container', 'mb-5', 'd-flex')
+    sectMovieList.classList.add('container', 'mb-5', 'd-flex','justify-content-center')
     document.body.insertBefore(sectMovieList,sec_pag)
     
 
@@ -131,6 +129,7 @@ function creatListMovies(img,name,type,year) {
     btnDetails.classList.add('btn', 'btn-firts', 'btn-primary', 'position-absolute', 'bottom-0', 'end-0')
     
     contMovieItem.style.minWidth = "320px"
+    contMovieItem.style.maxWidth = "350px"
     contMovieItem.style.height = "270px"
     contImg.style.minWidth  = "150px"
     contImg.style.height = "250px"
@@ -289,7 +288,7 @@ function generPagination(person){
     paginator.innerHTML = tag
 
     let items = document.querySelectorAll('.paginator li'),
-        notes = person['Search'].slice(0, 3)
+        notes = person['Search'].slice(0, amount)
      
 
 
@@ -303,7 +302,7 @@ function generPagination(person){
             notes = person['Search'].slice(start, end)
 
             console.log(notes,start,end);
-        
+
             sectMovieList.innerHTML = ""
 
             for(let note of notes){
