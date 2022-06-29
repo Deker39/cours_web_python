@@ -290,12 +290,12 @@ function generPagination(person){
     let items = document.querySelectorAll('.paginator li'),
         notes = person['Search'].slice(0, amount)
      
+  
 
 
     for (let item of items) {
         item.addEventListener('click', function () {
-            
-
+           
             let pageNum = +this.textContent,
                 start = (pageNum - 1) * amount,
                 end = start + amount
