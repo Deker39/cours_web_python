@@ -211,7 +211,7 @@ form.onsubmit  = function(){
                 codeError.classList.add('display-none')
                 inputColorCode.classList.remove('is-invalid')
                 inputColorCode.classList.add('is-valid')
-                backValue = `${colorTypeValue}(${colorCodeValue})`
+                backValue = `${привcolorTypeValue}(${colorCodeValue})`
             }
 
         }

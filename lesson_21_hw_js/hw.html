@@ -1,22 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- CSS only -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
-        crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <title>Document</title>
+    <style>
+        #divICon {
+            width: 64px;
+            height: 64px;
+            background: url(https://assets.weatherstack.com/images/wsymbols01_png_64/wsymbol_0001_sunny.png) no-repeat;
+        }
+        
+        .fs-10 {
+            font-size: 48px;
+        }
+        
+        .grad-out {
+            background-color: rgba(175, 235, 235, 0.5);
+        }
+        
+        .grad-in {
+            background-color: rgba(175, 235, 235, 0.5);
+        }
+        
+        #fir {
+            border-left: 24px solid black;
+            border-top-left-radius: 24px;
+            border-bottom-left-radius: 24px;
+        }
+        
+        #las {
+            border-right: 24px solid black;
+            border-top-right-radius: 24px;
+            border-bottom-right-radius: 24px;
+        }
+    </style>
 </head>
+
 <body>
-    
+    <section class="container mb-3 mt-3" style="width: 500px;">
+        <div class="border rounded d-flex  justify-content-between grad-out" id="divOneDayWeather">
+            <div class="d-flex justify-content-between flex-column p-3 ">
+                <p class="fw-bold fs-1 border rounded p-2 grad-in">Odessa, Ukraine</p>
+                <div class="d-flex justify-content-between border rounded p-2 grad-in">
+                    <div id="divImg">
+                        <div id="divICon" class="border rounded"></div>
+                        <p class="text-center">Sunny</p>
+                    </div>
+                    <p class="fs-10"> 2 C&#176;</p>
+                </div>
+            </div>
+            <div class="m-3 border rounded p-2 grad-in ms-0">
+                <p class="fs-1">15:30 10.12.2018</p>
+                <p>Wind: 11.2kph</p>
+                <p>Precip: 0.0mm</p>
+                <p>Pressure: 1006mb</p>
+            </div>
+        </div>
+    </section>
+    <section class="container  mb-3 mt-4 ">
+        <div class=" d-flex justify-content-center align-items-center" id="divWeekWeather ">
+            <div class="d-flex flex-column align-items-center border -start grad-in p-3 " id="fir">
+                <p class="fs-3 mb-0">Tue</p>
+                <p class="mb-2">10.12.2018</p>
+                <div id="divICon" class="border rounded"></div>
+                <p class="fs-3 mb-0 ">5C&#176;</p>
+            </div>
+            <div class="d-flex flex-column align-items-center border grad-in p-3 ">
+                <p class="fs-3 mb-0">Tue</p>
+                <p class="mb-2">10.12.2018</p>
+                <div id="divICon" class="border rounded"></div>
+                <p class="fs-3 mb-0 ">10C&#176;</p>
+            </div>
+            <div class="d-flex flex-column align-items-center border grad-in p-3 ">
+                <p class="fs-3 mb-0">Tue</p>
+                <p class="mb-2">10.12.2018</p>
+                <div id="divICon" class="border rounded"></div>
+                <p class="fs-3 mb-0 ">15C&#176;</p>
+            </div>
+            <div class="d-flex flex-column align-items-center border grad-in p-3 ">
+                <p class="fs-3 mb-0">Tue</p>
+                <p class="mb-2">10.12.2018</p>
+                <div id="divICon" class="border rounded"></div>
+                <p class="fs-3 mb-0 ">21C&#176;</p>
+            </div>
+            <div class="d-flex flex-column align-items-center border  grad-in p-3 " id="las">
+                <p class="fs-3 mb-0">Tue</p>
+                <p class="mb-2">10.12.2018</p>
+                <div id="divICon" class="border rounded"></div>
+                <p class="fs-3 mb-0 ">24C&#176;</p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
 </body>
-<script src="hw.js"></script>
+<script src="hw.js "></script>
+
 </html>
