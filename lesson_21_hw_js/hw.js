@@ -1,4 +1,3 @@
-let arr_weather = ''
 
 $.ajax({
     url: 'http://api.weatherstack.com/current',
@@ -10,7 +9,6 @@ $.ajax({
     dataType: 'json'
     }).done(function (data) {
     console.log(data);
-   
     // $('body').parent().append( $(`<div class="container">${data.current.observation_time}</div>`))
     var secOneDayWeather = $('<section>',{
         'class':'container mb-3 mt-3',
@@ -71,15 +69,48 @@ $.ajax({
                         divContTimeAddWeather
                             .append(pTime,pWind,pPrecip,pPressure))))
 
-     
-    // $.each(data.current, function (index, currentInfo) {
-    //     console.log(`${index}: ${currentInfo}`);
-    // })
-    // $.each(data.location, function (index, currentInfo) {
-    //     console.log(`${index}: ${currentInfo}`);
-    // })
-    // $.each(data.location, function (index, currentInfo) {
-    //     console.log(`${index}: ${currentInfo}`);
-    // })
             })
 
+
+// lat: "46.467"
+// lon: "30.733"
+
+$.ajax({
+    url: 'https://api.openweathermap.org/data/2.5/forecast?',
+    data: {
+        lat: 46.467,
+        lon: 30.733,
+        appid: 'bf7329866498355636bce98b67774b95',
+    },
+    dataType: 'json'
+}).done(function (data){
+    console.log(data);
+
+    var secFiveDayWeather = $('<section>',{
+        'class':'container  mb-3 mt-4', 
+    })
+    var divFiveDayWeather = $('<div>',{
+        'class':'d-flex justify-content-center align-items-center', 
+    })
+    var contDaysWeather = $('<div>',{
+        'class':'d-flex flex-column align-items-center border -start grad-in p-3 ', 
+    })
+    var pDay =  $('<p>',{
+        text:` ${Math.floor(data.list[0].main.temp-273.15)}C°`
+    })
+    var pDate =  $('<p>',{
+        text:`${data.list[0].dt_txt}`
+    })
+    var divContIcon = $('<div>',{
+        'class': 'border rounded',
+        'style': `width:64px; height:64px;  background: url( http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}.png) no-repeat; background-color: white;`
+    })
+    var pTemp = $('<p>',{
+        text:`${data.list[0].weather[0].description}`
+    })
+
+    $('body').append(secFiveDayWeather
+                .append(divFiveDayWeather
+                    .append(contDaysWeather
+                        .append(pDate,pDay,divContIcon,pTemp))))
+})
