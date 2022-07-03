@@ -5,7 +5,7 @@ const months = ["January", "February", "March", "April", "May", "June", "July", 
 $.ajax({
     url: 'http://api.weatherstack.com/current',
     data: {
-        access_key: 'ac722eb63a8bae3c2549219872c50e7d',
+        access_key: 'ac722eb63a8bae3c2549219872c50e7d1',
         query: 'Odesa'
     },
     dataType: 'json'
@@ -107,7 +107,7 @@ $.ajax({
     for(let note of forecast){
 
     var contDaysWeather = $('<div>',{
-        'class':'d-flex flex-column align-items-center border rounded grad-in p-3 mb-3', 
+        'class':'d-flex flex-column align-items-center border rounded grad-in p-3 mb-3 col-3', 
     })
            
     var pTemp =  $('<p>',{
