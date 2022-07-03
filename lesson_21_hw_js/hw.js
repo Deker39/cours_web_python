@@ -1,15 +1,16 @@
+const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
 
 $.ajax({
     url: 'http://api.weatherstack.com/current',
     data: {
-        access_key: 'ac722eb63a8bae3c2549219872c50e7d1',//1e2a81e7860ac4c2d569cfeaadf819c6
-        //f9ed22455fb5f06608f849e0f82f7bd0
+        access_key: 'ac722eb63a8bae3c2549219872c50e7d',
         query: 'Odesa'
     },
     dataType: 'json'
     }).done(function (data) {
     console.log(data);
-    // $('body').parent().append( $(`<div class="container">${data.current.observation_time}</div>`))
     var secOneDayWeather = $('<section>',{
         'class':'container mb-3 mt-3',
         'style':'width: 500px;'  
@@ -58,10 +59,14 @@ $.ajax({
     var pPressure = $('<p>',{
         text:`Pressure: ${data.current.pressure}mb`
     })
+    var pForecast = $('<p>',{
+        'class':'fs-3 mb-1 text-center',
+        text:'Forecast Today now'
+    })
 
 
    $('body').append(secOneDayWeather
-                .append(divOneDayWeather
+                .append(pForecast,divOneDayWeather
                     .append(divContCityWeater
                         .append(pNameCity,divContIconTemperature
                                             .append(divContIconWeater
@@ -90,27 +95,53 @@ $.ajax({
         'class':'container  mb-3 mt-4', 
     })
     var divFiveDayWeather = $('<div>',{
-        'class':'d-flex justify-content-center align-items-center', 
+        'class':'d-flex justify-content-center flex-wrap align-items-center '
     })
+    var pForecast = $('<p>',{
+        'class':'fs-3 mb-1 text-center',
+        text:'Forecast Five day 3 hour'
+    })
+
+    var forecast = data.list
+
+    for(let note of forecast){
+
     var contDaysWeather = $('<div>',{
-        'class':'d-flex flex-column align-items-center border -start grad-in p-3 ', 
+        'class':'d-flex flex-column align-items-center border rounded grad-in p-3 mb-3', 
     })
-    var pDay =  $('<p>',{
-        text:` ${Math.floor(data.list[0].main.temp-273.15)}C°`
+           
+    var pTemp =  $('<p>',{
+        'class':'fs-3 mb-1',
+        text:` ${Math.floor(note.main.temp-273.15)}C°`
     })
-    var pDate =  $('<p>',{
-        text:`${data.list[0].dt_txt}`
+    var pDayMonth=  $('<p>',{
+        'class':'text-center mb-1',
+        text:`${new Date(note.dt_txt).getDate()} ${months[new Date(note.dt_txt).getMonth()]}`
+    })
+    var pDayWeek =  $('<p>',{
+        'class':'text-center mb-1',
+        text:`${days[new Date(note.dt_txt).getDay()]}`
+    })
+    var pTime =  $('<p>',{
+        'class':'text-center mb-1',
+        text:`${new Date(note.dt_txt).getHours()}:00`
     })
     var divContIcon = $('<div>',{
         'class': 'border rounded',
-        'style': `width:64px; height:64px;  background: url( http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}.png) no-repeat; background-color: white;`
+        'style': `width:100px; height:100px;  background: url( http://openweathermap.org/img/wn/${note.weather[0].icon}@2x.png) no-repeat; background-color: white`
     })
-    var pTemp = $('<p>',{
-        text:`${data.list[0].weather[0].description}`
+    var pDescription = $('<p>',{
+        'class':'mb-1',
+        text:`${note.weather[0].description}`
     })
+  
 
     $('body').append(secFiveDayWeather
-                .append(divFiveDayWeather
+                .append(pForecast,divFiveDayWeather
                     .append(contDaysWeather
-                        .append(pDate,pDay,divContIcon,pTemp))))
+                        .append(pDayMonth,pDayWeek,pTime,divContIcon,pDescription,pTemp))))
+    }
+        
+ 
 })
+
