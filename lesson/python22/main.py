@@ -476,27 +476,73 @@
 #     if st == st[::-1]:
 #         print(f'This word {st} - polinom')
 #     else: print(f'it\'s not polinom')
+#
+# def funn():
+#     count = []
+#     str = 'aabBcde'
+#     str = str.lower()
+#
+#     for i in str:
+#         count.append(str.index(i))
+#
+#     kek = [count[i] for i in range(len(count)) if not i == count.index(count[i])]
+#
+#     if kek:
+#         print(f'{str} -> {len(kek)}')
+#         for i in range(len(kek)):
+#             print(f'\'{str[kek[i]]}\' - occurs twice')
+#     else:
+#         print(f'{str} -> 0')
+#
+# funn()
+#/--------------------LESSON6--------------------/
 
-def funn():
-    count = []
-    str = 'aabBcde'
-    str = str.lower()
-
-    for i in str:
-        count.append(str.index(i))
-
-    kek = [count[i] for i in range(len(count)) if not i == count.index(count[i])]
-
-    if kek:
-        print(f'{str} -> {len(kek)}')
-        for i in range(len(kek)):
-            print(f'\'{str[kek[i]]}\' - occurs twice')
-    else:
-        print(f'{str} -> 0')
-
-funn()
+# line1 = 'hello'
+# line2 = line1
+# print(id(line1),id(line2))
+# import random
+# import string
+#
+# line = 'lorem ipsum kek coum ve'
+# userLogin = ''.join(random.sample((string.ascii_lowercase),6))
+# userPass = ''.join(random.sample((string.ascii_lowercase),6))
+# print(f'login:{userLogin}')
+# print(f'login:{userPass}')
+#
+#
+# print(string.capwords('lorem ipsum kek coum ve',sep='!'))
 
 
+# ^[a-Z]$
+# ^[a-zA-Z0-9._]+@[a-zA-Z]+\.[a-z]+$
+import re
+
+# line = 'Lorem ipsum dolor is sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+# res = re.search(r'[a-z]{1,3}',line)
+#
+# print(res.start(),res.end())
+#
 
 
+line = 'Lorem ipsum dolor is sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+# res = (re.findall(r' [a-z]{1,3} ',line)
 
+# print(re.split(r'o',line))
+# print(re.sub(r'[a-z]{1-3}','NEW',line))
+# pattern = re.compile(r'^[a-zA-Z0-9._]+@[a-zA-Z]+\.[a-z]+$')
+# print(pattern.findall('bigtigerlesha@gmail.com'))
+
+
+pattern= re.compile(r'^(?:0?[1-9]|[12][0-9]|3[01])/(?:0?[1-9]|1[0-2])/(?:19[0-9][0-9]|20[0-9][0-9]) ([0-1][0-9]|2[0-3]):([0-5][0-9]) Description: [a-zA-Z]+$')
+# 24/02/2001 23:12 Description: need....
+# yout message on 24 feb 2001 at 23:12 oc. can be write
+#   your description : need
+num = input('Enter data: ')
+month = [' ','January','February','March','April','May','June','July','August','September','Octobre','November','December']
+
+if pattern.findall(num):
+    data = num.split('/')
+    data = ' '.join(data).split(' ')
+
+
+    print(f'your message on {data[0]} {month[int(data[1])]} {data[2]} at {data[3]}. can be written\nyour {data[4]} {data[5]}')
