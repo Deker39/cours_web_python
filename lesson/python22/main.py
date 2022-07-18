@@ -186,12 +186,317 @@
 # print(f'Sum: {sum}\nMax: {max}\nMin: {min}')
 # print('bye')
 
-num = int(input('Enter size: '))
-for x in range(1,4):
-        for j in range(1, 5):
-                print('*'*num + '_'*num,end='')
-        print('\n')
-for x in range(1, 4):
-        for j in range(1, 5):
-                print('_' * num + '*' * num, end='')
-        print('\n')
+# num = int(input('Enter size: '))
+# for x in range(1,4):
+#         for j in range(1, 5):
+#                 print('*'*num + '_'*num,end='')
+#         print('\n')
+# for x in range(1, 4):
+#         for j in range(1, 5):
+#                 print('_' * num + '*' * num, end='')
+#         print('\n')
+#/--------------------LESSON4--------------------/
+
+# Exception
+# try:
+#     number1 =  int(input("Enter number "))
+#     number2 = int(input("Enter number "))
+#     if number1 < 0 or number2 < 0:
+#         raise ValueError('your value less 0')
+# except ZeroDivisionError as f:
+#     print("Base Error ")
+# except ValueError as f:
+#     print("Error ", str(f))
+# finally:
+#     print('Finaly block')
+
+# sum = 0
+# num = -1
+# while num !=0:
+#     try:
+#         num =  int(input("Enter number, or enter 0 to exit: "))
+#         sum += num
+#     except (TypeError,ValueError) as f:
+#         print(f'Enter please number! - {str(f)}')
+#     except Exception as e:
+#         print(e)
+# print(f'Sum: {sum}')
+
+
+# from random import randint
+#
+# num = -1
+# r = randint(1, 500)
+# count = 0
+#
+# while num !=0:
+#     try:
+#         num = int(input('Enter guess: '))
+#         if num < r:
+#             print('my nuber more than your...')
+#         elif num > r:
+#             print('mu number so less...')
+#         elif num == r:
+#             print(f'You rigth: {num}')
+#             break
+#     except:
+#         print('unkomon nubmer!')
+#     count += 1
+# print(f'you try: {count}')
+
+
+# USD_buy = 35.80
+# USD_sale = 36.70
+#
+#
+# EUR_buy = 36.2
+# EUR_sale = 37.3
+# print('1 - Sell currency\n2 - Buy currency\n')
+# answer = int(input('make choose: '))
+# if answer == 1:
+#     answer = int(input('Witch currency you want sell?\n1.USD\n2.EUR\n'))
+#     if answer == 1:
+#         count  = int(input('Enter count USD: '))
+#         print(f'You sell - {count} USD, get - {int(count*USD_buy)} UAH')
+#     elif answer == 2:
+#         count  = int(input('Enter count EUR: '))
+#         print(f'You sell - {count} EUR, get - {int(count*USD_buy)} UAH')
+#
+# elif answer == 2:
+#     answer = int(input('Witch currency you want buy?\n1.USD\n2.EUR'))
+#     if answer == 1:
+#         count  = int(input('Enter count UAH: '))
+#         print(f'You sell - {count} UAH, get - {int(count/USD_sale)} USD')
+#     elif answer == 2:
+#         count  = int(input('Enter count UAH: '))
+#         print(f'You sell - {count} UAH, get - {int(count/EUR_sale)} EUR')
+
+#
+# # а
+# i = 5
+# count = 0
+# while i > 0:
+#     print('  '*count+'* '*i)
+#     count +=1
+#     i -= 1
+# # б
+# i = 0
+# count = 5
+# while i < 5:
+#     print('* '*i+' '*count)
+#     count -=1
+#     i += 1
+# print()
+# # в
+# i = 5
+# count = 0
+# while i > 0:
+#     print('  '*count+'* '*i+'  '*count)
+#     count +=1
+#     i -= 2
+# print()
+# # г
+# i = 1
+# count = 5
+# while i < 6:
+#     print('  '*int(count/2)+'* '*i+'  '*int(count/2))
+#     count -=2
+#     i += 2
+# print()
+# # д
+# i = 5
+# count = 0
+# while i > 0:
+#     print('  '*count+'* '*i+'  '*count)
+#     count +=1
+#     i -= 2
+# j = 1
+# count = 5
+# while j < 6:
+#     print('  '*int(count/2)+'* '*j+'  '*int(count/2))
+#     count -=2
+#     j += 2
+# # е
+# i = 7
+# count = 0
+# while i > 0:
+#     print('* '*count+'  '*i+'* '*count)
+#     count +=1
+#     i -= 2
+# j = 1
+# count = 7
+# while j < 6:
+#     print('* '*int(count/2)+'  '*j+'* '*int(count/2))
+#     count -=2
+#     j += 2
+# print()
+# # ж
+# i = 5
+# count = 0
+# while i > 0:
+#     print('* '*count+'  '*i)
+#     count +=1
+#     i -= 1
+# j=5
+# count = 0
+# while j > 0:
+#     print('* '*j+'  '*count)
+#     count +=1
+#     j -= 1
+# # з
+# i = 5
+# count = 0
+# while i > 0:
+#     print('  '*i+'* '*count)
+#     count +=1
+#     i -= 1
+# j=5
+# count = 0
+# while j > 0:
+#     print('  '*count+'* '*j)
+#     count +=1
+#     j -= 1
+# print()
+# # и
+# i = 5
+# count = 0
+# while i > 0:
+#     print('* '*i+'  '*count)
+#     count +=1
+#     i -= 1
+# print('')
+# # к
+# i = 5
+# count = 0
+# while i > 0:
+#     print('  '*count+'* '*i)
+#     count +=1
+#     i -= 1
+#/--------------------LESSON5--------------------/
+
+# name = 'Alex'
+#
+# print(name[0])
+# print(f'{name}')
+#
+# line = 'Lorem ipsum con com led {0} and {1}'
+# # print(line[::-1])
+# print('con' in line)
+#
+# print(line.count('o'))
+# print(line.index('o'))
+# print(line.title())
+# print(line.isalpha())
+# print(line.find('led'))
+# print(line.lower())
+# print(line.capitalize())
+# print(line.format('den','tom'))
+# print(line.replace('o','p'))
+#
+# print(line.split(' '))
+# print('##'.join(line.split(' ')))
+
+# l1 = 'Alex'
+# l2 = 'alex'
+# l3 = 'GQE'
+#
+# print(l1>l2, l3>l1, l2>l3,l1==l2,ord('A'))
+# for i in range(65,91):
+#     print(chr(i),end='\t')
+
+# def first():
+#     checks = 0
+#     order_index = []
+#     orders = []
+#
+#     menu = ['', 'Americano', 'Americano with milk', 'Latte', 'Cappuccino', 'Espresso']
+#     customers = int(input('How many are you?\n'))
+#     print(f'{customers} Person')
+#
+#     for i in range(1, customers + 1):
+#
+#         print(f'Num 1: Americano - 10$\n'
+#               f'Num 2: Americano with milk - 12$\n'
+#               f'Num 3: Latte - 15$\n'
+#               f'Num 4: Cappuccino -20$\n'
+#               f'Num 5: Espresso- 6$\n')
+#
+#         choice = int(input("Choice: "))
+#         if not choice or choice < 1 or choice > 5:
+#             print('You don\'t make a choice')
+#         else:
+#             order_index.append(choice)
+#
+#         kek = input("Add something else y/n\n")
+#
+#         while kek.lower() == 'y' or kek.lower() == 'yes':
+#             choice = int(input("Choice: "))
+#             if not choice or choice < 1 or choice > 5:
+#                 print('You don\'t make a choice')
+#             else:
+#                 order_index.append(choice)
+#             kek = input("Add something else y/n\n")
+#
+#         if i != customers:
+#             print('Next person')
+#
+#     for j in order_index:
+#         orders.append(menu[j])
+#
+#     for i in range(1, len(order_index) + 1):
+#         if i == 1:
+#             checks += 10
+#         elif i == 2:
+#             checks += 12
+#         elif i == 3:
+#             checks += 15
+#         elif i == 4:
+#             checks += 20
+#         elif i == 5:
+#             checks += 6
+#
+#     print('Your order: {} '.format(', '.join(orders)))
+#     print(f'Your chang: {checks}$')
+#
+# def second():
+#     start = int(input('Enter start range: '))
+#     end = int(input('Enter end range: '))
+#     array = []
+#     for i in range(start,end+1):
+#         for j in range(2,i):
+#             if i%j ==0:
+#                 break
+#         else:array.append(i)
+#     print('Simple value in range:')
+#     print(array)
+#
+# def thord():
+#
+#     st = str(input('Enter your word: '))
+#     if st == st[::-1]:
+#         print(f'This word {st} - polinom')
+#     else: print(f'it\'s not polinom')
+
+def funn():
+    count = []
+    str = 'aabBcde'
+    str = str.lower()
+
+    for i in str:
+        count.append(str.index(i))
+
+    kek = [count[i] for i in range(len(count)) if not i == count.index(count[i])]
+
+    if kek:
+        print(f'{str} -> {len(kek)}')
+        for i in range(len(kek)):
+            print(f'\'{str[kek[i]]}\' - occurs twice')
+    else:
+        print(f'{str} -> 0')
+
+funn()
+
+
+
+
+
