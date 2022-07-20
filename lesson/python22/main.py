@@ -515,7 +515,7 @@
 
 # ^[a-Z]$
 # ^[a-zA-Z0-9._]+@[a-zA-Z]+\.[a-z]+$
-import re
+# import re
 
 # line = 'Lorem ipsum dolor is sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
 # res = re.search(r'[a-z]{1,3}',line)
@@ -524,7 +524,7 @@ import re
 #
 
 
-line = 'Lorem ipsum dolor is sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+# line = 'Lorem ipsum dolor is sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
 # res = (re.findall(r' [a-z]{1,3} ',line)
 
 # print(re.split(r'o',line))
@@ -533,16 +533,164 @@ line = 'Lorem ipsum dolor is sit amet, consectetur adipiscing elit, sed do eiusm
 # print(pattern.findall('bigtigerlesha@gmail.com'))
 
 
-pattern= re.compile(r'^(?:0?[1-9]|[12][0-9]|3[01])/(?:0?[1-9]|1[0-2])/(?:19[0-9][0-9]|20[0-9][0-9]) ([0-1][0-9]|2[0-3]):([0-5][0-9]) Description: [a-zA-Z]+$')
+# pattern= re.compile(r'^(?:0?[1-9]|[12][0-9]|3[01])/(?:0?[1-9]|1[0-2])/(?:19[0-9][0-9]|20[0-9][0-9]) ([0-1][0-9]|2[0-3]):([0-5][0-9]) Description: [a-zA-Z]+$')
 # 24/02/2001 23:12 Description: need....
 # yout message on 24 feb 2001 at 23:12 oc. can be write
 #   your description : need
-num = input('Enter data: ')
-month = [' ','January','February','March','April','May','June','July','August','September','Octobre','November','December']
+# num = input('Enter data: ')
+# month = [' ','January','February','March','April','May','June','July','August','September','Octobre','November','December']
+#
+# if pattern.findall(num):
+#     data = num.split('/')
+#     data = ' '.join(data).split(' ')
+#
+#
+#     print(f'your message on {data[0]} {month[int(data[1])]} {data[2]} at {data[3]}. can be written\nyour {data[4]} {data[5]}')
+#/--------------------LESSON7--------------------/
 
-if pattern.findall(num):
-    data = num.split('/')
-    data = ' '.join(data).split(' ')
+# ls = []
+# ls = ['A','B','C']
+# # print(*ls)
+# # print(ls[0])
+#
+# for i in ls:
+#     print(i,end='\t')
+#
+# print()
+#
+# for i in range(0,len(ls)):
+#     print(ls[i],end='\t')
+
+# print(f'yes{l1}' if l1 == '1' else 'no')
+# print('yes' if True else 'no')
+
+import  random
+# l1 = [random.randint(0,10) for i in range(0,10)]
+# print(*l1)
+
+# l = list('hello')
+# print(l)
+# print(*l)
+# print(''.join(l))
+
+# l = ['Alex','Den','Nik']
+# name1, name2, name3 = l
+
+# l1 = ['Den','Alex']
+# l2 = ['Den','Nik']
+# if l1 == l2:
+#     print('Yes')
+# else: print('no')
+
+# l1 = [random.randint(0, 10) for i in range(0, 10)]
+# print(l1[::])
+#
+# l = [
+#     ['alex',12],
+#     ['den',11],
+#     ['jhon',32,['test']]
+# ]
+#
+# for i in l:
+#     for j in i:
+#         print(j)
+
+# l1 = [random.randint(-5, 10) for i in range(0, 5)]
+#
+# print(*l1)
+#
+# minus = 0
+# even = 0
+# odd = 0
+# th = 1
+# multbtw = 1
+# summ = 0
+#
+# for i in range(0,len(l1)):
+#     if l1[i] < 0:
+#         minus += l1[i]
+#     if l1[i] % 2 == 0:
+#         even += l1[i]
+#     else:
+#         odd += l1[i]
+#     if i % 3 == 0:
+#         th *= l1[i]
+#
+#     e = 0
+#     r = 0
+#     for i in range(0,len(l1)):
+#         if l1[i] > 0:
+#             r = i
+#             break
+#     for i in range(len(l1)-1,0,-1):
+#         if l1[i] > 0:
+#             e = i
+#             break
+#
+#     summ = sum(l1[r:e])
+#
+# max_ind = l1.index(max(l1))
+# min_id = l1.index(min(l1))
+#
+# for i in range(min_id,max_ind):
+#     multbtw *= l1[i]
+#
+#
+#
+# print(f'1:{minus}',
+#       f'2:{even}',
+#       f'3:{odd}',
+#       f'4:{th}',
+#       f'5:{multbtw}',
+#       f'6:{summ}',sep='\n')
+
+# Пользователь вводит с клавиатуры арифметическое выражение. Например, 23+12. Необходимо вывести на экран результат выражения.
+# В нашем примере это 35. Арифметическое выражение может состоять только из трёх частей: число, операция, число. Возможные операции: +, -,*,/
+
+def second():
+    l2 = str(input("Enter arithmetic expression: "))
+
+    sign = [i for i in l2 if i == "+" or i == "-" or i == "/" or i == "*"]
+
+    num = l2.split(sign[0])
+
+    print(f"yor arithmetic expression {num[0]}{sign[0]}{num[1]} = {eval(num[0] + sign[0] + num[1])}")
 
 
-    print(f'your message on {data[0]} {month[int(data[1])]} {data[2]} at {data[3]}. can be written\nyour {data[4]} {data[5]}')
+# Користувач заповнює список рандомними елементами
+# (числа, букви.. )
+# якщо введе пробіл(символ) то введення зупинється та показує на екран:
+# сумму чисел, обєднання строк, avg. чисел, має показати два списки,
+# які мають числа і строки першого списку, і вивести значення списків
+# в вигляді пар тобто : [2,5,9,0,1,9], ["as","sd","gf","fd"]
+# as = 2
+# sd = 5
+# gf = 9
+# fd = 0
+
+space =' '
+i = 0
+digi = []
+string = []
+array = []
+while True:
+    list = input("Enter value: ").lower()
+    array.append(list)
+    i = i + 1
+    if list.isdigit():
+        digi.append(int(list))
+    if list == ' ':
+        print('Eexit program')
+        break
+
+print(f'sum: {sum(digi)}')
+print(f'Array: {space.join(array)}')
+print(f'avg: {sum(digi)/len(digi)}')
+print(f'Numbers: {space.join(map(str, digi))}')
+
+for i in digi:
+    array.remove(str(i))
+array.remove(' ')
+print(f'Only word: {space.join(array)}')
+
+
