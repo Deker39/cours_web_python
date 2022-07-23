@@ -79,3 +79,52 @@ let par3 = new Paragraf('Waht is Lorem Ipsum?','20.07.2000','Lorem ipsum dolor s
 par1.print()
 par2.print()
 par3.print()
+
+
+let arrayNews = []
+class NewsFeed{
+  
+    
+    constructor(news){
+        this.news = news;
+        // this.getamountNews = this.arrayNews.lenth()
+    }
+
+    
+    // get getamountNews(){
+    //     return getamountNews;
+    // }
+    
+    printAll(){
+        // var div = document.createElement('div')
+        // var news = document.createElement('p')
+        
+        // news.textContent = arrayNews
+        // document.body.append(div)
+        // div.classList.add('border','m-4','p-2')
+        // div.appendChild(news)
+        
+    }
+
+    addNews(){
+        arrayNews.
+    //    arrayNews.append(this.news)
+
+       console.log(`add new news: ${this.news}`);
+    }
+
+    removeNews(){
+        arrayNews.remove(this.news)
+        console.log(`remove news ${this.news}`);
+    }
+    sortNews(){
+
+    }
+    searchTag(){
+
+    }
+
+}
+
+let news1 = new NewsFeed('Lorem ipsum1') 
+news1.addNews()
