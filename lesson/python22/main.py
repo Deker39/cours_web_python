@@ -235,7 +235,7 @@
 #         if num < r:
 #             print('my nuber more than your...')
 #         elif num > r:
-#             print('mu number so less...')
+#             print('my number so less...')
 #         elif num == r:
 #             print(f'You rigth: {num}')
 #             break
@@ -647,14 +647,14 @@ import  random
 # Пользователь вводит с клавиатуры арифметическое выражение. Например, 23+12. Необходимо вывести на экран результат выражения.
 # В нашем примере это 35. Арифметическое выражение может состоять только из трёх частей: число, операция, число. Возможные операции: +, -,*,/
 
-def second():
-    l2 = str(input("Enter arithmetic expression: "))
+# def second():
+#     l2 = str(input("Enter arithmetic expression: "))
 
-    sign = [i for i in l2 if i == "+" or i == "-" or i == "/" or i == "*"]
+#     sign = [i for i in l2 if i == "+" or i == "-" or i == "/" or i == "*"]
 
-    num = l2.split(sign[0])
+#     num = l2.split(sign[0])
 
-    print(f"yor arithmetic expression {num[0]}{sign[0]}{num[1]} = {eval(num[0] + sign[0] + num[1])}")
+#     print(f"yor arithmetic expression {num[0]}{sign[0]}{num[1]} = {eval(num[0] + sign[0] + num[1])}")
 
 
 # Користувач заповнює список рандомними елементами
@@ -668,29 +668,29 @@ def second():
 # gf = 9
 # fd = 0
 
-space =' '
-i = 0
-digi = []
-string = []
-array = []
-while True:
-    list = input("Enter value: ").lower()
-    array.append(list)
-    i = i + 1
-    if list.isdigit():
-        digi.append(int(list))
-    if list == ' ':
-        print('Eexit program')
-        break
+# space =' '
+# i = 0
+# digi = []
+# string = []
+# array = []
+# while True:
+#     list = input("Enter value: ").lower()
+#     array.append(list)
+#     i = i + 1
+#     if list.isdigit():
+#         digi.append(int(list))
+#     if list == ' ':
+#         print('Eexit program')
+#         break
 
-print(f'sum: {sum(digi)}')
-print(f'Array: {space.join(array)}')
-print(f'avg: {sum(digi)/len(digi)}')
-print(f'Numbers: {space.join(map(str, digi))}')
+# print(f'sum: {sum(digi)}')
+# print(f'Array: {space.join(array)}')
+# print(f'avg: {sum(digi)/len(digi)}')
+# print(f'Numbers: {space.join(map(str, digi))}')
 
-for i in digi:
-    array.remove(str(i))
-array.remove(' ')
-print(f'Only word: {space.join(array)}')
+# for i in digi:
+#     array.remove(str(i))
+# array.remove(' ')
+# print(f'Only word: {space.join(array)}')
 
 
