@@ -1,16 +1,16 @@
-    class PrintMaсhine{
-    constructor(fontSize,color,fontFamily){
-        this.fontSize = fontSize;
-        this.color = color;
-        this.fontFamily = fontFamily;
+class PrintMaсhine{
+constructor(fontSize,color,fontFamily){
+    this.fontSize = fontSize;
+    this.color = color;
+    this.fontFamily = fontFamily;
 
-    }
+}
 
-    print(text){
-        var output = document.write(`<div class='border m-4 p-2'><p style="color:${this.color};font-size:${this.fontSize};
-                                    font-family:${this.fontFamily}">${text}</p></div>`)
+print(text){
+    var output = document.write(`<div class='border m-4 p-2'><p style="color:${this.color};font-size:${this.fontSize};
+                                font-family:${this.fontFamily}">${text}</p></div>`)
 
-    }
+}
 
 }
 
