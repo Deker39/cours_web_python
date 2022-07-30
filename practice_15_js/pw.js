@@ -1,4 +1,10 @@
 // ----------------------Exercise 1---------------------
+
+var tit1 = document.createElement('h1')
+tit1.textContent = 'Exercise 1#'
+tit1.classList.add('d-flex', 'justify-content-center')
+document.body.appendChild(tit1)
+
 class Button{
     constructor(width,heigth){
         this.width = width
@@ -10,8 +16,10 @@ class Button{
 
         b.style.width = `${this.width}px`
         b.style.height = `${this.height}px`
+        
+        b.textContent = 'Button1'
 
-        b.classList.add('d-flex', 'justify-content-center','align-items-center')
+        b.classList.add('ms-5')
 
         document.body.appendChild(b)
     }
@@ -31,17 +39,13 @@ class BootstrapButton extends Button{
         b.style.height = `${this.height}px`
         b.style.backgroundColor = this.color
 
-        b.classList.add('d-flex', 'justify-content-center')
+        b.textContent = 'Button2'
+
+        b.classList.add('ms-5')
 
         document.body.appendChild(b)
     }
 }
-
-var tit1 = document.createElement('h1')
-tit1.textContent = 'Exercise 1#'
-tit1.classList.add('d-flex', 'justify-content-center')
-document.body.appendChild(tit1)
-
 
 let b1 = new Button(100,50)
 let b2 = new BootstrapButton(100,50,'red')
@@ -49,13 +53,13 @@ let b2 = new BootstrapButton(100,50,'red')
 b1.showBtn()
 b2.showBtn()
 
+// ----------------------Exercise 2---------------------
 
 var tit2 = document.createElement('h1')
 tit2.textContent = 'Exercise 2#'
 tit2.classList.add('d-flex', 'justify-content-center')
 document.body.appendChild(tit2)
 
-// ----------------------Exercise 2---------------------
 class DescribingFigure{
     constructor(name,side,arr){
         this.name = name
@@ -123,18 +127,18 @@ function Figure(name,side,length = []) {
     this.length = length;
   }
 
-let figureObject1 = new Figure('figure1',5,[2,2])
-let figureObject2 = new Figure('figure2',5,[2,2,3])
-let figureObject3 = new Figure('figure3',5,[2,2,3,3])
+let figureObject1 = new Figure('figure1',2,[2,2])
+let figureObject2 = new Figure('figure2',3,[2,2,3])
+let figureObject3 = new Figure('figure3',4,[2,2,3,3])
 let figureObject4 = new Figure('figure4',5,[2,2,3,3,4])
-let figureObject5 = new Figure('figure5',5,[2,2,3,3,4,5])
+let figureObject5 = new Figure('figure5',6,[2,2,3,3,4,5])
 
 arr1 =[figureObject1,figureObject2,figureObject3,figureObject4,figureObject5]
 
-// let fig = new DescribingFigure(figureObject1['name'],figureObject1['side'],figureObject1['length'])
-let fig = new DescribingFigure([figureObject1,figureObject2,figureObject3,figureObject4,figureObject5].forEach(e => {
-    e['name'],e['side'],e['length']}))
-fig.figureInformation()
+arr1.forEach(e => {
+    let fig = new DescribingFigure(e['name'],e['side'],e['length'])
+    fig.figureInformation()
+})
 
 class Square extends DescribingFigure{
     constructor(name,arr){
@@ -272,3 +276,53 @@ rectangle.figureInformation()
 triangle.figureInformation()
 
 // ----------------------Exercise 3---------------------
+
+var tit3 = document.createElement('h1')
+tit3.textContent = 'Exercise 3#'
+tit3.classList.add('d-flex', 'justify-content-center')
+document.body.appendChild(tit3)
+
+class ExtentedArray extends Array{
+        constructor(arr = []){
+            super()
+            this.arr = arr
+        }
+
+    getString(separator){
+        var div = document.createElement('div')
+        var sep = document.createElement('p')
+
+        div.classList.add('border','m-4','p-2')
+        
+        sep.textContent = this.arr.join(separator)
+
+        document.body.appendChild(div)
+        div.appendChild(sep)
+
+    }
+    getHtml(tagName){
+        var div = document.createElement('div')
+        var ul =  document.createElement('ul')
+
+        div.classList.add('border','m-4','p-2')
+
+        this.arr.forEach(e =>{
+            var tag = document.createElement(tagName)
+            var p = document.createElement('p')
+
+            p.textContent = e
+
+            tag.appendChild(p)
+            ul.appendChild(tag)
+
+        })
+
+        document.body.appendChild(div)
+        div.appendChild(ul)
+      
+
+    }
+}
+let a1 = new ExtentedArray([1,2,3,4,5,6])
+a1.getString('-')
+a1.getHtml('li')
