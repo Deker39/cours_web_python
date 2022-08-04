@@ -15,10 +15,17 @@
         width: 500px;
         height: 500px;
     }
+    .tabcontent {
+    display: none;
+    }
+    .cursorPoint{
+        cursor: pointer;
+    }
+
 </style>
 <body class="container d-flex justify-content-center align-items-center flex-column " >
     <h1>Exercise 1#</h1>
-    <section class="border border-primary d-flex align-items-center flex-column m-3 p-2">
+    <section class=" d-flex align-items-center flex-column m-3 p-2">
         <h3 class="">Random number:</h3>
         <h1 id="randNumber">__</h1>
         <button id="randBtn" type="button" class="btn btn-outline-primary">Generet random number</button>
@@ -27,7 +34,7 @@
     <section class="border border-primary d-flex justify-content-center align-items-center flex-column m-3 p-2" id="srceen">
     </section>
     <h1>Exercise 3#</h1>
-    <section class="d-grid gap-2 border border-primary m-3 p-2">
+    <section class="d-grid gap-2  m-3 p-2">
         <button type="button" class="btn btn-primary mb-3"  onclick="btnHide()" id="hide">Hide</button>
         <p id="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo mollitia corporis delectus sunt molestias. Alias libero
             perspiciatis delectus voluptates at dignissimos dolorum, distinctio, molestias repudiandae, odit ipsa ducimus esse
@@ -36,30 +43,82 @@
     </section>
     <h1>Exercise 4#</h1>
     <section class="border border-primary mb-3  d-flex ">
-        <div class="bg-primary">
-            <ul id="list" class="list-group list-group-flush">
-                <li id="html" class="list-group-item list-group-item-action bg-primary">
-                    <a href="#" class="text-white">HTML</a>
+        <div >
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item list-group-item-action cursorPoint tablinks" id='first' onclick="openCity(event,'html')">
+                    <div>HTML</div>
                 </li>
-                <li id="css" class="list-group-item list-group-item-action bg-primary">
-                    <a href="#" class="text-white">CSS</a>
+                <li class="list-group-item list-group-item-action cursorPoint tablinks" onclick="openCity(event,'css')">
+                    <div >CSS</div>
                 </li>
-                <li id="js" class="list-group-item list-group-item-action  bg-primary">
-                    <a href="#" class="text-white">JS</a>
+                <li class="list-group-item list-group-item-action cursorPoint tablinks" onclick="openCity(event,'js')">
+                    <div >JS</div>
                 </li>
             </ul>
         </div>
         <div id="content" class="py-1 px-3">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, officia voluptate quas iure consectetur quidem
-                eos vero maxime quibusdam laboriosam. Illo quia est ex! Rerum beatae officia eius quibusdam doloremque.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, officia voluptate quas iure consectetur quidem
-                eos vero maxime quibusdam laboriosam. Illo quia est ex! Rerum beatae officia eius quibusdam doloremque.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, officia voluptate quas iure consectetur quidem
-                eos vero maxime quibusdam laboriosam. Illo quia est ex! Rerum beatae officia eius quibusdam doloremque.
-            </p>
+            <div id="html" class="tabcontent">
+                <p>
+                    HTML — це мова тегів, засобами якої здійснюється розмічання веб-сторінок для мережі Інтернет. Браузери отримують
+                    HTML-документи з веб-сервера або з локальної пам'яті й передають документи в мультимедійні веб-сторінки. HTML описує
+                    структуру веб-сторінки семантично та початково підказки для відображення документа.
+                </p>
+            </div>
+            <div id="css" class="tabcontent">
+                <p>
+                    CSS — це спеціальна мова стилю сторінок, що використовується для опису їхнього зовнішнього вигляду. Самі ж сторінки
+                    написані мовами розмітки даних. CSS є основною технологією всесвітньої павутини, поряд із HTML та JavaScript
+                </p>
+            </div>
+            <div id="js" class="tabcontent">
+                <p>
+                    JavaScript — динамічна, об'єктно-орієнтована прототипна мова програмування. Реалізація стандарту ECMAScript.
+                </p>
+            </div>           
+            
         </div>
     </section>
     <h1>Exercise 5#</h1>
+    <section class=" mb-3  d-flex ">
+        <ul class="list-group list-group-flush" id="listIpsum">
+            <li class="list-group-item">
+                <button class="btn btn-outline-danger float-end" id="remove">remove</button>
+                <h3>What is Lorem Ipsum?</h3>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio commodi perferendis illum velit eius odio voluptate autem
+                    nostrum! In, voluptatum. Nulla, totam! At eveniet provident temporibus debitis explicabo adipisci natus.
+                </p>
+            </li>
+            <li class="list-group-item">
+                <button class="btn btn-outline-danger float-end" id="remove">remove</button>
+                <h3>What is Lorem Ipsum?</h3>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio commodi perferendis illum velit eius odio voluptate autem
+                    nostrum! In, voluptatum. Nulla, totam! At eveniet provident temporibus debitis explicabo adipisci natus.
+                </p>
+            </li>
+            <li class="list-group-item">
+                <button class="btn btn-outline-danger float-end" id="remove">remove</button>
+                <h3>What is Lorem Ipsum?</h3>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio commodi perferendis illum velit eius odio voluptate autem
+                    nostrum! In, voluptatum. Nulla, totam! At eveniet provident temporibus debitis explicabo adipisci natus.
+                </p>
+            </li>
+        </ul>
+
+    </section>
+    <h1>Exercise 6#</h1>
+    <section class=" mb-3  d-flex flex-column text-center" style="width: 100%;">
+        <label for="file" class="mb-3">Downloading progress:</label>
+        <div class="progress mb-3">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" 
+            aria-label="Animated striped example"  aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+          </div>
+        
+        <button class="btn btn-outline-danger mb-3" id="add" >Add 5%</button>
+
+    </section>
 </body>
 <script src="pw.js"></script>
 </html>
