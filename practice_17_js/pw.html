@@ -13,6 +13,49 @@
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
         crossorigin="anonymous"></script>
     <title>Document</title>
+    <style>
+        .btn-number,.btn-sing,.btn-equal{
+            padding: 15px;
+            background-color: rgba(191, 191, 191, 0.623);
+            border: 1px solid #e6e6e6;
+            
+        }
+        .btn-sing:hover{
+            background-color: #99e6ff;
+        }
+        .btn-number:hover{
+            background-color: #e6e6e6;
+        }
+        .btn-equal:hover{
+            background-color: #ffb380;
+        }
+        .vvod{
+            padding: 5px;
+            font-size: large;            
+        }
+        .display-none{
+            display: none;
+        }
+        .display-block{
+            display: block;
+        }
+        div.scrollup {
+            position: fixed; 
+            color: #fff; 
+            background-color: #286090; 
+            right: 20px; 
+            bottom: 10px; 
+            padding: 4px 10px; 
+            font-size: 20px;
+            border-radius: 50%; 
+            cursor: pointer; 
+            display: none; 
+            text-align: center; 
+        }
+        div.scrollup:hover {
+            background-color: #000; 
+        }
+    </style>
 </head>
 
 <body class="container d-flex align-items-center flex-column ">
@@ -51,13 +94,97 @@
     <h1>Exercise 3#</h1>
     <section class=" mb-3  d-flex flex-column text-center" style="width: 25%; ">   
         <div type="button" class="btn btn-primary btn-lg" id="like">
-            <img src="thumb_up_48.png" alt="">
-            <span>Like</span>
+            <img src="thumb_up_48.png" alt="" style="margin-bottom: 15px;">
+            <span style="font-size: 32px;">Like</span>
         </div>
     </section>
     <h1>Exercise 4#</h1>
+    <section class="container text-center">
+        <div class="col-12">
+            <p class="border text-end vvod">0</p>
+        </div>
+        <div class="col-12">
+            <div class="row">
+                <div class="col-3 btn-number">7</div>
+                <div class="col-3 btn-number">8</div>
+                <div class="col-3 btn-number">9</div>
+                <div class="col-3 btn-sing">+</div>
+            </div>
+            <div class="row">
+                <div class="col-3 btn-number">4</div>
+                <div class="col-3 btn-number">5</div>
+                <div class="col-3 btn-number">6</div>
+                <div class="col-3 btn-sing">-</div>
+            </div>
+            <div class="row">
+                <div class="col-3 btn-number">1</div>
+                <div class="col-3 btn-number">2</div>
+                <div class="col-3 btn-number">3</div>
+                <div class="col-3 btn-sing">*</div>
+            </div>
+            <div class="row">
+                <div class="col-3 btn-number">0</div>
+                <div class="col-6 btn-equal">=</div>
+                <div class="col-3 btn-sing">/</div>
+            </div>
+    
+        </div>
+       
+    </section>
     <h1>Exercise 5#</h1>
+    <section class="container">
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid">
+              
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav" id="list">
+                  <a class="nav-link" href="">Home</a>
+                  <a class="nav-link" href="">Category
+                    <ul class="list-group list-group-flush display-none">
+                        <li class="nav-link">Dresses</li>
+                        <li class="nav-link">Shirts</li>
+                        <li class="nav-link">Jeans</li>
+                        <li class="nav-link">Shoes</li>
+                    </ul>
+                  </a>
+                  <a class="nav-link" href="">About</a>
+                  <a class="nav-link" href="">Cantact</a>
+                </div>
+              </div>
+            </div>
+          </nav>
+    </section>
     <h1>Exercise 6#</h1>
+    <section class="container">
+        <div>
+            <h1>What is Lorem</h1>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, sint non consequuntur aliquam quod quidem ipsa
+                mollitia temporibus! Repellat culpa aut vel in! Ea magnam labore similique consequatur itaque quisquam.
+            </p>
+        </div>
+        <div>
+            <h1>What is Lorem</h1>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, sint non consequuntur aliquam quod quidem ipsa
+                mollitia temporibus! Repellat culpa aut vel in! Ea magnam labore similique consequatur itaque quisquam.
+            </p>
+        </div>
+        <div>
+            <h1>What is Lorem</h1>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, sint non consequuntur aliquam quod quidem ipsa
+                mollitia temporibus! Repellat culpa aut vel in! Ea magnam labore similique consequatur itaque quisquam.
+            </p>
+        </div>
+        <div class="scrollup">
+            <!-- Иконка fa-chevron-up (Font Awesome) -->
+            <i class="fa fa-chevron-up">^</i>
+          </div>
+    </section>
 </body>
 <script src="pw.js"></script>
 
