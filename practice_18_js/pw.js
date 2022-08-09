@@ -99,7 +99,10 @@ form.onsubmit = function(){
 /*-------------------------------------------------*/
 const contCount = document.getElementById('contCount')
 const countryList = document.getElementById('countryList')
-var count = 0
+
+var word = new String(),
+    count = 0 
+
 var country = [
     'Афганистан','Албания','Антарктика','Алжир','Американское Самоа','Андора','Ангола','Антигуа и Барбуда','Азербайджан','Аргентина','Австралия',
     'Австрия', 'Багамские Острова','Бахрейн','Бангладеш','Армения','Барбадос','Бельгия','Бермудские Острова','Бутан','Боливия','Босния и Герцеговина',
@@ -132,20 +135,47 @@ datalist.setAttribute('id', 'datalistCount')
 contCount.appendChild(datalist)
 
 function search(elem) {
-    if (count > 10) false
-    else{
-        let opt = document.createElement('option')
-        datalist.appendChild(opt)
-        opt.value = elem
-        count++
-    }
    
+   if(count < 10){
+    let opt = document.createElement('option')
+    datalist.appendChild(opt)
+    opt.value = elem 
+    count++
+   }
+    
+    
+    
 }
 
 countryList.addEventListener('keypress', event =>{
-    country.forEach(element => {
-        element[0] == event.key.toUpperCase() ? search(element) : false
-       
+    word += event.key
     
-});
+    while (datalist.firstChild) {
+        datalist.removeChild(datalist.firstChild);
+        count = 0
+    }
+    console.log(word);
+
+    country.forEach(element => {
+        element.slice(0,word.length).toLowerCase() == word.toLowerCase()? search(element) : false
+    });
+    
+    
+    
+})
+countryList.addEventListener('keydown', event =>{
+    if(event.key == "Backspace"){
+        
+        word = word.slice(0,-1)
+        while (datalist.firstChild) {
+            datalist.removeChild(datalist.firstChild); 
+            count = 0
+        }
+        
+        country.forEach(element => {
+            element.slice(0,word.length).toLowerCase() == word.toLowerCase()? search(element) : false
+        });
+    }
+    else false 
+
 })
