@@ -39,19 +39,20 @@ palitra.addEventListener('click', event =>{
 
 /*-------------------------------------------------*/
 const form = document.querySelector('#form'),
-     formInputs = document.querySelectorAll(".form-control"),
+     formInputs = document.querySelectorAll("#form .form-control"),
      contComent = document.getElementById('contComent'),
      inputName = document.getElementById('textName'),
      inputComment = document.getElementById('textComment')
 
-let array = []
+var  array = []
+var  kek = 0
 
 function writeComment(name, time, comment){
 
     const div = document.createElement('div')
     const pName = document.createElement('h5')
     const pDate = document.createElement('p')
-    const pComment = document.createElement('p')
+    const pComment = document.createElement('h5')
 
     div.classList.add('shadow','p-3','mb-3','bg-info','bg-gradient','bg-opacity-25','rounded')
 
@@ -66,35 +67,42 @@ function writeComment(name, time, comment){
 
 }
 
-
-function Сoment(name, time, comment) {
-    this.name = name;
-    this.time = time;
-    this.comment = comment;
+function Comment(name,time,comment){
+    this.name = name
+    this.time = time
+    this.comment = comment
 }
 
-form.onsubmit = function(){
-       
+form.onsubmit = function () {
+    
     formInputs.forEach(function (input){
         if(input.value === '' || input.value === ' '){
             input.classList.add('is-invalid')
             return false
         }else{
             input.classList.remove('is-invalid')
-            if (!inputName.value && !inputComment.value || !inputName.value && inputComment.value || inputName.value && !inputComment.value){
-                return false 
-            }else {
-                // array.push(new Сoment(inputName.value,new Date().toLocaleDateString(),inputComment.value))
-                writeComment(inputName.value,new Date().toLocaleDateString(),inputComment.value)
-
-            }
-
         }
         
-    });  
-    
+    });
+   
+    if (!inputName.value && !inputComment.value || !inputName.value && inputComment.value || inputName.value && !inputComment.value) {
+        return false
+    } else {
+        array.push(new Comment(inputName.value,new Date().toLocaleDateString(),inputComment.value))
+        localStorage.getItem('count') == null? kek = 0:kek = localStorage.getItem('count')
+        localStorage.setItem(`array${kek}`, JSON.stringify(array))
+        kek++
+        localStorage.setItem(`count`,kek)
+    }
 }
 
+var c = localStorage.getItem('count')
+
+for (let i = 0; i < c; i++) {
+    writeComment(JSON.parse(localStorage.getItem(`array${i}`))[0]['name'],
+    JSON.parse(localStorage.getItem(`array${i}`))[0]['time'],
+    JSON.parse(localStorage.getItem(`array${i}`))[0]['comment'])
+}
 
 /*-------------------------------------------------*/
 const contCount = document.getElementById('contCount')
@@ -154,7 +162,6 @@ countryList.addEventListener('keypress', event =>{
         datalist.removeChild(datalist.firstChild);
         count = 0
     }
-    console.log(word);
 
     country.forEach(element => {
         element.slice(0,word.length).toLowerCase() == word.toLowerCase()? search(element) : false
