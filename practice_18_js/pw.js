@@ -89,7 +89,7 @@ form.onsubmit = function () {
         return false
     } else {
         array.push(new Comment(inputName.value,new Date().toLocaleDateString(),inputComment.value))
-        localStorage.getItem('count') == null? kek = 0:kek = localStorage.getItem('count')
+        localStorage.getItem('count') === null? kek = 0:kek = localStorage.getItem('count')
         localStorage.setItem(`array${kek}`, JSON.stringify(array))
         kek++
         localStorage.setItem(`count`,kek)
