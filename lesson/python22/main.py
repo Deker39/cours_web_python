@@ -693,4 +693,45 @@ import  random
 # array.remove(' ')
 # print(f'Only word: {space.join(array)}')
 
+from random import randint
 
+# ls1 = [randint(0,10) for i in range(0,10)]
+# ls.remove()
+# ls.append()
+# ls1 = [5, 7, 6]
+# ls2 = ls1.copy()
+# ls2[0] = 1
+#
+# print(ls1)
+
+# num = int(input('Enter number: '))
+# #
+# # th = ['','M','MM','MMM']
+# # h = ['','C','CC','CCC','CD','D','DC','DCC','DCCC','CM']
+# # t = ['','X','XX','XXX','XL','L','LX','LXX','LXXX','XC']
+# # o = ['','I','II','III','IV','V','VI','VII','VIII','IX']
+# #
+# #
+# # result = th[(num//1000)] + h[((num%1000)//100)] + t[((num%100)//10)] + o[num%10]
+# #
+# # print(result)
+
+
+# order = [5, 5, 9, 8, 5, 9, 2, 9]
+#
+# max_e = int(input('Enter count: '))
+#
+# order.reverse()
+# for i in order:
+#     while order.count(i) > max_e:
+#         order.remove(i)
+#
+# print(order)
+
+
+str = 'the-stealth-warrior'
+
+text = 'the-stealth-warrior'
+print(''.join([i.title() if text.index(i) != 0 else i for i in text.split('-')]))
+
+print(str[0]+str.title().replace('-','').replace('_','')[1:] if len(str)>0 else '')
