@@ -1,5 +1,5 @@
 # Exercise 1
-def second():
+def first():
     str = 'lorem ipsum dolor sit amet, consectetur. Adipiscing elit, sed! do eiusmod tempor incididunt ' \
           'ut labore et dolore magna al1qua. ut enim ad minim veniam, qu2s nostrud, exercitat3on ullamco ' \
           'laboris nisi ut aliquip! ex ea commodo consequat.'

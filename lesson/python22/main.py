@@ -693,4 +693,139 @@ import  random
 # array.remove(' ')
 # print(f'Only word: {space.join(array)}')
 
+from random import randint
 
+# ls1 = [randint(0,10) for i in range(0,10)]
+# ls.remove()
+# ls.append()
+# ls1 = [5, 7, 6]
+# ls2 = ls1.copy()
+# ls2[0] = 1
+#
+# print(ls1)
+
+# num = int(input('Enter number: '))
+# #
+# # th = ['','M','MM','MMM']
+# # h = ['','C','CC','CCC','CD','D','DC','DCC','DCCC','CM']
+# # t = ['','X','XX','XXX','XL','L','LX','LXX','LXXX','XC']
+# # o = ['','I','II','III','IV','V','VI','VII','VIII','IX']
+# #
+# #
+# # result = th[(num//1000)] + h[((num%1000)//100)] + t[((num%100)//10)] + o[num%10]
+# #
+# # print(result)
+
+
+# order = [5, 5, 9, 8, 5, 9, 2, 9]
+#
+# max_e = int(input('Enter count: '))
+#
+# order.reverse()
+# for i in order:
+#     while order.count(i) > max_e:
+#         order.remove(i)
+#
+# print(order)
+
+
+# str = 'the-stealth-warrior'
+#
+# text = 'the-stealth-warrior'
+# print(''.join([i.title() if text.index(i) != 0 else i for i in text.split('-')]))
+#
+# print(str[0]+str.title().replace('-','').replace('_','')[1:] if len(str)>0 else '')
+
+# ls = [0, 7, -5, 1]
+# ls1 = ['As','fv','12s']
+# ls2 = ['b','cl','12s']
+# # print(True if 7 in ls else False)
+# # print(ls.index(7))
+# ls1.sort(key=str.lower)
+# ls2.sort()
+# print(ls1,'\n',ls2)
+
+# ls1 = [
+#     [0, 1, 2],
+#     [3, 4, 5],
+#     [6, 7, 8]
+# ]
+#
+# ls2 = [
+#     [0, 1, 2],
+#     [3, 4, 5],
+#     [6, 7, 8]
+# ]
+#
+# ls3 = []
+#
+#
+# i = 0
+# while i < len(ls1):
+#     j =0
+#     temp = []
+#     while j < len(ls1[i]):
+#         temp.append(ls1[i][j]+ls2[i][i])
+#         j +=1
+#     ls3.append(temp)
+#     i += 1
+#
+# print(ls3)
+# print(*ls)
+#
+# ls1, ls2, ls3 = ls
+#
+# print(ls1, ls2, ls3)
+#
+# print(ls[0][0])
+# from  random import  randint
+#
+# ls1 = [randint(0,10) for i in range(0,10)]
+# ls2 = [[randint(0,10) for y in range(0,3)] for j in range(0,5)]
+# print(ls2)
+
+import  turtle
+
+import requests
+
+full_name= []
+resp = requests.get('https://randomuser.me/api/?results=25')
+json = resp.json()['results']
+
+i = 0
+while i < len(json):
+    r_id = random.randint(10000000,10000000000)
+    # json[i]['id']['value'] = i  # normal numeration 0 to 24
+    # full = str(json[i]['id']['value']).center(20) + " " + json[i]['name']['title'].center(13) +  " " + json[i]['name']['first'].center(15) + " " + json[i]['name']['last'].center(14)
+    full = str(json[i]['id']['value'] if json[i]['id']['value'] is not None and json[i]['id']['value'].isdigit() else r_id).center(20)  + " " + json[i]['name']['title'].center(13) + \
+           " " + json[i]['name']['first'].center(15)  + " " + json[i]['name']['last'].center(14)
+
+
+    if json[i]['id']['value'] is None:
+        json[i]['id']['value'] = r_id
+
+    full_name.append(full)
+    i += 1
+
+print('ID:'.center(20) + 'Title:'.center(15) +  'First:'.center(15) + 'Last:'.center(15))
+for i in full_name:
+    print(i)
+
+print()
+user_to_find = input('enter id: ')
+for j in full_name:
+    if j.find(user_to_find) > 0:
+        print(f'find user : {j}')
+        print(f'street: {json[i.find(user_to_find)]["location"]["street"]["name"]} №{json[i.find(user_to_find)]["location"]["street"]["number"]}\n'
+              f'city: {json[i.find(user_to_find)]["location"]["city"]}\n'
+              f'state: {json[i.find(user_to_find)]["location"]["state"]}\n'
+              f'country: {json[i.find(user_to_find)]["location"]["country"]}\n'
+              f'email: {json[i.find(user_to_find)]["email"]}\n'
+              f'login: {json[i.find(user_to_find)]["login"]["username"]}\n'
+              f'password: {json[i.find(user_to_find)]["login"]["password"]}')
+
+
+# print(json['results'])
+# print(resp.status_code)
+# print(resp.headers['Content-Type'])
+# print(resp.text)
