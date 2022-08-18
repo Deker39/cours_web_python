@@ -58,10 +58,10 @@ form.onsubmit = function () {
     
 }
 
-var getArrayTable = JSON.parse(localStorage.getItem('table'))
+if (JSON.parse(localStorage.getItem('table'))){
+    var getArrayTable = JSON.parse(localStorage.getItem('table'))
 
-
-let table = document.createElement('table')
+    let table = document.createElement('table')
     let tbody = document.createElement('tbody')
 
     table.classList.add('table', 'table-striped','table-primary')
@@ -86,8 +86,22 @@ let table = document.createElement('table')
 
     table.appendChild(tbody)
     document.getElementById('thirdSection').appendChild(table)
+}
+
+
+
+
 
 /*-------------------------------------------------*/
+const rgbForm = document.getElementById('fourth'),
+    red = document.getElementById('red'),
+    green = document.getElementById('green'),
+    blue = document.getElementById('blue'),
+    inputRGB = document.querySelectorAll('input[name="rgb"]')
+let counter = 0,
+    userColors = []
+
+
 function creatRGBItem(colorRed,colorGreen,colorBlue){
     let contRGB = document.getElementById('contRGB')
     let divitem =  document.createElement('div')
@@ -96,23 +110,59 @@ function creatRGBItem(colorRed,colorGreen,colorBlue){
     
     divitem.classList.add('border', 'd-flex', 'align-items-center', 'm-3')
     divColor.classList.add('cont')
-    hName.classList.add('p-2', 'pe-4', 'ps-3')
+    hName.classList.add('p-2', 'pe-4', 'ps-3','mb-0')
 
     divColor.style.backgroundColor = `RGB(${colorRed},${colorGreen},${colorBlue})`
 
-    hName.textContent = `RGB(${colorRed}, ${colorGreen}, ${colorBlue})`
+    hName.textContent = `RGB( ${colorRed}, ${colorGreen}, ${colorBlue})`
 
     contRGB.appendChild(divitem)
     divitem.appendChild(divColor)
     divitem.appendChild(hName)
 }
 
-const rgbForm = document.getElementById('fourth'),
-    red = document.getElementById('red'),
-    green = document.getElementById('green'),
-    blue = document.getElementById('blue'),
-    inputRGB = document.querySelectorAll('input[name="rgb"]')
-let counter = 0
+class ColorObject  {
+    constructor(red,green,blue){
+        this.red = red;
+        this.green = green;
+        this.blue = blue
+    }
+    toString(){
+        return `${this.red};${this.green};${this.blue};`
+        }
+}
+
+function getColorsfromCookie(){
+
+    let cookieString = decodeURIComponent(document.cookie);
+    let cookieArray = cookieString.split("; ")
+
+    if(cookieArray.length < 0) return;
+    else{
+        for (let i = 0; i < cookieArray.length; i++) {
+
+            if(/^color/.test(cookieArray[i])){
+              let colorItem = cookieArray[i].split("=");
+              let colorValues = colorItem[1].split(";");
+              userColors.push(new ColorObject(colorValues[0], colorValues[1], colorValues[2]))
+            }
+            if(/^counter/.test(cookieArray[i])){
+                let counterItem = cookieArray[i].split("=");
+                let counterValue = +(counterItem[1]);
+                counter += counterValue;
+              }
+          }
+    }
+}
+
+
+getColorsfromCookie()
+if(userColors.length > 0){
+    userColors.forEach(item =>{
+        creatRGBItem(item.red,item.green,item.blue)
+    })
+    
+}
 
 rgbForm.onsubmit = function(){
 
@@ -133,15 +183,21 @@ rgbForm.onsubmit = function(){
             if(red.value < 0 || red.value > 255 || green.value < 0 || green.value > 255 || blue.value < 0 || blue.value > 255){
                 return false
             }else{
+                creatRGBItem(red.value,green.value,blue.value)
+
+                let newRGB = new ColorObject(red.value,green.value,blue.value)
+                userColors.push(newRGB)
+
+                let date = new Date(Date.now() + 86400e3);
+                date = date.toUTCString();
 
                 let colorkey = "color" + counter;
                 counter++
 
-                document.cookie = `count=${colorkey}; red=${encodeURIComponent(red.value.toString())};
-                 green=${encodeURIComponent(green.value.toString())}; blue=${encodeURIComponent(blue.value.toString())};path=/`
-                document.cookie = `counter=${counter};path=/`;
+                document.cookie = `${colorkey}=${encodeURIComponent(newRGB.toString())}; max-age=60; path=/`
+                document.cookie = `counter=${counter}; path=/`;
                 //пределать на обьект для отправки в куки 
-                // creatRGBItem(red.value,green.value,blue.value)
+                
             }
   
         }
@@ -151,7 +207,7 @@ rgbForm.onsubmit = function(){
 
     return false
 }
-let cookieString = decodeURIComponent(document.cookie);
-let cookieArray = cookieString.split("; ")
-console.log(cookieArray);
+
+
+
 /*-------------------------------------------------*/
