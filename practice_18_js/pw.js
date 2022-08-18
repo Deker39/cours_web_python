@@ -98,7 +98,7 @@ form.onsubmit = function () {
 
 var c = localStorage.getItem('count')
 
-for (let i = 0; i < c; i++) {
+for (let i = 0; i <= c; i++) {
     writeComment(JSON.parse(localStorage.getItem(`array${i}`))[0]['name'],
     JSON.parse(localStorage.getItem(`array${i}`))[0]['time'],
     JSON.parse(localStorage.getItem(`array${i}`))[0]['comment'])
