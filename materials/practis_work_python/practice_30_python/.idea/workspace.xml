@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="111bfc37-785e-409c-af12-0a0830f21155" name="Default Changelist" comment="" />
+    <list default="true" id="96f2fda4-44f4-486a-8135-6687da7a307a" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,15 +17,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
-  <component name="GitSEFilterConfiguration">
-    <file-type-list>
-      <filtered-out-file-type name="LOCAL_BRANCH" />
-      <filtered-out-file-type name="REMOTE_BRANCH" />
-      <filtered-out-file-type name="TAG" />
-      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
-    </file-type-list>
-  </component>
-  <component name="ProjectId" id="2BhlbB09QVXsmguusLWXZbHjdI0" />
+  <component name="ProjectId" id="2BhpvgVO55zVndIBBMFtsiU8y9s" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -40,7 +29,7 @@
   </component>
   <component name="RunManager">
     <configuration name="pw" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="practice_30_python" />
+      <module name="practice_31_python" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -69,11 +58,11 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="111bfc37-785e-409c-af12-0a0830f21155" name="Default Changelist" comment="" />
-      <created>1657366267063</created>
+      <changelist id="96f2fda4-44f4-486a-8135-6687da7a307a" name="Default Changelist" comment="" />
+      <created>1657368402636</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1657366267063</updated>
+      <updated>1657368402636</updated>
     </task>
     <servers />
   </component>

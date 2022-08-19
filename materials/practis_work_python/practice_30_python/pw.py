@@ -1,52 +1,80 @@
 # Exercise1
+import math
+
+
 def first():
-    num = int(input('Enter your value: '))
-    if num % 2 == 0:
-        print(f'Even nubmer: {num}')
+    time = int(input('Enter time in seconds: '))
+    if time > 86400:
+        print('your value is greater than a day')
     else:
-        print(f'Odd nubmer: {num}')
+        hour = int(time / 3600)
+        minut = int((time - hour * 3600) / 60)
+        second = (time - hour * 3600) - minut * 60
+
+        print(f'hour:{hour},minut:{minut},second:{second}')
+        if hour == 24:
+            print(f'left until midnight: 00:00:00')
+        else:
+            print(f'left until midnight: {23 - hour}:{60 - minut}:{60 - second}')
 # Exercise2
 def second():
-    num = int(input('Enter your value: '))
-    if num % 7 == 0:
-        print(f'Nubmer {num} is multiple 7')
+    num = int(input('Enter circle diameter: '))
+    print(f'1 - area of a circle',
+          f'2 - perimeter of a circle', sep='\n')
+    fun = int(input('Сhoose what to do: '))
+    if fun == 1:
+        print(f'S = {(math.pi * (num * num)) / 4}')
+    elif fun == 2:
+        print(f'P = {2 * math.pi * (num / 2)}')
     else:
-        print(f'Nubmer {num} is not multiple 7')
+        print(f'value is not correct: {fun}')
 # Exercise3
 def third():
-    num1 = int(input('Enter first value: '))
-    num2 = int(input('Enter second value: '))
-    if num1 > num2:
-        print(f'Max:{num1}')
-    elif num1 == num2:
-        print(f'they are equal: {num1} = {num2}')
+    price = int(input('Enter cost of one game console: '))
+    amount = int(input('Enter amount games console: '))
+    discount = int(input('Enter discount percentage: '))
+
+    print(f'Your order:',
+          f'Amount games console: {amount} ',
+          f'Discount percentage: {discount}%', sep='\n')
+    print(f'1 - calculate total order amount',
+          f'2 - the cost of one set-top box, taking into account the discount', sep='\n')
+    fun = int(input('Сhoose what to do: '))
+    if fun == 1:
+        print(f'total order amount: {price * amount * (100 - discount) / 100} USD')
+    elif fun == 2:
+        print(f'the cost of one set-top box, taking into account the discount: {price * (100 - discount) / 100} USD')
     else:
-        print(f'Max:{num2}')
+        print(f'value is not correct: {fun}')
 # Exercise4
 def fourth():
-    num1 = int(input('Enter first value: '))
-    num2 = int(input('Enter second value: '))
-    if num1 < num2:
-        print(f'Min:{num1}')
-    elif num1 == num2:
-        print(f'they are equal: {num1} = {num2}')
+    size = int(input('Enter file size in gigabytes: '))
+    speed = int(input('Enter internet connection speed in bits per second: '))
+
+    print(f'1 - how many hours does it take to download a file',
+          f'2 - how many minutes does it take to download a file',
+          f'3 - how many seconds does it take to download a file', sep='\n')
+    fun = int(input('Сhoose what to do: '))
+    size = (((size * 1024) * 1024) * 1024) * 8
+    # print(size/speed)
+    if fun == 1:
+        print(f'file is downloaded via: {int(((size / speed) / 60) / 60)} hourse')
+    elif fun == 2:
+        print(f'file is downloaded via: {int((size / speed) / 60)} minutes')
+    elif fun == 3:
+        print(f'file is downloaded via: {int(size / speed)} seconds')
     else:
-        print(f'Min:{num2}')
+        print(f'value is not correct: {fun}')
 # Exercise5
-num1 = int(input('Enter first value: '))
-num2 = int(input('Enter second value: '))
-print(f'1 - sum of two numbers',
-      f'2 - the difference between two numbers',
-      f'3 - arithmetic mean of two numbers',
-      f'4 - product of two numbers',sep='\n')
-fun =  int(input('enter number what to do: '))
-if fun == 1:
-    print(f'sum of two numbers: {num1+num2}')
-elif fun == 2:
-    print(f'the difference between two number: {num1-num2}')
-elif fun == 3:
-    print(f'arithmetic mean of two numbers: {(num1 + num2)/2}')
-elif fun == 4:
-    print(f'product of two numbers: {num1 * num2}')
-else:
-    print(f'Your enter incorrect value: {fun}')
+def fifth():
+    h = int(input('Enter hour time '))
+    if 0 < h < 6:
+        print('Good Night')
+    elif 6 <= h < 13:
+        print('Good Morning')
+    elif 13 <= h < 17:
+        print('Good Day')
+    elif 17 <= h <= 24:
+        print('Good Evening')
+    else:
+        print("Unkown time")

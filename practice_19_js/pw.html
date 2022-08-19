@@ -175,7 +175,7 @@
     </section>
     <h1>Exercise 4#</h1>
     <section>
-        <form class="row" id="fourth">
+        <form class="row mt-5" id="fourth">
             <div class="input-group col mb-3">
                 <span class="input-group-text" id="basic-addon1">R</span>
                 <input type="text" class="form-control" placeholder="0-255" aria-label="0-255"
@@ -198,6 +198,37 @@
         <div class="d-flex flex-wrap justify-content-center" id="contRGB"></div>
     </section>
     <h1>Exercise 5#</h1>
+    <section>
+        <div id="contQuest">
+            <h5>All question:</h5>
+        </div>
+        <hr>
+        <form class="row" id="fifth">
+            <h5>Add new question:</h5>
+            <div class="row mb-3">
+                <label for="quest" class="col-sm-2 col-form-label">Question:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="quest" name="formQuest">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="corAnswer" class="col-sm-2 col-form-label">Correct answer:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="corAnswer" name="formQuest">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="wroAnswer" class="col-sm-2 col-form-label">Wrong answer:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="wroAnswer" name="formQuest">
+                </div>
+            </div>
+            <div class="d-grid gap-2">
+                <button class="btn btn-dark my-3" type="submit">Add question</button> 
+            </div>
+        
+        </form>
+    </section>
 </body>
 <script src="pw.js"></script>
 </html>

@@ -1,31 +1,66 @@
 # Exercise_1
 def first():
-    num1 = int(input('Enter start range: '))
-    num2 = int(input('Enter end range: '))
-    print(*range(num1, num2))
-    print(f'sum: {sum(range(num1, num2))}')
-    print(f'avg: {sum(range(num1, num2)) / len(range(num1, num2))}')
+    num = int(input('Enter your value: '))
+    [print(f'{num} * {x} = {x * num}') for x in range(1, 11)]
+
 # Exercise_2
 def second():
-    def factorial(x):
+    USD_buy = 35.80
+    USD_sale = 36.70
 
-        if x == 1:
-            return 1
-        else:
-            return (x * factorial(x - 1))
+    EUR_buy = 36.2
+    EUR_sale = 37.3
 
-    num = int(input('Enter your value: '))
-    print("The factorial of", num, "is", factorial(num))
+    print('1 - Sell currency\n2 - Buy currency\n')
+    answer = int(input('make choose: '))
+    if answer == 1:
+        answer = int(input('Witch currency you want sell?\n1.USD\n2.EUR\n'))
+        if answer == 1:
+            count = int(input('Enter count USD: '))
+            print(f'You sell - {count} USD, get - {int(count * USD_buy)} UAH')
+        elif answer == 2:
+            count = int(input('Enter count EUR: '))
+            print(f'You sell - {count} EUR, get - {int(count * EUR_buy)} UAH')
+
+    elif answer == 2:
+        answer = int(input('Witch currency you want buy?\n1.USD\n2.EUR'))
+        if answer == 1:
+            count = int(input('Enter count UAH: '))
+            print(f'You sell - {count} UAH, get - {int(count / USD_sale)} USD')
+        elif answer == 2:
+            count = int(input('Enter count UAH: '))
+            print(f'You sell - {count} UAH, get - {int(count / EUR_sale)} EUR')
 
 # Exercise_3
 def third():
-    num = int(input('Enter your value: '))
-    print('Your line: ', end='')
-    print('*' * num)
+    range_start = int(input('Enter start range: '))
+    range_end = int(input('Enter end range: '))
+    num1 = int(input('Enter your value: '))
+
+    while (range_start <= num1 <= range_end) == False:
+        num1 = int(input('Enter your value: '))
+
+    print(*[f'!{x}!' if x == num1 else x for x in range(range_start, range_end + 1)])
+
 # Exercise_4
 def fourth():
-    num = int(input('Enter your value: '))
-    sign = str(input('Enter your sign: '))
-    print('Your line: ', end='')
-    print(sign * num)
+    from random import randint
 
+    num = -1
+    r = randint(1, 500)
+    count = 0
+
+    while num != 0:
+        try:
+            num = int(input('Enter guess: '))
+            if num < r:
+                print('my nuber more than your...')
+            elif num > r:
+                print('my number so less...')
+            elif num == r:
+                print(f'You rigth: {num}')
+                break
+        except:
+            print('unkomon nubmer!')
+        count += 1
+    print(f'you try: {count}')

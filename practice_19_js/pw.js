@@ -196,18 +196,121 @@ rgbForm.onsubmit = function(){
 
                 document.cookie = `${colorkey}=${encodeURIComponent(newRGB.toString())}; max-age=60; path=/`
                 document.cookie = `counter=${counter}; path=/`;
-                //пределать на обьект для отправки в куки 
                 
             }
   
         }
-
-    
-    
-
-    return false
 }
 
 
 
 /*-------------------------------------------------*/
+const questForm = document.getElementById('fifth'),
+    quest = document.getElementById('quest'),
+    corAnswer = document.getElementById('corAnswer'),
+    wroAnswer = document.getElementById('wroAnswer'),
+    formQuest = document.querySelectorAll('input[name="formQuest"]'),
+    contQuest = document.getElementById('contQuest')
+let count = 0,
+    userQuest = [] 
+
+class QuestObject  {
+    constructor(quest,corect,wrong){
+        this.quest = quest;
+        this.corect = corect;
+        this.wrong = wrong;
+    }
+    toString(){
+        return `${this.quest};${this.corect};${this.wrong};`
+        }
+}
+
+function creatQuest(quest,corect,wrong){
+    let divCont =  document.createElement('div')
+    let pQuest = document.createElement('p')
+    let pCorrect = document.createElement('p')
+    let pWorse = document.createElement('p')
+
+    divCont.classList.add('bg-secondary' ,'bg-gradient' ,'bg-opacity-25' ,'rounded-4' ,'p-2' ,'ps-3', 'mb-3')
+    pQuest.classList.add('fs-4')
+
+    pQuest.style.textDecoration = 'underline'
+
+    pQuest.textContent = quest
+    pCorrect.textContent = `Correct answer: ${corect}`
+    pWorse.textContent = `Wrong answer: ${wrong}`
+    
+    contQuest.appendChild(divCont)
+    divCont.appendChild(pQuest)
+    divCont.appendChild(pCorrect)
+    divCont.appendChild(pWorse)
+
+}
+
+function getQuestfromCookie(){
+
+    let cookieString = decodeURIComponent(document.cookie);
+    let cookieArray = cookieString.split("; ")
+    console.log(cookieArray);
+
+    if(cookieArray.length < 0) return;
+    else{
+        for (let i = 0; i < cookieArray.length; i++) {
+
+            if(/^quest/.test(cookieArray[i])){
+              let questItem = cookieArray[i].split("=");
+              let values = questItem[1].split(";");
+              userQuest.push(new QuestObject(values[0], values[1], values[2]))
+            }
+            if(/^count/.test(cookieArray[i])){
+                let counterItem = cookieArray[i].split("=");
+                let counterValue = +(counterItem[1]);
+                counter += counterValue;
+              }
+          }
+    }
+}
+
+getQuestfromCookie()
+if(userQuest.length > 0){
+    userQuest.forEach(item =>{
+        creatQuest(item.quest,item.corect,item.wrong)
+    })
+    
+}
+
+
+
+questForm.onsubmit = function(){
+
+    formQuest.forEach(function (input){
+        if(input.value === '' || input.value === ' '){
+            input.classList.add('is-invalid')
+            return false
+        }else{
+            input.classList.remove('is-invalid')
+            input.classList.add('is-valid')
+        }  
+    })
+
+    if(!quest.value ||  !corAnswer.value || !wroAnswer.value || !quest.value && !corAnswer.value && !wroAnswer.value ){
+        return false
+    }
+    else{
+
+        creatQuest(quest.value,corAnswer.value,wroAnswer.value)
+        let newQuest = new QuestObject(quest.value,corAnswer.value,wroAnswer.value)
+        userQuest.push(newQuest)
+
+        let date = new Date(Date.now() + 86400e3);
+        date = date.toUTCString();
+
+        let questkey = "quest" + count;
+        count++
+
+        document.cookie = `${questkey}=${encodeURIComponent(newQuest.toString())}; max-age=60; path=/`
+        document.cookie = `count=${count}; path=/`;
+    }
+   
+
+}
