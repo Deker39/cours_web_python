@@ -563,7 +563,7 @@
 
 # print(f'yes{l1}' if l1 == '1' else 'no')
 # print('yes' if True else 'no')
-
+import math
 import  random
 # l1 = [random.randint(0,10) for i in range(0,10)]
 # print(*l1)
@@ -786,46 +786,141 @@ from random import randint
 
 import  turtle
 
-import requests
-
-full_name= []
-resp = requests.get('https://randomuser.me/api/?results=25')
-json = resp.json()['results']
-
-i = 0
-while i < len(json):
-    r_id = random.randint(10000000,10000000000)
-    # json[i]['id']['value'] = i  # normal numeration 0 to 24
-    # full = str(json[i]['id']['value']).center(20) + " " + json[i]['name']['title'].center(13) +  " " + json[i]['name']['first'].center(15) + " " + json[i]['name']['last'].center(14)
-    full = str(json[i]['id']['value'] if json[i]['id']['value'] is not None and json[i]['id']['value'].isdigit() else r_id).center(20)  + " " + json[i]['name']['title'].center(13) + \
-           " " + json[i]['name']['first'].center(15)  + " " + json[i]['name']['last'].center(14)
-
-
-    if json[i]['id']['value'] is None:
-        json[i]['id']['value'] = r_id
-
-    full_name.append(full)
-    i += 1
-
-print('ID:'.center(20) + 'Title:'.center(15) +  'First:'.center(15) + 'Last:'.center(15))
-for i in full_name:
-    print(i)
-
-print()
-user_to_find = input('enter id: ')
-for j in full_name:
-    if j.find(user_to_find) > 0:
-        print(f'find user : {j}')
-        print(f'street: {json[i.find(user_to_find)]["location"]["street"]["name"]} №{json[i.find(user_to_find)]["location"]["street"]["number"]}\n'
-              f'city: {json[i.find(user_to_find)]["location"]["city"]}\n'
-              f'state: {json[i.find(user_to_find)]["location"]["state"]}\n'
-              f'country: {json[i.find(user_to_find)]["location"]["country"]}\n'
-              f'email: {json[i.find(user_to_find)]["email"]}\n'
-              f'login: {json[i.find(user_to_find)]["login"]["username"]}\n'
-              f'password: {json[i.find(user_to_find)]["login"]["password"]}')
+# import requests
+#
+# full_name= []
+# resp = requests.get('https://randomuser.me/api/?results=25')
+# json = resp.json()['results']
+#
+# i = 0
+# while i < len(json):
+#     r_id = random.randint(10000000,10000000000)
+#     # json[i]['id']['value'] = i  # normal numeration 0 to 24
+#     # full = str(json[i]['id']['value']).center(20) + " " + json[i]['name']['title'].center(13) +  " " + json[i]['name']['first'].center(15) + " " + json[i]['name']['last'].center(14)
+#     full = str(json[i]['id']['value'] if json[i]['id']['value'] is not None and json[i]['id']['value'].isdigit() else r_id).center(20)  + " " + json[i]['name']['title'].center(13) + \
+#            " " + json[i]['name']['first'].center(15)  + " " + json[i]['name']['last'].center(14)
+#
+#
+#     if json[i]['id']['value'] is None:
+#         json[i]['id']['value'] = r_id
+#
+#     full_name.append(full)
+#     i += 1
+#
+# print('ID:'.center(20) + 'Title:'.center(15) +  'First:'.center(15) + 'Last:'.center(15))
+# for i in full_name:
+#     print(i)
+#
+# print()
+# user_to_find = input('enter id: ')
+# for j in full_name:
+#     if j.find(user_to_find) > 0:
+#         print(f'find user : {j}')
+#         print(f'street: {json[i.find(user_to_find)]["location"]["street"]["name"]} №{json[i.find(user_to_find)]["location"]["street"]["number"]}\n'
+#               f'city: {json[i.find(user_to_find)]["location"]["city"]}\n'
+#               f'state: {json[i.find(user_to_find)]["location"]["state"]}\n'
+#               f'country: {json[i.find(user_to_find)]["location"]["country"]}\n'
+#               f'email: {json[i.find(user_to_find)]["email"]}\n'
+#               f'login: {json[i.find(user_to_find)]["login"]["username"]}\n'
+#               f'password: {json[i.find(user_to_find)]["login"]["password"]}')
 
 
 # print(json['results'])
 # print(resp.status_code)
 # print(resp.headers['Content-Type'])
 # print(resp.text)
+
+# def sum_my_number()
+
+# def foo1():
+#     print('foo1')
+# breakpoint()
+# foo1()
+
+# A = int(input('A: '))
+# B = int(input('B: '))
+# C = int(input('C: '))
+#
+# if A==0: A = 1
+# if B==0: B = 1
+# if C==0: C = 1
+#
+# D = B*B - 4 * A * C
+#
+#
+# x = 0
+# print(D)
+# if D > 0:
+#     x1 = ((-B) + math.sqrt(D)) / 2 * A
+#     x2 = ((-B) - math.sqrt(D)) / 2 * A
+#     print(f'x1: {x1}')
+#     print(f'x2: {x2}')
+
+# def foo(name):
+#     print(f'foo started - {name}')
+#
+# foo('Alpha')
+
+# def foo(*args):
+#     c = 0
+#     sum = 0
+#     for i in args:
+#         c +=1
+#         sum += i
+#     return  sum/c
+#
+#
+# print(foo(5,5,5,5))
+
+
+# num = 5
+#
+# def  wellcome_admin(name):
+#     print(f"Admin: {name}")
+#
+# def  wellcome_user(name):
+#     print(f"Hi user: {name}")
+#
+#
+# def wellcome_hr(name):
+#     print(f"Hi pr: {name}")
+#
+# def foo(name,func):
+#     func(name)
+# #
+# def foo():
+#     n = 5
+#     def foo2():
+#         nonlocal  n
+#         global  num
+#
+#         num = -5
+#         n += 1
+#         l = 5
+#         print(l)
+#         print(num)
+#         print(__name__)
+#
+#     return  foo2()
+#
+# def main():
+#
+#    foo('Alex',wellcome_user)
+#
+# if __name__ == '__main__':
+#     main()
+#
+def par(num):
+    str_num = str(num)
+    l1 = str_num[int((len(str_num))/2):]
+    l2 = list(str_num[0:int((len(str_num))/2)])
+    l2.reverse()
+    l2 = ''.join(l2)
+    print(l1)
+    print(l2)
+
+
+def main():
+    par(12344321)
+if __name__ == '__main__':
+    main()
