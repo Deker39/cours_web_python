@@ -23,7 +23,7 @@
             height:50px; 
         }
         .form-control:hover{
-            box-shadow: 0px 0px 8px gray;
+            box-shadow: 0px 0px 8px white;
         }
         .btn:hover{
             box-shadow: 0px 0px 8px blue;
@@ -31,17 +31,20 @@
         .display-none{
              display: none;
         }
+        .waring{
+            text-shadow: 0px 0px 2px white; 
+        }
         /* pattern="(?=.*[0-9)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{8,}" */
         /* 26@Qwe */
       </style>
 </head>
-<body class="container d-flex align-items-center flex-column">
+<body class="container d-flex align-items-center bg-secondary bg-opacity-25 flex-column">
     <section class="container d-flex justify-content-center align-items-center m-5">
         <form id="first">
-            <h3 class="text-center">Registration</h3>
+            <h3 class="text-center" style="text-shadow: 0px 0px 8px white;">Registration</h3>
             <div class="form-group my-2">
                 <div class="float-end display-none" id="emailError"></div>
-                <label for="textEmail" class="mb-2">Email address</label>
+                <label for="textEmail" class="mb-2 pe-3">Email address</label>
                 <input type="email" name="enter" class="form-control" id="textEmail"
                     pattern='((([a-zA-Z]|[._-])*))@((([a-zA-Z]+\.)+[a-zA-Z]{2,}))' aria-describedby="emailHelp"
                     placeholder="Enter email">
@@ -49,14 +52,14 @@
             </div>
             <div class="form-group my-2">
                 <div class="float-end display-none" id="passError"></div>
-                <label for="textPassword" class="mb-2">Password</label>
+                <label for="textPassword" class="mb-2 pe-3">Password</label>
                 <input type="password" name="enter" class="form-control" id="textPassword" placeholder="Password"
                     pattern="(?=.*[0-9)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}"
                     title="Must be at least one digit, one special character and one uppercase and lowercase letter, and at least 6 characters.">
             </div>
             <div class="form-group my-2">
                 <div class="float-end display-none" id="repeatPassError"></div>
-                <label for="textRepeatPassword" class="mb-2">Repeat password</label>
+                <label for="textRepeatPassword" class="mb-2 pe-3">Repeat password</label>
                 <input type="password" name="enter" class="form-control" id="textRepeatPassword"
                     placeholder="Repeat password"
                     pattern="(?=.*[0-9)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}"
