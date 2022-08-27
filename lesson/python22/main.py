@@ -910,17 +910,120 @@ import  turtle
 # if __name__ == '__main__':
 #     main()
 #
-def par(num):
-    str_num = str(num)
-    l1 = str_num[int((len(str_num))/2):]
-    l2 = list(str_num[0:int((len(str_num))/2)])
-    l2.reverse()
-    l2 = ''.join(l2)
-    print(l1)
-    print(l2)
+# def par(num):
+#     str_num = str(num)
+#     l1 = str_num[int((len(str_num))/2):]
+#     l2 = list(str_num[0:int((len(str_num))/2)])
+#     l2.reverse()
+#     l2 = ''.join(l2)
+#     print(l1)
+#     print(l2)
 
+
+# def main():
+#     par(12344321)
+
+# def pww(n,s):
+#     return  n if s==1 else n * pww(n,s-1)
+#
+#
+# def main():
+#     print(pww(2,3))
+#     print(qq(2,3))
+
+
+# def sun(a,b):
+#     return a+b
+#
+# def sub(a,b):
+#     return a-b
+#
+# def div(a,b):
+#     return a/b
+#
+# def mult(a,b):
+#     return a*b
+#
+# def mess(func):
+#     print(f"Result: {func(5,6)}")
+
+
+def calc(a, b, op):
+    print(f'Result {op(a,b)}')
 
 def main():
-    par(12344321)
+    # [mess(i) for i  in [sun, sub, div, mult]]
+
+    # mess = lambda: print('hello')
+    # mess()
+    #
+    # pww = lambda x: x*x
+    # print(pww(5))
+    #
+    # calc(2, 2, lambda a, b: a + b)
+    # calc(2, 2, lambda a, b: a / b)
+    #
+    #
+    # f = lambda  x: x * x
+    #
+    # ls = [5,6,7,3,2]
+    # ls.sort(key= lambda x:x > 5)
+    # print(*ls)
+    #
+    # # for i in ls:
+    #     print((lambda  x: x * x)(i))
+
+    def sum(n):
+        return  n+n
+
+    # ls1 = [1, 2, 3, 4, 5]
+    # ls2 = [5, 4, 3, 2, 1]
+    # ls3 = ['user1234','user2','user34','34']
+    ls3 = ['ale-op','lio-a','cell-1']
+    # res = list(map(lambda x: x,ls1))
+
+
+    # print(list(map(list, ls3)))
+    # print(list(map(lambda x: x.replace('-',''),ls3)))
+
+    # print(list(filter(lambda x: x.find('o') > 0 ,ls3)))
+
+    # l = (54,0,-12,100, -9)
+
+    # ls2 = [
+    #     ['Alex',20],
+    #     ['Jhon', 30],
+    #     ['Den', 6],
+    #     ['Ron', 10],
+    # ]
+    #
+    # res = sorted(ls2,key= lambda x: x[1])
+    # print(*res)
+
+    # userLogs = ['123user45', 'USERstudent', '56use3', 'user-23', 'adminUs']
+    # userPass = ['111', 'abc', '2345', '45fg', 'dffdg']
+    #
+    # print(list(zip(userLogs,userPass)))
+
+    # for log, passw in zip(userLogs, userPass):
+    #     print("login: {} — password: {}".
+    #           format(log, passw))
+
+    import functools
+
+    def sum(a, b):
+        return a + b
+
+    print(sum(5, 5))
+
+    # partial(func..., args,**kwargs)
+
+    s1 = functools.partial(sum, b = 5)
+    s2 = functools.partial(sum, 5)
+
+    print(s1(2),s2(5))
+    print(s1.keywords)
+
 if __name__ == '__main__':
+
     main()
