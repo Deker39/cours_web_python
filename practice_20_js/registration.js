@@ -6,11 +6,12 @@ const firsrForm = document.getElementById('first'),
     emailError = document.getElementById('emailError'),
     passError = document.getElementById('passError'),
     repeatPassError = document.getElementById('repeatPassError')
-    
-let count = 0,
+
+let arrayUser = new Array(),
+    count = 0,
     users = [] 
 
-export default class UserInfo  {
+class UserInfo  {
     constructor(login,pass){
         this.login = login;
         this.pass = pass;
@@ -45,6 +46,14 @@ function getCountUsersfromCookie(){
     if(cookieArray.length < 0) return;
     else{
         for (let i = 0; i < cookieArray.length; i++) {
+
+            arrayUser = cookieArray
+
+            if(/^user/.test(cookieArray[i])){
+                let userItem = cookieArray[i].split("=");
+                let userValues = userItem[1].split(";");
+                users.push(userValues[0])
+              }
     
             if(/^count/.test(cookieArray[i])){
                 let counterItem = cookieArray[i].split("=");
@@ -53,10 +62,11 @@ function getCountUsersfromCookie(){
               }
           }
     }
-  }
+}
 
 
 getCountUsersfromCookie()
+
 firsrForm.onsubmit = function(){
 
     allInput.forEach(function (input){
@@ -130,19 +140,22 @@ firsrForm.onsubmit = function(){
     if(textPassword.value != textRepeatPassword.value && textPassword.value == '' && textRepeatPassword.value == ''){
         return false
     }else{
-        console.log(textEmail.value,textPassword.value,textRepeatPassword.value);
-        let newUser = new UserInfo(textEmail.value,textPassword.value)
-        users.push(newUser)
+        console.log(`Write to cookie: ${textEmail.value,textPassword.value,textRepeatPassword.value}`);
 
-        let date = new Date(Date.now());
-        date = date.toUTCString();
-        
-        let userkey = "user" + count;
-        count++
-
-        document.cookie = `${userkey}=${encodeURIComponent(newUser.toString())}; max-age=3600; path=/`
-        document.cookie = `count=${count}; max-age=3600; path=/`;
-        
+        // console.log(users);
+        if (users.includes(textEmail.value)){
+            console.log('он есть в списке');
+            console.log(`его номер: ${arrayUser.find(e => e.includes(textEmail.value)).split('=')[0]}`);
+            // return false
+            
+        }else{
+            count++
+            document.cookie = `${"user" + count}=${encodeURIComponent(new UserInfo(textEmail.value,textPassword.value).toString())};
+            max-age=3600; path=/`
+           document.cookie = `count=${count}; max-age=3600; path=/`;
+           
+        }
+       
     }
 
 }
