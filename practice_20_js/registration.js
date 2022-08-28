@@ -29,7 +29,32 @@ function validtatePassword(pass){
     return reg.test(pass)
 }
 
+function getCookie(){
+    let cookieString = decodeURIComponent(document.cookie);
+    let cookieArray = cookieString.split("; ")
+    console.log(cookieArray);
+    return cookieArray
+}
 
+function getCountUsersfromCookie(){
+
+    let cookieArray = getCookie()
+
+    if(cookieArray.length < 0) return;
+    else{
+        for (let i = 0; i < cookieArray.length; i++) {
+    
+            if(/^count/.test(cookieArray[i])){
+                let counterItem = cookieArray[i].split("=");
+                let counterValue = +(counterItem[1]);
+                count += counterValue;
+              }
+          }
+    }
+  }
+
+
+  getCountUsersfromCookie()
 firsrForm.onsubmit = function(){
 
     allInput.forEach(function (input){
@@ -95,7 +120,7 @@ firsrForm.onsubmit = function(){
 
         pReapPass.innerText = 'Password it\'s not correct'
         console.log('RepeatPassword not valid')
-        // return false
+        return false
     }else{
         repeatPassError.classList.add('display-none')
     }
@@ -104,44 +129,20 @@ firsrForm.onsubmit = function(){
         return false
     }else{
         console.log(textEmail.value,textPassword.value,textRepeatPassword.value);
-
-        // localStorage.getItem('count') === null? kek = 0:kek = localStorage.getItem('count')
-        // let cookieString = decodeURIComponent(document.cookie);
-        // let cookieArray = cookieString.split("; ")
-        // console.log(cookieArray);
-
- 
-        // if(cookieArray.length < 0) return;
-        // else{
-        //     for (let i = 0; i < cookieArray.length; i++) {
-
-        //         if(/^count/.test(cookieArray[i])){
-        //             let counterItem = cookieArray[i].split("=");
-        //             let counterValue = +(counterItem[1]);
-        //             count += counterValue;
-        //         }
-        //     }
-        // }
-
         let newUser = new UserInfo(textEmail.value,textPassword.value)
         users.push(newUser)
 
-        
         let date = new Date(Date.now());
         date = date.toUTCString();
         
-        // decodeURIComponent(document.cookie).split("; ")[0].split('=')[1]
-        decodeURIComponent(document.cookie).length > 0? count = 0:count = Number(decodeURIComponent(document.cookie).split("; ")[0].split('=')[1])
         let userkey = "user" + count;
         count++
 
         document.cookie = `${userkey}=${encodeURIComponent(newUser.toString())}; max-age=3600; path=/`
-        document.cookie = `count=${count}; path=/`;
-        // kek
+        document.cookie = `count=${count}; max-age=3600; path=/`;
         
     }
 
 }
 
-    
-    
+

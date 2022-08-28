@@ -18,9 +18,9 @@
 </head>
 <body class="">
     <section class="container d-flex justify-content-center align-items-center m-5"> 
-        <form action="" >
+        <form action="" id="secondForm">
             <div>
-                <p class="text-end display-none"> <a href="registration.html">exit</a></p>
+                <p class="text-end display-none" id="greetings"><a id="exit" href="registration.html">exit</a></p>
             </div>
             <hr>
             <h4 class="text-center">User info</h4>
@@ -30,8 +30,8 @@
                     <label class="text-secondary ps-4" for="inputFirstName">First name:</label>
                 </div>
                 <div class="col form-floating m-3 mb-0">
-                    <input type="text" class="form-control" id="inputLirstName" placeholder=" " style="height:90%;">
-                    <label class="text-secondary ps-4" for="inputLirstName">Last name:</label>
+                    <input type="text" class="form-control" id="inputLastName" placeholder=" " style="height:90%;">
+                    <label class="text-secondary ps-4" for="inputLastName">Last name:</label>
                 </div>
             </div>
             <div class="row mb-0">
@@ -49,12 +49,12 @@
             </div>
             <div class="row mb-0">
                 <div class="col form-floating m-3 mb-0">
-                    <input type="text" class="form-control" id="inputFirstName" placeholder=" " style="height:90%;">
-                    <label class="text-secondary ps-4" for="inputFirstName">Phone number:</label>
+                    <input type="text" class="form-control" id="inputPhoneNumber" placeholder=" " style="height:90%;">
+                    <label class="text-secondary ps-4" for="inputPhoneNumber">Phone number:</label>
                 </div>
                 <div class="col form-floating m-3 mb-0">
-                    <input type="text" class="form-control" id="inputLirstName" placeholder=" " style="height:90%;">
-                    <label class="text-secondary ps-4" for="inputLirstName">Skype:</label>
+                    <input type="text" class="form-control" id="inputSkype" placeholder=" " style="height:90%;">
+                    <label class="text-secondary ps-4" for="inputSkype">Skype:</label>
                 </div>
             </div>
             <div class="d-grid gap-2">
@@ -62,6 +62,9 @@
             </div>
         </form>
         </section>
+
+
+<script src="userInfo.js"></script>
     
 </body>
 </html>
