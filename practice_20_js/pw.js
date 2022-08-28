@@ -6,9 +6,18 @@ const firsrForm = document.getElementById('first'),
     emailError = document.getElementById('emailError'),
     passError = document.getElementById('passError'),
     repeatPassError = document.getElementById('repeatPassError')
+let count = 0,
+    users = [] 
 
-
-
+class UserInfo  {
+    constructor(login,pass){
+        this.login = login;
+        this.pass = pass;
+    }
+    toString(){
+        return `${this.login};${this.pass};`
+        }
+}
 
 function validtateEmail(email){
     let reg = /^((([a-zA-Z]|[._-])*))@((([a-zA-Z]+\.)+[a-zA-Z]{2,}))+$/g
@@ -19,10 +28,6 @@ function validtatePassword(pass){
     let reg = /^(?=.*[0-9)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}$/g
     return reg.test(pass)
 }
-
-
-
-
 
 
 firsrForm.onsubmit = function(){
@@ -95,16 +100,45 @@ firsrForm.onsubmit = function(){
         repeatPassError.classList.add('display-none')
     }
 
-    if(textPassword.value == textRepeatPassword.value && textPassword.value != '' && textRepeatPassword.value != ''){
-        console.log(textEmail.value,textPassword.value,textRepeatPassword.value);
-    }else{
+    if(textPassword.value != textRepeatPassword.value && textPassword.value == '' && textRepeatPassword.value == ''){
         return false
+    }else{
+        console.log(textEmail.value,textPassword.value,textRepeatPassword.value);
+
+        // localStorage.getItem('count') === null? kek = 0:kek = localStorage.getItem('count')
+        // let cookieString = decodeURIComponent(document.cookie);
+        // let cookieArray = cookieString.split("; ")
+        // console.log(cookieArray);
+
+ 
+        // if(cookieArray.length < 0) return;
+        // else{
+        //     for (let i = 0; i < cookieArray.length; i++) {
+
+        //         if(/^count/.test(cookieArray[i])){
+        //             let counterItem = cookieArray[i].split("=");
+        //             let counterValue = +(counterItem[1]);
+        //             count += counterValue;
+        //         }
+        //     }
+        // }
+
+        let newUser = new UserInfo(textEmail.value,textPassword.value)
+        users.push(newUser)
+
+        
+        let date = new Date(Date.now());
+        date = date.toUTCString();
+        
+        // decodeURIComponent(document.cookie).split("; ")[0].split('=')[1]
+        decodeURIComponent(document.cookie).length > 0? count = 0:count = Number(decodeURIComponent(document.cookie).split("; ")[0].split('=')[1])
+        let userkey = "user" + count;
+        count++
+
+        document.cookie = `${userkey}=${encodeURIComponent(newUser.toString())}; max-age=3600; path=/`
+        document.cookie = `count=${count}; path=/`;
+        
     }
-
-    return false
-
-
-
 
 }
 

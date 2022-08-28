@@ -302,7 +302,7 @@ questForm.onsubmit = function(){
         let newQuest = new QuestObject(quest.value,corAnswer.value,wroAnswer.value)
         userQuest.push(newQuest)
 
-        let date = new Date(Date.now() + 86400e3);
+        let date = new Date(Date.now());
         date = date.toUTCString();
 
         let questkey = "quest" + count;
