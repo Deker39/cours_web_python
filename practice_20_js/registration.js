@@ -6,10 +6,11 @@ const firsrForm = document.getElementById('first'),
     emailError = document.getElementById('emailError'),
     passError = document.getElementById('passError'),
     repeatPassError = document.getElementById('repeatPassError')
+    
 let count = 0,
     users = [] 
 
-class UserInfo  {
+export default class UserInfo  {
     constructor(login,pass){
         this.login = login;
         this.pass = pass;
@@ -18,6 +19,7 @@ class UserInfo  {
         return `${this.login};${this.pass};`
         }
 }
+
 
 function validtateEmail(email){
     let reg = /^((([a-zA-Z]|[._-])*))@((([a-zA-Z]+\.)+[a-zA-Z]{2,}))+$/g
@@ -54,7 +56,7 @@ function getCountUsersfromCookie(){
   }
 
 
-  getCountUsersfromCookie()
+getCountUsersfromCookie()
 firsrForm.onsubmit = function(){
 
     allInput.forEach(function (input){
