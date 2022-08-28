@@ -137,6 +137,7 @@ firsrForm.onsubmit = function(){
 
         document.cookie = `${userkey}=${encodeURIComponent(newUser.toString())}; max-age=3600; path=/`
         document.cookie = `count=${count}; path=/`;
+        // kek
         
     }
 
