@@ -1,3 +1,11 @@
+from random import randint
+import string
+import math
+import turtle
+import requests
+import functools
+import time
+
 #/--------------------LESSON1--------------------/
 # # exercise_1
 # def first():
@@ -223,7 +231,7 @@
 # print(f'Sum: {sum}')
 
 
-# from random import randint
+
 #
 # num = -1
 # r = randint(1, 500)
@@ -500,8 +508,7 @@
 # line1 = 'hello'
 # line2 = line1
 # print(id(line1),id(line2))
-# import random
-# import string
+
 #
 # line = 'lorem ipsum kek coum ve'
 # userLogin = ''.join(random.sample((string.ascii_lowercase),6))
@@ -515,7 +522,7 @@
 
 # ^[a-Z]$
 # ^[a-zA-Z0-9._]+@[a-zA-Z]+\.[a-z]+$
-# import re
+
 
 # line = 'Lorem ipsum dolor is sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
 # res = re.search(r'[a-z]{1,3}',line)
@@ -563,8 +570,7 @@
 
 # print(f'yes{l1}' if l1 == '1' else 'no')
 # print('yes' if True else 'no')
-import math
-import  random
+
 # l1 = [random.randint(0,10) for i in range(0,10)]
 # print(*l1)
 
@@ -693,7 +699,7 @@ import  random
 # array.remove(' ')
 # print(f'Only word: {space.join(array)}')
 
-from random import randint
+
 
 # ls1 = [randint(0,10) for i in range(0,10)]
 # ls.remove()
@@ -778,15 +784,12 @@ from random import randint
 # print(ls1, ls2, ls3)
 #
 # print(ls[0][0])
-# from  random import  randint
 #
 # ls1 = [randint(0,10) for i in range(0,10)]
 # ls2 = [[randint(0,10) for y in range(0,3)] for j in range(0,5)]
 # print(ls2)
 
-import  turtle
 
-# import requests
 #
 # full_name= []
 # resp = requests.get('https://randomuser.me/api/?results=25')
@@ -948,10 +951,10 @@ import  turtle
 #     print(f"Result: {func(5,6)}")
 
 
-def calc(a, b, op):
-    print(f'Result {op(a,b)}')
-
-def main():
+# def calc(a, b, op):
+#     print(f'Result {op(a,b)}')
+#
+# def main():
     # [mess(i) for i  in [sun, sub, div, mult]]
 
     # mess = lambda: print('hello')
@@ -973,13 +976,13 @@ def main():
     # # for i in ls:
     #     print((lambda  x: x * x)(i))
 
-    def sum(n):
-        return  n+n
+    # def sum(n):
+        # return  n+n
 
     # ls1 = [1, 2, 3, 4, 5]
     # ls2 = [5, 4, 3, 2, 1]
     # ls3 = ['user1234','user2','user34','34']
-    ls3 = ['ale-op','lio-a','cell-1']
+    # ls3 = ['ale-op','lio-a','cell-1']
     # res = list(map(lambda x: x,ls1))
 
 
@@ -1009,21 +1012,170 @@ def main():
     #     print("login: {} — password: {}".
     #           format(log, passw))
 
-    import functools
+    #
+    # def sum(a, b):
+    #     return a + b
+    #
+    # print(sum(5, 5))
+    #
+    # # partial(func..., args,**kwargs)
+    #
+    # s1 = functools.partial(sum, b = 5)
+    # s2 = functools.partial(sum, 5)
+    #
+    # print(s1(2),s2(5))
+    # print(s1.keywords)
 
-    def sum(a, b):
-        return a + b
+# if __name__ == '__main__':
 
-    print(sum(5, 5))
+    # main()
 
-    # partial(func..., args,**kwargs)
+#################### nonlocal, curring, wrapper
 
-    s1 = functools.partial(sum, b = 5)
-    s2 = functools.partial(sum, 5)
+# def outer(text):
+#     v = "hello " + text
+#
+#     def inner(param):
+#         print(v + param)
+#
+#     return inner
+#
+# t = outer("data")
+#
+# t(" t")
 
-    print(s1(2),s2(5))
-    print(s1.keywords)
+# def outer():
+#     i =0
+#
+#     def inner( ):
+#         nonlocal  i
+#         i += 1
+#         return  i
+#     return inner
+#
+# c = outer()
+# for i in range(10):
+#     print(c())
 
-if __name__ == '__main__':
+# def outer(power):
+#     i = power
+#
+#     def inner(ls):
+#         nonlocal  i
+#         temp = []
+#         for item in ls:
+#             x = item
+#             for p in range(1, i):
+#                 item *= x
+#             temp.append(item)
+#         return temp
+#     return inner
+#
+# c = outer(5)
+# print(c([1,2,3,4,5]))
+# print(c([2,2,2]))
 
-    main()
+# def foo(x1,x2,x3) -> foo(x1)(x2)(x3)
+
+# def outer(user):
+#
+#     def inner(ms):
+#         print(f'Hello {user} -- {ms}')
+#
+#     return inner
+#
+# sendMess = outer('Admin')
+#
+# sendMess('text')
+#
+# outer('User')('asd')
+# outer('User')('text')
+
+# def foo1(ms1):
+#     def foo2(ms2):
+#         def foo3(ms3):
+#             def foo4(ms4):
+#                 print(f'{ms1} \t{ms2} \t{ms3} \t{ms4}')
+#             return foo4
+#         return  foo3
+#     return foo2
+# fo = foo1('ms1')
+# fo('ms2')('ms3')('ms4')
+#
+# fo = foo1('ms1')('ms2')
+# fo('ms3')('ms4')
+#
+# fo = foo1('ms1')('ms2')('ms3')
+# fo('ms4')
+#
+# fo = foo1('ms1')('ms2')('ms3')('ms4')
+
+
+# def outer(n):
+
+#     def inner(n1=2):
+#         return n * n1
+#
+#     return  inner()
+#
+# print(outer(5))
+
+# def wel(func): #func default
+#
+#     def inner(ls):
+#         for user in ls:
+#             print(func(user) + user)
+#
+#     return inner
+#
+# @wel
+# def show(user):
+#     if user.find('admin') >= 0:
+#         return 'Welcome! '
+#     elif user.find('user') >=0:
+#         return 'Hello! '
+#     else:
+#         return 'Need reg? '
+
+
+# show(['admin Alex','user Jhon','Den','admin Nick'])
+
+
+# def get_diff(func):
+#     def start():
+#         s = time.time()
+#         func()
+#         diff = time.time() - s
+#         return diff
+#     return start
+#
+# @get_diff
+# def get_data():
+#     requests.get('https://randomuser.me/api/?results=25').json()
+#
+# print(get_data())
+
+# def get_diff(func):
+#
+#     def statr():
+#
+#         while True:
+#             n = int(input('s: '))
+#             s = time.time()
+#             func(n)
+#             diff = time.time() - s
+#             print(diff)
+#     return statr
+
+# @get_diff
+@functools.lru_cache
+def get_data(n):
+    s = time.time()
+
+    diff = time.time() - s
+    print(f'fact {math.factorial(n)}')
+    print(diff)
+
+while True:
+    n = int(input('s: '))
+    get_data(n)
