@@ -8,11 +8,13 @@ const secondForm = document.getElementById('secondForm'),
     inputSkype = document.getElementById('inputSkype'),
     greetings = document.getElementById('greetings')
 
+let arrayUser = new Array(),
+    us
 
 class UserInfoMore{
-    constructor(login,pass,firstName,lastName,birthday,gender,phoneNumber,skype){
-        this.login = login;
-        this.pass = pass;
+    constructor(firstName,lastName,birthday,gender,phoneNumber,skype){
+        this.login = arrayUser.find(e => e.includes(us)).split('=')[1].split(';')[0];
+        this.pass = arrayUser.find(e => e.includes(us)).split('=')[1].split(';')[1];
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthday = birthday;
@@ -33,21 +35,30 @@ function getCookie(){
     return cookieArray
 }
 
-function getCountUsersfromCookie(){
+function getUsersfromCookie(){
 
     let cookieArray = getCookie()
 
+    arrayUser = cookieArray
+
     if(cookieArray.length < 0) return;
-    else{
+    else {
         for (let i = 0; i < cookieArray.length; i++) {
-    
-            if(/^user/.test(cookieArray[i])){
-                let userItem = cookieArray[i].split("=");
-                userValues= userItem[1].split(";").slice(0,2)
-                console.log(userValues);
+
+            // if (/^user/.test(cookieArray[i])) {
+            //     let userItem = cookieArray[i].split("=");
+            //     userValues = userItem[1].split(";").slice(0, 2)
+            //     // console.log(userValues);
+               
+
+            // }
+
+            if (/^loggedIn/.test(cookieArray[i])) {
+                us = cookieArray[i].split("=")[1]
+            }
             
-              }
-          }
+            
+        }
     }
   }
 
@@ -58,10 +69,11 @@ function getCountUsersfromCookie(){
 // selectGender.value = 'male'
 // inputPhoneNumber.value = '123'
 // inputSkype.value = '123'
-getCountUsersfromCookie()
+getUsersfromCookie()
+
 
 greetings.classList.remove('display-none')
-greetings.prepend('Hello, Jhon,smith@gmail.com! ')
+greetings.prepend(`Hello,  ${arrayUser.find(e => e.includes(us)).split('=')[1].split(';')[0]} `)
 
 
 // linkExit.onclick() = function(){
@@ -79,9 +91,12 @@ secondForm.onsubmit = function(){
     // ввести данные пользователя и сохранть их в куки 
     console.log(inputFirstName.value, inputLastName.value, inputBirthday.value, selectGender.value,
         inputPhoneNumber.value, inputSkype.value);
+        console.log(us);
     let kek =  new UserInfoMore(inputFirstName.value, inputLastName.value, inputBirthday.value, selectGender.value,
         inputPhoneNumber.value, inputSkype.value)
         console.log(kek);
+        document.cookie = `${us}=${encodeURIComponent(new UserInfoMore(inputFirstName.value, inputLastName.value, inputBirthday.value, selectGender.value,
+            inputPhoneNumber.value, inputSkype.value).toString())};max-age=3600; path=/`
 
     return false
 

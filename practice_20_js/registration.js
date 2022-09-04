@@ -146,13 +146,14 @@ firsrForm.onsubmit = function(){
         if (users.includes(textEmail.value)){
             console.log('он есть в списке');
             console.log(`его номер: ${arrayUser.find(e => e.includes(textEmail.value)).split('=')[0]}`);
+            document.cookie = `loggedIn=${arrayUser.find(e => e.includes(textEmail.value)).split('=')[0]};max-age=3600; path=/`
             // return false
             
         }else{
             count++
-            document.cookie = `${"user" + count}=${encodeURIComponent(new UserInfo(textEmail.value,textPassword.value).toString())};
-            max-age=3600; path=/`
+            document.cookie = `${"user" + count}=${encodeURIComponent(new UserInfo(textEmail.value,textPassword.value).toString())};max-age=3600; path=/`
            document.cookie = `count=${count}; max-age=3600; path=/`;
+           document.cookie = `loggedIn=${arrayUser.find(e => e.includes(textEmail.value)).split('=')[0]};max-age=3600; path=/`
            
         }
        
