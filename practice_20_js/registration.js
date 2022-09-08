@@ -153,7 +153,7 @@ firsrForm.onsubmit = function(){
             count++
             document.cookie = `${"user" + count}=${encodeURIComponent(new UserInfo(textEmail.value,textPassword.value).toString())};max-age=3600; path=/`
            document.cookie = `count=${count}; max-age=3600; path=/`;
-           document.cookie = `loggedIn=${arrayUser.find(e => e.includes(textEmail.value)).split('=')[0]};max-age=3600; path=/`
+           document.cookie = `loggedIn=${"user" + count};max-age=3600; path=/`
            
         }
        
