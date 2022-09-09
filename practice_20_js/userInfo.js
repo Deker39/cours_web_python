@@ -37,9 +37,10 @@ function getCookie(){
     return cookieArray
 }
 
-function deleteCookie(name) {
-    document.cookie = `${name}='';max-age=-1; path=/`
-    document.cookie = `count=${count--};max-age=3600; path=/`
+function deleteCookie() {
+    count--
+    document.cookie = `${us}='';max-age=-1; path=/`
+    document.cookie = `count=${count};max-age=3600; path=/`
     document.cookie = `loggedIn='';max-age=-1; path=/`
   }
 
@@ -66,10 +67,8 @@ function getUsersfromCookie(){
     }
   }
 
-  // прописать даныне того кто зашел проверка поп почте 
 function writeInfo(){
     
-
     inputFirstName.value = users[2]
     inputLastName.value = users[3]
     inputBirthday.value = users[4]
@@ -85,18 +84,16 @@ greetings.classList.remove('display-none')
 greetings.prepend(`Hello,  ${arrayUser.find(e => e.includes(`${us}=`)).split('=')[1].split(';')[0]} `)
 
 
-// linkExit.onclick() = function(){
-   
-//     deleteCookie(us)
-//     console.log('kek');
-// }
-// linkExit.addEventListener('click', deleteCookie(us))
-
 
 secondForm.onsubmit = function(){
-    // ввести данные пользователя и сохранть их в куки 
+
     console.log(inputFirstName.value, inputLastName.value, inputBirthday.value, selectGender.value,
         inputPhoneNumber.value, inputSkype.value);
-        document.cookie = `${us}=${encodeURIComponent(new UserInfoMore(inputFirstName.value, inputLastName.value, inputBirthday.value, selectGender.value,
-            inputPhoneNumber.value, inputSkype.value).toString())};max-age=3600; path=/`
+        if (inputFirstName.value == '' && inputLastName.value == '' && inputBirthday.value == '' && selectGender.value == '' &&
+        inputPhoneNumber.value == '' && inputSkype.value == ''){}
+        else{
+            document.cookie = `${us}=${encodeURIComponent(new UserInfoMore(inputFirstName.value, inputLastName.value, inputBirthday.value, selectGender.value,
+                inputPhoneNumber.value, inputSkype.value).toString())};max-age=3600; path=/`
+        } 
+       
 }

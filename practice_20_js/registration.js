@@ -142,12 +142,10 @@ firsrForm.onsubmit = function(){
     }else{
         console.log(`Write to cookie: ${textEmail.value,textPassword.value,textRepeatPassword.value}`);
 
-        // console.log(users);
         if (users.includes(textEmail.value)){
             console.log('он есть в списке');
             console.log(`его номер: ${arrayUser.find(e => e.includes(textEmail.value)).split('=')[0]}`);
             document.cookie = `loggedIn=${arrayUser.find(e => e.includes(textEmail.value)).split('=')[0]};max-age=3600; path=/`
-            // return false
             
         }else{
             count++
