@@ -1,4 +1,24 @@
 import random
+import pygame as pg
+
+pg.init()
+
+RES = WEDTH, HEIGHT = 600,600
+
+sc = pg.display.set_mode(RES)
+
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+BLEDZOLOT = (238, 232, 170)
+HOURSE = (255, 0, 0)
+OHRA = (160, 82, 45)
+
+FPS = 60
+
+sizes = 75
+y = 0
+
+clock = pg.time.Clock()
 
 
 def q(p,s):
@@ -25,6 +45,8 @@ steps = [] # Пройденій путь
 step = len(point)-1 # Количество возможных шагов
 point_horse = point[random.randint(0,step)] # Случайное первое место коня
 count_options = [1,2,3,4,5,6,7,8] # Индексы возможных шагов
+steps.append(point_horse)
+point.remove(point_horse)
 print(point)
 print(point_horse)
 
@@ -56,3 +78,25 @@ print('The end')
 print(f'Steps taken: {size*size - step}')
 print(f'Passed board cells {steps}')
 print(f'Free cells of the board{point}')
+
+
+while True:
+    for event in pg.event.get():
+        if event.type == pg.QUIT:
+            pg.quit()
+            quit()
+
+    count = 0
+
+    for x in range(1,size+1):
+        for y in range(1,size+1):
+            if (x + y) % 2 == 0:
+                pg.draw.rect(sc, BLEDZOLOT, [sizes * x, sizes * y, sizes, sizes])
+            else:
+                pg.draw.rect(sc, OHRA, [sizes * x, sizes * y, sizes, sizes])
+
+    for x in range(len(steps)):
+        pg.draw.rect(sc, HOURSE, [sizes * steps[x][0], sizes * (size + 1 -steps[x][1]), sizes, sizes])
+
+    pg.display.update()
+    clock.tick(FPS)
