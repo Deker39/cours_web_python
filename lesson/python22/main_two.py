@@ -65,62 +65,287 @@
 # print(f'{ls[2]}:{count_three}')\
 
 
-import random
+# import random
+#
+#
+# def q(p,s):
+#     global  step_hours
+#     global count_options
+#     if p[0] <= 0 or p[0] > size or p[1] <= 0 or p[1] > size or p not in point: # Выход за границы поля и предыдущий шаг
+#         p = back_point
+#         count_options.remove(step_hours) #удаление плохого варианта
+#     else:
+#         print(f'{s}:{p}:{step_hours}')
+#         count_options = [1, 2, 3, 4, 5, 6, 7, 8]
+#         point.remove(p)#удаление шага с  поля
+#         steps.append(p)
+#         s -= 1
+#     return p,s
+#
+# size = 6 # размер поля
+# point = []# масив координат - шахмантая доска
+# for i in range(1,size+1):
+#     for j in range(1,size+1):
+#         point.append([i,j])
+#
+# steps = [] # Пройденій путь
+# step = len(point)-1 # Количество возможных шагов
+# point_horse = point[random.randint(0,step)] # Случайное первое место коня
+# count_options = [1,2,3,4,5,6,7,8] # Индексы возможных шагов
+# print(point)
+# print(point_horse)
+#
+#
+#
+# while step >= 0 and len(count_options):# пока есть свободные шаги и есть выбор
+#
+#     back_point = point_horse #передыдущий шаг
+#     step_hours = count_options[random.randint(0,len(count_options)-1)]
+#     if step_hours == 1:
+#         point_horse,step = q([point_horse[0] - 2, point_horse[1] + 1],step)
+#     elif step_hours == 2:
+#         point_horse,step = q([point_horse[0] - 1, point_horse[1] + 2],step)
+#     elif step_hours == 3:
+#         point_horse,step = q([point_horse[0] + 1, point_horse[1] + 2],step)
+#     elif step_hours == 4:
+#         point_horse,step = q([point_horse[0] + 2, point_horse[1] + 1],step)
+#     elif step_hours == 5:
+#         point_horse,step = q([point_horse[0] - 2, point_horse[1] - 1],step)
+#     elif step_hours == 6:
+#         point_horse,step = q([point_horse[0] + 1, point_horse[1] - 2],step)
+#     elif step_hours == 7:
+#         point_horse,step = q([point_horse[0] - 1, point_horse[1] + 2],step)
+#     elif step_hours == 8:
+#         point_horse,step = q([point_horse[0] - 2, point_horse[1] - 1],step)
+#
+#
+# print('The end')
+# print(f'Steps taken: {size*size - step}')
+# print(f'Passed board cells {steps}')
+# print(f'Free cells of the board{point}')
+
+# list, tuple
+# name -> 'alex
+
+# v1 = {'name':'alex'}
+# print(v1['name'])
+
+# person = {'name':'Alex','age':20}
+
+# print(person.get('asfsf','Unkown key'))
+# print(person.popitem())
+# print(person)
+
+# for i in person:
+#     print(f'Key: {i}, value: {person[i]}')
+#
+# for key,value in person.items():
+#     print(f'Key: {key}, value: {value}')
+#
+# for v in person.values():
+#     print(f'Key: ?, value: {v}')
+#
+# for k in person.keys():
+#     print(f'Key: {k}, value: ?')
+
+# persons = {
+#     'Alex':{
+#         'second_name':'value1',
+#         'age':'value2'
+#     },
+#     'John':{
+#             'second_name':'value3',
+#             'age':'value4'
+#         }
+# }
+#
+# for k,v in persons.items():
+#     print(f'\nKey: {k} Value ', end=" ")
+#     for  k1,v1 in v.items():
+#          print(f'\n\t Key:{k1} Value: {v1}' ,end=' ')
+
+### 1 ###
+capitals = {'Ukraine':'Kyiv'}
+
+def menu_first():
+    print('Choose action:\n'
+          '1.Add capital by country\n'
+          '2.Remove capital by country\n'
+          '3.Search capital by country\n'
+          '4.Replace capital by country\n'
+          '5.Show all capital bu counrty'
+          '6.Exit')
+    return input('Enter choose: ')
+
+def add_item():
+    global capitals
+    country = input('Enter name country: ')
+    capital = input('Enter name capital: ')
+    capitals[country] = capital
+
+def main_first():
+    choose = ''
+    while not choose.startswith('6'):
+        choose = menu_first()
+        if choose.startswith('1'):
+            add_item()
+        elif choose.startswith('2'):
+            country = input('Enter name country to delete: ')
+            if country in capitals:
+                del capitals[country]
+            else:
+                print('Unknown country')
+        elif choose.startswith('3'):
+            country = input('Enter name country to search: ')
+            if country in capitals:
+                print(f'Fiend: \n\t Country: {country} \t Capitl: {capitals[country]}')
+            else: print('Unknown country')
+        elif choose.startswith('4'):
+            country = input('Enter new name country to replace: ')
+            if country in capitals:
+                add_item()
+            else:
+                print('Unknown country')
+        elif choose.startswith('5'):
+            if len(capitals) > 0:
+                for k, v in capitals.items():
+                    print(f'Country: {k}\t Capital: {v}')
+        elif choose.startswith('6'):
+            print("Good buy")
+        else: print('Error')
 
 
-def q(p,s):
-    global  step_hours
-    global count_options
-    if p[0] <= 0 or p[0] > size or p[1] <= 0 or p[1] > size or p not in point: # Выход за границы поля и предыдущий шаг
-        p = back_point
-        count_options.remove(step_hours) #удаление плохого варианта
-    else:
-        print(f'{s}:{p}:{step_hours}')
-        count_options = [1, 2, 3, 4, 5, 6, 7, 8]
-        point.remove(p)#удаление шага с  поля
-        steps.append(p)
-        s -= 1
-    return p,s
-
-size = 6 # размер поля
-point = []# масив координат - шахмантая доска
-for i in range(1,size+1):
-    for j in range(1,size+1):
-        point.append([i,j])
-
-steps = [] # Пройденій путь
-step = len(point)-1 # Количество возможных шагов
-point_horse = point[random.randint(0,step)] # Случайное первое место коня
-count_options = [1,2,3,4,5,6,7,8] # Индексы возможных шагов
-print(point)
-print(point_horse)
 
 
 
-while step >= 0 and len(count_options):# пока есть свободные шаги и есть выбор
+### 2 ###
+dictionary = {'hello':'bonjur'}
 
-    back_point = point_horse #передыдущий шаг
-    step_hours = count_options[random.randint(0,len(count_options)-1)]
-    if step_hours == 1:
-        point_horse,step = q([point_horse[0] - 2, point_horse[1] + 1],step)
-    elif step_hours == 2:
-        point_horse,step = q([point_horse[0] - 1, point_horse[1] + 2],step)
-    elif step_hours == 3:
-        point_horse,step = q([point_horse[0] + 1, point_horse[1] + 2],step)
-    elif step_hours == 4:
-        point_horse,step = q([point_horse[0] + 2, point_horse[1] + 1],step)
-    elif step_hours == 5:
-        point_horse,step = q([point_horse[0] - 2, point_horse[1] - 1],step)
-    elif step_hours == 6:
-        point_horse,step = q([point_horse[0] + 1, point_horse[1] - 2],step)
-    elif step_hours == 7:
-        point_horse,step = q([point_horse[0] - 1, point_horse[1] + 2],step)
-    elif step_hours == 8:
-        point_horse,step = q([point_horse[0] - 2, point_horse[1] - 1],step)
+def add_word():
+    global dictionary
+    english_word = input('Enter a word of english: ')
+    french_woed = input('Enter a word of french: ')
+    dictionary[english_word] = french_woed
+
+def menu_second():
+    print('Choose action:\n'
+          '1.Add a word of english and french\n'
+          '2.Remove a word of english and french\n'
+          '3.Search a word\n'
+          '4.Replace a word\n'
+          '5.Show dictionary\n'
+          '6.Exit')
+    return input('Enter choose: ')
+
+def main_second():
+    choose = ''
+    while not choose.startswith('6'):
+        choose = menu_second()
+        if choose.startswith('1'):
+            add_word()
+        elif choose.startswith('2'):
+            english_word = input('Enter a word of english: ')
+            if english_word in dictionary:
+                del dictionary[english_word]
+            else:
+                print('Unknown english word')
+        elif choose.startswith('3'):
+            english_word = input('Enter a word of english to search: ')
+            if english_word in dictionary:
+                print(f'Fiend: \n\t English Word: {english_word} \t French Word: {dictionary[english_word]}')
+            else:
+                print('Unknown english word')
+        elif choose.startswith('4'):
+            english_word = input('Enter a word of english to replace: ')
+            if english_word in dictionary:
+                add_word()
+            else:
+                print('Unknown english word')
+        elif choose.startswith('5'):
+            if len(dictionary) > 0:
+                for k, v in dictionary.items():
+                    print(f'Country: {k}\t Capital: {v}')
+        elif choose.startswith('6'):
+            print("Good buy")
+        else: print('Error')
 
 
-print('The end')
-print(f'Steps taken: {size*size - step}')
-print(f'Passed board cells {steps}')
-print(f'Free cells of the board{point}')
+firma = {
+    1:{
+        'First Name':'Alex',
+        'Last Name': 'Holenko',
+        'Tel':'+380986071514',
+        'Email':'kek@gmail.com',
+        'Post':'Programmer',
+        'Number cabinet': '356',
+        'Skype':'dek33'
+    }
 
+}
+
+def add_person():
+
+    firs_name = input('Enter a firs name: ')
+    last_name = input('Enter a last name: ')
+    tel = input('Enter a tel number: ')
+    email = input('Enter a email: ')
+    post = input('Enter a post: ')
+    number_cabinet = input('Enter a number cabinet: ')
+    skype = input('Enter a skype: ')
+    return {'Firs Name':firs_name,'Last Name':last_name,'Tel':tel,'Email':email,'Post':post,'Number cabinet':number_cabinet,'Skype':skype}
+
+
+def menu_third():
+    print('Choose action:\n'
+          '1.Add a information of man\n'
+          '2.Remove a information of man\n'
+          '3.Search a information of man\n'
+          '4.Replace a information of man\n'
+          '5.Show information of people\n'
+          '6.Exit')
+    return input('Enter choose: ')
+
+def main_third():
+    choose = ''
+    while not choose.startswith('6'):
+        choose = menu_third()
+        if choose.startswith('1'):
+            firma[len(firma)+1] =add_person()
+        elif choose.startswith('2'):
+            last_name = input('Enter a last name: ')
+            for k,v in firma.items():
+                if last_name in v['Last Name']:
+                    del firma[k]
+                    break
+                else:
+                    print('Unknown Last name')
+        elif choose.startswith('3'):
+            last_name = input('Enter a last name: ')
+            for k, v in firma.items():
+                if last_name in v['Last Name']:
+                    print(f'\nPerson: {k} Info ', end=" ")
+                    for k1, v1 in v.items():
+                        print(f'\n\t {k1} : {v1}', end=' ')
+                    print()
+                else:
+                    print('Unknown Last name')
+        elif choose.startswith('4'):
+            last_name = input('Enter a last name: ')
+            for k, v in firma.items():
+                if last_name in v['Last Name']:
+                    firma[k] = add_person()
+                else:
+                    print('Unknown Last name')
+        elif choose.startswith('5'):
+            for k,v in firma.items():
+                print(f'\nPerson: {k} Info ', end=" ")
+                for  k1,v1 in v.items():
+                     print(f'\n\t {k1} : {v1}' ,end=' ')
+            print()
+        elif choose.startswith('6'):
+            print("Good buy")
+        else:
+            print('Error')
+if __name__ == '__main__':
+    # main_second()
+    main_third()

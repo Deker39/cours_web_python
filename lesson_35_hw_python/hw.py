@@ -3,7 +3,7 @@ import pygame as pg
 
 pg.init()
 
-RES = WEDTH, HEIGHT = 600,600
+RES = WEDTH, HEIGHT = 600,600 # если доска увеличиваться нужно увеличивать размеры
 
 sc = pg.display.set_mode(RES)
 
