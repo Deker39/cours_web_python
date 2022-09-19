@@ -165,187 +165,259 @@
 #          print(f'\n\t Key:{k1} Value: {v1}' ,end=' ')
 
 ### 1 ###
-capitals = {'Ukraine':'Kyiv'}
+# capitals = {'Ukraine':'Kyiv'}
+#
+# def menu_first():
+#     print('Choose action:\n'
+#           '1.Add capital by country\n'
+#           '2.Remove capital by country\n'
+#           '3.Search capital by country\n'
+#           '4.Replace capital by country\n'
+#           '5.Show all capital bu counrty'
+#           '6.Exit')
+#     return input('Enter choose: ')
+#
+# def add_item():
+#     global capitals
+#     country = input('Enter name country: ')
+#     capital = input('Enter name capital: ')
+#     capitals[country] = capital
+#
+# def main_first():
+#     choose = ''
+#     while not choose.startswith('6'):
+#         choose = menu_first()
+#         if choose.startswith('1'):
+#             add_item()
+#         elif choose.startswith('2'):
+#             country = input('Enter name country to delete: ')
+#             if country in capitals:
+#                 del capitals[country]
+#             else:
+#                 print('Unknown country')
+#         elif choose.startswith('3'):
+#             country = input('Enter name country to search: ')
+#             if country in capitals:
+#                 print(f'Fiend: \n\t Country: {country} \t Capitl: {capitals[country]}')
+#             else: print('Unknown country')
+#         elif choose.startswith('4'):
+#             country = input('Enter new name country to replace: ')
+#             if country in capitals:
+#                 add_item()
+#             else:
+#                 print('Unknown country')
+#         elif choose.startswith('5'):
+#             if len(capitals) > 0:
+#                 for k, v in capitals.items():
+#                     print(f'Country: {k}\t Capital: {v}')
+#         elif choose.startswith('6'):
+#             print("Good buy")
+#         else: print('Error')
+#
+#
+#
+#
+#
+# ### 2 ###
+# dictionary = {'hello':'bonjur'}
+#
+# def add_word():
+#     global dictionary
+#     english_word = input('Enter a word of english: ')
+#     french_woed = input('Enter a word of french: ')
+#     dictionary[english_word] = french_woed
+#
+# def menu_second():
+#     print('Choose action:\n'
+#           '1.Add a word of english and french\n'
+#           '2.Remove a word of english and french\n'
+#           '3.Search a word\n'
+#           '4.Replace a word\n'
+#           '5.Show dictionary\n'
+#           '6.Exit')
+#     return input('Enter choose: ')
+#
+# def main_second():
+#     choose = ''
+#     while not choose.startswith('6'):
+#         choose = menu_second()
+#         if choose.startswith('1'):
+#             add_word()
+#         elif choose.startswith('2'):
+#             english_word = input('Enter a word of english: ')
+#             if english_word in dictionary:
+#                 del dictionary[english_word]
+#             else:
+#                 print('Unknown english word')
+#         elif choose.startswith('3'):
+#             english_word = input('Enter a word of english to search: ')
+#             if english_word in dictionary:
+#                 print(f'Fiend: \n\t English Word: {english_word} \t French Word: {dictionary[english_word]}')
+#             else:
+#                 print('Unknown english word')
+#         elif choose.startswith('4'):
+#             english_word = input('Enter a word of english to replace: ')
+#             if english_word in dictionary:
+#                 add_word()
+#             else:
+#                 print('Unknown english word')
+#         elif choose.startswith('5'):
+#             if len(dictionary) > 0:
+#                 for k, v in dictionary.items():
+#                     print(f'Country: {k}\t Capital: {v}')
+#         elif choose.startswith('6'):
+#             print("Good buy")
+#         else: print('Error')
+#
+#
+# firma = {
+#     1:{
+#         'First Name':'Alex',
+#         'Last Name': 'Holenko',
+#         'Tel':'+380986071514',
+#         'Email':'kek@gmail.com',
+#         'Post':'Programmer',
+#         'Number cabinet': '356',
+#         'Skype':'dek33'
+#     }
+#
+# }
+#
+# def add_person():
+#
+#     firs_name = input('Enter a firs name: ')
+#     last_name = input('Enter a last name: ')
+#     tel = input('Enter a tel number: ')
+#     email = input('Enter a email: ')
+#     post = input('Enter a post: ')
+#     number_cabinet = input('Enter a number cabinet: ')
+#     skype = input('Enter a skype: ')
+#     return {'Firs Name':firs_name,'Last Name':last_name,'Tel':tel,'Email':email,'Post':post,'Number cabinet':number_cabinet,'Skype':skype}
+#
+#
+# def menu_third():
+#     print('Choose action:\n'
+#           '1.Add a information of man\n'
+#           '2.Remove a information of man\n'
+#           '3.Search a information of man\n'
+#           '4.Replace a information of man\n'
+#           '5.Show information of people\n'
+#           '6.Exit')
+#     return input('Enter choose: ')
+#
+# def main_third():
+#     choose = ''
+#     while not choose.startswith('6'):
+#         choose = menu_third()
+#         if choose.startswith('1'):
+#             firma[len(firma)+1] =add_person()
+#         elif choose.startswith('2'):
+#             last_name = input('Enter a last name: ')
+#             for k,v in firma.items():
+#                 if last_name in v['Last Name']:
+#                     del firma[k]
+#                     break
+#                 else:
+#                     print('Unknown Last name')
+#         elif choose.startswith('3'):
+#             last_name = input('Enter a last name: ')
+#             for k, v in firma.items():
+#                 if last_name in v['Last Name']:
+#                     print(f'\nPerson: {k} Info ', end=" ")
+#                     for k1, v1 in v.items():
+#                         print(f'\n\t {k1} : {v1}', end=' ')
+#                     print()
+#                 else:
+#                     print('Unknown Last name')
+#         elif choose.startswith('4'):
+#             last_name = input('Enter a last name: ')
+#             for k, v in firma.items():
+#                 if last_name in v['Last Name']:
+#                     firma[k] = add_person()
+#                 else:
+#                     print('Unknown Last name')
+#         elif choose.startswith('5'):
+#             for k,v in firma.items():
+#                 print(f'\nPerson: {k} Info ', end=" ")
+#                 for  k1,v1 in v.items():
+#                      print(f'\n\t {k1} : {v1}' ,end=' ')
+#             print()
+#         elif choose.startswith('6'):
+#             print("Good buy")
+#         else:
+#             print('Error')
+# if __name__ == '__main__':
+#     # main_second()
+#     main_third()
 
-def menu_first():
-    print('Choose action:\n'
-          '1.Add capital by country\n'
-          '2.Remove capital by country\n'
-          '3.Search capital by country\n'
-          '4.Replace capital by country\n'
-          '5.Show all capital bu counrty'
-          '6.Exit')
-    return input('Enter choose: ')
 
-def add_item():
-    global capitals
-    country = input('Enter name country: ')
-    capital = input('Enter name capital: ')
-    capitals[country] = capital
+# def find_max(ls):
+#     max_item = ls[0]
+#     i = 0
+#
+#     def find(item):
+#         nonlocal max_item, i, ls
+#
+#         if max_item < ls[i]:
+#             max_item = ls[i]
+#         elif i < len(ls):
+#             i +=1
+#             find(i)
+#         return  max_item
+#
+#     find(max_item)
 
-def main_first():
-    choose = ''
-    while not choose.startswith('6'):
-        choose = menu_first()
-        if choose.startswith('1'):
-            add_item()
-        elif choose.startswith('2'):
-            country = input('Enter name country to delete: ')
-            if country in capitals:
-                del capitals[country]
-            else:
-                print('Unknown country')
-        elif choose.startswith('3'):
-            country = input('Enter name country to search: ')
-            if country in capitals:
-                print(f'Fiend: \n\t Country: {country} \t Capitl: {capitals[country]}')
-            else: print('Unknown country')
-        elif choose.startswith('4'):
-            country = input('Enter new name country to replace: ')
-            if country in capitals:
-                add_item()
-            else:
-                print('Unknown country')
-        elif choose.startswith('5'):
-            if len(capitals) > 0:
-                for k, v in capitals.items():
-                    print(f'Country: {k}\t Capital: {v}')
-        elif choose.startswith('6'):
-            print("Good buy")
-        else: print('Error')
+    # return max_item
+#
+# ls = [5,4,3,12,2,6,356]
+# print(find_max(ls))
 
 
+# line = '01224gevefre@214'
+#
+#
+# print(int(''.join((list(map(lambda x: x if x.isdigit() else '', line))))))
 
 
-
-### 2 ###
-dictionary = {'hello':'bonjur'}
-
-def add_word():
-    global dictionary
-    english_word = input('Enter a word of english: ')
-    french_woed = input('Enter a word of french: ')
-    dictionary[english_word] = french_woed
-
-def menu_second():
-    print('Choose action:\n'
-          '1.Add a word of english and french\n'
-          '2.Remove a word of english and french\n'
-          '3.Search a word\n'
-          '4.Replace a word\n'
-          '5.Show dictionary\n'
-          '6.Exit')
-    return input('Enter choose: ')
-
-def main_second():
-    choose = ''
-    while not choose.startswith('6'):
-        choose = menu_second()
-        if choose.startswith('1'):
-            add_word()
-        elif choose.startswith('2'):
-            english_word = input('Enter a word of english: ')
-            if english_word in dictionary:
-                del dictionary[english_word]
-            else:
-                print('Unknown english word')
-        elif choose.startswith('3'):
-            english_word = input('Enter a word of english to search: ')
-            if english_word in dictionary:
-                print(f'Fiend: \n\t English Word: {english_word} \t French Word: {dictionary[english_word]}')
-            else:
-                print('Unknown english word')
-        elif choose.startswith('4'):
-            english_word = input('Enter a word of english to replace: ')
-            if english_word in dictionary:
-                add_word()
-            else:
-                print('Unknown english word')
-        elif choose.startswith('5'):
-            if len(dictionary) > 0:
-                for k, v in dictionary.items():
-                    print(f'Country: {k}\t Capital: {v}')
-        elif choose.startswith('6'):
-            print("Good buy")
-        else: print('Error')
+# alfavit =  'ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ"
+# l = 'ABC'
+#
+# def rot13(line,):
+#     res = ''
+#     for i in line:
+#         res += chr(ord(i)+13)
+#     return res
+#
+#
+# print(rot13(l))
 
 
-firma = {
-    1:{
-        'First Name':'Alex',
-        'Last Name': 'Holenko',
-        'Tel':'+380986071514',
-        'Email':'kek@gmail.com',
-        'Post':'Programmer',
-        'Number cabinet': '356',
-        'Skype':'dek33'
-    }
+# def likes(names):
+#     if len(names) == 0:
+#         return 'no one likes this'
+#     else:
+#         if len(names) == 1:
+#             return f'{names[0]} likes this'
+#         elif  len(names) == 2:
+#             return f'{names[0]} and {names[1]} like this'
+#         elif len(names) == 3:
+#             return f'{names[0]}, {names[1]} and {names[2]} like this'
+#         elif len(names) == 4:
+#             return f'{names[0]}, {names[1]} and {len(names)-2} others like this'
+#
+#
+#
+#
+# print(likes(['Galatea', 'Quincy Rosenkreutz', 'Nigel', 'Linna Yamazaki', 'Sylia Stingray', 'Leon McNichol']))
+import re
 
-}
-
-def add_person():
-
-    firs_name = input('Enter a firs name: ')
-    last_name = input('Enter a last name: ')
-    tel = input('Enter a tel number: ')
-    email = input('Enter a email: ')
-    post = input('Enter a post: ')
-    number_cabinet = input('Enter a number cabinet: ')
-    skype = input('Enter a skype: ')
-    return {'Firs Name':firs_name,'Last Name':last_name,'Tel':tel,'Email':email,'Post':post,'Number cabinet':number_cabinet,'Skype':skype}
+def is_valid_IP(string):
+    return  True if re.search(r"(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$",string) != None else False
 
 
-def menu_third():
-    print('Choose action:\n'
-          '1.Add a information of man\n'
-          '2.Remove a information of man\n'
-          '3.Search a information of man\n'
-          '4.Replace a information of man\n'
-          '5.Show information of people\n'
-          '6.Exit')
-    return input('Enter choose: ')
-
-def main_third():
-    choose = ''
-    while not choose.startswith('6'):
-        choose = menu_third()
-        if choose.startswith('1'):
-            firma[len(firma)+1] =add_person()
-        elif choose.startswith('2'):
-            last_name = input('Enter a last name: ')
-            for k,v in firma.items():
-                if last_name in v['Last Name']:
-                    del firma[k]
-                    break
-                else:
-                    print('Unknown Last name')
-        elif choose.startswith('3'):
-            last_name = input('Enter a last name: ')
-            for k, v in firma.items():
-                if last_name in v['Last Name']:
-                    print(f'\nPerson: {k} Info ', end=" ")
-                    for k1, v1 in v.items():
-                        print(f'\n\t {k1} : {v1}', end=' ')
-                    print()
-                else:
-                    print('Unknown Last name')
-        elif choose.startswith('4'):
-            last_name = input('Enter a last name: ')
-            for k, v in firma.items():
-                if last_name in v['Last Name']:
-                    firma[k] = add_person()
-                else:
-                    print('Unknown Last name')
-        elif choose.startswith('5'):
-            for k,v in firma.items():
-                print(f'\nPerson: {k} Info ', end=" ")
-                for  k1,v1 in v.items():
-                     print(f'\n\t {k1} : {v1}' ,end=' ')
-            print()
-        elif choose.startswith('6'):
-            print("Good buy")
-        else:
-            print('Error')
-if __name__ == '__main__':
-    # main_second()
-    main_third()
+print(is_valid_IP('12.255.56.1'))
+print(is_valid_IP(''))
+print(is_valid_IP('abc.def.ghi.jkl'))
+print(is_valid_IP('123.456.789.0'))
+print(is_valid_IP('12.34.56'))
+print(is_valid_IP('123.045.067.089'))

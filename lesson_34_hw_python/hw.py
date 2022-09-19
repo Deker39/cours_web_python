@@ -26,6 +26,10 @@ def paint_square(array):
     else:
         return 'undefine value'
 
+paint_square([5,'@',True])
+
+paint_square([5,'@',False])
+
 @show
 def min_value(array):
     return f'min value: {min(array)}'
@@ -47,20 +51,21 @@ def palindrom(array):
     return 'palindrome' if ''.join(reversed(str(array))) == str(array) else  'no palindrome'
 
 
-cursiv('''
-"Don't compare yourself with anyone in this world…
-if you do so, you are insulting yourself."
-                                Bill Gates
-''')
+# cursiv('''
+# "Don't compare yourself with anyone in this world…
+# if you do so, you are insulting yourself."
+#                                 Bill Gates
+# ''')
 
-diff([5,20])
+# diff([5,20])
 
-paint_square([5,'*',False])
-
-min_value([1,2,3,4,5])
-
-products_numbers([5,1])
-
-amount_numb(3456)
-
-palindrom(123321)
+# paint_square([5,'@',True])
+# print()
+# paint_square([5,'@',False])
+# min_value([1,2,3,4,5])
+#
+# products_numbers([5,1])
+#
+# amount_numb(3456)
+#
+# palindrom(123321)
