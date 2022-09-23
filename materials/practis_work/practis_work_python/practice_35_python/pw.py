@@ -20,3 +20,5 @@ def fourth():
     height = int(input('Enter height side of a square: '))
     for x in range(0, height):
         print(weight * '*' if x == 0 or x == height - 1 else '*' + (weight - 2) * ' ' + '*')
+
+fourth()
