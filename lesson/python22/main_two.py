@@ -64,8 +64,7 @@
 # print(f'{ls[1]}:{count_two}')
 # print(f'{ls[2]}:{count_three}')\
 
-
-# import random
+#import random
 #
 #
 # def q(p,s):
@@ -95,8 +94,6 @@
 # print(point)
 # print(point_horse)
 #
-#
-#
 # while step >= 0 and len(count_options):# пока есть свободные шаги и есть выбор
 #
 #     back_point = point_horse #передыдущий шаг
@@ -117,7 +114,6 @@
 #         point_horse,step = q([point_horse[0] - 1, point_horse[1] + 2],step)
 #     elif step_hours == 8:
 #         point_horse,step = q([point_horse[0] - 2, point_horse[1] - 1],step)
-#
 #
 # print('The end')
 # print(f'Steps taken: {size*size - step}')
@@ -213,11 +209,7 @@
 #         elif choose.startswith('6'):
 #             print("Good buy")
 #         else: print('Error')
-#
-#
-#
-#
-#
+
 # ### 2 ###
 # dictionary = {'hello':'bonjur'}
 #
@@ -294,7 +286,6 @@
 #     skype = input('Enter a skype: ')
 #     return {'Firs Name':firs_name,'Last Name':last_name,'Tel':tel,'Email':email,'Post':post,'Number cabinet':number_cabinet,'Skype':skype}
 #
-#
 # def menu_third():
 #     print('Choose action:\n'
 #           '1.Add a information of man\n'
@@ -349,8 +340,7 @@
 # if __name__ == '__main__':
 #     # main_second()
 #     main_third()
-
-
+#
 # def find_max(ls):
 #     max_item = ls[0]
 #     i = 0
@@ -375,10 +365,7 @@
 
 # line = '01224gevefre@214'
 #
-#
 # print(int(''.join((list(map(lambda x: x if x.isdigit() else '', line))))))
-
-
 # alfavit =  'ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ"
 # l = 'ABC'
 #
@@ -391,8 +378,7 @@
 #
 # print(rot13(l))
 
-
-# def likes(names):
+#def likes(names):
 #     if len(names) == 0:
 #         return 'no one likes this'
 #     else:
@@ -404,20 +390,63 @@
 #             return f'{names[0]}, {names[1]} and {names[2]} like this'
 #         elif len(names) == 4:
 #             return f'{names[0]}, {names[1]} and {len(names)-2} others like this'
-#
-#
-#
-#
+
 # print(likes(['Galatea', 'Quincy Rosenkreutz', 'Nigel', 'Linna Yamazaki', 'Sylia Stingray', 'Leon McNichol']))
-import re
+# import re
+#
+# def is_valid_IP(string):
+#     return  True if re.search(r"(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$",string) != None else False
+#
+#
+# print(is_valid_IP('12.255.56.1'))
+# print(is_valid_IP(''))
+# print(is_valid_IP('abc.def.ghi.jkl'))
+# print(is_valid_IP('123.456.789.0'))
+# print(is_valid_IP('12.34.56'))
+# print(is_valid_IP('123.045.067.089'))
 
-def is_valid_IP(string):
-    return  True if re.search(r"(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$",string) != None else False
+# open(file)
+# file - path,abs/rel
+# mode - 'r' -read, 'w' - write, 'a' - append, 'b' - binary
+# encoding - 'utf-8
 
+# try:
+#     f = open('myfile.txt', 'r')
+#     try:
+#
+#         l = f.readline()
+#         while l:
+#             print(l,end='')
+#             l = f.readline()
+#
+#     except Exception as ex:
+#         print(f'error2: {str(ex)}')
+#     finally:
+#         f.close()
+# except Exception as e:
+#     print(f'error1 {str(e)}')
+# import time
+#
+#
+# print('Loading', end=' ')
+# for i in range(0,4):
+#     time.sleep(1)
+#     print(' . ', end='')
+#
+# print('\nAlina mivina')
 
-print(is_valid_IP('12.255.56.1'))
-print(is_valid_IP(''))
-print(is_valid_IP('abc.def.ghi.jkl'))
-print(is_valid_IP('123.456.789.0'))
-print(is_valid_IP('12.34.56'))
-print(is_valid_IP('123.045.067.089'))
+count = 0
+f = open('myfile.txt','r')
+is_insert = False
+ls = []
+for i in f:
+    ls.append(i)
+    if i.count(',') <= 0 and not is_insert:
+        is_insert = True
+        ls.append('*************\n')
+if not is_insert:
+    ls.append('*************\n')
+
+print(*ls)
+f.close()
+
