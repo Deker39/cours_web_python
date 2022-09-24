@@ -1,5 +1,25 @@
 import  random
 
+def binary_search(search,list):
+    l = 0
+    r = len(list)-1
+    keyFound = False
+
+    while (l<=r) and (keyFound==False):
+        m =(l+r)//2
+
+        if list[m] == search:
+            keyFound = True
+        elif list[m] > search:
+            r = m - 1
+        else:
+            l = m + 1
+
+    if keyFound:
+        return m
+    else:
+        return -1
+
 ls1 = [random.randint(-10,10) for i in range(0,10)]
 ls2 = [random.randint(-20,10) for y in range(0,10)]
 ls3 = [random.randint(0,100) for a in range(0,10)]
@@ -17,9 +37,10 @@ choose_sort = int(input('1.sort ascending\n2.sort descending\nChoose: '))
 
 if choose_sort == 1:
     ls5 = list(set(ls5))
+    ls5.sort(key=int)
 elif choose_sort == 2:
     revers_list = list(set(ls5)).copy()
-    revers_list.reverse()
+    revers_list.sort(key=int,reverse=True)
     ls5 = revers_list
 else:
     print('incorrect choice')
@@ -28,7 +49,12 @@ else:
 print(f'five list: {ls5}')
 
 choose_find = int(input('Enter your value: '))
-if choose_find in ls5:
-    print(f'fined: {choose_find}\n'
-          f'index: {ls5.index(choose_find)}')
-else: print('your value out of range')
+
+find = binary_search(choose_find,ls5)
+if find!=-1:
+    print(f'fined: {ls5[find]}\nindex: {find}')
+else:
+    print("Item is not found")
+
+
+
