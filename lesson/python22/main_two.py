@@ -419,10 +419,10 @@
 #             print(l,end='')
 #             l = f.readline()
 #
-#     except Exception as ex:
-#         print(f'error2: {str(ex)}')
-#     finally:
-#         f.close()
+    # except Exception as ex:
+    #     print(f'error2: {str(ex)}')
+    # finally:
+    #     f.close()
 # except Exception as e:
 #     print(f'error1 {str(e)}')
 # import time
