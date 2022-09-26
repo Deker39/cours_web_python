@@ -18,7 +18,19 @@ let user = new Array()
 
 fetch('https://jsonplaceholder.typicode.com/users')
   .then(response => response.json())
-  .then(data => user.push(data))
+  .then(item => item.forEach(i => { user.push(i)}))
 
-  console.log(user);
+
+// for (let j = 0; j < user.length; j++) {
+   
+   
+// }
+
+$('#contCard').append($(`<div class="border p-3 pe-4 m-3"><h4>'kek'</h4></div>`))
+
+
+$('<div>', {
+    'class': 'border p-3 pe-4 m-3',
+    text: 'kek'
+  })
 
