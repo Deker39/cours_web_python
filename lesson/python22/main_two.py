@@ -435,18 +435,65 @@
 #
 # print('\nAlina mivina')
 
-count = 0
-f = open('myfile.txt','r')
-is_insert = False
-ls = []
-for i in f:
-    ls.append(i)
-    if i.count(',') <= 0 and not is_insert:
-        is_insert = True
-        ls.append('*************\n')
-if not is_insert:
-    ls.append('*************\n')
+# count = 0
+# f = open('myfile.txt','r')
+# is_insert = False
+# ls = []
+# for i in f:
+#     ls.append(i)
+#     if i.count(',') <= 0 and not is_insert:
+#         is_insert = True
+#         ls.append('*************\n')
+# if not is_insert:
+#     ls.append('*************\n')
+#
+# print(*ls)
+# f.close()
 
-print(*ls)
-f.close()
+# while True:
+#     try:
+#         # n = int(input('Enter number: '))
+#         f =open('c\:adad')
+#         break
+#     except OSError as e:
+#         print(e.args)
+#         print(f'Only number...')
+#
+# print('the end')
+# ls_my_f = []
+# words = []
+# new_ls = []
+#
+#
+# with open('myfile.txt','r') as f:
+#     ls_my_f = f.read()
+#
+# with open('words.txt','r') as f:
+#     words = map(lambda x: x.replace('\n',''),f.readlines())
+#
+# if ls_my_f and words:
+#     for word in words:
+#         ls_my_f = ls_my_f.replace(word,' ')
+#
+#     with open('myfile.txt', 'w') as f:
+#         f.write(ls_my_f)
 
+import os
+
+# os.mkdir(forlder_path_and_name)  - creat folder
+# os.mkdir('hello')
+# os.rmdir(folder_path) - remove folder
+# os.rmdir('forlder_path_and_name')
+# os.rename(folder/forlder_path_rename_old/file_path_rename_new) -change name
+# os.rename('hello', 'new/forlder_path_and_name')
+# os.rmdir('new/forlder_path_and_name')
+# print(os.name)
+# print(os.environ)
+# print(os.getlogin())
+# print(os.getpid())
+# print(os.uname())
+# print(os.chdir())
+# print(os.getcwd()) - return current path
+# os.chdir('new')# change work dir
+# print(os.getcwd())
+# print(os.path)
