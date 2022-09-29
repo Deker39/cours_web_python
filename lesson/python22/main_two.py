@@ -497,3 +497,100 @@ import os
 # os.chdir('new')# change work dir
 # print(os.getcwd())
 # print(os.path)
+
+
+import shutil
+
+# move dir , up dir , removem create , create file, rename file
+def show_content():
+    ls =  os.listdir((os.getcwd()))
+    for ind,item in enumerate(ls):
+        print(f'{"file" if  os.path.isfile(item) else "folder"}\t #{ind+1}: {item} ')
+
+def menu():
+    print('Current path: ', os.getcwd(), end='\n')
+    show_content()
+    print('Specific content: ')
+    os.listdir(os.getcwd())
+    print('''
+1. Move to dir.
+2. Up dir.
+3. Remove folder/file.
+4. Create dir/file.
+5. Rename folde/file.
+6. Exit
+               ''')
+    try:
+        return int(input('Enter action: '))
+    except Exception as exc:
+        print(f'You can enter only number! Error - {exc}')
+
+
+def move_dir():
+    path = input('Enter path to move(abs/rel): ')
+    if os.path.exists(path):
+        os.chdir(path)
+    else:
+        print("Error path")
+
+def up_dir():
+    os.chdir(os.path.dirname(os.getcwd()))
+
+def remove_dir():
+    path = input('Enter path to remove(abs/rel): ')
+    if os.path.isfile(path):
+        os.remove(path)
+        print(f'File deleted: {path}')
+        return
+    if os.path.isdir(path):
+        if input('You sure delete this folder? Because folder is not empty\nEnter y\\n ').lower()  == 'y':
+             shutil.rmtree(path)
+             print(f'Folder delete: {path}')
+    else:
+        print('Unknown path!')
+
+def creat_item():
+    choose  = int(input('Enter what you want creat:\n1. Folder\n2. File\nEnter choose: '))
+    if choose == 1:
+        name = input('Enter name of folder: ')
+        if not os.path.exists(name):
+            os.mkdir(name)
+        else:
+            print('Folder exists!')
+    elif choose == 2:
+        name = input('Enter name of file: ')
+        if not os.path.exists(name):
+            open(name,'w')
+        else:
+            print('File exists!')
+
+def rename_item():
+    choose  = int(input('Enter what you want rename:\n1. Folder\n2. File\nEnter choose: '))
+    if choose == 1:
+        old_name = input('Enter old name of folder: ')
+        new_name = input('Enter new name of folder: ')
+        os.renames(old_name,new_name  if os.path.exists(old_name) else 'Folder not exists!')
+    elif choose == 2:
+        old_name = input('Enter old name of file: ')
+        new_name = input('Enter new name of file: ')
+        os.renames(old_name, new_name if os.path.exists(old_name) else 'File not exists!')
+
+
+def main():
+    while True:
+        choose = menu()
+        if choose == 1:
+            move_dir()
+        elif choose == 2:
+            up_dir()
+        elif choose == 3:
+            remove_dir()
+        elif choose == 4:
+            creat_item()
+        elif choose == 5:
+            rename_item()
+
+PATH =  os.getcwd()
+
+if __name__ == '__main__':
+    main()
