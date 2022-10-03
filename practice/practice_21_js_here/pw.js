@@ -13,35 +13,53 @@ $('#btn').click(function(){
     }
    
 }) 
-async function Test(){
+async function loadFetch(){
     const res = await fetch('https://jsonplaceholder.typicode.com/users')
     return res
 }
-let user = new Array()
+let listUser = new Array()
+
+class User{
+    constructor(id,name,username,phone,email,company,address,website){
+        this.id = id,
+        this.name = name,
+        this.username = username,
+        this.phone = phone,
+        this.email = email,
+        this.company = company,
+        this.address = address,
+        this.website = website
+    }
+}
+
+function User1(id,name,username,phone,email,company,address,website){
+    this.id = id,
+    this.name = name,
+    this.username = username,
+    this.phone = phone,
+    this.email = email,
+    this.company = company,
+    this.address = address,
+    this.website = website
+}
 
 
-//   .then(response => response.json())
-//   .then(item => item.forEach(i => {user.push(i)}))
-
-Test().then(response => response.json())
-    .then(item => item.forEach(i => {user.push(i)}))
+loadFetch().then(response => response.json())
+    // .then(item => item.forEach(i => {listUser.push(new User(i.id,i.name,i.username,i.phone,i.email,i.company,i.address,i.website))}))
+    .then(item => item.forEach(i => {listUser.push(new User(i.id,i.name,i.username,i.phone,i.email,i.company,i.address,i.website))}))
 
 
-console.log(user)
+console.log(listUser)
 
-// console.log()
-
-// for (let i = 0; i < user.length; i++) {
-//     console.log(user[i]['name']);
-    
-// }
-
-user.forEach(e => {
-    console.log(e);
+listUser.forEach(e => {
+    $('#contCard').append($(`<div class="border p-3 pe-4 m-3"><h4>${e.name}</h4></div>`))
 });
 
 
-$('#contCard').append($(`<div class="border p-3 pe-4 m-3"><h4>'kek'</h4></div>`))
+
+
+
+
 
 
 
