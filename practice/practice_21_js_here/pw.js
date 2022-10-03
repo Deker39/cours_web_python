@@ -13,26 +13,32 @@ $('#btn').click(function(){
     }
    
 }) 
-
+async function Test(){
+    const res = await fetch('https://jsonplaceholder.typicode.com/users')
+    return res
+}
 let user = new Array()
 
-fetch('https://jsonplaceholder.typicode.com/users')
-  .then(response => response.json())
-  .then(item => item.forEach(i => {console.log(i['name'])}))
+
+//   .then(response => response.json())
+//   .then(item => item.forEach(i => {user.push(i)}))
+
+Test().then(response => response.json())
+    .then(item => item.forEach(i => {user.push(i)}))
 
 
+console.log(user)
 
-
-// console.log(user)
+// console.log()
 
 // for (let i = 0; i < user.length; i++) {
-    // console.log(user[i]['name']);
-    // 
+//     console.log(user[i]['name']);
+    
 // }
 
-// user.forEach(e => {
-//     console.log(e['name']);
-// });
+user.forEach(e => {
+    console.log(e);
+});
 
 
 $('#contCard').append($(`<div class="border p-3 pe-4 m-3"><h4>'kek'</h4></div>`))
