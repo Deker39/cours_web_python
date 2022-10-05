@@ -11,7 +11,9 @@ class User{
     }
 }
 
-let listUsers = new Array()
+let listUsers = new Array(),
+    postUser = new Array(),
+    selectedUser
 
 $('#btn').click(function(){
     // {"name":"John", "age":30, "car":null}
@@ -27,6 +29,37 @@ $('#btn').click(function(){
     }
    
 }) 
+
+async function loadFetchPosts() {
+    const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+    const body = await res.json();
+    if (body) {
+        postUser = body.filter(function(e){
+            return e.userId == selectedUser + 1
+        })
+     }
+    console.log(postUser);
+    $('body').append(
+        $(`
+        <section class="container d-flex align-items-center justify-content-center  flex-column" id='listPosts'>
+            <h5>User's posts:</h5>
+            <div class="d-flex flex-wrap justify-content-center" id='posts'>          
+            </div>
+        </section>
+        `)
+    )
+    postUser.forEach((e) =>{
+        $('#posts').append(
+            $(
+            `<div class="border p-2 m-3" style="width: 300px;">
+                    <h5>${e.title}</h5>
+                    <p>${e.body}</p>
+            </div>`
+            )
+        )
+    }
+    )
+}
 
 async function loadFetch() {
     const res = await fetch("https://jsonplaceholder.typicode.com/users");
@@ -58,12 +91,16 @@ loadFetch()
 
 $("#contCard").on('click','div', function(){
     console.log(($( this ).attr('id')).replace('user',''));
-    let selectedUser = ($( this ).attr('id')).replace('user','')-1
+    selectedUser = ($( this ).attr('id')).replace('user','')-1
     console.log(listUsers[selectedUser].name);
+    if($('#tableUserInfo')){
+        $('#listPosts').remove()
+        $('#tableUserInfo').remove()
+    }
     $('body').append(
         $(`
-        <section class="container d-flex align-items-center justify-content-center  flex-column">
-            <h5>All users:</h5>
+        <section class="container d-flex align-items-center justify-content-center  flex-column" id="tableUserInfo">
+            <h5>User info:</h5>
             <table class="table table-responsive table-bordered ">
                 <tbody>
                     <tr>
@@ -76,7 +113,7 @@ $("#contCard").on('click','div', function(){
                     </tr>
                     <tr>
                     <th scope="row" class=" ">Address:</th>
-                    <td class="ps-4">${listUsers[selectedUser].address}</td>
+                    <td class="ps-4">${listUsers[selectedUser].address.street}, ${listUsers[selectedUser].address.city}</td>
                     </tr>
                     <tr>
                     <th scope="row" class=" ">Email:</th>
@@ -92,12 +129,22 @@ $("#contCard").on('click','div', function(){
                     </tr>
                 </tbody>
                 </table>
-                
+                <button class="btn btn-light mb-4" type="button" style="width: 100%;" id='showPosts'>Show posts</button>
         </section>`
         )
     )
+    if($('#listPosts')) return false
+    
+    $('#showPosts').click(function(){
+        loadFetchPosts()
+    
+        
+    })
+    
+   
+    
+    
 })
-
 
 
 
