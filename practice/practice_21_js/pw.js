@@ -133,16 +133,14 @@ $("#contCard").on('click','div', function(){
         </section>`
         )
     )
-    // if($('#listPosts')) return false
     
     $('#showPosts').click(function(){
         loadFetchPosts()
-    
+        $('#showPosts').attr('disabled','disabled')
         
+    
     })
-    
-   
-    
+
     
 })
 
