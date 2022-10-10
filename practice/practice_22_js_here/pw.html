@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <title>Document</title>
+
+    <style>
+        #road{
+            background: url('road rece.jpg') no-repeat center;
+            width: 700px;
+            height: 400px;
+            object-fit: contain;
+            position: absolute;
+            left: 23%;
+            top: 30px;
+            overflow:hidden;
+        } 
+        #rainboCat{
+            width:200px; 
+            height:100px;  
+            position: absolute;
+            left: 0;
+            top: 0;
+            
+        }
+        .menu-setting{
+            padding-left: 0px;
+            background-color: gray;
+            list-style-type:none;
+            list-style-position: inside;
+        }
+        .img-set{
+            max-width: 100%;
+            height: 50px;
+            user-select: none; 
+        } 
+        .cont-menu-setting{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content:last baseline;
+            padding: 20px 20px 20px 20px;
+        }
+        .menu-setting li .link{
+            color: rgba(255, 255, 255, 0.75);
+            text-decoration: none;
+            text-align: center;
+            margin-left: 20px;
+            display: none;   
+            user-select: none; 
+        }
+        .menu{
+            color: rgba(255, 255, 255, 0.75);
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            user-select: none; 
+        }
+        .menu:hover{
+            color: rgba(255, 255, 255, 0.1);
+            text-decoration: none;
+            text-align: center;
+        }
+        li:hover{
+            background-color: rgb(80, 78, 78);
+            padding: 20px 20px 20px 20px;
+            
+        }  
+        .display-block{
+            display: block !important;
+        }
+
+     
+    </style>
+</head>
+<body>
+    <section class="d-flex justify-content-start float-start ps-0">
+        <ul class="menu-setting">
+            <li class="cont-menu-setting" id="menu">
+                <a class="menu">MENU</a>
+            </li>
+            <li class="cont-menu-setting">
+                <img class="img-set" src="edit.png" alt=""><a class="link" href="">EDIT</a>
+            </li>
+            <li class="cont-menu-setting">
+                <img class="img-set" src="favorites.png" alt=""><a  class="link" href="">FAVORITES</a>
+            </li>
+            <li class="cont-menu-setting">
+                <img class="img-set" src="history.png" alt=""><a  class="link" href="">HISTORY</a>
+            </li>
+            <li class="cont-menu-setting">
+                <img class="img-set" src="security.png" alt=""><a class="link" href="">SECURITY</a>
+            </li>
+            <li class="cont-menu-setting">
+                <img class="img-set" src="settings.png" alt=""><a class="link" href="">SETTING</a>
+            </li>
+        </ul>
+    </section>
+    <h5 class="d-flex justify-content-center" style="position: absolute; left: 50%;">#Exercise1</h5>
+    <section class="container d-flex justify-content-center ps-3" id="road">
+        <img src="rainbow cat.png" id="rainboCat">
+    </section>
+
+   
+   
+
+    
+</body>
+<script src="pw.js"></script>
+</html>
