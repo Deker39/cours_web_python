@@ -1,0 +1,55 @@
+
+Person: 1 Info 
+	 First Name : Alex
+	 Last Name : Holenko
+	 Age : 24
+	 Tel : +380986071514
+	 Email : kek@gmail.com
+	 Post : Programmer
+	 Number cabinet : 356
+	 Skype : dek33
+Person: 1 Info 
+	 First Name : Alex
+	 Last Name : Holenko
+	 Age : 24
+	 Tel : +380986071514
+	 Email : kek@gmail.com
+	 Post : Programmer
+	 Number cabinet : 356
+	 Skype : dek33
+Person: 1 Info 
+	 First Name : Alex
+	 Last Name : Holenko
+	 Age : 24
+	 Tel : +380986071514
+	 Email : kek@gmail.com
+	 Post : Programmer
+	 Number cabinet : 356
+	 Skype : dek33
+Person: 1 Info 
+	 First Name : Alex
+	 Last Name : Holenko
+	 Age : 24
+	 Tel : +380986071514
+	 Email : kek@gmail.com
+	 Post : Programmer
+	 Number cabinet : 356
+	 Skype : dek33
+Person: 4 Info 
+	 Firs Name : Din
+	 Last Name : Vahovski
+	 Age : 39
+	 Tel : +38085765435
+	 Email : din@ukr.net
+	 Post : director
+	 Number cabinet : 1
+	 Skype : boss12
+Person: 3 Info 
+	 Firs Name : Din
+	 Last Name : Denisov
+	 Age : 39
+	 Tel : +38085765435
+	 Email : din@ukr.net
+	 Post : director
+	 Number cabinet : 1
+	 Skype : boss12
