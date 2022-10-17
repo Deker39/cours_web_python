@@ -26,9 +26,7 @@
             position: absolute;
             opacity: 0.9;
             left: 0;
-            top: 0;
-            transition: all 0.1s;
-            
+            top: 0;        
         }
         .menu-setting{
             padding-left: 0px;
@@ -76,8 +74,11 @@
         .display-block{
             display: block !important;
         }
+        .item-shadow,
+        .btn:hover{
+            box-shadow: rgb(0, 0, 0) 0px 5px 15px;
+        }
 
-     
     </style>
 </head>
 <body>
@@ -103,9 +104,44 @@
             </li>
         </ul>
     </section>
-    <h5 class="d-flex justify-content-center" style="position: absolute; left: 45%;">#Exercise1</h5>
-    <section class="container d-flex justify-content-center ps-3" id="road">
-        <img src="image/nyan-cat-rainbow.gif" id="rainboCat">
+    <section class="container d-flex justify-content-center ps-3" id="exer1">
+        <h5 class="d-flex justify-content-center" >#Exercise1</h5>
+        <section class="" id="road">
+            <img src="image/nyan-cat-rainbow.gif" id="rainboCat">
+        </section>
+    </section>
+    <section id="listFruit" class="container text-center">
+        <h5>#Exercise3</h5>
+        <div class="d-flex justify-content-center align-items-center">
+            <p class="fw-bold m-0 me-2">Select color:</p>
+            <button type="button" class="btn btn-danger m-2" id="red">red</button>
+            <button type="button" class="btn btn-success m-2" id="green">green</button>
+            <button type="button" class="btn btn-warning m-2" id="orange">orange</button>
+            <button type="button" class="btn btn-primary m-2" id="blue">blue</button>
+        </div>
+        <hr>
+        
+        <p class="fw-bold m-0 me-2">Frutis:</p>
+        <div class="row justify-content-center">
+            <div class="col-3 text-light bg-danger rounded m-2 p-2" name="redFruit">Apple</div>
+            <div class="col-3 text-light bg-success rounded m-2 p-2" name="greenFruit">Pear</div>
+            <div class="col-3 bg-warning rounded m-2 p-2" name="orangeFruit">Orange</div>
+        </div> 
+        <div class="row justify-content-center">
+            <div class="col-3 text-light bg-danger rounded m-2 p-2" name="redFruit">Mango</div>
+            <div class="col-3 bg-warning rounded m-2 p-2" name="orangeFruit">Mandarin</div>
+            <div class="col-3 text-light bg-primary rounded m-2 p-2" name="blueFruit">Blueberry</div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-3 text-light bg-success rounded m-2 p-2" name="greenFruit">Avocado</div>
+            <div class="col-3 text-light bg-danger rounded m-2 p-2" name="redFruit">Red peper</div>
+            <div class="col-3 text-light bg-success rounded m-2 p-2" name="greenFruit">Green Peper</div>
+        </div>
+        
+        
+
+        
+
     </section>
 
    
