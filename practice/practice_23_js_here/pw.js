@@ -58,4 +58,12 @@ $('#frutisNavBar').on('click',function(event){
     }
 })
 
+// ----------------------------- //
+function foo(){
+$('#myModal').css('display','flex')
+}
+function f1(){
+$('#myModal').css('display', 'none')
+}
 
+// ----------------------------- //
