@@ -29,22 +29,18 @@ fruit.forEach(e => $(`#${e}`).click(function(){
 
 
 
-$('#red').click(function(){
-    $('[name=redFruit]').addClass('item-shadow')
-    $('[name]:not([name=redFruit])').removeClass('item-shadow')
-})
-$('#green').click(function(){
-    $('[name=greenFruit]').addClass('item-shadow')
-    $('[name]:not([name=greenFruit])').removeClass('item-shadow')
-})
-$('#orange').click(function(){
-    $('[name=orangeFruit]').addClass('item-shadow')
-    $('[name]:not([name=orangeFruit])').removeClass('item-shadow')
-})
-$('#blue').click(function(){
-    $('[name=blueFruit]').addClass('item-shadow')
-    $('[name]:not([name=blueFruit])').removeClass('item-shadow')
-})
 
+// Exercise#4
+$('#startReating').on('click',function(event){
+
+  if($('[style*="background-image:url(/image/star_black_32px.png)"]').length != 5){
+    $('#startReating').children().css('backgroundImage','url(/image/star_black_32px.png)')
+  }
+
+  for (let i = 0; i <= [].indexOf.call(this.children, event.target); i++) {
+    $($('#startReating').children()[i]).css('backgroundImage','url(/image/star_ligth_32px.png)')
+        }
+ 
+})
 
 
