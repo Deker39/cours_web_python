@@ -323,80 +323,282 @@
 # s1 = StripString('!@#$%^')
 # print(s1('Hello !@#$%^'))
 
-class Circle():
+# class Circle():
+#
+#     def __init__(self,r):
+#         self.r = r
+#
+#     def __add__(self, other):
+#         return self.r + other
+#
+#     def __iadd__(self, other):
+#         self.r += other
+#         return  self.r
+#
+#     def __sub__(self, other):
+#         self.r -= other
+#         return self.r
+#
+#     def __isub__(self, other):
+#         return self.r - other
+#
+#     def __eq__(self, other):
+#         return self.r == other
+#     def __lt__(self, other):
+#         return  self.r < other
+#     def __gt__(self, other):
+#         return  self.r > other
+#     def __le__(self, other):
+#         return  self.r <= other
+#     def __ge__(self, other):
+#         return  self.r >= other
+#
+# o1 = Circle(5)
+# o2 = Circle(3)
+# print(o1+3)
+# print(o1-3)
+# o1 +=1
+# o2 -=2
+# print(o1)
+# print(o2)
+# print(o1==o2)
+# print(o1<o2)
+# print(o1>o2)
+# print(o1<=o2)
+# print(o1>=o2)
+#
+# class Complex(object):
+#
+#     def __init__(self, arg, static):
+#         self.arg = arg
+#         self.static = static
+#         # Formats our results
+#         print(self.arg + self.static)
+#
+#     def __add__(self, other):
+#         return Complex(self.arg + other.arg, self.static + other.static)
+#
+#     def __sub__(self, other):
+#         return Complex(self.arg - other.arg, self.static - other.static)
+#
+#     def __mul__(self, other):
+#         return Complex((self.arg * other.arg) - (self.static * other.static),(self.static * other.arg) + (self.arg * other.static))
+#
+#     def __truediv__(self, other):
+#         r = (other.arg ** 2 + other.static ** 2)
+#         return Complex((self.arg * other.arg - self.static * other.static) / r,(self.static * other.arg + self.arg * other.static) / r)
+#
+# a1 = Complex(1, 5j)
+# a2 = Complex(6, 2j)
+#
+# # Add
+# a1 + a2
+# # Subtract
+# a1 - a2
+# # Multiply
+# a1 * a2
+# # Divide
+# a1 / a2
+# Decorator
 
-    def __init__(self,r):
-        self.r = r
+# def foramt(foo):
+#     def inner(*args):
+#         print('*******')
+#         foo(*args)
+#         print('*******')
+#     return  inner
+#
+#
+# @foramt
+# def foo(name,age):
+#     print(f'Hello for foo {name} age {age}')
+#
+# # def format_foo(foo):
+# #     print('*******')
+# #     foo()
+# #     print('*******')
+#
+# foo('Den',25)
 
-    def __add__(self, other):
-        return self.r + other
+# def format(func):
+#     def inner(a,b):
+#         print('******')
+#         res = func(a,b)
+#         print('******')
+#         return f'Result: {res}'
+#     return  inner
+#
+# @format
+# def foo(a,b):
+#     return  a+b
+#
+# print(foo(5,25))
 
-    def __iadd__(self, other):
-        self.r += other
-        return  self.r
 
-    def __sub__(self, other):
-        self.r -= other
-        return self.r
+# class  CountClass:
+#     def __init__(self,func):
+#         self.func= func
+#         self.counter = 0
+#     def __call__(self, *args, **kwargs):
+#         self.counter += 1
+#         print(f'Call {self.func.__name__}:{self.counter}')
+#         return self.func(*args)
+#
+#
+# @CountClass
+# def foo(name):
+#     print(f'Hello - {name}')
+#
+#
+# foo('Den')
+# foo('Den')
+# foo('Den')
 
-    def __isub__(self, other):
-        return self.r - other
+# class Repeter:
+#     def __init__(self,num):
+#         self.num= num
+#
+#     def __call__(self, f):
+#         def wrapper():
+#             for i in range(self.num):
+#                 f()
+#
+#         return wrapper
+#
+#
+#
+# @Repeter(5)
+# def foo():
+#     print('foo')
+#
+# foo()
+# Создайте приложение по выпечке пиццы. Каждая
+# пицца содержит разные компоненты. Используя механизм
+# декораторов создайте разные пиццы:
+# ■ Маргарита;
+# ■ Четыре сыра;
+# ■ Капричоза;
+# ■ Гавайская.
+#
+# class Pizza1:
+#     def __init__(self, func):
+#         self.func = func
+#     def __call__(self, *args):
+#         print("Name: Margherita\nIngredients: basil, mozzarella, tomato")
+#         return self.func(*args)
+# class Pizza2:
+#     def __init__(self, func):
+#         self.func = func
+#     def __call__(self, *args):
+#         print("Name: Four Cheeses\nIngredients: 4 cheeses")
+#         return self.func(*args)
+# class Pizza3:
+#     def __init__(self, func):
+#         self.func = func
+#     def __call__(self, *args):
+#         print("Name: Camprichosa\nIngredients: mushroom...")
+#         return self.func(*args)
+# class Pizza4:
+#     def __init__(self, func):
+#         self.func = func
+#     def __call__(self, *args):
+#         print("Name: Hawaiian\nIngredients: ananas")
+#         return self.func(*args)
+# def orderPizza(q):
+#     print(f"{q} pizza ordered")
+#     ls = [Pizza1, Pizza2, Pizza3, Pizza4]
+#     answer = int(input("Enter choose(1,2,3,4): "))
+#     @ls[answer-1]
+#     def bakePizza():
+#         print("Pizza is baking...")
+#     bakePizza()
+# orderPizza(4)
 
-    def __eq__(self, other):
-        return self.r == other
-    def __lt__(self, other):
-        return  self.r < other
-    def __gt__(self, other):
-        return  self.r > other
-    def __le__(self, other):
-        return  self.r <= other
-    def __ge__(self, other):
-        return  self.r >= other
+##  Property
+# class Student:
+#   def __init__(self, name):
+#       self.__name = name
+#
+#   @property #get_name
+#   def name(self):
+#       return self.__name
+#
+#   @name.setter
+#   def name(self, value):
+#       self.__name = value
+#
+#   @name.deleter  # property-name.deleter decorator
+#   def name(self):
+#       print('Deleting..')
+#       del self.__name
 
-o1 = Circle(5)
-o2 = Circle(3)
-print(o1+3)
-print(o1-3)
-o1 +=1
-o2 -=2
-print(o1)
-print(o2)
-print(o1==o2)
-print(o1<o2)
-print(o1>o2)
-print(o1<=o2)
-print(o1>=o2)
+# class Point3D:
+#  def __init__(self, x, y, z):
+#     self.x = x
+#     self.y = y
+#     self.z = z
+#
+#  @classmethod
+#  def verify_coord(cls, coord):
+#     if type(coord) != int:
+#        raise TypeError("Координата должна быть целым числом")
+#
+#  @property
+#  def x(self):
+#     return self._x
+#
+#  @x.setter
+#  def x(self, coord):
+#     self.verify_coord(coord)
+#     self._x = coord
+#
+#  @property
+#  def y(self):
+#     return self._y
+#
+#  @y.setter
+#  def y(self, coord):
+#     self.verify_coord(coord)
+#     self._y = coord
+#
+#  @property
+#  def z(self):
+#     return self._z
+#
+#  @z.setter
+#  def z(self, coord):
+#     self.verify_coord(coord)
+#     self._z = coord
 
-class Complex(object):
 
-    def __init__(self, arg, static):
-        self.arg = arg
-        self.static = static
-        # Formats our results
-        print(self.arg + self.static)
 
-    def __add__(self, other):
-        return Complex(self.arg + other.arg, self.static + other.static)
 
-    def __sub__(self, other):
-        return Complex(self.arg - other.arg, self.static - other.static)
 
-    def __mul__(self, other):
-        return Complex((self.arg * other.arg) - (self.static * other.static),(self.static * other.arg) + (self.arg * other.static))
+# Descritpor
+class Number:
+    def __set_name__(self, owner, variable):
+        self.variable = "_" + variable
+    @classmethod
+    def check_number(cls, value):
+        if type(value) != int:
+            raise TypeError("Error type data")
+    def __get__(self, instance, owner):
+        return instance.__dict__[self.variable]
+    #           Point3d.__dict[Number._x]
+    def __set__(self, instance, value):
+        print(f"__set__: {self.variable} = {value}")
+        instance.__dict__[self.variable] = value
+#       pt1(Point3D)._x = 1
+class Point3D:
+    x = Number() # x._x
+    y = Number()
+    z = Number()
+    def __init__(self, x, y, z):
+        self.x = x #x._x
+        self.y = y #y._y
+        self.z = z
 
-    def __truediv__(self, other):
-        r = (other.arg ** 2 + other.static ** 2)
-        return Complex((self.arg * other.arg - self.static * other.static) / r,(self.static * other.arg + self.arg * other.static) / r)
-
-a1 = Complex(1, 5j)
-a2 = Complex(6, 2j)
-
-# Add
-a1 + a2
-# Subtract
-a1 - a2
-# Multiply
-a1 * a2
-# Divide
-a1 / a2
+pt1 = Point3D(1, 2, 3)
+pt2 = Point3D('1', 2, 3)
+print(pt2.x)
 
