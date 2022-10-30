@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <title>Document</title>
+    <style>
+        .hystmodal{
+            /* opacity: 0; */
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            overflow: hidden;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: center; 
+            align-items: center;
+            z-index: 99;
+            padding:30px 0;
+            background: rgba(71, 71, 71, 0.77);
+            display: none;
+        }
+        .hystmodal > .hystmodal__window > p,.hystmodal__close{
+            font-size: 24px;
+        }
+        .hystmodal__window {
+            background:rgb(162, 227, 243);
+            box-shadow:  0 5px 10px 0px rgba(128, 128, 128, 0.50);
+            /* width: 600px; */
+            max-width: 100%;
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.15s ease 0s, opacity 0.15s ease 0s;
+            transform: scale(1);
+            border-radius: 15px;
+        }
+        .hystmodal__close{
+            padding: 5px;
+            width: 100%;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            background-color: rgb(184, 238, 252);
+            box-shadow:  0 5px 10px 0px rgba(128, 128, 128, 0.50);
+            font-weight: bold;
+        }
+        .hystmodal__close:hover{
+            color: white;
+            border: none;
+            background-color: rgb(66, 146, 167); 
+        }
+        .hystmodal__close:active{
+            color: rgb(66, 146, 167); 
+            background-color: #fff;
+        } 
+    </style>
+</head>
+<body class="container">
+    <section class="d-flex justify-content-center align-items-center flex-column m-3">
+        <h5>Exercise1</h5>
+        <div class="border" id="navbar">
+            <nav class="navbar navbar-expand bg-light ps-2">
+                <ul class="navbar-nav" id="frutisNavBar">
+                    <li class="nav-item fs-5"><a class="nav-link" href="#">Mango</a></li>
+                    <li class="nav-item fs-5"><a class="nav-link" href="#">Orange</a></li>
+                    <li class="nav-item fs-5"><a class="nav-link" href="#">Pineapple</a></li>
+                    <li class="nav-item fs-5"><a class="nav-link" href="#">Papaya</a></li>
+                    <li class="nav-item fs-5"><a class="nav-link" href="#">Greapefruit</a></li>
+                    <li class="nav-item fs-5"><a class="nav-link" href="#">Pear</a></li>
+                </ul>
+            </nav>
+        </div>
+       
+    </section>
+    <section class="d-flex justify-content-center align-items-center flex-column m-3">
+        <h5>Exercise2</h5>
+        <button class="btn btn-outline-info" id="open" onclick="foo()">Open wind</button>
+            <div class="hystmodal" id="myModal">
+                <div class="hystmodal__window">
+                    <p>Hello from Modal Windows!</p>
+                    <button id="close" class="hystmodal__close" onclick="f1()">Close</button>  
+                </div> 
+            </div>
+          
+    </section>
+    <section class="d-flex justify-content-center align-items-center flex-column m-3">
+        <h5>Exercise3</h5>
+        <section class="container m-3 mb-5 p-2  d-flex flex-column" id="contLang">
+            <label for="langList" class="form-label">Language: </label>
+            <input class="form-control" list="datalistCount" id="langList" placeholder="Language to search...">
+        </section>
+    </section>
+    <section class="d-flex justify-content-center align-items-center flex-column m-3">
+        <h5>Exercise4</h5>
+        <section class="container m-3 mb-5 p-2  d-flex flex-column" id="contProgress">
+        </section>
+       
+    </section>
+    
+    
+</body>
+<script src="pw.js"></script>
+</html>
