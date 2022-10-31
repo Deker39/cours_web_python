@@ -514,7 +514,7 @@
 #     bakePizza()
 # orderPizza(4)
 
-##  Property
+#  Property
 # class Student:
 #   def __init__(self, name):
 #       self.__name = name
@@ -575,30 +575,163 @@
 
 
 # Descritpor
-class Number:
-    def __set_name__(self, owner, variable):
-        self.variable = "_" + variable
-    @classmethod
-    def check_number(cls, value):
-        if type(value) != int:
-            raise TypeError("Error type data")
-    def __get__(self, instance, owner):
-        return instance.__dict__[self.variable]
-    #           Point3d.__dict[Number._x]
-    def __set__(self, instance, value):
-        print(f"__set__: {self.variable} = {value}")
-        instance.__dict__[self.variable] = value
-#       pt1(Point3D)._x = 1
-class Point3D:
-    x = Number() # x._x
-    y = Number()
-    z = Number()
-    def __init__(self, x, y, z):
-        self.x = x #x._x
-        self.y = y #y._y
-        self.z = z
+# class Number:
+#     def __set_name__(self, owner, variable):
+#         self.variable = "_" + variable
+#     @classmethod
+#     def check_number(cls, value):
+#         if type(value) != int:
+#             raise TypeError("Error type data")
+#     def __get__(self, instance, owner):
+#         return instance.__dict__[self.variable]
+#     #           Point3d.__dict[Number._x]
+#     def __set__(self, instance, value):
+#         print(f"__set__: {self.variable} = {value}")
+#         instance.__dict__[self.variable] = value
+# #       pt1(Point3D)._x = 1
+# class Point3D:
+#     x = Number() # x._x
+#     y = Number()
+#     z = Number()
+#     def __init__(self, x, y, z):
+#         self.x = x #x._x
+#         self.y = y #y._y
+#         self.z = z
+#
+# pt1 = Point3D(1, 2, 3)
+# pt2 = Point3D('1', 2, 3)
+# print(pt2.x)
+#
+# import  this
+# class Number:
+#     max_number = 0
+#     min_number = 10
+#
+#     def method1(self):
+#         print(self.__dict__)
+#
+# n = Number()
+# n.method1()
+#
+# # type(name_class,typle of base classes,dict of fields,dict of methods)
+# P = type('Point',(),{'x':10, 'y':0})
+# p = P()
+# print(p.x)
 
-pt1 = Point3D(1, 2, 3)
-pt2 = Point3D('1', 2, 3)
-print(pt2.x)
+
+# class A:
+#     instanse = None
+#     def __new__(cls,x):
+#         if cls.instanse is not None:
+#             return  cls.instanse
+#         else:
+#             cls.instanse = super().__new__(cls)
+#             return  cls.instanse
+#
+#
+#     def __init__(self,x):
+#         self.x = x
+#         print('Object created!')
+#
+#     def __str__(self):
+#         return  f'DATA[{self.x}]'
+#
+# a = A(5)
+# a1 = A(10)
+#
+# print(a.x, a1.x)
+# from typing import Protocol, runtime_checkable
+# @runtime_checkable
+# class Item(Protocol):
+#     name: str
+#     age: int
+#
+# class Person:
+#     def  __init__(self,name,age):
+#         self.name = name
+#         self.age = age
+#
+# class Employee(Person):
+#     def  __init__(self,position,salary,name,age):
+#         super().__init__(name,age)
+#         self.position = position
+#         self.salary = salary
+#
+#
+# def show_persons(persons):
+#     for i in persons:
+#         if isinstance(i, Item):
+#             print(f'{i.name}, {i.age}')
+#         else:
+#             print('Unkown Person')
+#
+# persons = [Person('Name1',10),Person('Name2',20),Person('Name3',30),Employee('HR',1000,'Employer1',40)]
+# show_persons(persons)
+
+
+
+#   @property #get_name
+#   def name(self):
+#       return self.__name
+#
+#   @name.setter
+#   def name(self, value):
+#       self.__name = value
+#
+#   @name.deleter  # property-name.deleter decorator
+#   def name(self):
+#       print('Deleting..')
+#       del self.__name
+class Person:
+
+    def __init__(self,login,password):
+        self._login = login
+        self._password = password
+
+        @property
+        def login(self):
+            return self._login
+
+        @login.setter
+        def login(self,value):
+            self._login = value
+
+        @login.deleter
+        def login(self):
+            del self._login
+
+        @property
+        def password(self):
+            return  self._password
+
+        @password.setter
+        def password(self,value):
+            self._password = value
+
+        @password.deleter
+        def password(self):
+            del self._password
+
+
+class User(Person):
+
+    def __init__(self,login,password,first_name,last_name,address,tel):
+        super().__init__(login,password)
+        self.first_name = first_name
+        self.last_name = last_name
+        self.address = address
+        self.tel = tel
+
+
+class Admin(Person):
+    def __init__(self,login,password):
+        super().__init__(login,password)
+
+
+
+
+a = Admin('login','password')
+
+
+
 
