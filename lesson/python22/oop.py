@@ -1,6 +1,6 @@
 #class Name:
     # ferld = ...
-
+import hashlib
 # class Person:
 #
 #     def __init__(self,name,age):
@@ -682,6 +682,14 @@
 #   def name(self):
 #       print('Deleting..')
 #       del self.__name
+
+import json
+import os
+
+ADMIN_FILE_DIRECTORY = 'admin_file'
+USERS_FILE_DIRECTORY = 'users_file'
+TESTS_FILE_DIRECTORY = 'tests_file'
+
 class Person:
 
     def __init__(self,login,password):
@@ -712,7 +720,6 @@ class Person:
         def password(self):
             del self._password
 
-
 class User(Person):
 
     def __init__(self,login,password,first_name,last_name,address,tel):
@@ -722,15 +729,57 @@ class User(Person):
         self.address = address
         self.tel = tel
 
-
 class Admin(Person):
+
     def __init__(self,login,password):
         super().__init__(login,password)
 
 
+def loading_toJSON(value,directory):
+    try:
+        with open(f'{directory}.json','w') as write_file:
+            json.dump(value,write_file)
+    except  Exception as e:
+        print(f'Error: {str(e)}')
+
+def unloading_toJSON(directory):
+    try:
+        with open(f'{directory}.json', "r") as read_file:
+            return json.load(read_file)
+    except  Exception as e:
+        print(f'Error: {str(e)}')
 
 
-a = Admin('login','password')
+
+
+admin_data = unloading_toJSON(ADMIN_FILE_DIRECTORY)
+# print(admin_data['admin'][])
+
+print('who are you?\n1.User\n2.Admin\n3.Exit')
+c = int(input('Choose: '))
+
+while c != 3:
+    if c == 2:
+
+        if not os.path.isfile(f'{ADMIN_FILE_DIRECTORY}.json'):
+            admin = Admin('', '')
+            print('it\'s you first entrance')
+            admin._login = input('please write login: ')
+            admin._password = input('please write password: ')
+            loading_toJSON({'login': str(hashlib.md5(admin._login.encode('ascii')).digest()),
+                            'password':str(hashlib.md5(admin._password.encode('ascii')).digest())},ADMIN_FILE_DIRECTORY)
+        else:
+            #TODO 'admin has already been created
+            print('Pleace, enter login and password')
+            l,p = [hashlib.md5(input('Enter login: ').encode('ascii')).digest(),
+                   hashlib.md5(input('Enter password: ').encode('ascii')).digest()]
+            if admin_data['login'] == str(l) and admin_data['password'] == str(p):
+
+                print('Welcom admin')
+            else:
+                print('not')
+
+    c = int(input('Choose: '))
 
 
 
