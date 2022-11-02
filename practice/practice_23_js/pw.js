@@ -67,3 +67,88 @@ $('#myModal').css('display', 'none')
 }
 
 // ----------------------------- //
+var word = new String(),
+    count = 0,
+    lang = ['js','java','c','c++','c#','python','html','css','sql','spring','react'];
+
+let datalist = document.createElement('datalist')
+$(datalist).attr('id', 'datalistCount')
+$(datalist).appendTo('#contLang')
+
+
+function search(elem) {
+   
+   if(count < 10){
+    let opt = document.createElement('option')
+    $(opt).appendTo(datalist)
+    opt.value = elem 
+    count++
+   } 
+}
+$('#langList').on('keypress',event =>{
+    word += event.key
+    
+    while (datalist.firstChild) {
+        datalist.removeChild(datalist.firstChild);
+        count = 0
+    }
+
+    lang.forEach(element => {
+        element.slice(0,word.length).toLowerCase() == word.toLowerCase()? search(element) : false
+    });
+})
+
+
+$('#langList').on('keydown', event =>{
+    if(event.key == "Backspace"){
+        
+        word = word.slice(0,-1)
+        while (datalist.firstChild) {
+            datalist.removeChild(datalist.firstChild); 
+            count = 0
+        }
+        
+        lang.forEach(element => {
+            element.slice(0,word.length).toLowerCase() == word.toLowerCase()? search(element) : false
+        });
+    }
+    else false 
+
+})
+// ------------ //
+function creatProg(header,max,value,titleProg){
+    let titleCont = document.createElement('h5'),
+        contItemProg = document.createElement('div'),
+        itemProg = document.createElement('div')
+        
+        $(titleCont).addClass('text-center')
+        $(titleCont).text(header)
+
+        $(contItemProg).addClass('progress mb-3')
+        $(contItemProg).css('height','20px')
+
+        $(itemProg).addClass('progress-bar')
+        $(itemProg).attr({
+            role: 'progressbar',
+            'aria-valuemin': 0,
+            'aria-valuemax': max,
+            style: `width:${value}%`,
+        })
+        $(itemProg).text(titleProg)
+        contItemProg.append(itemProg)
+        if ($('#contProgress').children(':first').length < 1){
+            $('#contProgress').append(titleCont,contItemProg)
+        }else{
+            $('#contProgress').append(contItemProg)
+        }
+        
+    
+}
+
+$.getJSON('prog.json',function(data){
+    data['data'].forEach(e => {
+        creatProg(data['header'],data['maxvalue'],e.value,e.title)
+    });
+
+})
+
