@@ -771,7 +771,7 @@ import hashlib
 #   def name(self):
 #       print('Deleting..')
 #       del self.__name
-
+import hashlib
 import json
 import os
 
