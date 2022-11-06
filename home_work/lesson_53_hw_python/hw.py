@@ -59,8 +59,6 @@ class User(Person):
                                                'last_name': self.last_name, 'address': user.address,
                                                'tel': self.tel, 'passed_test': self.passed_test,
                                                'pending_tests': self.pending_tests}})
-    def change(self):
-        pass
 
 class Admin(Person):
     def __init__(self,login,password):
@@ -114,6 +112,28 @@ class Test:
     def test_dict(self):
         del self._test_dict
 
+    def input_question(self):
+        question = []
+        answer = []
+        true_answer = []
+
+        question.append(input('Write question: '))
+        answer.append(list(input('Write answer: ').split(',')))
+        true_answer.append(input('Write true answer: '))
+
+        quest = {"quests": question,
+                 "answer": answer,
+                 "true_answer": true_answer
+                 }
+
+        self.section = input('Write section to test: ')
+        self.exam_name = input('Write exam name: ')
+        self.test_dict = quest
+        # TODO переписать сдеать чтобі был выход и добавление
+        test_data.update(
+            {len(test_data) + 1: {'section': test.section, 'exam_name': test.exam_name, 'test_dict': test.test_dict}})
+        loading_toJSON(test_data, TESTS_FILE_DIRECTORY)
+
 def loading_toJSON(value,directory):
     try:
         with open(f'{directory}.json','w') as write_file:
@@ -133,7 +153,9 @@ def find_keys_in_all(dict,key):
     return [dict[i][key] for i in dict.keys()]
 
 def encoded_name(commnet):
-    return hashlib.md5(input(f'{commnet}').encode('ascii')).digest()
+    return str(hashlib.md5(input(f'{commnet}').encode('ascii')).digest())
+
+
 
 admin_data = unloading_toJSON(ADMIN_FILE_DIRECTORY)
 user_data  = unloading_toJSON(USERS_FILE_DIRECTORY)
@@ -179,17 +201,18 @@ while main_choice != 3:
                             print(*[f'{val["answer"].index(i)+1}.{i}\t' for i in val['answer']])
                             answer = int(input('what is the correct answer: '))
                             if val["answer"][answer-1] == val['true_answer']:
-                                   #TODO создать запись json о прохождении и добавить в passed_test
                                 print('правтльный овтет')
                             else:
                                 print('no')
+
+                        # decription = {'result': '', 'true_ans': '', 'proccent': '', 'grade': ''}
                         print('конец теста')
 
 
 
 
             else:
-                print('новый пользователь продолжыте решистрацию')
+                print('новый пользователь продолжите регистрацию')
                 user.first_name = input('please write first name: ')
                 user.last_name = input('please write last name: ')
                 user.address = input('please write address: ')
@@ -211,7 +234,7 @@ while main_choice != 3:
             #TODO 'admin has already been created
             print('Pleace, enter login and password')
             l,p = [encoded_name('Enter login: '),encoded_name('Enter password: ')]
-            if admin_data['login'] == str(l) and admin_data['password'] == str(p):
+            if admin_data['login'] == l and admin_data['password'] == p:
                 print('Welcom admin')
                 print('1.Сhange login details\n'
                       '2.User management\n'
@@ -221,7 +244,7 @@ while main_choice != 3:
                       )
                 admin_choise = int(input('Choose admin menu: '))
                 while admin_choise != 5:
-                    if admin_choise == 1: #TODO проверено
+                    if admin_choise == 1:
                         print('1.Change login\n2.Change password')
                         admin_choise_change_login_details = int(input('Choose change details: '))
                         if admin_choise_change_login_details == 1:
@@ -252,7 +275,7 @@ while main_choice != 3:
                             check = find_keys_in_all(user_data, 'login')
                             if user_change in check:
                                 print('found now let\'s make changes')
-                                print(user_data[str(check.index(user_change)+1)].values)
+                                print(user_data[str(check.index(user_change)+1)].values())
                                 print('what item do you want to change?')
                                 print('1.login\n'
                                       '2.password\n'
@@ -262,28 +285,26 @@ while main_choice != 3:
                                       '6.Tel\n'
                                       '7.Passed test\n'
                                       '8.Pending test')
-                                #TODO сделать изминения для пользователя
-                                change_user = input('Choose change: ')
-                                user.change(change_user)
+                                change_user = int(input('Choose change: '))
+                                change_list = ['login','password','first_name','last_name','addres','tel','passed_test','pending_test']
+                                value = input(f'{change_list[change_user-1]}: ')
+                                user_data[str(check.index(user_change) + 1)][change_list[change_user-1]] = value
                             else:
                                 print('user does not exist')
                         else:print('Incorrect choise')
                         loading_toJSON(user_data, USERS_FILE_DIRECTORY)
 
-
                     if admin_choise == 3:
                         pass
                     if admin_choise == 4:
                         test = Test('', '', '')
-                        test.section = input('Write section to test: ')
-                        test.exam_name = input('Write exam name: ')
-                        #TODO переписать сдеать чтобі был выход и добавление
-                        test.test_dict = {1: {'question': 'how many continents',
-                                              'answer': ['1', '3', '6'],
-                                              'true_answer': '6'}}
-                        test_data.update(
-                            {len(test_data) + 1: {'section': test.section, 'exam_name': test.exam_name, 'test_dict': test.test_dict}})
-                        loading_toJSON(test_data, TESTS_FILE_DIRECTORY)
+                        # test.section = input('Write section to test: ')
+                        # test.exam_name = input('Write exam name: ')
+                        # # test.test_dict = input_question()
+                        # #TODO переписать сдеать чтобі был выход и добавление
+                        # test_data.update(
+                        #     {len(test_data) + 1: {'section': test.section, 'exam_name': test.exam_name, 'test_dict': test.test_dict}})
+                        # loading_toJSON(test_data, TESTS_FILE_DIRECTORY)
 
                     print('1.Сhange login details\n'
                           '2.User management\n'
