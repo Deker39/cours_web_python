@@ -4,23 +4,19 @@
         "password": "b'v\\xd8\\x02$a\\x1f\\xc9\\x19\\xa5\\xd5O\\x0f\\xf9\\xfb\\xa4F'",
         "first_name": "qwe",
         "last_name": "qwe",
-        "address": "qew",
-        "tel": "ewq"
+        "address": "qwe",
+        "tel": "qwe",
+        "passed_test": "",
+        "pending_tests": ""
     },
     "2": {
         "login": "b'~X\\xd6;`\\x19|\\xebU\\xa1\\xc4\\x87\\x98\\x9a7 '",
-        "password": "b'v\\xd8\\x02$a\\x1f\\xc9\\x19\\xa5\\xd5O\\x0f\\xf9\\xfb\\xa4F'",
-        "first_name": "wqe",
-        "last_name": "qwe",
-        "address": "qwew",
-        "tel": "eqw"
-    },
-    "3": {
-        "login": "b'\\x92\\x87z\\xf7\\nE\\xfdj.\\xd7\\xfe\\x81\\xe1#kx'",
-        "password": "b'x\\x15in\\xcb\\xf1\\xc9nh\\x94\\xb7yEm3\\x0e'",
-        "first_name": "asd",
-        "last_name": "asd",
-        "address": "asds",
-        "tel": "das"
+        "password": "b' ,\\xb9b\\xacY\\x07[\\x96K\\x07\\x15-#Kp'",
+        "first_name": "123",
+        "last_name": "132",
+        "address": "123",
+        "tel": "123",
+        "passed_test": "",
+        "pending_tests": ""
     }
 }
