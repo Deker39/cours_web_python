@@ -1,0 +1,78 @@
+{
+    "1": {
+        "login": "b'$\\xc9\\xe1^R\\xaf\\xc4|\"[u~{\\xee\\x1f\\x9d'",
+        "password": "b'v\\xd8\\x02$a\\x1f\\xc9\\x19\\xa5\\xd5O\\x0f\\xf9\\xfb\\xa4F'",
+        "first_name": "Alexey",
+        "last_name": "Holenko",
+        "address": "12 Street",
+        "tel": "+1234",
+        "passed_test": {
+            "section": "math",
+            "exam_name": "test1",
+            "user_answer": [
+                "2",
+                "8",
+                "1"
+            ],
+            "grade": 4.0
+        },
+        "pending_tests": ""
+    },
+    "2": {
+        "login": "b'~X\\xd6;`\\x19|\\xebU\\xa1\\xc4\\x87\\x98\\x9a7 '",
+        "password": "b'v\\xd8\\x02$a\\x1f\\xc9\\x19\\xa5\\xd5O\\x0f\\xf9\\xfb\\xa4F'",
+        "first_name": "Den",
+        "last_name": "Vahovski",
+        "address": "3 Street",
+        "tel": "+8956",
+        "passed_test": {
+            "section": "math",
+            "exam_name": "test1",
+            "user_answer": [
+                "4",
+                "7",
+                "0"
+            ],
+            "grade": 8.0
+        },
+        "pending_tests": ""
+    },
+    "3": {
+        "login": "b'\\x92\\x87z\\xf7\\nE\\xfdj.\\xd7\\xfe\\x81\\xe1#kx'",
+        "password": "b'v\\xd8\\x02$a\\x1f\\xc9\\x19\\xa5\\xd5O\\x0f\\xf9\\xfb\\xa4F'",
+        "first_name": "Alina",
+        "last_name": "Lakovna",
+        "address": "48 Gaydara",
+        "tel": "+380",
+        "passed_test": {
+            "section": "math",
+            "exam_name": "test1",
+            "user_answer": [
+                "1",
+                "7",
+                "0"
+            ],
+            "grade": 4.0
+        },
+        "pending_tests": ""
+    },
+    "4": {
+        "login": "b'\\ny\\x18B\\xf5*\\n\\xcf\\xbb:x3x\\xc0f\\xb8'",
+        "password": "b'v\\xd8\\x02$a\\x1f\\xc9\\x19\\xa5\\xd5O\\x0f\\xf9\\xfb\\xa4F'",
+        "first_name": "kek",
+        "last_name": "qwe",
+        "address": "wqe",
+        "tel": "e",
+        "passed_test": {
+            "section": "math",
+            "exam_name": "test1",
+            "user_answer": [
+                "4",
+                "8",
+                "0"
+            ],
+            "grade": 12.0
+        },
+        "pending_tests": ""
+    }
+}
