@@ -1,4 +1,7 @@
-$(function(){ $('.circle').circle(); });
+let count = 0,
+    index,
+    indexBack,
+    nestingDepthJSON = ['regions','schools','classes']
 
 function checkColor(filledPlaces,allPlaces){
     res = Math.round((filledPlaces / allPlaces)*10)
@@ -19,7 +22,7 @@ function checkColor(filledPlaces,allPlaces){
 }
 
 function creatCard(name,filledPlaces,allPlaces){
-    $(`<div name="card" class="d-flex flex-column border border-dark m-3" style="width: 300px; height:100%">
+    $(`<div name="${nestingDepthJSON[count]}" class="d-flex flex-column border border-dark m-3" style="width: 300px; height:100%">
             <p class="text-center m-1">${name}</p>
             <hr class="m-0 opacity-100">
             <div class="circle" data-circleconfig='{"color": "${checkColor(filledPlaces,allPlaces)}",
@@ -39,31 +42,80 @@ function creatCard(name,filledPlaces,allPlaces){
         $(function(){ $('.circle').circle(); });
 }
 
-function creatPaletteCards(data){
+function recursiveHandler(data){
+    $(`[name='${nestingDepthJSON[count]}']`).on('click',function(){
+        index = $(`[name='${nestingDepthJSON[count]}']`).index($(this))
 
-    $(` <h5 class="text-center">CITY: ${data['cityName']}</h5>
-    <div id="contCards" class="d-flex flex-wrap justify-content-center">
-    </div>`).appendTo('#sectCard')
+        $(`[name='regions']`).length != 0?  indexBack = $(`[name='regions']`).index($(this)): false
 
-    data['regions'].forEach(e => {
-        creatCard(e['regionName'],e['filledPlaces'],e['allPlaces'])
-    })
+        count ++
 
-    // может нажо будет изменить место 
-    $("[name='card']").on('click',function(){
-        index = $("[name='card']").index($(this))
-        $('#contCards').empty()
-        console.log(data['regions'][index]['schools'])
+        $("[type='button']").hasClass('display-block')? false: $("[type='button']").addClass('display-block')
 
-        
-        data['regions'][index]['schools'].forEach(e => {
-            creatCard(e['schoolName'],e['filledPlaces'],e['allPlaces'])
-            
-        });
+        // условие на глубину
 
+        if(count == 1){
+            $('#contCards').empty()
+            data['regions'][index][nestingDepthJSON[count]].forEach(e => {
+                creatCard(e['schoolName'],e['filledPlaces'],e['allPlaces'])
+            })
+            $('#title').append(`-> ${data['regions'][index]['regionName']}`)
+
+            recursiveHandler(data)
+        }
+        else if(count == 2){
+            $('#contCards').empty()
+            data['regions'][indexBack][nestingDepthJSON[count-1]][index][nestingDepthJSON[count]].forEach(e => {
+                creatCard(e['className'],e['filledPlaces'],e['allPlaces'])
+            });  
+            $('#title').append(`-> ${data['regions'][indexBack][nestingDepthJSON[count-1]][index]['schoolName']}`)
+        }   
     })
 }
 
+function creatPaletteCards(data){
+
+    $(` <h5 class="text-center" id="title">CITY: ${data['cityName'] }</h5>
+    <div id="contCards" class="d-flex flex-wrap justify-content-center">
+    </div>`).appendTo('#sectCard')
+
+    data[nestingDepthJSON[count]].forEach(e => {
+        creatCard(e['regionName'],e['filledPlaces'],e['allPlaces'])
+    })
+
+    recursiveHandler(data)
+
+    $("[type='button']").on('click',function(){
+        count --
+        $('#contCards').empty()
+        
+        if (count == 0){
+            data[nestingDepthJSON[count]].forEach(e => {
+                creatCard(e['regionName'],e['filledPlaces'],e['allPlaces'])
+            })
+
+            var text = $('#title').html();
+            text = text.replace(`-&gt; ${data['regions'][indexBack]['regionName']}`, '');
+            $('#title').html(text);
+
+            recursiveHandler(data)
+        }
+        else if(count == 1){      
+            data['regions'][indexBack][nestingDepthJSON[count]].forEach(e => {
+                creatCard(e['schoolName'],e['filledPlaces'],e['allPlaces'])
+            })
+
+            var text = $('#title').html();
+            text = text.replace(`-&gt; ${data['regions'][indexBack][nestingDepthJSON[count]][index]['schoolName']}`, '');
+            $('#title').html(text);
+
+            recursiveHandler(data)
+        }
+
+        count == 0?$("[type='button']").removeClass('display-block'): false
+        
+    })
+}
 
 $.getJSON('citySchoolOccupancyStudents.json',function(data){
     console.log(data);
