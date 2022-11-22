@@ -2,11 +2,11 @@
     "header": "string",
     "maxvalue": 123,
     "data": [
-    {
-    "title": "string1",
-    "value": 50
-    },
-    {
+        {
+        "title": "string1",
+        "value": 50
+        },
+        {
         "title": "string2",
         "value": 25
         }

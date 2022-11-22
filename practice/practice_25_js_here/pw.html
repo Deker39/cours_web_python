@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+    <title>Document</title>
+    <style>
+        .display-none{
+            display: none;
+        }
+        .display-block{
+            display: block;
+        }
+		.circle {
+			display: block;
+			width: 250px;
+			margin: 20px;
+		}
+
+		.circle__el {
+			position: relative;
+			width: 100%;
+			max-width: 100%;
+			height: 0;
+			padding-bottom: 100%;
+		}
+
+		.circle__el span {
+			position: absolute;
+			display: block;
+			border: 1px solid rgba(0,0,0,.1);
+			border-radius: 50%;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+		}
+
+		.circle__highlight {
+			border: 1px solid rgba(0,0,0,.5);
+		}
+
+		.circle__fill {
+			border: none;
+		}
+
+	</style>
+</head>
+
+<body>
+    <section class="container mt-3" id="sectCard">
+        <button type="button" class="btn btn-outline-dark float-start border border-0 display-none">BACK</button>
+        
+    </section>
+ 
+
+</body>
+<script src="pw.js"></script>
+<script src="jquery.circle.js"></script>
+</html>

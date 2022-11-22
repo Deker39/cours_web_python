@@ -122,11 +122,11 @@
 # print(ls.search(10))
 
 
-class Node:
-    def __init__(self,item):
-        self.item = item
-        self.next = None
-        self.previous = None
+# class Node:
+#     def __init__(self,item):
+#         self.item = item
+#         self.next = None
+#         self.previous = None
 
 # n1 = Node(5)
 # n2 = Node(10)
@@ -277,51 +277,222 @@ class Node:
 
 
 #push, pop, get_top,is_empty, size
-class Stack:
+# class Stack:
+#     def __init__(self):
+#         self.top = None
+#         self.size = 0
+#
+#     def push(self,x):
+#         node = Node(x)
+#         if node is None:
+#             print('Heap Overflow')
+#             return
+#
+#         node.next = self.top
+#         self.top = node
+#         self.size += 1
+#
+#     def pop(self):
+#         if self.top is None:
+#             print('Stacl Overflow')
+#             return
+#         top = self.top.item
+#         self.top = self.top.next
+#         self.size -= 1
+#
+#     def is_empty(self):
+#         return self.top is None
+#
+#     def get_top(self):
+#         if not self.is_empty():
+#             return self.top.item
+#         else:
+#             print('Stack empty')
+#
+#     def size(self):
+#         return self.size
+#
+# stack = Stack()
+# stack.push(5)
+# stack.push(10)
+# stack.push(15)
+# print(f'Top: {stack.get_top()}')
+# stack.pop()
+# stack.pop()
+# print(f'Top: {stack.get_top()}')
+# stack.pop()
+# print(f'Stack empty: {stack.is_empty()}')
+
+# class Node:
+#     def __init__(self,data):
+#         self.data = data
+#         self.next = None
+#         self.prev = None
+#
+# # enqueue, dequeue, first, size, is_empty, travel
+#
+# class Q:
+#     def __init__(self):
+#         self.h = None
+#         self.t = None
+#
+#     def first(self):
+#         return self.h.data if self.h else None
+#
+#     def size(self):
+#         temp = self.h
+#         count = 0
+#         while temp is not None:
+#             count += 1
+#             temp = temp.next
+#         return count
+#
+#     def is_empty(self):
+#        return self.h is None
+#
+#
+#     def travel(self):
+#         print('Elements: ')
+#         temp = self.h
+#         while temp is not None:
+#             print(temp.data, end="--> ")
+#             temp= temp.next
+#         print('None')
+#
+#     def enqueue(self,data):
+#         if self.t is None:
+#             self.h = Node(data)
+#             self.t = self.h
+#         else:
+#             self.t.next = Node(data)
+#             self.t.next.prev = self.t
+#             self.t = self.t.next
+#     def dequeue(self):
+#         if self.h is None:
+#             return None
+#         else:
+#             temp = self.h.data
+#             self.h = self.h.next
+#             self.h.prev = None
+#             return temp
+#
+# q = Q()
+# q.enqueue(5)
+# q.enqueue(10)
+# q.enqueue(15)
+#
+# q.travel()
+# q.dequeue()
+# q.travel()
+
+class Node:
+    def __init__(self,item):
+        self.item = item
+        self.rigth = None
+        self.left = None
+
+# get_root, is_empty, find_min, print, clear
+# add <- __add, find <- __find, delete <- __delete
+# insert.. remove
+class Tree:
     def __init__(self):
-        self.top = None
-        self.size = 0
+        self._root = None
 
-    def push(self,x):
-        node = Node(x)
-        if node is None:
-            print('Heap Overflow')
-            return
-
-        node.next = self.top
-        self.top = node
-        self.size += 1
-
-    def pop(self):
-        if self.top is None:
-            print('Stacl Overflow')
-            return
-        top = self.top.item
-        self.top = self.top.next
-        self.size -= 1
+    @property
+    def root(self):
+        return  self._root
 
     def is_empty(self):
-        return self.top is None
+        return self._root is None
 
-    def get_top(self):
-        if not self.is_empty():
-            return self.top.item
+    def clear(self):
+        self._root = None
+
+    def add(self,item):
+        if self._root is None:
+            self._root = Node(item)
         else:
-            print('Stack empty')
+            self.__add(item,self._root)
 
-    def size(self):
-        return self.size
+    def __add(self, item, node):
+        if item < node.item:
+            if node.left is not None:
+                self.__add(item,node.left)
+            else:
+                node.left = Node(item)
+        else:
+            if node.rigth is not None:
+                self.__add(item, node.rigth)
+            else:
+                node.rigth = Node(item)
 
-stack = Stack()
-stack.push(5)
-stack.push(10)
-stack.push(15)
-print(f'Top: {stack.get_top()}')
-stack.pop()
-stack.pop()
-print(f'Top: {stack.get_top()}')
-stack.pop()
-print(f'Stack empty: {stack.is_empty()}')
+    def find(self,item):
+        if self._root == None:
+            return  self._root
+        elif self._root is not None:
+            return self.__find(item,self._root)
+        else:
+            return None
+
+    def __find(self,item,node):
+        if item == node.item:
+            return node.item
+        elif item < node.item and node.left is not None:
+            return  self.__find(item,node.left)
+        elif item > node.item and node.rigth is not None:
+            return self.__find(item, node.rigth)
+
+    def print(self):
+        if self._root is not None:
+            self.__print(self._root)
+
+    def __print(self,node):
+        if node is not None:
+            self.__print(node.left)
+            print(str(node.item) + '\n', end=' ')
+            self.__print(node.rigth)
+
+
+t = Tree()
+t.add(5)
+t.add(7)
+t.add(9)
+t.add(10)
+
+COUNT = [10]
+
+def print2DUtil(root, space):
+    # Base case
+    if (root == None):
+        return
+    # Increase distance between levels
+    space += COUNT[0]
+
+    # Process right child first
+    print2DUtil(root.right, space)
+
+    # Print current node after space
+    # count
+    print()
+    for i in range(COUNT[0], space):
+        print(end=" ")
+    print(root.item)
+
+    # Process left child
+    print2DUtil(root.left, space)
+
+
+# Wrapper over print2DUtil()
+def print2D(root):
+    # space=[0]
+    # Pass initial space count as 0
+    print2DUtil(root, 0)
+
+
+print2D(t.root)
+
+
+
 
 
 
