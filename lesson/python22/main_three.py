@@ -122,11 +122,11 @@
 # print(ls.search(10))
 
 
-# class Node:
-#     def __init__(self,item):
-#         self.item = item
-#         self.next = None
-#         self.previous = None
+class Node:
+    def __init__(self,item):
+        self.item = item
+        self.next = None
+        self.previous = None
 
 # n1 = Node(5)
 # n2 = Node(10)
@@ -259,7 +259,7 @@
 #                 self.head.previous = None
 #
 #         prev.next = cur.next
-#         cur.previous = None
+#         cur.return = None
 #         prev.next.previous = prev
 
 # dll  = DoublyLinkedList()
@@ -277,51 +277,51 @@
 
 
 #push, pop, get_top,is_empty, size
-# class Stack:
-#     def __init__(self):
-#         self.top = None
-#         self.size = 0
-#
-#     def push(self,x):
-#         node = Node(x)
-#         if node is None:
-#             print('Heap Overflow')
-#             return
-#
-#         node.next = self.top
-#         self.top = node
-#         self.size += 1
-#
-#     def pop(self):
-#         if self.top is None:
-#             print('Stacl Overflow')
-#             return
-#         top = self.top.item
-#         self.top = self.top.next
-#         self.size -= 1
-#
-#     def is_empty(self):
-#         return self.top is None
-#
-#     def get_top(self):
-#         if not self.is_empty():
-#             return self.top.item
-#         else:
-#             print('Stack empty')
-#
-#     def size(self):
-#         return self.size
-#
-# stack = Stack()
-# stack.push(5)
-# stack.push(10)
-# stack.push(15)
-# print(f'Top: {stack.get_top()}')
-# stack.pop()
-# stack.pop()
-# print(f'Top: {stack.get_top()}')
-# stack.pop()
-# print(f'Stack empty: {stack.is_empty()}')
+class Stack:
+    def __init__(self):
+        self.top = None
+        self.size = 0
+
+    def push(self,x):
+        node = Node(x)
+        if node is None:
+            print('Heap Overflow')
+            return
+
+        node.next = self.top
+        self.top = node
+        self.size += 1
+
+    def pop(self):
+        if self.top is None:
+            print('Stack Overflow')
+            return
+        top = self.top.item
+        self.top = self.top.next
+        self.size -= 1
+
+    def is_empty(self):
+        return self.top is None
+
+    def get_top(self):
+        if not self.is_empty():
+            return self.top.item
+        else:
+            print('Stack empty')
+
+    def size(self):
+        return self.size
+
+stack = Stack()
+stack.push(5)
+stack.push(10)
+stack.push(15)
+print(f'Top: {stack.get_top()}')
+stack.pop()
+stack.pop()
+print(f'Top: {stack.get_top()}')
+stack.pop()
+print(f'Stack empty: {stack.is_empty()}')
 
 # class Node:
 #     def __init__(self,data):
