@@ -385,74 +385,114 @@
 # q.dequeue()
 # q.travel()
 
-class Node:
-    def __init__(self,item):
-        self.item = item
-        self.rigth = None
-        self.left = None
+# class Node:
+#     def __init__(self,item):
+#         self.item = item
+#         self.rigth = None
+#         self.left = None
 
 # get_root, is_empty, find_min, print, clear
 # add <- __add, find <- __find, delete <- __delete
 # insert.. remove
-class Tree:
-    def __init__(self):
-        self._root = None
+# class Tree:
+#     def __init__(self):
+#         self._root = None
+#
+#     @property
+#     def root(self):
+#         return  self._root
+#
+#     def is_empty(self):
+#         return self._root is None
+#
+#     def clear(self):
+#         self._root = None
+#
+#     def add(self,item):
+#         if self._root is None:
+#             self._root = Node(item)
+#         else:
+#             self.__add(item,self._root)
+#
+#     def __add(self, item, node):
+#         if item < node.item:
+#             if node.left is not None:
+#                 self.__add(item,node.left)
+#             else:
+#                 node.left = Node(item)
+#         else:
+#             if node.rigth is not None:
+#                 self.__add(item, node.rigth)
+#             else:
+#                 node.rigth = Node(item)
+#
+#     def find(self,item):
+#         if self._root == None:
+#             return  self._root
+#         elif self._root is not None:
+#             return self.__find(item,self._root)
+#         else:
+#             return None
+#
+#     def __find(self,item,node):
+#         if item == node.item:
+#             return node.item
+#         elif item < node.item and node.left is not None:
+#             return  self.__find(item,node.left)
+#         elif item > node.item and node.rigth is not None:
+#             return self.__find(item, node.rigth)
+#
+#     def print(self):
+#         if self._root is not None:
+#             self.__print(self._root)
+#
+#     def __print(self,node):
+#         if node is not None:
+#             self.__print(node.left)
+#             print(str(node.item) + '\n', end=' ')
+#             self.__print(node.rigth)
+#
+#
+# t = Tree()
+# t.add(5)
+# t.add(7)
+# t.add(9)
+# t.add(10)
+#
+# COUNT = [10]
+#
+# def print2DUtil(root, space):
+#     # Base case
+#     if (root == None):
+#         return
+#     # Increase distance between levels
+#     space += COUNT[0]
+#
+#     # Process right child first
+#     print2DUtil(root.right, space)
+#
+#     # Print current node after space
+#     # count
+#     print()
+#     for i in range(COUNT[0], space):
+#         print(end=" ")
+#     print(root.item)
+#
+#     # Process left child
+#     print2DUtil(root.left, space)
+#
+#
+# # Wrapper over print2DUtil()
+# def print2D(root):
+#     # space=[0]
+#     # Pass initial space count as 0
+#     print2DUtil(root, 0)
+#
+#
+# print2D(t.root)
+#
 
-    @property
-    def root(self):
-        return  self._root
-
-    def is_empty(self):
-        return self._root is None
-
-    def clear(self):
-        self._root = None
-
-    def add(self,item):
-        if self._root is None:
-            self._root = Node(item)
-        else:
-            self.__add(item,self._root)
-
-    def __add(self, item, node):
-        if item < node.item:
-            if node.left is not None:
-                self.__add(item,node.left)
-            else:
-                node.left = Node(item)
-        else:
-            if node.rigth is not None:
-                self.__add(item, node.rigth)
-            else:
-                node.rigth = Node(item)
-
-    def find(self,item):
-        if self._root == None:
-            return  self._root
-        elif self._root is not None:
-            return self.__find(item,self._root)
-        else:
-            return None
-
-    def __find(self,item,node):
-        if item == node.item:
-            return node.item
-        elif item < node.item and node.left is not None:
-            return  self.__find(item,node.left)
-        elif item > node.item and node.rigth is not None:
-            return self.__find(item, node.rigth)
-
-    def print(self):
-        if self._root is not None:
-            self.__print(self._root)
-
-    def __print(self,node):
-        if node is not None:
-            self.__print(node.left)
-            print(str(node.item) + '\n', end=' ')
-            self.__print(node.rigth)
-
-
+<<<<<<< Updated upstream
     def delete(self,item):
         if self.root is not None:
             return self.__delete(item,self.root)
@@ -489,8 +529,62 @@ class Tree:
         while cur.left is not None:
             cur = cur.left
         return cur
+=======
 
+#unpacking 1 - tuple, 2 - iteration
+# (a, b, c) = 1, 2, 3
+#
+# print(a, b, c)
+#
+# gen = (i**2 for i in range(3))
+# a, b, c = gen
+# print(a, b, c)
 
+# a = 5
+# b = 10
+#
+# a,b = b,a
+# print(a,b)
+#
+# ls = ['name', 10, 'addr']
+# name, age, addr = ls
+# print(name,age,addr)
+#
+# a,b,c, *_ = (1,2,3,0,0,0)
+# print(_)
+
+# dc1 = {'one':1,'two':2,'three':3}
+# dc2 = {'new_one':1,'new_two':2,'new_three':3}
+# dc3 = {**dc1,**dc2}
+# print(dc3)
+
+# ls1 = [(1,2,3),(4,5,6),(7,8,9)]
+# ls2 = [[1,2,3],[4,5,6],[7,8,9]]
+#
+# ls3 = [((1,2),3),((4,5,),6)]
+# for (first,second),third in ls3:
+#     print(first,second,third)
+    # print(first)
+    # print(second)
+    # print(third)
+
+#pickle, csv, json
+# import pickle
+#
+# dc1 = {'one':1,'two':2,'three':3}
+#
+# with open('text.txt','wb') as f:
+#     pickle.dump(dc1, f)
+#
+# with open('text.txt', 'rb') as f:
+#     res = pickle.load(f)
+#
+# print(f)
+>>>>>>> Stashed changes
+
+import csv
+
+<<<<<<< Updated upstream
 t = Tree()
 t.add(5)
 t.add(7)
@@ -500,9 +594,38 @@ t.delete(9)
 
 
 t.print()
+=======
+# with open('text.csv', 'w',encoding='utf-8') as f:
+#     writer = csv.writer(f)
+#     writer.writerow(['Data1','Data2','Data3'])
+#     for name,values in dc1.items():
+#         writer.writerow([name, *values])
+#     writer.writerow(['four', 55, 66])
+#
+#
+# rows = []
+# with open('text.csv','r',encoding='utf-8') as f:
+#     reader = csv.reader(f)
+#     rows = list(reader)
+#
+# print(*rows)
+
+
+dc1 = {'one':[1,1],'two':[2,2],'three':[3,3]}
+>>>>>>> Stashed changes
+
+with open('text.csv', 'w',encoding='utf-8') as f:
+    writer = csv.DictWriter(f,fieldnames=['Data1','Data2','Data3'])
+    writer.writeheader()
+    for name,values in dc1.items():
+        writer.writerow(dict(Data1=name,Data2=values[0], Data3= values[1]))
 
 
 
+rows = []
+with open('text.csv','r',encoding='utf-8') as f:
+    reader = csv.DictReader(f)
+    rows = list(reader)
 
-
+print(*rows)
 
