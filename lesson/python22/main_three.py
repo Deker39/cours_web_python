@@ -451,6 +451,46 @@
 #             self.__print(node.left)
 #             print(str(node.item) + '\n', end=' ')
 #             self.__print(node.rigth)
+
+    #
+    # def delete(self, item):
+    #     if self.root is not None:
+    #         return self.__delete(item, self.root)
+    #     else:
+    #         return None
+    #
+    #
+    # def __delete(self, item, node):
+    #     if node is None:
+    #         return node
+    #
+    #     if item < node.item:
+    #         node.left = self.__delete(item, node.left)
+    #     elif item > node.item:
+    #         node.rigth = self.__delete(item, node.rigth)
+    #     else:
+    #         if node.left is None:
+    #             temp = node.rigth
+    #             node = None
+    #             return temp
+    #         elif node.rigth is None:
+    #             temp = node.left
+    #             node = None
+    #             return temp
+    #
+    #         temp = self.__fin_min(node.rigth)
+    #         node.item = temp.item
+    #         node.rigth = self.__delete(temp.item, node.rigth)
+    #
+    #     return node
+    #
+    #
+    # @staticmethod
+    # def __fin_min(node):
+    #     cur = node
+    #     while cur.left is not None:
+    #         cur = cur.left
+    #     return cur
 #
 #
 # t = Tree()
@@ -458,7 +498,10 @@
 # t.add(7)
 # t.add(9)
 # t.add(10)
+# t.delete(9)
 #
+# t.print()
+
 # COUNT = [10]
 #
 # def print2DUtil(root, space):
@@ -492,44 +535,7 @@
 # print2D(t.root)
 #
 
-<<<<<<< Updated upstream
-    def delete(self,item):
-        if self.root is not None:
-            return self.__delete(item,self.root)
-        else:
-            return None
 
-    def __delete(self, item, node):
-        if node is None:
-            return node
-
-        if item < node.item:
-            node.left = self.__delete(item,node.left)
-        elif item > node.item:
-            node.rigth = self.__delete(item, node.rigth)
-        else:
-            if node.left is None:
-                temp = node.rigth
-                node = None
-                return temp
-            elif node.rigth is None:
-                temp = node.left
-                node = None
-                return temp
-
-            temp = self.__fin_min(node.rigth)
-            node.item = temp.item
-            node.rigth = self.__delete(temp.item,node.rigth)
-
-        return node
-
-    @staticmethod
-    def __fin_min(node):
-        cur = node
-        while cur.left is not None:
-            cur = cur.left
-        return cur
-=======
 
 #unpacking 1 - tuple, 2 - iteration
 # (a, b, c) = 1, 2, 3
@@ -580,21 +586,9 @@
 #     res = pickle.load(f)
 #
 # print(f)
->>>>>>> Stashed changes
 
 import csv
 
-<<<<<<< Updated upstream
-t = Tree()
-t.add(5)
-t.add(7)
-t.add(9)
-t.add(10)
-t.delete(9)
-
-
-t.print()
-=======
 # with open('text.csv', 'w',encoding='utf-8') as f:
 #     writer = csv.writer(f)
 #     writer.writerow(['Data1','Data2','Data3'])
@@ -610,22 +604,21 @@ t.print()
 #
 # print(*rows)
 
-
-dc1 = {'one':[1,1],'two':[2,2],'three':[3,3]}
->>>>>>> Stashed changes
-
-with open('text.csv', 'w',encoding='utf-8') as f:
-    writer = csv.DictWriter(f,fieldnames=['Data1','Data2','Data3'])
-    writer.writeheader()
-    for name,values in dc1.items():
-        writer.writerow(dict(Data1=name,Data2=values[0], Data3= values[1]))
-
-
-
-rows = []
-with open('text.csv','r',encoding='utf-8') as f:
-    reader = csv.DictReader(f)
-    rows = list(reader)
-
-print(*rows)
+# dictionary
+# dc1 = {'one':[1,1],'two':[2,2],'three':[3,3]}
+#
+# with open('text.csv', 'w',encoding='utf-8') as f:
+#     writer = csv.DictWriter(f,fieldnames=['Data1','Data2','Data3'])
+#     writer.writeheader()
+#     for name,values in dc1.items():
+#         writer.writerow(dict(Data1=name,Data2=values[0], Data3= values[1]))
+#
+#
+#
+# rows = []
+# with open('text.csv','r',encoding='utf-8') as f:
+#     reader = csv.DictReader(f)
+#     rows = list(reader)
+#
+# print(*rows)
 
