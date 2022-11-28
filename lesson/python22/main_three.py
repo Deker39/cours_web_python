@@ -122,11 +122,11 @@
 # print(ls.search(10))
 
 
-# class Node:
-#     def __init__(self,item):
-#         self.item = item
-#         self.next = None
-#         self.previous = None
+class Node:
+    def __init__(self,item):
+        self.item = item
+        self.next = None
+        self.previous = None
 
 # n1 = Node(5)
 # n2 = Node(10)
@@ -165,7 +165,7 @@
 #         cur = self.head
 #         while cur is not None:
 #             ls += f'{cur.item} --> '
-#             cur = cur.item
+#             cur = cur.next
 #         ls += 'None'
 #         return  ls
 #
@@ -202,7 +202,7 @@
 #     def insert(self,target,item):
 #         node = Node(item)
 #         cur = self.head
-#         prev_node = Node
+#         prev_node = None
 #
 #         while cur.item != target:
 #             prev_node = cur
@@ -259,16 +259,16 @@
 #                 self.head.previous = None
 #
 #         prev.next = cur.next
-#         cur.return = None
+#         cur.previous = None
 #         prev.next.previous = prev
-
+#
 # dll  = DoublyLinkedList()
 # dll.add_to_front(5)
 # dll.add_to_front(10)
 # dll.add_to_front(15)
 # dll.add_to_back(20)
 # dll.insert(10,6)
-#
+# #
 #
 # # dll.remove_first()
 # # dll.remove_last()
