@@ -93,30 +93,81 @@ class DoubleList:
     def replase(self,target,item):
         node = Node(item)
         cur = self.h
-        prev_node = None
 
-        while cur.i != target:
-            prev_node = cur
+        while cur:
+            if cur.i == target:
+                while cur.i != target:
+                    cur = cur.n
+
+                node.n = cur.n
+                node.p = cur.p
+
+                if cur.n == None:
+                    self.t = node
+                    cur.n = None
+                else:
+                    cur.n.p = node
+
+                if cur.p == None:
+                    self.h = node
+                    cur.p = None
+                else:
+                    cur.p.n = node
+
             cur = cur.n
-
-        node.n = prev_node.n
-        prev_node.n.p = node
-
-        prev_node.n = node
-        node.p = prev_node
+        return print('This variable not found')
 
 
+
+def print_menu(func):
+
+    def inner():
+        print('\nWork with the list\n')
+        print('1.Add in list\n'
+              '2.Remove from list\n'
+              '3.Show list\n'
+              '4.Check value in list\n'
+              '5.Value replace in list\n'
+              '6.Exit\n')
+        return func()
+
+    return inner
+
+@print_menu
+def menu():
+    return int(input('Choose: '))
+
+
+choose = menu()
 
 ddl = DoubleList()
 
-ddl.add(5)
-ddl.add(10)
-ddl.add(6)
-ddl.add(15)
+while choose != 6:
 
-ddl.remove(6)
-ddl.search(5)
-ddl.replase(10,7)
-
-ddl.travel(False)
-
+    if choose == 1:
+        ddl.add(input('Enter your value: '))
+        print(ddl)
+        choose = menu()
+    elif choose == 2:
+        ddl.remove(input('Enter your value: '))
+        print(ddl)
+        choose = menu()
+    elif choose == 3:
+        print('Show you from the end or the start?')
+        choose_show = str(input('S/E\nChoose: '))
+        if choose_show.upper() == 'S':
+            ddl.travel(start=True)
+        elif choose_show.upper() == 'E':
+            ddl.travel(start=False)
+        else:
+            print('Inccorect value')
+        choose = menu()
+    elif choose == 4:
+        ddl.search(input('Enter your value: '))
+        choose = menu()
+    elif choose == 5:
+        ddl.replase(input('enter value to find from list: '),input('Enter new value: '))
+        print(ddl)
+        choose = menu()
+    else:
+        print('Inccorect value')
