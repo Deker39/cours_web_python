@@ -3,6 +3,8 @@
 #tuple()
 # set()
 # str()
+from os.path import exists
+
 
 # myList() -> get,append, remove, change, insert []
 # LinkedList
@@ -622,3 +624,174 @@ import csv
 #
 # print(*rows)
 
+import json
+
+# dumps(obj, ascii, indent)
+# loads(f)
+
+file_name = 'text.json'
+#
+# info = {
+#     1:{
+#     'Fullname':'Jhon Smith',
+#     'Age':12,
+#     'isLive':True
+#     }
+#
+# }
+
+# with open(file_name,'w') as f:
+#     f.write(json.dumps(info,indent=4))
+#
+# info_res = []
+#
+# with open(file_name,'r') as f:
+#     info_res = json.loads(f.read())
+#
+# print(info_res)
+# print(type(info_res))
+
+# with open(file_name) as f:
+#     info_res = json.loads(f.read())
+#     info_res.update(info)
+#
+# with open(file_name,'w') as f:
+#     f.write(json.dumps(info_res,indent=4))
+#
+# print(info_res['0'])
+
+countries = {'Ukraine': 'Kiev'}
+
+def add_item():
+    countrie= input('Enter country: ')
+    capital = input('Enter capital: ')
+    if countrie in countries:
+        print(f'Warning data was be rewrite! For {countrie}')
+    countries[countrie] = capital
+
+def remove_item():
+    choose = input('Remove by:\n'
+                   '1.Country\n'
+                   '2.Capital')
+    if choose == 1:
+        country_to_delete = input('Enter name country for deleting: ')
+        countries.pop(country_to_delete,'Not found country')
+    elif choose == 2:
+        capital_to_delete = input('Enter name capital for deleting: ')
+        for key,value in countries.items():
+            if value == capital_to_delete:
+                countries.pop(key)
+                return
+        print('Not found country')
+def search_item():
+    choose = input('Search by:\n'
+                   '1.Country\n'
+                   '2.Capital')
+    if choose == 1:
+        country = input('Enter name country for search: ')
+        if country in countries:
+            print(country, countries[country])
+        else:
+            print('Not found country')
+    elif choose == 2:
+        capital = input('Enter name capital for search: ')
+        for key, value in countries.items():
+            if value == capital:
+                print(key,value)
+                return
+        print('Not found capital')
+
+def edit_item():
+    choose = input('Edit by:\n'
+                   '1.Country\n'
+                   '2.Capital')
+    if choose == 1:
+        country = input('Enter name country for change: ')
+        if country in countries:
+            new_country = input('Enter new country')
+            countries[new_country] = countries[country]
+        else:
+            print('Not found country')
+    elif choose == 2:
+        capital = input('Enter name capital for change: ')
+        for key, value in countries.items():
+            if value == capital:
+                countries[key] = countries[capital]
+                return
+        print('Not found capital')
+
+def save_item():
+    if exists(file_name):
+        with open(file_name,'r') as f:
+            data = json.loads(f.read())
+            data.update(countries)
+            with open(file_name, 'w') as f:
+                f.write(json.dumps(countries))
+    else:
+        with open(file_name, 'a') as f:
+            f.write(json.dumps(countries))
+
+
+
+def load_item():
+    with open(file_name, 'r') as f:
+        data = json.loads(f.read())
+        countries.update(data)
+
+def save_or_load():
+    answer = int(input('Enter action:\n'
+                      '1.Save\n'
+                      '2.Load\n'
+                       'Choose: '))
+    if answer == 1:
+        save_item()
+    elif answer == 2:
+        load_item()
+
+
+def print_menu(func):
+
+    def inner():
+        print('1.Add counrt/capital\n'
+              '2.Remove counrt/capital\n'
+              '3.Search counrt/capital\n'
+              '4.Edit counrt/capital\n'
+              '5.Save or Load counrt/capital\n'
+              '6.Exit')
+        return func()
+
+    return inner
+
+@print_menu
+def menu():
+    return int(input('Choose: '))
+def main():
+    print('List of capitals')
+    print('Menu: ')
+
+
+
+    answer = menu()
+
+    while answer != 6:
+        if answer == 1:
+            add_item()
+            answer = menu()
+        elif answer == 2:
+            remove_item()
+            answer = menu()
+        elif answer == 3:
+            search_item()
+            menu()
+        elif answer == 4:
+            edit_item()
+            answer = menu()
+        elif answer == 5:
+            save_or_load()
+            answer = menu()
+
+
+
+
+if __name__ == '__main__':
+    main()
