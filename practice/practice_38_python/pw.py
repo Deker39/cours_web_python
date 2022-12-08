@@ -1,8 +1,7 @@
 #Exercise 1
 def first():
+
     pm = g = e = 0
-    # g = 0
-    # e = 0
     st = str(input('Enter you string: '))
     for i in st:
         if i.isdigit():
@@ -18,8 +17,17 @@ def first():
           f'Exclamatory mark in a string: {e}')
 #Exercise 2
 def second():
-    pass
+
+    l1 = input('Enter you nubmers: ')
+    n = str(input('Enter you word: '))
+    print(f"Your number meet {sum([1 for i in l1.split(',') if i == n])} times")
 #Exercise 3
 def third():
-    pass
+    l1 = input('Enter you nubme: ')
+    print(f"Your sum: {sum([int(i) for i in l1.split(',')])}")
+    print(f"Your avg: {sum([int(i) for i in l1.split(',')])/len(l1.split(','))}")
+
+
 first()
+# second()
+# third()
