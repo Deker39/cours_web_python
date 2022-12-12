@@ -29,18 +29,18 @@ class ICommand(ABC):
 
 
 class SaveCommand(ICommand):
-    def __init__(self, logic, text) -> None:
+    def __init__(self, logic, text: Text) -> None:
         self._logic = logic
-        self._text = text
+        self._text: Text = text
 
     def execute(self) -> None:
         print(f'SaveCommand -> save {self._logic.save(self._text)}')
 
 
 class DeleteCommand(ICommand):
-    def __init__(self, logic, text) -> None:
+    def __init__(self, logic, text: Text) -> None:
         self._logic = logic
-        self._text = text
+        self._text: Text = text
 
     def execute(self) -> None:
         print(f'DeleteCommand -> delete {self._text.text}')
