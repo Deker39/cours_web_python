@@ -71,6 +71,7 @@ print(f'Class Text -> {t}')
 delete.execute()
 print(f'Class Text -> {t}')
 
+
 # invoker
 invok = Invoker()
 invok.register('save', save)
