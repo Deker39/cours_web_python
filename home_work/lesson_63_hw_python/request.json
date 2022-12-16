@@ -1,0 +1,36 @@
+{
+    "stock": [
+        {
+            "type shoes": "male",
+            "view shoes": "snickers",
+            "color": "black",
+            "price": "87$",
+            "manufacturer": "Skechers",
+            "size": 41
+        },
+        {
+            "type shoes": "female",
+            "view shoes": "Oxford",
+            "color": "red",
+            "price": "145$",
+            "manufacturer": "Prado",
+            "size": 37
+        },
+        {
+            "type shoes": "male",
+            "view shoes": "snickers",
+            "color": "green",
+            "price": "50$",
+            "manufacturer": "Puma",
+            "size": 39
+        },
+        {
+            "type shoes": "Female",
+            "view shoes": "Shlopki",
+            "color": "yellow",
+            "price": "30$",
+            "manufacturer": "Adidas",
+            "size": 40
+        }
+    ]
+}

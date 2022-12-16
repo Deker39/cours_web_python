@@ -1,5 +1,6 @@
 import json
 
+
 class Person:
 
     def __init__(self, first_name=None, last_name=None):
@@ -12,10 +13,9 @@ class Person:
     @staticmethod
     def getAll():
         result = []
-        with open('db.json',encoding='utf-8') as f:
+        with open('db.json', encoding='utf-8') as f:
             data = list(json.loads(f.read()).values())
             for i in data:
-                 result.append(Person(i['first_name'],
-                                      i['last_name']))
+                result.append(Person(i['first_name'],
+                                     i['last_name']))
         return result
-

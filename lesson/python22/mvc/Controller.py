@@ -1,5 +1,5 @@
-from mvc.Model import Person
-from mvc.View import index, person, endView
+from Model import Person
+from View import index, person, endView
 
 
 def showAll():
