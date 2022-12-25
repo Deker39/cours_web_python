@@ -1,11 +1,18 @@
 from django.http import *
 from django.shortcuts import *
+from .models import *
 
 
 # Create your views here.
+menu = ['about page','add state','feed back','Sing in']
 
 def index(request):
-    return HttpResponse('Page app women')
+    posts = Women.objects.all()
+    return render(request, 'women/index.html', {'posts': posts, 'menu': menu, 'title': 'Main Page'})
+
+def about(request):
+    return  render(request, 'women/about.html', {'menu': menu, 'title': 'About Main Page'})
+
 
 def categories(request,catid):
     print(request.GET) if request.GET else False

@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/django_test.iml" filepath="$PROJECT_DIR$/.idea/django_test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../jinja/.idea/jinja.iml" filepath="$PROJECT_DIR$/../jinja/.idea/jinja.iml" />
     </modules>
   </component>
 </project>
