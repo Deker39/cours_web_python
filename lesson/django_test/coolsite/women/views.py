@@ -4,28 +4,59 @@ from .models import *
 
 
 # Create your views here.
-menu = ['about page','add state','feed back','Sing in']
+# 'about page', 'add state', 'feed back', 'Sing in'
+menu = [{'title': "About page", 'url_name': 'about'},
+        {'title': "Add state", 'url_name': 'add_page'},
+        {'title': "Feed back", 'url_name': 'contact'},
+        {'title': "Sing in", 'url_name': 'login'}
+        ]
+
 
 def index(request):
     posts = Women.objects.all()
-    return render(request, 'women/index.html', {'posts': posts, 'menu': menu, 'title': 'Main Page'})
+    context = {
+        'posts': posts,
+        'menu': menu,
+        'title': 'Main Page'
+    }
+    return render(request, 'women/index.html', context=context)
+
 
 def about(request):
-    return  render(request, 'women/about.html', {'menu': menu, 'title': 'About Main Page'})
+    context = {
+        'menu': menu,
+        'title': 'About Main Page'
+    }
+    return  render(request, 'women/about.html', context=context)
 
 
-def categories(request,catid):
-    print(request.GET) if request.GET else False
-    # print(request.POST) if request.POST else False
+def addpage(request):
+    context = {
+        'menu': menu,
+        'title': 'Add state'
+    }
+    return render(request, 'women/addpage.html', context=context)
 
-    return  HttpResponse(f'<h1>States categori</h1><p>{catid}</p>')
 
-def archive(request,year):
-    # if int(year) > 2022:
-    #     raise Http404()
-    if int(year) > 2022:
-        return redirect('home',permanent=True)
-    return  HttpResponse(f'<h1>Archive on year {year}</h1>')
+def contact(request):
+    context = {
+        'menu': menu,
+        'title': 'Feedback'
+    }
+    return render(request, 'women/feedback.html', context=context)
+
+
+def login(request):
+    context = {
+        'menu': menu,
+        'title': 'Login'
+    }
+    return render(request, 'women/login.html', context=context)
+
+def show_post(request, post_id):
+    return HttpResponse(f'Отображение статьи с id = {post_id}')
+
+
 
 def pageNotFound(request,exception):
     return HttpResponseNotFound('<h1>Sorry page not found</h1>')
