@@ -1,4 +1,8 @@
 # Exercise1
+import itertools
+import random
+
+
 def power(arr, c):
     if c == 1:
         return arr
@@ -20,13 +24,9 @@ def second(a, b):
 
 
 # Exercise3
-ls_third = []
-
-
 def third(n, c=1):
     if c <= n:
         print(f'{c} -> {c * "*"}')
-        ls_third.append('*')
         third(n, c + 1)
 
 
@@ -61,7 +61,6 @@ def chek_Tie(playerpos):
     if len(playerpos['X']) + len(playerpos['O']) == 9:
         return True
     return False
-
 
 
 def singlegame(curplayer):
@@ -103,7 +102,20 @@ def singlegame(curplayer):
         else:
             curplayer = 'X'
 
-if __name__ == '__main__':
+
+def myscoreboard(scoreboard):
+    print("\t--------------------------------")
+    print("\t         SCORE BOARD       ")
+    print("\t--------------------------------")
+
+    listofplayers = list(scoreboard.keys())
+    print(f"\t{listofplayers[0]}{25 * ' '}", end=f'{scoreboard[listofplayers[0]]}\n')
+    print(f"\t{listofplayers[1]}{25 * ' '}", end=f'{scoreboard[listofplayers[1]]}\n')
+
+    print("\t--------------------------------\n")
+
+
+def fouth():
     print('Frist Player')
     FirstPlayer = input('Specify the Name: ')
     print('\n')
@@ -113,16 +125,109 @@ if __name__ == '__main__':
     print('\n')
 
     curplayer = FirstPlayer
-    playerchoice = {'X':'','O':''}
-    opt = ['X','O']
-    scorebord = {FirstPlayer:0, SecondPlayer: 0}
-    mytictactoe(scorebord)
+    playerchoice = {'X': '', 'O': ''}
+    opt = ['X', 'O']
+    scorebord = {FirstPlayer: 0, SecondPlayer: 0}
+    myscoreboard(scorebord)
+    # Loop for a series of Tic-Tac-Toe game
+    # The loop executes until the players quit
+    while True:
+        # Main Menu for Players
+        print(curplayer, "will make the choice:")
+        print("Press 1 for X")
+        print("Press 2 for O")
+        print("Press 3 to Quit")
+
+        # Try exception for THE_CHOICE input
+        try:
+            the_choice = int(input())
+        except ValueError:
+            print("Invalid Input!!! Try Again\n")
+            continue
+
+            # Conditions for player choice
+        if the_choice == 1:
+            playerchoice['X'] = curplayer
+            if curplayer == FirstPlayer:
+                playerchoice['O'] = SecondPlayer
+            else:
+                playerchoice['O'] = FirstPlayer
+
+        elif the_choice == 2:
+            playerchoice['O'] = curplayer
+            if curplayer == FirstPlayer:
+                playerchoice['X'] = SecondPlayer
+            else:
+                playerchoice['X'] = FirstPlayer
+
+        elif the_choice == 3:
+            print("The Final Scores")
+            myscoreboard(scorebord)
+            break
+
+        else:
+            print("Invalid Selection!! Try Again\n")
+        # Storing the winner in a single game of Tic-Tac-Toe
+        win = singlegame(opt[the_choice - 1])
+
+        # Updation of the scoreboard as per the winner
+        if win != 'D':
+            playerWon = playerchoice[win]
+            scorebord[playerWon] = scorebord[playerWon] + 1
+
+        myscoreboard(scorebord)
+        # Switching player who chooses X or O
+        if curplayer == FirstPlayer:
+            curplayer = SecondPlayer
+        else:
+            curplayer = FirstPlayer
+
 
 # Exercise5
+def reference_lsit(val):
+    return all(a - b == 1 for a, b in zip(val[1:], val))
+
+
+def show(index,ls_value,min_ls):
+    if index and ls_value:
+        for i, y in zip(index, ls_value):
+            print(f'{i}: {y} -> {sum(y)}')
+            min_ls.append(sum(y))
+
+        print(f'min: {min(min_ls)} -> {ls_value[min_ls.index(min(min_ls))]} value {ls_fifth[min_ls.index(min(min_ls))]}')
+    else:
+        print('no matches')
+
+
+ls_fifth = [a[0] for a in itertools.groupby([random.randint(0, 10) for i in range(0, 100)])]
+# ls_fifth = [i for i in range(3, 20)]
+# print(ls_fifth)
+index = []
+ls_value = []
+min_ls = []
+
+
+def fifth(org_list):
+
+    if reference_lsit(org_list[0:10]):
+        index.append(org_list[0])
+        ls_value.append(org_list[0:10])
+    if len(org_list) <= 10:
+        show(index,ls_value,min_ls)
+        return
+    fifth(org_list[1:])
+
+
 # Exercise6
 
+#exer1
 # print(f'power 5^3 = {power(5,3)}')
+#exer2
 # print(f'sum recursion:{second(1,5)}')
 # print(f'{"".join(ls_second)[:-1]} = {second(1,5)}')
+#exer3
 # third(5)
-# print(*ls_third)
+#exer4
+# fouth()
+#exer5
+fifth(ls_fifth)
