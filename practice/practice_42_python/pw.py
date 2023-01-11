@@ -1,8 +1,8 @@
-# Exercise1
 import itertools
 import random
+from datetime import datetime
 
-
+# Exercise1
 def power(arr, c):
     if c == 1:
         return arr
@@ -12,7 +12,6 @@ def power(arr, c):
 
 # Exercise2
 ls_second = []
-
 
 def second(a, b):
     if b <= a:
@@ -219,15 +218,75 @@ def fifth(org_list):
 
 
 # Exercise6
+def high_year(year):
+    if year % 4 == 0:
+        if year % 100 == 0:
+            if year % 400 == 0:
+                return True
+            else:
+                return False
+        else:
+            return True
+    else:
+        return False
+
+
+def sixth(df, mf, yf, ds, ms, ys):
+    month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    res2 = 0
+
+    d1 = datetime.strptime(f'{df}.{mf}.{yf}', "%d.%m.%Y")
+    d2 = datetime.strptime(f'{ds}.{ms}.{ys}', "%d.%m.%Y")
+    res1 = (d2 - d1).days
+
+    if df < month[mf] or ds < month[ms] or df < month[mf] and ds < month[ms]:
+        for i in range(yf,ys+1):
+            if i == yf:
+                if high_year(i):
+                    res2 += month[mf-1] - df + sum(month[mf:]) + 1
+                else:
+                    res2 += month[mf - 1] - df + sum(month[mf:])
+
+            elif i == ys:
+                if high_year(i):
+                    if ms < 2:
+                        res2 += ds
+                    else:
+                        res2 += ds + sum(month[ms - 1:])
+                else:
+                    if ms < 2:
+                        res2 += ds
+                    else:
+                        res2 += ds + sum(month[ms - 1:])
+            else:
+                if high_year(i):
+                    res2 += 366
+                else:
+                    res2 += 365
+    else:
+        print('you are out of range value month')
+
+    print(f'res1: {res1}\n'
+          f'res2: {res2}')
+
+
+
 
 #exer1
-# print(f'power 5^3 = {power(5,3)}')
+print(f'#Exer1\n'
+      f'power 5^3 = {power(5,3)}')
 #exer2
-# print(f'sum recursion:{second(1,5)}')
-# print(f'{"".join(ls_second)[:-1]} = {second(1,5)}')
+print(f'#Exer2\n'
+      f'sum recursion:{second(1,5)}\n'
+      f'{"".join(ls_second)[:-1]} = {second(1,5)}')
 #exer3
-# third(5)
+print('#Exer3')
+third(5)
 #exer4
+print('#Exer4')
 # fouth()
 #exer5
+print('#Exer5')
 fifth(ls_fifth)
+print('#Exer6')
+sixth(3,10,1998,9,1,2010)
