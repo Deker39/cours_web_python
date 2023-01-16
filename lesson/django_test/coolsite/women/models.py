@@ -33,7 +33,6 @@ class Menu(models.Model):
     def __str(self):
         return self.title
 
-
     class Meta:
         verbose_name = 'Menu'
         verbose_name_plural = 'Menu'
@@ -48,7 +47,7 @@ class Category(models.Model):
         return self.name
 
     def get_absolut_url(self):
-        return reverse('category', kwargs={'cat_id': self.pk})
+        return reverse('category', kwargs={'cat_slug': self.slug})
 
     class Meta:
         verbose_name = 'Category'
