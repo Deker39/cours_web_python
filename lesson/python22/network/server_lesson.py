@@ -5,14 +5,16 @@ import time
 sock = socket.socket()
 HOST = '127.0.0.1'
 PORT = 9999
-sock.bind((HOST,PORT))
+sock.bind((HOST, PORT))
 sock.listen()
 clients = []
 nicknames = []
 
+
 def broadcast(message):
 	for client in clients:
 		client.send(message)
+
 
 def handle(client):
 	while True:

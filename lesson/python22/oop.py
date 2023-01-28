@@ -781,7 +781,7 @@ TESTS_FILE_DIRECTORY = 'tests_file'
 
 class Person:
 
-    def __init__(self,login,password):
+    def __init__(self, login, password):
         self._login = login
         self._password = password
 
