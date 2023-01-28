@@ -19,7 +19,8 @@ def receive():
                 sock.send(str([nick, password]).encode('utf-8'))
             elif message == 'REPEATPASS':
                 sock.send(str(input("Enter pass: ")).encode('utf-8'))
-
+            elif message == 'REPEATNICK':
+                sock.send(str(input("Enter nickname: ")).encode('utf-8'))
             else:
                 print(message)
         except:
@@ -36,8 +37,10 @@ def write():
 
 receive_th = threading.Thread(target=receive)
 receive_th.start()
-## TODO СДЕЛАТЬ ТАК ЧТОБЫ ВТОРОЙ ПОТОК ЭЖАЛ ПОКА НЕ ВЫПОЛНЕТЬСЯ ПЕРВЫЙ
+receive_th.join()
+## TODO СДЕЛАТЬ ТАК ЧТОБЫ ВТОРОЙ ПОТОК ЖДАЛ ПОКА НЕ ВЫПОЛНЕТЬСЯ ПЕРВЫЙ
 write_th = threading.Thread(target=write)
 write_th.start()
+
 
 write()
