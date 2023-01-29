@@ -1,7 +1,7 @@
 import socket
 import threading
 import time
-
+from datetime import datetime
 
 nick = input("Enter nickname: ")
 password = input("Enter pass: ")
@@ -23,6 +23,9 @@ def receive():
                 sock.send(str(input("Enter nickname: ")).encode('utf-8'))
             else:
                 print(message)
+            if message == 'OK':
+                write_th = threading.Thread(target=write)
+                write_th.start()
         except:
             print("Error")
             sock.close()
@@ -31,16 +34,18 @@ def receive():
 
 def write():
     while True:
-        message = input('>> ')
-        sock.send(f'{nick}: {message}'.encode('utf-8'))
+        message = input('')
+        date_now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        sock.send(f'[{date_now}] {nick}: {message}'.encode('utf-8'))
+
+        if message == 'q':
+            break
 
 
 receive_th = threading.Thread(target=receive)
 receive_th.start()
-receive_th.join()
 ## TODO СДЕЛАТЬ ТАК ЧТОБЫ ВТОРОЙ ПОТОК ЖДАЛ ПОКА НЕ ВЫПОЛНЕТЬСЯ ПЕРВЫЙ
-write_th = threading.Thread(target=write)
-write_th.start()
-
-
-write()
+# write_th = threading.Thread(target=write)
+# write_th.start()
+# receive()
+# write()

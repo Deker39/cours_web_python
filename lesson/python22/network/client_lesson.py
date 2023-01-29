@@ -9,6 +9,7 @@ HOST = '127.0.0.1'
 PORT = 9999
 sock.connect((HOST,PORT))
 
+
 def receive():
 	while True:
 		try:
@@ -21,6 +22,7 @@ def receive():
 			print("Error")
 			sock.close()
 			break
+
 
 def write():
 	while True:
