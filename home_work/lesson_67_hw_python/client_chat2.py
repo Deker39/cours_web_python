@@ -22,11 +22,11 @@ def receive():
             elif message == 'REPEATNICK':
                 sock.send(str(input("Enter nickname: ")).encode('utf-8'))
             else:
+                if message == 'OK':
+                    write_th = threading.Thread(target=write)
+                    write_th.start()
                 print(message)
-            if message == 'OK':
-                write_th = threading.Thread(target=write)
-                write_th.start()
-                # write()
+
         except:
             print("Error")
             sock.close()
@@ -42,12 +42,5 @@ def write():
         if message == 'q':
             break
 
-
-
 receive_th = threading.Thread(target=receive)
 receive_th.start()
-## TODO СДЕЛАТЬ ТАК ЧТОБЫ ВТОРОЙ ПОТОК ЖДАЛ ПОКА НЕ ВЫПОЛНЕТЬСЯ ПЕРВЫЙ
-# write_th = threading.Thread(target=write)
-# write_th.start()
-# receive()
-# write()

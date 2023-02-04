@@ -23,7 +23,6 @@ def receive():
                 sock.send(str(input("Enter nickname: ")).encode('utf-8'))
             else:
                 print(message)
-            if message == 'OK':
                 write_th = threading.Thread(target=write)
                 write_th.start()
         except:
@@ -44,8 +43,3 @@ def write():
 
 receive_th = threading.Thread(target=receive)
 receive_th.start()
-## TODO СДЕЛАТЬ ТАК ЧТОБЫ ВТОРОЙ ПОТОК ЖДАЛ ПОКА НЕ ВЫПОЛНЕТЬСЯ ПЕРВЫЙ
-# write_th = threading.Thread(target=write)
-# write_th.start()
-# receive()
-# write()
