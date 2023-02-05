@@ -8,16 +8,17 @@ class ServiceToConnectionDatabase:
 
     def __init__(self):
         """Initialize db class variables"""
-        self.__con = sqlite3.connect(ServiceToConnectionDatabase.__DB_LOCATION)
-        self.cur = self.__con.cursor()
+        self._con = sqlite3.connect(ServiceToConnectionDatabase.__DB_LOCATION)
+        self._con.row_factory = lambda cur, row: row[0]
+        self.cur = self._con.cursor()
 
     def __del__(self):
         """close sqlite3 connection"""
-        self.__con.close()
+        self._con.close()
 
     def commit(self):
         """commit changes to database"""
-        self.__con.commit()
+        self._con.commit()
         self.__del__()
 
     def create_table(self):
@@ -25,36 +26,30 @@ class ServiceToConnectionDatabase:
                             (id INTEGER PRIMARY KEY AUTOINCREMENT,
                             nick TEXT,
                             password TEXT,
-                            conn INTEGER,
+                            conn TEXT,
                             addr TEXT)
                          ''')
 
+    def check_table(self):
+        return True if self.cur.execute('''SELECT name FROM sqlite_master WHERE type='table' AND name='clients' ''').fetchone()[0] else False
+
     def insert(self, value: Client):
+        """INSERT INTO mysql_table (column1, column2, …) VALUES (value1, value2, …)"""
         self.cur.execute('''INSERT INTO clients (nick, password, conn, addr) VALUES (?, ?, ?, ?)''',
-                         (value.nick, value.password, value.conn.fileno(), str(value.addr)))
+                         (value.nick, value.password, str(value.conn), str(value.addr)))
         self.commit()
 
-    def update(self, value):
-        self.cur.execute('''UPDATE clients SET nick = ?, password = ?, conn = ?, addr = ? WHERE nick = ?''', value)
+    def update(self, tab_name, col, value, cond, cond_value):
+        """UPDATE table_name SET column1 = value1, column2 = value2...., columnN = valueN WHERE [condition]"""
+        self.cur.execute(f'UPDATE {tab_name} SET {",".join([f"""{c} = "{v}" """ for c, v in zip(col, value)])} WHERE {cond} = "{cond_value}"')
         self.commit()
 
-    def select(self):
-        self.cur.execute('''SELECT * FROM clients''')
+    def select(self, col, tab_name):
+        """SELECT column1, column2, columnN FROM table_name"""
+        self.cur.execute(f'SELECT {col} FROM {tab_name}')
         return self.cur.fetchall()
 
-    def select_where(self, value):
-        self.cur.execute('''SELECT * FROM clients WHERE nick = ? ''', [value])
+    def select_where(self, col, tab_name, cond, cond_value):
+        """SELECT column1, column2, columnN FROM table_name WHERE condition"""
+        self.cur.execute(f'SELECT {col} FROM {tab_name} WHERE {cond} = "{cond_value}" ')
         return self.cur.fetchall()
-
-
-# db = ServiceToConectionDatabase()
-# kek = Client('miya','234', "<socket.socket fd=168, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 9999), raddr=('127.0.0.1', 50076)>", '127.0.0.1')
-#
-# db.insert([kek])
-# db.commit()
-# print(db.select_where
-# (name))
-# if db.select_where(name):
-#     db.update([26, 9, name])
-#     print('update')
-#     db.commit()

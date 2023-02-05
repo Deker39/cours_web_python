@@ -1,5 +1,3 @@
-
-
 class Client:
 
     def __init__(self, nick='', password='', conn=None, addr=None):

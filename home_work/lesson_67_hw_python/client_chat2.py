@@ -25,7 +25,8 @@ def receive():
                 if message == 'OK':
                     write_th = threading.Thread(target=write)
                     write_th.start()
-                print(message)
+                else:
+                    print(message)
 
         except:
             print("Error")

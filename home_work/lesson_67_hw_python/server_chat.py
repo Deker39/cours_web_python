@@ -10,16 +10,15 @@ HOST = '127.0.0.1'
 PORT = 9999
 sock.bind((HOST, PORT))
 sock.listen()
-clients = []
-nicknames = ['alex']
-passwords = ['123']
-list_Clients = [Client('alex', '123'), Client('din', '111')]
-# c = Client()
+list_Clients = []
 db = ServiceToConnectionDatabase()
+if not db.check_table():
+    db.check_table()
 
 
 def check_pass(nick, password):
-    return True if password == ''.join([i.password for i in list_Clients if i.nick == nick]) else False
+    return True if password == ''.join(db.select_where('password', 'clients', 'nick', nick)[0]) else False
+    # return True if password == ''.join([i.password for i in list_Clients if i.nick == nick]) else False
 
 
 def broadcast(message):
@@ -43,13 +42,12 @@ def handle(client):
 
 def connect_client(conn, nick):
     list_Clients.append(c) if nick not in [i.nick for i in list_Clients] else False
-    db.insert(c)
+    db.insert(c) if nick not in db.select('nick', 'clients') else False
     print(f"User {nick} ")
     broadcast(f"{nick} connected!".encode('utf-8'))
     conn.send('You connected to server!'.encode('utf-8'))
     time.sleep(1)
     conn.send('OK'.encode('utf-8'))
-    # [print(i) for i in list_Clients]
     thread1 = threading.Thread(target=handle, args=(conn,))
     thread1.start()
 
@@ -64,27 +62,33 @@ def old_client(conn, nick):
     connect_client(conn, nick)
 
 
-def check_client(nick, password, conn):
-    if nick in [i.nick for i in list_Clients] and nick != '':
+def check_client(conn):
 
-        if check_pass(nick, password):
-            old_client(conn, nick)
+    c.conn.send('NICKNAME'.encode('utf-8'))
+    c.nick, c.password = eval(c.conn.recv(1024).decode('utf-8'))
+
+    if c.nick in db.select('nick', 'clients') and c.nick != '':
+    # if nick in [i.nick for i in list_Clients] and nick != '':
+
+        if check_pass(c.nick, c.password):
+            old_client(conn, c.nick)
         else:
             conn.send('Your password not correct, plc try again'.encode('utf-8'))
             conn.send('REPEATPASS'.encode('utf-8'))
             c.password = conn.recv(1024).decode('utf-8')
+            print(c.password)
 
-            if check_pass(nick, c.password):
-                old_client(conn, nick)
+            if check_pass(c.nick, c.password):
+                old_client(conn, c.nick)
 
-    elif nick == '' or nick == ' ':
+    elif c.nick == '' or c.nick == ' ':
         conn.send('Your nickname is emptiness'.encode('utf-8'))
         conn.send('REPEATNICK'.encode('utf-8'))
         c.nick = conn.recv(1024).decode('utf-8')
-        check_client(nick, password, conn)
+        check_client(conn)
 
     else:
-        new_client(conn, nick)
+        new_client(conn, c.nick)
 
 
 def receive():
@@ -93,16 +97,7 @@ def receive():
         c = Client()
         c.conn, c.addr = sock.accept()
         print(f"Connect with {str(c.addr)}")
-        c.conn.send('NICKNAME'.encode('utf-8'))
-        c.nick, c.password = eval(c.conn.recv(1024).decode('utf-8'))
-        if c.nick in [i.nick for i in list_Clients]:
-            old_cl = [i for i in list_Clients if c.nick == i.nick]
-            old_cl[0].conn, old_cl[0].addr = c.conn, c.addr
-            c.conn, c.addr = old_cl[0].conn, old_cl[0].addr
-            check_client(c.nick, c.password, c.conn)
-        else:
-            check_client(c.nick, c.password, c.conn)
+        check_client(c.conn)
 
 
 receive()
-

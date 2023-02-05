@@ -22,11 +22,13 @@ def receive():
             elif message == 'REPEATNICK':
                 sock.send(str(input("Enter nickname: ")).encode('utf-8'))
             else:
-                print(message)
-                write_th = threading.Thread(target=write)
-                write_th.start()
+                if message == 'OK':
+                    write_th = threading.Thread(target=write)
+                    write_th.start()
+                else:
+                    print(message)
         except:
-            print("Error")
+            print("Bye! Bye!")
             sock.close()
             break
 
@@ -35,10 +37,12 @@ def write():
     while True:
         message = input('')
         date_now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        if message == 'exit':
+            sock.close()
+            break
         sock.send(f'[{date_now}] {nick}: {message}'.encode('utf-8'))
 
-        if message == 'q':
-            break
+
 
 
 receive_th = threading.Thread(target=receive)
