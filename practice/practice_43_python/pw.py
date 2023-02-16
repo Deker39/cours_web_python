@@ -47,7 +47,7 @@ def i_sort(ls):
     mid = len(ls)//2
     l = ls[:mid]
     r = ls[mid:]
-    ls = descending(l).append(ascending(r))
+    return descending(l) + ascending(r)
 
 # Exercise 4
 def merge_sort(ls):
@@ -75,9 +75,10 @@ def merge_sort(ls):
             j += 1
             k += 1
 
-rand_list = rand_list_one = rand_list_two = rand_list_three = rand_list_fourth \
-    = [random.randint(0, 100) for i in range(0, 10)]
-print(f'default list: {rand_list}')
+rand_list_one = [random.randint(0, 100) for q in range(0, 10)]
+rand_list_two = [random.randint(0, 100) for w in range(0, 10)]
+rand_list_three = [random.randint(0, 100) for e in range(0, 10)]
+rand_list_fourth = [random.randint(0, 100) for r in range(0, 10)]
 # Exercise 1
 # bubble_sort(rand_list_one)
 # print(f'bubble sort list: {rand_list_one}')
@@ -85,9 +86,8 @@ print(f'default list: {rand_list}')
 # insertion_sort(rand_list_two)
 # print(f'insertion sort list: {rand_list_two}')
 # Exercise 3
-# i_sort(rand_list_three)
-# print(f'sort the first half of the list in descending order, the second half in ascending order: {rand_list_three}')
+# print(f'sort the first half of the list in descending order, the second half in ascending order: {i_sort(rand_list_three)}')
 # Exercise 4
 # merge_sort(rand_list_fourth)
 # print(f'merge sort list: {rand_list_fourth}')
-print(f'sorted list:{sorted(rand_list)}')
+
