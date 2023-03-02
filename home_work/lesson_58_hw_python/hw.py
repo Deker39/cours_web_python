@@ -105,4 +105,4 @@ while choose != 6:
         print(f'Full: {s.is_full()}')
         choose = menu()
     else:
-        print('Inccorect value')
+        print('Incorrect value')

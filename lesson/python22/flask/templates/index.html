@@ -3,11 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <p>Name: {{ name }}</p>
-    <p>Age: {{ age }}</p>
-    <p>Phone: {{ phone }}</p>
+<body class="bg-slate-400">
+
+{#    <p>Name: {{ name }}</p>#}
+{#    <p>Age: {{ age }}</p>#}
+{#    <p>Phone: {{ phone }}</p>#}
+{#    <p>{{ 2+2 }}</p>#}
+{#    {% set name_n, age_a  = "Alex", 10 %}#}
+{#    <p>{{ name_n }}</p>#}
+{#    <p>{{ age_a }}</p>#}
+{#    {% if age>=18 %}#}
+{#    <p>You are adult</p>#}
+{#    {% elif 0<=age<18 %}#}
+{#    <p>You are not adult</p>#}
+{#    {% endif %}#}
+{#    <p>Address: {{ 'Yes' if addr else "No" }}</p>#}
+{#    {% set users = ["alex", "den", "jhon"] %}#}
+{#    <table>#}
+{#        <thead>#}
+{#        <tr>#}
+{#            <th>ID</th>#}
+{#            <th>Name</th>#}
+{#        </tr>#}
+{#        </thead>#}
+{#        <tbody>#}
+{#        {% for  user in users %}#}
+{#        <tr>#}
+{#            <td>{{ loop.revinde }}</td>#}
+{#            <td>{{ user }}</td>#}
+{#        </tr>#}
+{#         {% endfor %}#}
+{#        </tbody>#}
+{#    </table>#}
+
+<div class="flex h-screen justify-end">
+    <aside class="w-4/12 my-6 mr-6 overflow-auto">
+        {% for person in persons %}
+        <div class="grid grid-cols-2 p-5 gap-4 grid-rows-4 bg-slate-200 rounded-2xl mb-2">
+            <div class="flex items-center justify-center bg-slate-300 rounded-2xl">
+                {{ person.name }}
+            </div>
+            <div class="row-span-2 flex items-center justify-center">
+                <img class="rounded-full w-48 h-48" src="{{ person.img }}" alt="image">
+            </div>
+            <div class="flex items-center justify-center bg-slate-300 rounded-2xl">
+                {{ person.sname }}
+            </div>
+              <div class="flex items-center justify-center bg-slate-300 rounded-2xl">
+                {{ person.addr }}
+            </div>
+            <div class="pl-2 row-span-2 justify-center bg-slate-300 rounded-2xl">
+                {{ person.comm }}
+            </div>
+             <div class="flex items-center justify-center bg-slate-300 rounded-2xl">
+                {{ person.phone }}
+            </div>
+        </div>
+        {% endfor %}
+    </aside>
+
+</div>
+
+
+
+
 
 </body>
 </html>
