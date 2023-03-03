@@ -53,32 +53,15 @@ class Database:
     def insert(self, table_name, columns, values):
         query = f"INSERT INTO {table_name} ({columns}) VALUES ({values})"
         self.execute(query)
-        # self.cursor.execute(query)
-        # self.conn.commit()
-        # self.disconnect()
 
     def update(self, table_name, set_values, condition=""):
         query = f"UPDATE {table_name} SET {set_values}"
         if condition:
             query += f" WHERE {condition}"
         self.execute(query)
-        # self.cursor.execute(query)
-        # self.conn.commit()
-        # self.disconnect()
 
     def delete(self, table_name, condition=""):
         query = f"DELETE FROM {table_name}"
         if condition:
             query += f" WHERE {condition}"
         self.execute(query)
-        # self.cursor.execute(query)
-        # self.conn.commit()
-        # self.disconnect()
-
-
-# db  = Database()
-# name_note = 'kek'
-# note = '123'
-# db.insert('notebook.note', NOTE_COLUMNS, "'{}', '{}', '{}', '{}', '{}'".
-#           format(name_note, note, db.select('notebook.user', 'id', f'login = "{login}"'),
-#                  datetime.datetime.now().strftime("%d-%m-%Y %H:%M"), ''))
