@@ -24,13 +24,15 @@ DROP TABLE IF EXISTS `note`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `note` (
   `id` int NOT NULL AUTO_INCREMENT,
+  `name_note` varchar(255) DEFAULT NULL,
   `notes` varchar(255) DEFAULT NULL,
   `user_id` int DEFAULT NULL,
-  `date_creat` datetime DEFAULT NULL,
+  `date_creat` date DEFAULT NULL,
+  `data_edit` date DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `note_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,6 +41,7 @@ CREATE TABLE `note` (
 
 LOCK TABLES `note` WRITE;
 /*!40000 ALTER TABLE `note` DISABLE KEYS */;
+INSERT INTO `note` VALUES (2,'note3','1234',5,'2002-03-20','2023-03-03'),(3,'note4','qwe',5,'2002-03-20','2002-03-20'),(6,'note1','asd',5,'2023-03-03','2003-03-20'),(7,'note2','zxc',5,'2023-03-03','2023-03-03'),(8,'note5','yui',5,'2023-04-03','2023-04-03'),(9,'note1','lkj',7,'2023-04-03','2023-04-03');
 /*!40000 ALTER TABLE `note` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -55,7 +58,7 @@ CREATE TABLE `user` (
   `password` varchar(255) NOT NULL,
   `user_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,7 +67,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'alexx','123','alex'),(5,'alexx','123','alex');
+INSERT INTO `user` VALUES (5,'alex','123','deker'),(7,'mariya','111','mariyka');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -77,4 +80,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-28 22:27:10
+-- Dump completed on 2023-03-04 13:21:15
