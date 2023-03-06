@@ -26,12 +26,26 @@ def output_notes(func):
     def wrapper(*args, **kwargs):
         user_name, notes = func(*args, **kwargs)
         print('There is no data') if not notes \
-            else [print(f'{note[0]}:\n'
-                        f'\t{note[1]}\n'
-                        f'created: {note[2].strftime(time_format)}\n',
-                        f'edited: {note[3].strftime(time_format)}\n' if note[2] != note[3] else ''
-                        ) for note in notes]
+            else print(f'Name: {user_name}'), \
+            [print(f'{note[0]}:\n'
+                   f'\t{note[1]}\n'
+                   f'created: {note[2].strftime(time_format)}\n',
+                   f'edited: {note[3].strftime(time_format)}\n' if note[2] != note[3] else ''
+                   ) for note in notes]
+        return func
+    return wrapper
 
+
+def notes_output_decorator(func):
+    def wrapper(user_name, notes):
+        print('There is no data') if not notes \
+            else print(f'Name: {user_name}'), \
+            [print(f'{note[0]}:\n'
+                   f'\t{note[1]}\n'
+                   f'created: {note[2].strftime(time_format)}\n',
+                   f'edited: {note[3].strftime(time_format)}\n' if note[2] != note[3] else ''
+                   ) for note in notes]
+        return func(user_name, notes)
     return wrapper
 
 

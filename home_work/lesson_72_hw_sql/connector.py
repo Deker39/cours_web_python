@@ -31,7 +31,6 @@ class Database:
 
     def fetchall(self, query, params=None):
         self.connect()
-        print(query)
         self.cursor.execute(query, params)
         result = self.cursor.fetchall()
         self.disconnect()
