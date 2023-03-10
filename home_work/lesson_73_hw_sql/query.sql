@@ -122,3 +122,72 @@ SELECT academy.audience.number, count(academy.lectures.subjectId)  as lectures, 
 join academy.audience on academy.audience.id = academy.lectures.audienceId
 join academy.teachers on academy.teachers.id = academy.lectures.teacherId
 group by academy.audience.number
+
+
+-- Query 2.1
+SELECT departments.building FROM academy.departments
+where academy.departments.financing > 100
+-- Query 2.2
+SELECT academy.groups.name FROM academy.groups_lectures
+join academy.groups on academy.groups.id = academy.groups_lectures.groupId
+join academy.departments on academy.groups.departmentId = academy.departments.id
+join academy.lectures on academy.groups_lectures.lectureId = academy.lectures.id
+where academy.groups.year = 5 and academy.departments.name = 'Software Development' and 
+academy.lectures.date between '2023-03-03' and '2023-03-12'
+-- Query 2.3
+SELECT academy.groups.name, avg(academy.students.rating) as avg_rating FROM academy.groups_students
+join academy.groups on academy.groups.id = academy.groups_students.groupId
+join academy.students on academy.students.id = academy.groups_students.studentId group by academy.groups.name
+-- Query 2.4
+SELECT * FROM academy.teachers
+where academy.teachers.salary > (select avg(academy.teachers.salary) from academy.teachers)
+-- Query 2.5
+SELECT academy.groups.name FROM academy.groups_curators
+join academy.groups on academy.groups_curators.groupId = academy.groups.id
+group by academy.groups.name having count(*) > 1
+-- Query 2.6
+SELECT academy.groups.name FROM academy.groups_students
+join academy.groups on academy.groups.id = academy.groups_students.groupId
+join academy.students on academy.students.id = academy.groups_students.studentId 
+group by academy.groups.name 
+having avg(academy.students.rating) < (
+select avg(academy.students.rating) FROM academy.groups_students 
+join academy.students on academy.students.id = academy.groups_students.studentId 
+join academy.groups on academy.groups.id = academy.groups_students.groupId 
+where academy.groups.year > 4)
+-- Query 2.7
+SELECT academy.faculties.name FROM academy.departments
+join academy.faculties on academy.faculties.id = academy.departments.facultyId
+group by academy.faculties.name
+having sum(academy.departments.financing) > (
+select sum(academy.departments.financing) from academy.departments
+join academy.faculties on academy.faculties.id = academy.departments.facultyId
+where academy.faculties.name = 'Computer Science')
+-- Query 2.8
+SELECT concat(academy.teachers.name, ' ', academy.teachers.surname) as fullname,count(academy.lectures.id) as count FROM academy.lectures
+join academy.subjects on academy.subjects.id = academy.lectures.subjectId
+join academy.teachers on academy.teachers.id = academy.lectures.teacherId
+group by fullname
+having count(*) = (select max(c) from (
+SELECT academy.lectures.teacherId ,count(*) as c FROM academy.lectures
+group by  academy.lectures.teacherId
+) as t)
+-- Query 2.9
+select academy.subjects.name, count(academy.lectures.subjectId) as count from academy.lectures
+join academy.subjects on academy.subjects.id = academy.lectures.subjectId
+group by academy.subjects.name
+having count(*) = (
+SELECT min(c) FROM (
+select academy.lectures.subjectId, count(*) as c from academy.lectures
+group by academy.lectures.subjectId) t
+)
+-- Query 2.10
+SELECT count(academy.lectures.id) as lecture_count, count(academy.students.id) as student_count  FROM academy.groups_lectures
+join academy.groups on academy.groups.id = academy.groups_lectures.groupId
+join academy.departments on academy.departments.id = academy.groups.departmentId
+join academy.groups_students on academy.groups_students.groupId = academy.groups.id
+join academy.students on academy.groups_students.studentId = academy.students.id
+join academy.lectures on academy.lectures.id = academy.groups_lectures.lectureId
+join academy.subjects on academy.subjects.id = academy.lectures.subjectId
+join academy.teachers on academy.teachers.id = academy.lectures.teacherId
+where academy.departments.name = 'Software Development'

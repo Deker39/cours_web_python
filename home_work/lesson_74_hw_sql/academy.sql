@@ -82,7 +82,7 @@ CREATE TABLE `departments` (
   KEY `departments_ibfk_1_idx` (`facultyId`),
   CONSTRAINT `departments_ibfk_1` FOREIGN KEY (`facultyId`) REFERENCES `faculties` (`id`),
   CONSTRAINT `departments_chk_1` CHECK ((`building` between 1 and 5))
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -91,7 +91,7 @@ CREATE TABLE `departments` (
 
 LOCK TABLES `departments` WRITE;
 /*!40000 ALTER TABLE `departments` DISABLE KEYS */;
-INSERT INTO `departments` VALUES (1,1,100.50,'Software Development',1),(2,2,50.00,'Electrician Development',2);
+INSERT INTO `departments` VALUES (1,1,100.50,'Software Development',1),(2,2,50.00,'Electrician Development',2),(3,2,200.00,'Languages ',4);
 /*!40000 ALTER TABLE `departments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -137,7 +137,7 @@ CREATE TABLE `groups` (
   KEY `departmentId` (`departmentId`),
   CONSTRAINT `groups_ibfk_1` FOREIGN KEY (`departmentId`) REFERENCES `departments` (`id`),
   CONSTRAINT `groups_chk_1` CHECK ((`year` between 1 and 5))
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -146,7 +146,7 @@ CREATE TABLE `groups` (
 
 LOCK TABLES `groups` WRITE;
 /*!40000 ALTER TABLE `groups` DISABLE KEYS */;
-INSERT INTO `groups` VALUES (1,'281',2,1),(2,'462',4,2),(3,'331',1,1);
+INSERT INTO `groups` VALUES (1,'281',2,1),(2,'462',4,2),(3,'331',1,1),(4,'522',5,1);
 /*!40000 ALTER TABLE `groups` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -166,7 +166,7 @@ CREATE TABLE `groups_curators` (
   KEY `groupId` (`groupId`),
   CONSTRAINT `groups_curators_ibfk_1` FOREIGN KEY (`curatorId`) REFERENCES `curators` (`id`),
   CONSTRAINT `groups_curators_ibfk_2` FOREIGN KEY (`groupId`) REFERENCES `groups` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -175,7 +175,7 @@ CREATE TABLE `groups_curators` (
 
 LOCK TABLES `groups_curators` WRITE;
 /*!40000 ALTER TABLE `groups_curators` DISABLE KEYS */;
-INSERT INTO `groups_curators` VALUES (1,1,1),(2,1,2);
+INSERT INTO `groups_curators` VALUES (1,1,1),(2,1,2),(3,2,3),(4,2,4),(5,1,4);
 /*!40000 ALTER TABLE `groups_curators` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -195,7 +195,7 @@ CREATE TABLE `groups_lectures` (
   KEY `lectureId` (`lectureId`),
   CONSTRAINT `groups_lectures_ibfk_1` FOREIGN KEY (`groupId`) REFERENCES `groups` (`id`),
   CONSTRAINT `groups_lectures_ibfk_2` FOREIGN KEY (`lectureId`) REFERENCES `lectures` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -204,7 +204,7 @@ CREATE TABLE `groups_lectures` (
 
 LOCK TABLES `groups_lectures` WRITE;
 /*!40000 ALTER TABLE `groups_lectures` DISABLE KEYS */;
-INSERT INTO `groups_lectures` VALUES (1,1,1),(2,1,2),(3,2,3),(4,3,4);
+INSERT INTO `groups_lectures` VALUES (1,1,1),(2,1,2),(3,2,3),(4,3,4),(5,4,5),(6,4,6);
 /*!40000 ALTER TABLE `groups_lectures` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -224,7 +224,7 @@ CREATE TABLE `groups_students` (
   KEY `studentId` (`studentId`),
   CONSTRAINT `groups_students_ibfk_1` FOREIGN KEY (`groupId`) REFERENCES `groups` (`id`),
   CONSTRAINT `groups_students_ibfk_2` FOREIGN KEY (`studentId`) REFERENCES `students` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -233,7 +233,7 @@ CREATE TABLE `groups_students` (
 
 LOCK TABLES `groups_students` WRITE;
 /*!40000 ALTER TABLE `groups_students` DISABLE KEYS */;
-INSERT INTO `groups_students` VALUES (1,1,1),(2,1,2),(3,2,3),(4,2,4),(5,3,5);
+INSERT INTO `groups_students` VALUES (1,1,1),(2,1,2),(3,2,3),(4,2,4),(5,3,5),(6,4,6),(7,4,7);
 /*!40000 ALTER TABLE `groups_students` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -256,7 +256,7 @@ CREATE TABLE `lectures` (
   KEY `audienceId` (`audienceId`),
   CONSTRAINT `lectures_ibfk_1` FOREIGN KEY (`subjectId`) REFERENCES `subjects` (`id`),
   CONSTRAINT `lectures_ibfk_2` FOREIGN KEY (`teacherId`) REFERENCES `teachers` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -265,7 +265,7 @@ CREATE TABLE `lectures` (
 
 LOCK TABLES `lectures` WRITE;
 /*!40000 ALTER TABLE `lectures` DISABLE KEYS */;
-INSERT INTO `lectures` VALUES (1,'2023-03-03',1,1,1),(2,'2023-03-03',2,2,1),(3,'2023-03-02',1,3,2),(4,'2023-02-04',3,1,3);
+INSERT INTO `lectures` VALUES (1,'2023-03-03',1,1,1),(2,'2023-03-03',2,2,1),(3,'2023-03-02',1,3,2),(4,'2023-02-04',3,1,3),(5,'2023-03-08',4,1,3),(6,'2023-03-07',1,3,2);
 /*!40000 ALTER TABLE `lectures` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -283,7 +283,7 @@ CREATE TABLE `students` (
   `surname` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `students_chk_1` CHECK ((`rating` between 1 and 5))
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -292,7 +292,7 @@ CREATE TABLE `students` (
 
 LOCK TABLES `students` WRITE;
 /*!40000 ALTER TABLE `students` DISABLE KEYS */;
-INSERT INTO `students` VALUES (1,'Alex',4,'Kinth'),(2,'Mariya',3,'Kenzi'),(3,'Deker',1,'Smoth'),(4,'Ben',5,'Almond'),(5,'Kevin',2,'Mobius');
+INSERT INTO `students` VALUES (1,'Alex',4,'Kinth'),(2,'Mariya',3,'Kenzi'),(3,'Deker',1,'Smoth'),(4,'Ben',5,'Almond'),(5,'Kevin',2,'Mobius'),(6,'Ide',1,'Morzi'),(7,'Dinkan',4,'Rob');
 /*!40000 ALTER TABLE `students` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -357,4 +357,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-06 22:17:49
+-- Dump completed on 2023-03-10 22:22:17

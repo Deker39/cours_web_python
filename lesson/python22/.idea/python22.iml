@@ -9,11 +9,18 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="lesson_65_hw_python" />
   </component>
+  <component name="PyNamespacePackagesService">
+    <option name="namespacePackageFolders">
+      <list>
+        <option value="$MODULE_DIR$/flask_example/templates" />
+      </list>
+    </option>
+  </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Jinja2" />
     <option name="TEMPLATE_FOLDERS">
       <list>
-        <option value="$MODULE_DIR$/flask/templates" />
+        <option value="$MODULE_DIR$/flask_example/templates" />
       </list>
     </option>
   </component>

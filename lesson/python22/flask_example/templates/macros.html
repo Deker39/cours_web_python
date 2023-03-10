@@ -1,0 +1,42 @@
+{# macro NAME(params...) #}
+{# code... #}
+{# endmacro #}
+
+{% macro render_list(ls) %}
+    {% for person in ls %}
+        <div class="grid grid-cols-2 p-5 gap-4 grid-rows-4 bg-slate-200 rounded-2xl mb-2">
+            <div class="flex items-center justify-center bg-slate-300 rounded-2xl">
+                {{ person.name }}
+            </div>
+            <div class="row-span-2 flex items-center justify-center">
+                <img class="rounded-full w-48 h-48" src="{{ person.img }}" alt="image">
+            </div>
+            <div class="flex items-center justify-center bg-slate-300 rounded-2xl">
+                {{ person.sname }}
+            </div>
+              <div class="flex items-center justify-center bg-slate-300 rounded-2xl">
+                {{ person.addr }}
+            </div>
+            <div class="pl-2 row-span-2 justify-center bg-slate-300 rounded-2xl">
+                {{ person.comm }}
+            </div>
+             <div class="flex items-center justify-center bg-slate-300 rounded-2xl">
+                {{ person.phone }}
+            </div>
+        </div>
+        {% else %}
+            <p>Person not found</p>
+        {% endfor %}
+
+{% endmacro %}
+
+
+{# args -varargs #}
+{# kwargs - lwargs #}
+{% macro render_test(some) %}
+    <h1>{{ some }}</h1>
+      <h1>varargs {{ varargs }}</h1>
+      <h1>lwargs {{ kwargs }}</h1>
+{#    <h1>1243</h1>#}
+
+{% endmacro %}

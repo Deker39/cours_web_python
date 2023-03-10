@@ -1,0 +1,66 @@
+{#{% import "macros.html" as macro %}#}
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>Title</title>#}
+{#     <script src="https://cdn.tailwindcss.com"></script>#}
+{#</head>#}
+{#<body class="bg-slate-400">#}
+
+{#    <p>Name: {{ name }}</p>#}
+{#    <p>Age: {{ age }}</p>#}
+{#    <p>Phone: {{ phone }}</p>#}
+{#    <p>{{ 2+2 }}</p>#}
+{#    {% set name_n, age_a  = "Alex", 10 %}#}
+{#    <p>{{ name_n }}</p>#}
+{#    <p>{{ age_a }}</p>#}
+{#    {% if age>=18 %}#}
+{#    <p>You are adult</p>#}
+{#    {% elif 0<=age<18 %}#}
+{#    <p>You are not adult</p>#}
+{#    {% endif %}#}
+{#    <p>Address: {{ 'Yes' if addr else "No" }}</p>#}
+{#    {% set users = ["alex", "den", "jhon"] %}#}
+{#    <table>#}
+{#        <thead>#}
+{#        <tr>#}
+{#            <th>ID</th>#}
+{#            <th>Name</th>#}
+{#        </tr>#}
+{#        </thead>#}
+{#        <tbody>#}
+{#        {% for  user in users %}#}
+{#        <tr>#}
+{#            <td>{{ loop.revinde }}</td>#}
+{#            <td>{{ user }}</td>#}
+{#        </tr>#}
+{#         {% endfor %}#}
+{#        </tbody>#}
+{#    </table>#}
+
+{#<div class="flex h-screen justify-end">#}
+{#    <aside class="w-4/12 my-6 mr-6 overflow-auto">#}
+{#            {{ macro.render_list(persons) }}#}
+{#        {{ macro.render_test("some", "content", name="value", age=12) }}#}
+{##}
+{#    </aside>#}
+{##}
+{#</div>#}
+{# {% include "nav.html" %}#}
+{##}
+{##}
+{##}
+{##}
+{#</body>#}
+{#</html>#}
+
+{% extends "base.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block content %}
+    Index Content
+{% endblock %}
