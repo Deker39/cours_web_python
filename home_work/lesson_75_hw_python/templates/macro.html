@@ -1,0 +1,107 @@
+{% macro fact(context) %}
+    <h1 class="py-2">{{ context.title| upper }}</h1>
+    <div class="row ">
+        {% for item in context.content %}
+            <div class="col d-flex align-items-center">
+                <p class="m-0 p-3 fs-5">{{ item[0]|title }}</p>
+            </div>
+            <div class="col d-flex align-items-center justify-content-center">
+                <img class="p-3" src="{{ item[1] }}" alt="{{ item[0] }}">
+            </div>
+
+        {% endfor %}
+    </div>
+{% endmacro %}
+
+{% macro news(context) %}
+        <h1 class="py-2">{{ context.title| upper }}</h1>
+        <div class="row">
+            {% for item in context.content %}
+                <div class="col-12 d-flex align-items-center">
+                    <p class="m-0 p-3 fs-4">{{ item[0] }}</p>
+                </div>
+
+            {% endfor %}
+        </div>
+{% endmacro %}
+
+{% macro contacts(context) %}
+        <h1 class="py-2">{{ context.title| upper }}</h1>
+    <div class="row row-cols-2">
+        {% for item in context.content %}
+            <div class="col d-flex align-items-center">
+                <p class="m-0 p-3 fs-4">{{ item[0]|title }}</p>
+            </div>
+            <div class="col d-flex align-items-center">
+                 <p class="m-0 p-3 fs-5">Tel: {{ item[1] }}</p>
+            </div>
+
+        {% endfor %}
+    </div>
+{% endmacro %}
+
+{% macro management(context) %}
+        <h1 class="py-2">{{ context.title| upper }}</h1>
+    <div class="row row-cols-2">
+        {% for item in context.content.items() %}
+            <div class="col border d-flex align-items-center">
+                <h5>{{ item[0]|title }}:</h5>
+            </div>
+            <div class="col border d-flex align-items-center justify-content-center">
+                {% if 'https://' in item[1] %}
+                    <img class="p-3" src="{{ item[1] }}" alt="{{ item[0] }}">
+                {% else %}
+                    <p class="m-0 p-3 fs-3">{{ item[1] }}</p>
+                {% endif %}
+
+            </div>
+
+        {% endfor %}
+    </div>
+{% endmacro %}
+
+{% macro history(context) %}
+        <h1 class="py-2">{{ context.title| upper }}</h1>
+    <div class="row row-cols-2">
+        <div class="col">
+             <p>{{ context.content }}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6 d-flex justify-content-center">
+            <div class="card " style="width: 18rem;">
+                  <img class="card-img-top" style="height: 10rem;" src="https://planetofhotels.com/guide/sites/default/files/styles/paragraph__live_banner__lb_image__1880bp/public/live_banner/odessa_0.jpg" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">Photos of Odessa</h5>
+                    <p class="card-text">Go to the page with a photo of your city.</p>
+                    <a href="#" class="btn btn-primary ">Link</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 d-flex justify-content-center">
+            <div class="card" style="width: 18rem;">
+                  <img class="card-img-top" style="height: 10rem;" src="https://www.forumdaily.com/wp-content/uploads/2016/08/Depositphotos_48620083_m-2015.jpg" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">Odessa people</h5>
+                    <p class="card-text">Go to the page with famous people in your city.</p>
+                    <a href="#" class="btn btn-primary ">Link</a>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+{% endmacro %}
+
+{% macro people(context) %}
+        <h1 class="py-2">{{ context.title| upper }}</h1>
+    <div class="row row-cols-2">
+        <p>{{ context.content }}</p>
+    </div>
+{% endmacro %}
+
+{% macro photo(context) %}
+        <h1 class="py-2">{{ context.title| upper }}</h1>
+    <div class="row row-cols-2">
+        <p>{{ context.content }}</p>
+    </div>
+{% endmacro %}

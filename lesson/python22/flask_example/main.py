@@ -88,7 +88,7 @@ def users():
 #     return "NOT FOUND YES\n" + str(error)
 
 
-# app.add_url_rule('/','index', index)
+app.add_url_rule('/','index', index)
 
 
 if __name__ == '__main__':

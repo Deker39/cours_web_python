@@ -1,22 +1,6 @@
 {% extends "base.html" %}
+{% import "macro.html" as macro %}
 
 {% block content %}
-    <h1 class="py-2">{{ context.title| upper }}</h1>
-    <div class="row row-cols-2">
-        {% for item in context.content.items() %}
-            <div class="col border d-flex align-items-center">
-                <h5>{{ item[0]|title }}:</h5>
-            </div>
-            <div class="col border d-flex align-items-center justify-content-center">
-                {% if 'https://' in item[1] %}
-                    <img class="p-3" src="{{ item[1] }}" alt="{{ item[0] }}">
-                {% else %}
-                    <p class="m-0 p-3 fs-3">{{ item[1] }}</p>
-                {% endif %}
-
-            </div>
-
-        {% endfor %}
-    </div>
-
+    {{  macro.management(context) }}
 {% endblock %}

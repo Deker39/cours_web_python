@@ -1,12 +1,13 @@
 import flask
 import requests
 from bs4 import BeautifulSoup
+from flask import redirect, url_for
 
 app = flask.Flask(__name__)
 
 # main, new city, City management, fact about city, contacts: tel city service
 
-MENU_TITLE = ['main', 'news', 'management', 'facts', 'contacts']
+MENU_TITLE = ['main', 'news', 'management', 'facts', 'contacts', 'history']
 CONTENT_NEWS = []
 news_url = 'https://dumskaya.net/'
 news_request = requests.get(news_url)
@@ -14,14 +15,13 @@ news_text = BeautifulSoup(news_request.text, "lxml")
 
 [CONTENT_NEWS.append(news_text.find('tr', {'id': f'newstr{i}'}).text.split(" ,")) for i in range(1, 11)]
 
-print(CONTENT_NEWS)
-CONTENT_LEADERSHIP = {
+CONTENT_MANAGEMENT = {
     'mayor': 'Gennadiy Trukhanov',
     'flag': 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Flag_of_Odessa.svg/150px-Flag_of_Odessa.svg.png',
     'coat of arms': 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Coat_of_Arms_of_Odessa.svg/135px'
                     '-Coat_of_Arms_of_Odessa.svg.png',
     'logo': 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Odessa_logo.svg/105px-Odessa_logo.svg.png'
-                    }
+}
 CONTENT_CONTACTS = [
     ['Fire department', '101'],
     ['Police', '102'],
@@ -69,16 +69,32 @@ CONTENT_FACTS = [
      'to Lenin, which was to be dismantled in the framework of decommunization. Lenin was not demolished, '
      'suddenly someone else would come in handy – the Vader sculpture was “put on” by him.',
      'https://ek.stripocdn.email/content/guids/CABINET_24d49a97b4fb43d3a57b4cbe5c638a3a/images/75261583496479792.jpg']
-                    ]
+]
 
 
 @app.route('/')
 @app.route('/main')
 def main():
     context = {
-        'title': 'main',
-        'menu': MENU_TITLE
-
+        'menu': MENU_TITLE,
+        'context': [
+            {
+                'title': 'facts',
+                'content': CONTENT_FACTS
+            },
+            {
+                'title': 'news',
+                'content': CONTENT_NEWS
+            },
+            {
+                'title': 'management',
+                'content': CONTENT_MANAGEMENT
+            },
+            {
+                'title': 'contacts',
+                'content': CONTENT_CONTACTS
+            }
+        ]
     }
     return flask.render_template('main.html', context=context)
 
@@ -93,14 +109,24 @@ def news():
     return flask.render_template('news.html', context=context)
 
 
+@app.route('/news/<any>')
+def new_news(any):
+    return news()
+
+
 @app.route('/management')
-def leadership():
+def management():
     context = {
         'title': 'management',
         'menu': MENU_TITLE,
-        'content': CONTENT_LEADERSHIP
+        'content': CONTENT_MANAGEMENT
     }
     return flask.render_template('management.html', context=context)
+
+
+@app.route('/management/<any>')
+def new_management(any):
+    return management()
 
 
 @app.route('/facts')
@@ -113,6 +139,11 @@ def fact():
     return flask.render_template('fact.html', context=context)
 
 
+@app.route('/facts/<any>')
+def new_fact(any):
+    return fact()
+
+
 @app.route('/contacts')
 def contacts():
     context = {
@@ -122,6 +153,48 @@ def contacts():
     }
     return flask.render_template('contacts.html', context=context)
 
+
+@app.route('/contacts/<any>')
+def new_contacts(any):
+    return contacts()
+
+
+@app.route('/history')
+def history():
+    context = {
+        'title': 'history',
+        'menu': MENU_TITLE,
+        'content': 'history'
+    }
+    return flask.render_template('history.html', context=context)
+
+
+@app.route('/history/people')
+def people():
+    context = {
+        'title': 'people',
+        'menu': MENU_TITLE,
+        'content': 'people'
+    }
+    return flask.render_template('people.html', context=context)
+
+
+@app.route('/history/photo')
+def photos():
+    context = {
+        'title': 'photo',
+        'menu': MENU_TITLE,
+        'content': 'photos'
+    }
+    return flask.render_template('photos.html', context=context)
+
+
+
+
+# @app.errorhandler(404)
+# def page_not_found(e):
+#     print(app)
+#     return redirect(url_for('news'))
 
 if __name__ == "__main__":
     app.run(debug=True)

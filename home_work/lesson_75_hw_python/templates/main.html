@@ -1,1 +1,24 @@
 {% extends "base.html" %}
+{% import "macro.html" as macro %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-6">
+            {{  macro.news(context.context[1]) }}
+        </div>
+        <div class="col-6">
+            {{  macro.management(context.context[2]) }}
+        </div>
+    </div>
+    <div class="row ">
+        <div class="col">
+            {{  macro.contacts(context.context[3]) }}
+        </div>
+     </div>
+    <div class="row ">
+        <div class="col">
+            {{  macro.fact(context.context[0]) }}
+        </div>
+    </div>
+
+{% endblock %}
