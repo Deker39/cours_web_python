@@ -1,7 +1,9 @@
+import re
+
 import flask
 import requests
 from bs4 import BeautifulSoup
-from flask import redirect, url_for
+from flask import redirect, url_for, request
 
 app = flask.Flask(__name__)
 
@@ -70,6 +72,90 @@ CONTENT_FACTS = [
      'suddenly someone else would come in handy – the Vader sculpture was “put on” by him.',
      'https://ek.stripocdn.email/content/guids/CABINET_24d49a97b4fb43d3a57b4cbe5c638a3a/images/75261583496479792.jpg']
 ]
+CONTENT_HISTORY = 'Odesa, also spelled Odessa, seaport, southwestern Ukraine. It stands on a shallow indentation of the' \
+                  'Black Sea coast at a point approximately 19 miles (31 km) north of the Dniester River estuary and ' \
+                  'about 275 miles (443 km) south of Kyiv.' \
+                  'Although a settlement existed on the site in ancient times, the history of the modern city began ' \
+                  'in the 14th century when the Tatar fortress of Khadzhibey was established there; it later passed ' \
+                  'to Lithuania-Poland and in 1480 to Turkey. The fortress was stormed by the Russians in 1789 and ' \
+                  'the territory ceded to Russia in 1792. A new fortress was built in 1792–93, and in 1794 a naval ' \
+                  'base and commercial quay were added. In 1795 the new port was named Odesa for the ancient Greek ' \
+                  'colony of Odessos, the site of which was believed to be in the vicinity.'
+CONTENT_PEOPLE = [
+    {
+        'name': 'Yakov Smirnoff',
+        'description': 'Yakov Smirnoff was born on January 24, 1951 in Odessa, Ukrainian SSR, USSR [now Ukraine]. He '
+                       'is an actor and writer, known for Ночной суд (1984), Приключения Бак...',
+        'photo': 'https://m.media-amazon.com/images/M'
+                 '/MV5BMWRmNmZkNjgtYzEwMC00NjYyLTkzOTYtYzQ3ZjZiYWJmNGQ0XkEyXkFqcGdeQXVyMzA5NTMzNA@@._V1_UX140_CR0,0,'
+                 '140,209_AL_.jpg'
+    },
+    {
+        'name': 'Natasha Yarovenko',
+        'description': 'Natasha Yarovenko was born on July 23, 1979 in Odessa, Ukrainian SSR, USSR [now Ukraine]. She '
+                       'is an actress, known for Комната в Риме (2010), Афтершок (2012) and Дн&...',
+        'photo': 'https://m.media-amazon.com/images/M/MV5BMzU5MTEwMTQyNV5BMl5BanBnXkFtZTcwNzU2Nzg0NA@@._V1_UY209_CR7,'
+                 '0,140,209_AL_.jpg'
+    },
+    {
+        'name': 'Natasha Blasick',
+        'description': 'Natasha Blasick was born in the city of Odessa, Ukraine on the Black Sea. Her first languages '
+                       'are Russian and Ukrainian. She grew up in a Soviet-style apartment that housed two families. '
+                       'She made her debut as a lead actress in the film Death of Evil (2009). She is the older '
+                       'daughter of Sergei and ...',
+        'photo': 'https://m.media-amazon.com/images/M'
+                 '/MV5BYjRiYzA5NDAtYjQwZC00YTUzLWIxM2EtMGU4YTA4MzA1ZDcyXkEyXkFqcGdeQXVyMTUwNDA5ODE@._V1_UX140_CR0,0,'
+                 '140,209_AL_.jpg'
+    },
+    {
+        'name': ' Lucian Pintilie',
+        'description': 'Lucian Pintilie was born on November 9, 1933 in Tarutino, Bessarabia, Romania [now Tarutyne, '
+                       'Odessa Oblast, Ukraine]. He was a director and writer, known for Конечная остановка - ра&...',
+        'photo': 'https://m.media-amazon.com/images/M'
+                 '/MV5BMDBiNmViYzEtOTI3Ni00ZDUxLWE1NWItNDg5YzNhNDgzZTA4XkEyXkFqcGdeQXVyMTc4MzI2NQ@@._V1_UY209_CR126,'
+                 '0,140,209_AL_.jpg'
+    },
+    {
+        'name': ' Val Chmerkovskiy',
+        'description': 'Valentin Chmerkovskiy is a Ukrainian-born professional dancer, author and television '
+                       'personality. A 14-time US National Champion and two-time World Dance Champion, Val rose to '
+                       'stardom as a fan-favorite professional and eventual two-time winner of the hit series Dancing '
+                       'with the Stars. He has since ...',
+        'photo': 'https://m.media-amazon.com/images/M'
+                 '/MV5BNGFhZTM1NDYtODkxOS00Yjk5LTg3NDAtZDJmODhmODhkNmQ4XkEyXkFqcGdeQXVyMTA1MDI3NjUy._V1_UX140_CR0,0,'
+                 '140,209_AL_.jpg'
+    },
+
+]
+CONTENT_PHOTO = [
+    'https://plus.unsplash.com/premium_photo-1669131388677-1410dbaf8165?ixlib=rb-4.0.3&ixid'
+    '=MnwxMjA3fDB8MHxzZWFyY2h8MXx8b2Rlc3NhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60',
+    'https://images.unsplash.com/photo-1614674664304-daaf7dee7aac?ixlib=rb-4.0.3&ixid'
+    '=MnwxMjA3fDB8MHxzZWFyY2h8NXx8b2Rlc3NhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60',
+    'https://images.unsplash.com/photo-1620380593388-b36ea64e19ba?ixlib=rb-4.0.3&ixid'
+    '=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8b2Rlc3NhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60',
+    'https://images.unsplash.com/photo-1622057089684-5fd7008f5d50?ixlib=rb-4.0.3&ixid'
+    '=MnwxMjA3fDB8MHxzZWFyY2h8NHx8b2Rlc3NhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60',
+    'https://plus.unsplash.com/premium_photo-1669762078420-3c2a7d48aca5?ixlib=rb-4.0.3&ixid'
+    '=MnwxMjA3fDB8MHxzZWFyY2h8N3x8b2Rlc3NhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60',
+    'https://images.unsplash.com/photo-1622630781360-e79efc9980f8?ixlib=rb-4.0.3&ixid'
+    '=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8b2Rlc3NhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60',
+    'https://images.unsplash.com/photo-1613557841882-db2d6389dc3c?ixlib=rb-4.0.3&ixid'
+    '=MnwxMjA3fDB8MHxzZWFyY2h8M3x8b2Rlc3NhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60',
+    'https://images.unsplash.com/photo-1587373291505-2637d492f715?ixlib=rb-4.0.3&ixid'
+    '=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fG9kZXNzYXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60'
+]
+RegEx = {
+    'main': '^http:\/\/127\.0\.0\.1:5000\/main.*$',
+    'news': '^http:\/\/127\.0\.0\.1:5000\/news.*$',
+    'management': '^http:\/\/127\.0\.0\.1:5000\/management.*$',
+    'facts': '^http:\/\/127\.0\.0\.1:5000\/facts.*$',
+    'contacts': '^http:\/\/127\.0\.0\.1:5000\/contacts.*$',
+    'history': '^http:\/\/127\.0\.0\.1:5000\/history.*$',
+    'history_people': '^http:\/\/127\.0\.0\.1:5000\/history\/people.*$',
+    'history_photo': '^http:\/\/127\.0\.0\.1:5000\/history\/photo.*$',
+
+}
 
 
 @app.route('/')
@@ -91,6 +177,10 @@ def main():
                 'content': CONTENT_MANAGEMENT
             },
             {
+                'title': 'history',
+                'content': CONTENT_HISTORY
+            },
+            {
                 'title': 'contacts',
                 'content': CONTENT_CONTACTS
             }
@@ -109,11 +199,6 @@ def news():
     return flask.render_template('news.html', context=context)
 
 
-@app.route('/news/<any>')
-def new_news(any):
-    return news()
-
-
 @app.route('/management')
 def management():
     context = {
@@ -124,24 +209,14 @@ def management():
     return flask.render_template('management.html', context=context)
 
 
-@app.route('/management/<any>')
-def new_management(any):
-    return management()
-
-
 @app.route('/facts')
-def fact():
+def facts():
     context = {
         'title': 'facts',
         'menu': MENU_TITLE,
         'content': CONTENT_FACTS
     }
     return flask.render_template('fact.html', context=context)
-
-
-@app.route('/facts/<any>')
-def new_fact(any):
-    return fact()
 
 
 @app.route('/contacts')
@@ -154,17 +229,12 @@ def contacts():
     return flask.render_template('contacts.html', context=context)
 
 
-@app.route('/contacts/<any>')
-def new_contacts(any):
-    return contacts()
-
-
 @app.route('/history')
 def history():
     context = {
         'title': 'history',
         'menu': MENU_TITLE,
-        'content': 'history'
+        'content': CONTENT_HISTORY
     }
     return flask.render_template('history.html', context=context)
 
@@ -174,7 +244,7 @@ def people():
     context = {
         'title': 'people',
         'menu': MENU_TITLE,
-        'content': 'people'
+        'content': CONTENT_PEOPLE
     }
     return flask.render_template('people.html', context=context)
 
@@ -184,17 +254,32 @@ def photos():
     context = {
         'title': 'photo',
         'menu': MENU_TITLE,
-        'content': 'photos'
+        'content': CONTENT_PHOTO
     }
     return flask.render_template('photos.html', context=context)
 
 
+@app.errorhandler(404)
+def page_not_found(e):
+    url = str(request.url)
 
+    if re.search(RegEx['news'], url) is not None:
+        return flask.redirect(url_for('news'))
+    elif re.search(RegEx['management'], url) is not None:
+        return flask.redirect(url_for('management'))
+    elif re.search(RegEx['contacts'], url) is not None:
+        return flask.redirect(url_for('contacts'))
+    elif re.search(RegEx['history'], url) is not None:
+        return flask.redirect(url_for('history'))
+    elif re.search(RegEx['facts'], url) is not None:
+        return flask.redirect(url_for('facts'))
+    elif re.search(RegEx['people'], url) is not None:
+        return flask.redirect(url_for('people'))
+    elif re.search(RegEx['photo'], url) is not None:
+        return flask.redirect(url_for('photo'))
+    else:
+        return flask.redirect('main.html')
 
-# @app.errorhandler(404)
-# def page_not_found(e):
-#     print(app)
-#     return redirect(url_for('news'))
 
 if __name__ == "__main__":
     app.run(debug=True)

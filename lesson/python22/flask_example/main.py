@@ -1,7 +1,7 @@
 from flask import Flask, request, make_response, redirect, render_template, flash
 import os
 
-from flask_example.forms import Login
+# from flask_example.forms import Login
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'kekkekekek'
@@ -55,7 +55,7 @@ def login():
     #     else:
     #         error = " data is not error"
     # return render_template('login.html', error=error)
-    login = Login()
+    login = " "
     if login.validate_on_submit():
         flash(f"Your are entered - {login.login.data},"
               f"{login.password.data}")
@@ -88,7 +88,7 @@ def users():
 #     return "NOT FOUND YES\n" + str(error)
 
 
-app.add_url_rule('/','index', index)
+# app.add_url_rule('/','index', index)
 
 
 if __name__ == '__main__':

@@ -3,19 +3,24 @@
 
 {% block content %}
     <div class="row">
-        <div class="col-6">
+        <div class="col-7 rounded bg-light m-2">
             {{  macro.news(context.context[1]) }}
         </div>
-        <div class="col-6">
+        <div class="col-4 rounded bg-light m-2">
             {{  macro.management(context.context[2]) }}
         </div>
     </div>
     <div class="row ">
-        <div class="col">
-            {{  macro.contacts(context.context[3]) }}
+        <div class="col rounded bg-light m-2">
+            {{  macro.contacts(context.context[4]) }}
         </div>
      </div>
-    <div class="row ">
+        <div class="row ">
+        <div class="col rounded bg-light m-2">
+            {{  macro.history(context.context[3]) }}
+        </div>
+     </div>
+    <div class="row rounded bg-light m-2">
         <div class="col">
             {{  macro.fact(context.context[0]) }}
         </div>
