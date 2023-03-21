@@ -22,8 +22,10 @@
 </nav>
 
 <div class="container pt-2">
-   {% block content %}
+    <h1 class="py-2">{{ context.title| upper }}</h1>
+    {% block content %}
     {% endblock %}
+
 </div>
 
 

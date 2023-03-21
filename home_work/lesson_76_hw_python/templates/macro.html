@@ -1,5 +1,4 @@
 {% macro love_song(context) %}
-    <h1 class="py-2">{{ context.title| upper }}</h1>
         <div class="row">
             <div class="col-4">
                 <p class="fst-italic m-0">{{ context.content['song'] }}</p>
@@ -17,13 +16,17 @@
                 </div>
 
             </div>
+            <div class="col-4">
+                <div class="col-12">
+                       <a href="/love song/writer/?writers={{ context.writer }}&year={{ context.year }}" class="btn btn-outline-secondary">Writers</a>
+                </div>
+            </div>
 
         </div>
 
 {% endmacro %}
 
 {% macro car(context) %}
-    <h1 class="py-2">{{ context.title| upper }}</h1>
     <div class="navbar-nav">
         {% for type in context.type %}
             <a href="/car/{{ type }}" class="nav-item nav-link">{{ type| upper }}</a>
@@ -54,17 +57,28 @@
 {% endmacro %}
 
 {% macro day_week(context) %}
-    <h1 class="py-2">{{ context.title| upper }}</h1>
     <div class="row">
         <h5>Today: {{ context.weekdays }}</h5>
     </div>
-
 {% endmacro %}
 
 {% macro headphones(context) %}
-    <h1 class="py-2">{{ context.title| upper }}</h1>
     <div class="row">
-        <h5> {{ context.content }}</h5>
+        {% for model in context.content %}
+            <div class="col-12">
+                <a href="/headphone/?model={{ model }}" class="link-secondary">{{ model| upper }}</a>
+            </div>
+        {% endfor %}
     </div>
 
 {% endmacro %}
+
+{% macro model(context) %}
+    <h5>{{ context.model }}</h5>
+    <p>{{ context.info }}</p>
+{%  endmacro %}
+
+{% macro writers(context) %}
+    <h5>Writers: {{ context.content[0] }}</h5>
+    <p>Year: {{ context.content[1]}}</p>
+{%  endmacro %}

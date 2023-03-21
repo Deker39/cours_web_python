@@ -13,7 +13,7 @@ weekdays = {1: "Monday",
             6: "Saturday",
             7: "Sunday"
             }
-MENU_TITLE = ['love song', 'car', 'day weeks', 'headphones']
+MENU_TITLE = ['love song', 'car', 'day weeks', 'headphone']
 CONTENT_LOVE_SONG_EN = {'song': '«We are the champions, my friends And we\'ll keep on fighting till the end»',
                         'executor': 'Queen',
                         'name': 'We are the champions',
@@ -71,13 +71,15 @@ CONTENT_RENAULT = [
         'photo': 'https://www.evanshalshaw.com/-/media/evanshalshaw/renault/car-models/arkana/renault-arkana-driving-720x405px.ashx?mh=1440&la=en&h=405&w=720&mw=2560&hash=350DE90F2533AE72DEC244FD9C9B0084'
     }
 ]
+info = {
+    'air pods': 'info about airpods',
+    'samsung buds': 'info about samsung'
+}
 
 
 RegEx = {
-    'love_song': '^http:\/\/127\.0\.0\.1:5000\/love%20song.*$',
-    'car': '^http:\/\/127\.0\.0\.1:5000\/car.*$',
-    'day_weeks': '^http:\/\/127\.0\.0\.1:5000\/day%20weeks.*$',
-    'headphones': '^http:\/\/127\.0\.0\.1:5000\/headphones.*$',
+    'headphone': '^http:\/\/127\.0\.0\.1:5000\/headphone.*$',
+    'writer': '^http:\/\/127\.0\.0\.1:5000\/writer.*$'
 }
 
 
@@ -96,9 +98,26 @@ def love_song():
     context = {
         'title': 'love song',
         'menu': MENU_TITLE,
-        'content': CONTENT_LOVE_SONG_EN
+        'content': CONTENT_LOVE_SONG_EN,
+        'writer': 'Shevchenko',
+        'year': '1840'
     }
     return render_template("love_song.html", context=context)
+
+
+@app.route('/love song/cities/')
+@app.route('/love song/writer/')
+def write():
+    writers = request.args.get('writers', '')
+    year = request.args.get('year', '')
+
+    context = {
+        'title': 'writers',
+        'menu': MENU_TITLE,
+        'content': [writers, year]
+    }
+
+    return render_template('writers.html', context=context)
 
 
 @app.route('/love song/<path:path>')
@@ -126,6 +145,8 @@ def love_song_en(path='en'):
             'content': CONTENT_LOVE_SONG_ES
         }
         return render_template("love_song.html", context=context)
+    elif path == 'city':
+        return redirect('/love song/writer/')
     else:
         return redirect(f'/{path}')
 
@@ -172,7 +193,7 @@ def car_path(path):
 
 
 @app.route('/day weeks')
-def week_day():
+def day_weeks():
     day = datetime.today().isoweekday()
     context = {
         'title': 'day weeks',
@@ -183,44 +204,41 @@ def week_day():
     return render_template('day_week.html', context=context)
 
 
-# @app.route('/headphones')
-# def headphones():
-#     context = {
-#         'title': 'headphones',
-#         'menu': MENU_TITLE,
-#         'content': 'headphones'
-#     }
-#
-#     return render_template('headphones.html', context=context)
-
-
-@app.route('/headphones', method='GET')
-def headphones():
-    model = request.args.get('model')
-    # if headphones_model == 'airpods':
+@app.route('/headphone')
+def headphone():
     context = {
-        'title': 'headphones',
+        'title': 'headphone',
         'menu': MENU_TITLE,
-        'content': model
+        'content': ['air pods', 'samsung buds']
     }
 
     return render_template('headphones.html', context=context)
 
 
+@app.route('/headphone/')
+def model():
+    model_name = request.args.get('model', '')
+
+    context = {
+            'title': 'headphone',
+            'menu': MENU_TITLE,
+            'model': model_name,
+            'info': info[f'{model_name}']
+        }
+
+    return render_template('model.html', context=context)
 
 
-# @app.errorhandler(404)
-# def page_not_found(e):
-#     url = str(request.url)
-#
-#     if re.search(RegEx['love_song'], url) is not None:
-#         return redirect(url_for('love_song_en'))
-#     if re.search(RegEx['car'], url) is not None:
-#         return redirect(url_for('car'))
-#     if re.search(RegEx['day_weeks'], url) is not None:
-#         return redirect(url_for('week_day'))
-    # if re.search(RegEx['headphones'], url) is not None:
-    #     return redirect(url_for('week_day'))
+@app.errorhandler(404)
+def page_not_found(e):
+    url = str(request.url)
+    print(url[::-1].split('/')[0][::-1].replace(' ','_'))
+
+    if re.search(RegEx['headphone'], url) is not None:
+        return redirect(url_for(url[::-1].split('/')[0][::-1].replace('%20','_')))
+
+    if re.search(RegEx['writer'], url) is not None:
+        return redirect(url_for(url[::-1].split('/')[0][::-1].replace('%20','_')))
 
 
 if __name__ == "__main__":
