@@ -1,0 +1,52 @@
+{% macro main(context) %}
+    <form method="post" action="/">
+        <div class="form-floating mb-3">
+          <input type="number" class="form-control" id="input_one" value="input_one" name="input_one">
+          <label for="input_one">First number</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="number" class="form-control" id="input_two" value="input_two" name="input_two">
+          <label for="input_two">Second number</label>
+        </div><div class="form-floating mb-3">
+          <input type="number" class="form-control" id="input_three" value="input_three" name="input_three">
+          <label for="input_three">Third number</label>
+        </div>
+        <div class="row justify-content-center border border-primary border-2 rounded p-3 mb-3 mx-1">
+            <div class="col-12 mb-3">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="radio" id="first_radio" value="min">
+                  <label class="form-check-label" for="first_radio">
+                    MIN
+                  </label>
+                </div>
+            </div>
+            <div class="col-12 mb-3">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="radio" id="second_radio" value="max">
+                  <label class="form-check-label" for="second_radio">
+                    MAX
+                  </label>
+                </div>
+            </div>
+            <div class="col-12 mb-3">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="radio" id="third_radio" value="avg">
+                  <label class="form-check-label" for="third_radio">
+                    AVG
+                  </label>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <button type="submit" id="submit" style="width: 100%" class="btn btn-outline-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+
+{% endmacro %}
+
+{% macro submit(context) %}
+    <p>operation: {{ context.operation }}</p>
+    <p>result: {{ context.number }}</p>
+{% endmacro %}

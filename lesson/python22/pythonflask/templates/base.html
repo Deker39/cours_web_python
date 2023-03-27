@@ -12,11 +12,15 @@
             <div class="container ">
                 <div class="navbar-menu">
                     <div class="navbar-end">
-                                          <a href="{{ url_for("main.index") }}">Home</a>
-                <a href="{{ url_for("main.profile") }}">Profile</a>
-{#            <a href="{{ url_for("auth.singin") }}">Sing In</a>#}
-{#            <a href="{{ url_for("auth.singup") }}">Sing Up</a>#}
-{#            <a href="{{ url_for("auth.logout") }}">Logout</a>#}
+                        <a href="{{ url_for("main.index") }}">Home</a>
+                        {% if current_user.isauthenticated %}
+                            <a href="{{ url_for("main.profile") }}">Profile</a>
+                            <a href="{{ url_for("auth.logout") }}">Logout</a>
+                        {% endif %}
+                        {% if not current_user.isauthenticated %}
+                            <a href="{{ url_for("auth.signin") }}">Sing In</a>
+                            <a href="{{ url_for("auth.signup") }}">Sing Up</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>

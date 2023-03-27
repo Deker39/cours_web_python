@@ -3,7 +3,9 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from flask_login import LoginManager
 import os
+
 from main import main as main_blueprint
+from auth import auth as auth_blueprint
 
 from models import Base, User
 from urllib.parse import quote_plus
@@ -13,7 +15,6 @@ from sqlalchemy.engine import create_engine
 #  driver: ///login:pass@host/db
 engine = create_engine("mysql://root:26091998Asd@localhost/db", echo=True)
 Session = sessionmaker(bind=engine)
-
 session = Session()
 
 
@@ -35,6 +36,7 @@ def start_app():
         return User.query.get(int(user_id))
 
     app.register_blueprint(main_blueprint)
+    app.register_blueprint(auth_blueprint)
 
     return app
 
