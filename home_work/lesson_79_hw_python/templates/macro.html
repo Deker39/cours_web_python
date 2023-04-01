@@ -1,0 +1,92 @@
+{% macro main(context) %}
+    <h1>Add new: </h1>
+    <form method="POST">
+         <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="nameInput" name="name">
+          <label for="nameInput">Name</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="surnameInput" name="surname">
+          <label for="surnameInput">Surname</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="mailInput" name="mail">
+          <label for="mailInput">Mail</label>
+        </div>
+            <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="phoneInput" name="phone">
+          <label for="phoneInput">Phone</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="noteInput" name="note">
+          <label for="noteInput">Note</label>
+        </div>
+        <div class="form-floating mb-3">
+            <button type="submit" class="btn btn-primary mb-3" name="submit">Submit</button>
+        </div>
+
+    </form>
+
+{% endmacro %}
+
+{% macro successful(context) %}
+    <h1>User successful added</h1>
+    <p>Name: {{ context.add_user.name }}</p>
+    <p>Surname: {{ context.add_user.surname }}</p>
+    <p>Mail: {{ context.add_user.mail }}</p>
+    <p>Phone: {{ context.add_user.phone }}</p>
+    <p>Note: {{ context.add_user.note }}</p>
+{% endmacro %}
+
+{% macro show(context) %}
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+         {% for user in context.users %}
+              <div class="col">
+                <div class="card" style="width:15rem" >
+                    <div class="image-container">
+                        <img id="img" src="https://www.pngkit.com/png/detail/46-462685_people-icons-png-inquiry-icon.png" height="50%" class="card-img-top" alt="user{{ loop.index }}">
+                        <div class=" buttons">
+{#                                d-flex justify-content-around mt-2#}
+                             <button id="edit" onclick="edit_element({{ user.id }})" type="button" class="btn fw-medium text-center fs-5 p-2">Edit</button>
+                            <button id="delete" onclick="delete_element({{ user.id }})" type="button" class="btn fw-medium text-center fs-5 p-2">Delete</button>
+                        </div>
+                    </div>
+                  <div class="card-body">
+                    <h5 class="card-title">User: {{ loop.index }}</h5>
+                    <p class="card-text m-0">Name: {{ user.name }}</p>
+                    <p class="card-text m-0">Surname: {{ user.surname }}</p>
+                    <p class="card-text m-0">Mail: {{ user.mail }}</p>
+                    <p class="card-text m-0">Phone: {{ user.phone }}</p>
+                    <p class="card-text m-0">Note: {{ user.note }}</p>
+                      <p class="card-text text-end fst-italic text-body-tertiary m-0" style="font-size:12px">id: {{ user.id }}</p>
+                  </div>
+                </div>
+            </div>
+         {% endfor %}
+    </div>
+    <script>
+        function edit_element(id){
+            console.log(`edit ${id}`)
+            fetch(`http://127.0.0.1:5000/edit/${id}`)
+                .then(data =>{
+                    data.json().then(e => console.log(e))})
+        }
+        function delete_element(id){
+             console.log(`edit ${id}`)
+            fetch(`http://127.0.0.1:5000/delete/${id}`)
+                .then(data =>{
+                    data.json().then(e => {
+                        console.log(e)
+                         if (e['answer'] ===  'delete') {
+                             location.reload();
+                         }
+                         else
+                         {
+                             console.log('error delete')
+                         }
+                    })})
+
+        }
+    </script>
+
+{% endmacro %}

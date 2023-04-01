@@ -1,8 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+{% extends "base.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block header %}
+    {% include "banner.html" with userName=person.name%}
+    <p>Home page</p>
+{% endblock %}
+
+{% block content %}
+    <span>content home hage</span>
+{% endblock %}
 {#    <script>#}
 {#        fetch('http://127.0.0.1:8000/person/')#}
 {#            .then(data => {#}
@@ -10,34 +19,29 @@
 {#                console.log(data)#}
 {#            }).catch(e => { console.log(e)})#}
 {#    </script>#}
-</head>
-<body>
-    {% with name="Dem" age=20.34 empty="" %}
-    <h1> hello is template Index</h1>
-    <p>{{ person.name }}</p>
-    {% if person.age >= 18 %}
-        <p>{{ person.age }}</p>
-    {% else %}
-        <p>underage</p>
-     {% endif %}
-        <p>{%  now "Y y F n j P"  %}</p>
-    {% for i in person.customers_id %}
-        <p>{{ i  }}</p>
-    {% empty %}
-        <p>Customers not found</p>
-    {% endfor %}
-        {{ name|add:"user" }}
-        <br>
-        {{ name|capfirst }}
-        <br>
-        {{ name|cut:'D' }}
-        <br>
-        {{ empty|default_if_none:"n/a" }}
-        <br>
-        {{ age|floatformat:0 }}
-        <br>
-        {{ person.customers_id|slice:"1:2" }}
-    {% endwith %}
-
-</body>
-</html>
+{#    {% with name="Dem" age=20.34 empty="" %}#}
+{#    <h1> hello is template Index</h1>#}
+{#    <p>{{ person.name }}</p>#}
+{#    {% if person.age >= 18 %}#}
+{#        <p>{{ person.age }}</p>#}
+{#    {% else %}#}
+{#        <p>underage</p>#}
+{#     {% endif %}#}
+{#        <p>{%  now "Y y F n j P"  %}</p>#}
+{#    {% for i in person.customers_id %}#}
+{#        <p>{{ i  }}</p>#}
+{#    {% empty %}#}
+{#        <p>Customers not found</p>#}
+{#    {% endfor %}#}
+{#        {{ name|add:"user" }}#}
+{#        <br>#}
+{#        {{ name|capfirst }}#}
+{#        <br>#}
+{#        {{ name|cut:'D' }}#}
+{#        <br>#}
+{#        {{ empty|default_if_none:"n/a" }}#}
+{#        <br>#}
+{#        {{ age|floatformat:0 }}#}
+{#        <br>#}
+{#        {{ person.customers_id|slice:"1:2" }}#}
+{#    {% endwith %}#}

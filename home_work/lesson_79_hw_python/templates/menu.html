@@ -1,0 +1,13 @@
+{% macro menu(context) %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarNavAltMarkup">
+        <div class="navbar-nav ">
+                {% for menu in context %}
+                 <a class="nav-item nav-link px-3" href="{{ menu }}">{{ menu| upper }}</a>
+                {% endfor %}
+
+        </div>
+
+    </div>
+</nav>
+{% endmacro %}

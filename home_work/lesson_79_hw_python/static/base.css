@@ -1,0 +1,32 @@
+.image-container .buttons {
+  display: none;
+  position: absolute;
+  bottom: 350px;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.image-container:hover .buttons {
+  display: block;
+}
+.image-container:hover #img {
+ opacity: 0.33;
+}
+#edit,#delete{
+    border: none;
+}
+
+#edit::before{
+    content: url("edit20.png");
+}
+#delete::before{
+    content: url("delete20.png");
+
+}
+#edit:active{
+    color: gray;
+}
+#delete:active{
+    color: gray;
+}

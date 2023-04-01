@@ -40,7 +40,11 @@ urlpatterns = [
     re_path(r'^products/[1-9]{2}/$', home.products, kwargs={'id': 543}),
     re_path(r'^home/', include('home.urls')),
     path('person/', home.persons),
-    path('', home.index)
+    path('', home.index),
+    path('about', home.about),
+    path('users/create', home.users_creat),
+    path('users/delete', home.user_delete),
+    path('users', home.user_get),
 
 
 ]

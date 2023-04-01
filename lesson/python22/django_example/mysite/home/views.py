@@ -1,5 +1,7 @@
+import json
+
 from django.core.handlers.wsgi import WSGIRequest
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponsePermanentRedirect, JsonResponse
 
 
@@ -10,7 +12,21 @@ class Person:
         self.customers_id = ids
 
 
-# Create your views here.
+class User:
+    id = 0
+    def __init__(self, name: str, phone: str):
+        self.id = User.id
+        self.name = name
+        self.phone = phone
+        User.id += 1
+
+    def __del__(self):
+        User.id -= 1
+
+
+ls = [User('Alex', '+790214012')]
+
+
 def index(request: WSGIRequest):
     # data = {
     #     "name": request.user,
@@ -27,7 +43,36 @@ def index(request: WSGIRequest):
                            "data": "22.02.2002"})
 
 
-def persons(requesr: WSGIRequest):
+def users_creat(request: WSGIRequest):
+    global ls
+    if request.method == "POST":
+        name = request.POST.get("name")
+        phone = request.POST.get("phone")
+        ls.append(User(name, phone))
+        return render(request, 'user.html', context={'users': ls})
+    return render(request, 'user.html', context={'users': ls})
+
+
+def user_delete(request):
+    global ls
+    print(request.body, type(request.body))
+    id_list = int(json.loads(request.body.decode('utf-8'))["id"])
+    if id_list < len(ls):
+        del ls[id_list]
+        return render(request, 'user.html', context={'users': ls})
+    return render(request, 'user.html', context={'users': ls})
+
+
+def user_get(request):
+    global ls
+    return render(request, 'user.html', context={'users': ls})
+
+
+def about(request):
+    return render(request, 'about.html')
+
+
+def persons(request: WSGIRequest):
     person = {
         "name": "ALEX",
         "age": 50

@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Users
+{% endblock %}
+
+{% block head %}
+
+    {% csrf_token %}
+    <script>
+          const handlerOnEdit = (id) =>{
+              console.log(id)
+          }
+
+          const token =document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+          const handlerOnRemove = (id) => {
+                fetch("http://127.0.0.1:8000/users/delete", {
+                    method: "POST",
+                    body: JSON.stringify({"id":id}),
+                    headers: {
+                        "X-CSRFToken": token,
+                    "Content-type":"application/json"
+                },
+                    mode: 'same-origin'
+                }).then(res=> {
+                    console.log(res)
+                })
+          };
+    </script>
+{% endblock %}
+
+{% block header %}
+    <p>User page</p>
+{% endblock %}
+
+{% block content %}
+    <h3> Add user</h3>
+    <form method="post">
+        {% csrf_token %}
+        <label for="name">Name</label>
+        <input type="text" name="name">
+        <label for="phone">Phone</label>
+        <input type="tel" name="phone">
+        <button type="submit">Save</button>
+    </form>
+    <h3>List of users</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+         {% for user in users%}
+             <tr>
+                <td>{{ forloop.counter0 }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.phone }}</td>
+                <td>
+                    <button onclick="handlerOnEdit('{{ user.id }}')">Edit</button>
+                    <button onclick="handlerOnRemove('{{ user.id }}')">Remove</button>
+                </td>
+             </tr>
+         {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
