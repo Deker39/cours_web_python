@@ -10,6 +10,8 @@ db = SQLAlchemy(app)
 
 menu = ['phone book', 'show']
 
+find_id = 0
+
 
 class ModelPhoBook(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -18,30 +20,6 @@ class ModelPhoBook(db.Model):
     mail = db.Column(db.String(80), nullable=False)
     phone = db.Column(db.String(80), nullable=False)
     note = db.Column(db.String(80), nullable=False)
-
-
-# class PhoBook:
-
-    # def __init__(self, name, surname, mail, phone, note):
-    #     self.note = note
-    #     self.phone = phone
-    #     self.mail = mail
-    #     self.surname = surname
-    #     self.name = name
-
-
-# list_PhoBook = [PhoBook('alex', 'hol', '123@gmail.com', '+38095', 'kek')]
-
-# with app.app_context():
-    # db.create_all()
-    # db.session.add(ModelPhoBook(
-    #     name=list_PhoBook[0].name,
-    #     surname=list_PhoBook[0].surname,
-    #     mail = list_PhoBook[0].mail,
-    #     phone = list_PhoBook[0].phone,
-    #     note = list_PhoBook[0].note
-    # ))
-    # db.session.commit()
 
 
 @app.route('/show')
@@ -54,9 +32,25 @@ def show():
     return render_template('show.html', context=context)
 
 
+@app.route('/show', methods=['GET', 'POST'])
+def save_data():
+    global find_id
+    if request.method == 'POST':
+        old_user = ModelPhoBook.query.filter_by(id=find_id).first()
+
+        old_user.name = request.form['name'],
+        old_user.surname = request.form['surname'],
+        old_user.mail = request.form['mail'],
+        old_user.phone = request.form['phone'],
+        old_user.note = request.form['note']
+
+        db.session.commit()
+
+    return redirect(url_for('show'))
+
+
 @app.route('/successful')
 def successful():
-
     context = {
         'title': 'successful',
         'menu': menu,
@@ -92,6 +86,8 @@ def phone_phone():
 
 @app.route('/edit/<int:user_id>')
 def edit_element(user_id):
+    global find_id
+    find_id = user_id
     p = ModelPhoBook.query.filter_by(id=user_id).first()
     data = {'name': p.name,
             'surname': p.surname,

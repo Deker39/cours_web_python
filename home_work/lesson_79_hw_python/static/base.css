@@ -6,6 +6,12 @@
   right: 0;
   text-align: center;
 }
+.display-none{
+    display: none;
+}
+.display-block{
+    display: block;
+}
 
 .image-container:hover .buttons {
   display: block;
