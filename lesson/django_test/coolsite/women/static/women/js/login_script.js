@@ -9,7 +9,7 @@ function authorization() {
     let elemLogin = mainForm.elements.textLogin;
     let elemRemember = mainForm.elements.checkRemember;
 
-    if (elemRemember.checked == true) {
+    if (elemRemember.checked === true) {
         alert(`Your account has been saved: ${elemLogin.value}`)
     } else {
         alert(`Your account has not been saved: ${elemLogin.value}`)

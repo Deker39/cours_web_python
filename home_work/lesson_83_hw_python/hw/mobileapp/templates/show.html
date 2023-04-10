@@ -1,0 +1,38 @@
+{% extends "./base.html" %}
+{% load static %}
+
+{% block content %}
+    <form>
+        <h5>Form</h5>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="nickInput">
+          <label for="nickInput">Nick</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="email" class="form-control" id="emailPassword">
+          <label for="emailPassword">Email address</label>
+        </div>
+        <div class="form-floating mb-3">
+          <textarea class="form-control" placeholder="Leave a comment here" id="commentTextarea"></textarea>
+          <label for="commentTextarea">Comments</label>
+        </div>
+        <div class="form-floating">
+            <div class="d-flex justify-content-center align-content-center m-5">
+                <p class="fw-bold fs-5 me-2 ">Star Rating:</p>
+                <div class="d-flex justify-content-center align-content-cente" id="startReating">
+                    <div style="width: 32px; height:32px; background-image:url({% static 'mobileapp/images/star_black_32px.png' %})"></div>
+                    <div style="width: 32px; height:32px; background-image:url({% static 'mobileapp/images/star_black_32px.png' %})"></div>
+                    <div style="width: 32px; height:32px; background-image:url({% static 'mobileapp/images/star_black_32px.png' %})"></div>
+                    <div style="width: 32px; height:32px; background-image:url({% static 'mobileapp/images/star_black_32px.png' %})"></div>
+                     <div style="width: 32px; height:32px; background-image:url({% static 'mobileapp/images/star_black_32px.png' %})"></div>
+                </div>
+            </div>
+        </div>
+        <div class="form-floating mb-3">
+            <button type="submit" style="width: 100%" class="btn btn-primary mb-3">Submit</button>
+        </div>
+
+
+    </form>
+    <script src="{% static 'mobileapp/js/star.js'%}"></script>
+{% endblock %}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <h1>Creat person</h1>
+  <form action="/creat" method="post">
+        {% csrf_token %}
+      <div>
+          <label for="name">Enter name</label>
+          <input type="text" name="name">
+      </div>
+      <div>
+          <label for="age">Enter age</label>
+          <input type="number" name="age">
+      </div>
+      <div>
+          <input type="submit" value="Create">
+      </div>
+  </form>
+
+  {% if message %}
+      <h3>{{ message }}</h3>
+  {% endif %}
+
+  {% if persons.count > 0 %}
+  <h2>List of Person</h2>
+    <table>
+        <thead>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Action</th>
+        </thead>
+        <tbody>
+        {% for person in persons %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ person.name }}</td>
+            <td>{{ person.age }}</td>
+            <td>
+                <a href="edit/{{ person.id }}">Edit</a>
+                <a href="delete/{{ person.id }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
+
+</body>
+</html>
