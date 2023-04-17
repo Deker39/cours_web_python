@@ -2,29 +2,31 @@
 {% load static %}
 
 {% block content %}
-    <form>
+    <form method="post">
+    {% csrf_token %}
         <h5>Form</h5>
         <div class="form-floating mb-3">
-          <input type="text" class="form-control" id="nickInput">
+          <input type="text" class="form-control" id="nickInput" name="nick">
           <label for="nickInput">Nick</label>
         </div>
         <div class="form-floating mb-3">
-          <input type="email" class="form-control" id="emailPassword">
+          <input type="email" class="form-control" id="emailPassword" name="email">
           <label for="emailPassword">Email address</label>
         </div>
         <div class="form-floating mb-3">
-          <textarea class="form-control" placeholder="Leave a comment here" id="commentTextarea"></textarea>
+          <textarea class="form-control" placeholder="Leave a comment here" id="commentTextarea" name="describe"></textarea>
           <label for="commentTextarea">Comments</label>
         </div>
         <div class="form-floating">
             <div class="d-flex justify-content-center align-content-center m-5">
                 <p class="fw-bold fs-5 me-2 ">Star Rating:</p>
-                <div class="d-flex justify-content-center align-content-cente" id="startReating">
+                <div class="d-flex justify-content-center align-content-center" id="startReating">
                     <div style="width: 32px; height:32px; background-image:url({% static 'mobileapp/images/star_black_32px.png' %})"></div>
                     <div style="width: 32px; height:32px; background-image:url({% static 'mobileapp/images/star_black_32px.png' %})"></div>
                     <div style="width: 32px; height:32px; background-image:url({% static 'mobileapp/images/star_black_32px.png' %})"></div>
                     <div style="width: 32px; height:32px; background-image:url({% static 'mobileapp/images/star_black_32px.png' %})"></div>
-                     <div style="width: 32px; height:32px; background-image:url({% static 'mobileapp/images/star_black_32px.png' %})"></div>
+                    <div style="width: 32px; height:32px; background-image:url({% static 'mobileapp/images/star_black_32px.png' %})"></div>
+                    <input type="number" style="display: none" name="amount_star" value="">
                 </div>
             </div>
         </div>
@@ -34,5 +36,6 @@
 
 
     </form>
-    <script src="{% static 'mobileapp/js/star.js'%}"></script>
+
+    <script src="{% static 'mobileapp/js/star.js' %}"></script>
 {% endblock %}

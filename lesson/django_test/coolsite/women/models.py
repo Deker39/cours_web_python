@@ -19,7 +19,7 @@ class Women(models.Model):
         return self.title
 
     def get_absolut_url(self):
-        return  reverse('post', kwargs={'post_slug': self.slug})
+        return reverse('post', kwargs={'post_slug': self.slug})
 
     class Meta:
         verbose_name = 'Famous women'

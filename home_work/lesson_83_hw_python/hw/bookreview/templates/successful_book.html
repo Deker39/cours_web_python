@@ -1,0 +1,10 @@
+{% extends "./base.html" %}
+{% load static %}
+
+{% block content %}
+    <h5>Successful add new comments</h5>
+    <p>Nick: {{ reviews.nick }}</p>
+    <p>Rating: {{ reviews.rating }}</p>
+    <p>Review: {{ reviews.review }}</p>
+    <p>Spoiler: {{ reviews.spoiler }}</p>
+{% endblock %}

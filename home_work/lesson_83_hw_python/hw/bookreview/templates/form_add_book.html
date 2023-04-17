@@ -1,0 +1,31 @@
+{% extends "./base.html" %}
+{% load static %}
+
+{% block content %}
+    <form method="post">
+    {% csrf_token %}
+        <h5>Form</h5>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="nickInput" name="nick">
+          <label for="nickInput">Nick</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="number" class="form-control" id="ratingPassword" name="rating">
+          <label for="ratingPassword">Rating</label>
+        </div>
+        <div class="form-floating mb-3">
+          <textarea class="form-control" placeholder="Leave a comment here" id="reviewTextarea" name="review"></textarea>
+          <label for="reviewTextarea">Review</label>
+        </div>
+        <div class="mb-3">
+           <input class="form-check-input" type="checkbox" value="1" id="spoilerCheck" name="spoiler">
+          <label class="form-check-label" for="spoilerCheck">Spoiler checkbox</label>
+        </div>
+        <div class="form-floating mb-3">
+            <button type="submit" style="width: 100%" class="btn btn-primary mb-3">Submit</button>
+        </div>
+
+
+    </form>
+
+{% endblock %}

@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from mobileapp.views import index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('mobile app', include('mobileapp.urls')),
-    path('book review', include('bookreview.urls'))
+    path('mobile app/', include('mobileapp.urls')),
+    path('book review/', include('bookreview.urls')),
+    path('', index, name='home'),
+
 ]

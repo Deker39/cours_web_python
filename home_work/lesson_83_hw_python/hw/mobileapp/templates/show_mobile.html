@@ -1,0 +1,18 @@
+{% extends "./base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="row">
+      {% for obj in users %}
+        <div class="card col-4 m-3">
+            <div class="card-body">
+                <h5 class="card-title">Nick: {{ obj.nick }}</h5>
+                 <h6 class="card-subtitle mb-2 text-body-secondary">Email: {{ obj.email }}</h6>
+                 <p class="card-text">Amount star: {{ obj.amount_star }}</p>
+                 <p class="card-text">Comment: {{ obj.describe }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
