@@ -2,8 +2,10 @@ from django.shortcuts import render, HttpResponse, redirect
 from .models import *
 
 # global menu
-menu = ['home', 'mobile', 'book']
-pod_menu = ['add mobile', 'show mobile']
+global_menu = ['home', 'mobile', 'book']
+name_menu = ['add', 'show']
+url_menu = ['add mobile', 'show mobile']
+list_menu = [[name, url] for name, url in zip(name_menu, url_menu)]
 
 
 def form_add(request):
@@ -18,8 +20,8 @@ def form_add(request):
 
     context = {
         'title': 'add user',
-        'menu': menu,
-        'pod_menu': pod_menu,
+        'menu': global_menu,
+        'list_menu': list_menu,
     }
     return render(request, 'form_add_mobile.html', context=context)
 
@@ -28,8 +30,8 @@ def successful(request):
     users = ValueMobileAppReview.objects.latest('id')
     context = {
         'title': 'successful',
-        'menu': menu,
-        'pod_menu': pod_menu,
+        'menu': global_menu,
+        'list_menu': list_menu,
         'users': users
     }
 
@@ -40,8 +42,8 @@ def show(request):
     users = ValueMobileAppReview.objects.all()
     context = {
         'title': 'show',
-        'menu': menu,
-        'pod_menu': pod_menu,
+        'menu': global_menu,
+        'list_menu': list_menu,
         'users': users
     }
     return render(request, 'show_mobile.html', context=context)
@@ -50,8 +52,8 @@ def show(request):
 def index_mobile(request):
     context = {
         'title': 'mobile',
-        'menu': menu,
-        'pod_menu': pod_menu,
+        'menu': global_menu,
+        'list_menu': list_menu,
         'description': 'Mobile Page'
     }
     return render(request, 'index.html', context=context)
@@ -60,7 +62,7 @@ def index_mobile(request):
 def index(request):
     context = {
         'title': 'index',
-        'menu': menu,
+        'menu': global_menu,
         'description': 'Main Page'
     }
     return render(request, 'index.html', context=context)

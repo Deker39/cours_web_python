@@ -1,0 +1,31 @@
+{% extends "./base.html" %}
+
+{% block content %}
+     <form method="post">
+            {% csrf_token %}
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="nameRestInput" name="nameRestInput" placeholder="...">
+                <label for="nameRestInput">name rest</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="specializationRestInput" name="specializationRestInput" placeholder="...">
+                <label for="specializationRestInput">specialization</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="addressRestInput" name="addressRestInput" placeholder="...">
+                <label for="addressRestInput">address</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="websiteRestInput" name="websiteRestInput" placeholder="...">
+                <label for="websiteRestInput">website</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="telRestInput" name="telRestInput" placeholder="...">
+                <label for="telRestInput">tel</label>
+            </div>
+             <div class="form-floating mb-3">
+                <button type="submit" class="btn btn-primary" style="width: 100%">Register</button>
+            </div>
+
+        </form>
+{% endblock %}

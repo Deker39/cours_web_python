@@ -1,0 +1,25 @@
+{% extends "./base.html" %}
+
+{% block content %}
+        <div class="row">
+          {% for obj in reviews %}
+            <div class="card col m-3">
+                <div class="card-body">
+                    <h5 class="card-title">Name: {{ obj.name }}</h5>
+                     <h6 class="card-subtitle mb-2 text-body-secondary">Specialization: {{ obj.specialization }}</h6>
+                     <p class="card-text">Address: {{ obj.address }}</p>
+                     <p class="card-text">Website: {{ obj.website }}</p>
+                     <p class="card-text">Tel: {{ obj.tel }}</p>
+                     <div class="row">
+                         <div class="col-6">
+                              <a style="width: 100%" class="btn btn-primary" href="delete/{{ obj.id }}">Delete</a>
+                         </div>
+                         <div class="col-6">
+                              <a style="width: 100%" class="btn btn-primary" href="edit/{{ obj.id }}">Edit</a>
+                         </div>
+                     </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+{% endblock %}

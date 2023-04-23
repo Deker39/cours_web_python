@@ -8,13 +8,5 @@
 
         </div>
     </div>
-    <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarNavAltMarkup">
-        <div class="navbar-nav ">
-                {% for menu in list_menu %}
-                    <a class="nav-item nav-link px-3" href="{% url menu.1 %}">{{ menu.0| upper }}</a>
-                {% endfor %}
-
-        </div>
-    </div>
 </nav>
 {% endblock %}
