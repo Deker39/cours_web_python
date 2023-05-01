@@ -1,0 +1,30 @@
+{% extends "./base.html" %}
+
+{% block content %}
+    <div class="row justify-content-md-center text-center">
+        {% if emailNotExists %}
+            <p class="text-danger">Email not exists {{ emailNotExists }}. <a href="sign in">Sing in</a></p>
+        {% endif %}
+        {% if emailForNotCorrectPass %}
+            <p class="text-danger">Pass for {{ emailForNotCorrectPass }} is not correct.</p>
+        {% endif %}
+        {% if banUserNotExists %}
+            <p class="text-danger">This account has been suspended until {{ banUserNotExists }}</p>
+        {% endif %}
+        <form method="post" class="col-4">
+            {% csrf_token %}
+            <h5>Sign in</h5>
+            <div class="form-floating mb-3">
+              <input type="email" class="form-control" id="emailAddressInput" name="emailAddressInput" placeholder="...">
+              <label for="emailAddressInput">Email address</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="password" class="form-control" id="passwordInput" name="passwordInput" placeholder="...">
+              <label for="passwordInput">Password</label>
+            </div>
+            <div class="form-floating mb-3">
+                <button  type="submit" class="btn btn-dark" id="floatingPassword" style="width: 100%">Sign up</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

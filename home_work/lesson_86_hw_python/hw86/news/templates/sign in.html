@@ -1,0 +1,48 @@
+{% extends "./base.html" %}
+
+{% block content %}
+    <div class="row justify-content-md-center text-center">
+        {% if firstAndLastNameToExists %}
+        <p class="text-danger">User exists {{ firstAndLastNameToExists }}. <a href="sign up">Sing up</a></p>
+        {% endif %}
+         <form method="post" class="col-5" id="formSignIn">
+             {% csrf_token %}
+            <h5>Registration</h5>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="firstNameInput" name="firstNameInput">
+              <label for="firstNameInput">First name</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="lastNameInput" name="lastNameInput">
+              <label for="lastNameInput">Last name</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="email" class="form-control" id="emailAddressInput" name="emailAddressInput">
+              <label for="emailAddressInput">Email address</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="password" class="form-control" id="passwordInput" name="passwordInput">
+              <label for="passwordInput">Password</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="password" class="form-control" id="repeatPasswordInput" name="repeatPasswordInput">
+              <label for="repeatPasswordInput">Repeat password</label>
+            </div>
+            <div class="form-floating mb-3">
+                <button  type="submit" class="btn btn-dark" id="floatingPassword" style="width: 100%">Sing in</button>
+            </div>
+        </form>
+    </div>
+    <script>
+      $(document).ready(function() {
+        $('#formSignIn').submit(function(event) {
+          if ($('#passwordInput').val() !== $('#repeatPasswordInput').val()) {
+              $('#repeatPasswordInput').addClass('is-invalid')
+            event.preventDefault();
+          } else {
+            $('#repeatPasswordInput').removeClass('is-invalid')
+          }
+        });
+      });
+    </script>
+{% endblock %}

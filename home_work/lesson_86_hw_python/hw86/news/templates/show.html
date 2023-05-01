@@ -1,0 +1,54 @@
+{% extends "./base.html" %}
+
+{% block content %}
+    {% for i in news %}
+       <div class="container mb-5">
+            <h4>{{ i.title|title }}:</h4>
+            <p>{{ i.content }}</p>
+            {% if imgs %}
+                <div class="d-flex justify-content-center">
+                    {% for img in imgs %}
+                        {% if img.newspost_id == i.id %}
+                            <img class="mx-auto" src="media/{{ img.image }}" alt="media/{{ img.image }}">
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <hr>
+            {% if comments %}
+                <h5>Comments</h5>
+                {% for comment in comments%}
+                    {% if comment.post_id == i.id %}
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                {% for author in authors %}
+                                    {% if comment.auth_id == author.id %}
+                                        <p class="fw-light m-0">Author: {{ author.first_name }}</p>
+                                    {% endif %}
+                                {% endfor %}
+                                <p class="my-1">{{ comment.content }}</p>
+                                <p class="m-0 fw-bold" style="font-size: 0.75rem">{{ comment.date }}</p>
+                            </div>
+                        </div>
+                 {% endif %}
+                {% endfor %}
+            {% endif %}
+            {% if authorizationUser %}
+                   <hr>
+                   <div id="comment" class="">
+                       <form method="post">
+                           {% csrf_token %}
+                           <input type="text" style="display: none" name="postInput" value={{ i.id }}>
+                           <div class="mb-3">
+                               <label for="commentInput"  class="form-label">Make a comment</label>
+                               <textarea class="form-control" rows="3" id="commentInput" name="commentInput" placeholder="comment..."></textarea>
+                           </div>
+                            <div class="mb-3">
+                               <button type="submit" class="btn btn-dark" style="width: 100%">Submit</button>
+                           </div>
+                       </form>
+                   </div>
+            {% endif %}
+       </div>
+    {% endfor %}
+{% endblock %}
