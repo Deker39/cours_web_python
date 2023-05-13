@@ -6,13 +6,15 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from .models import *
 
+global params_page
+params_page = ParamsProject.objects.all()  # TODO сделать так чтобы он работал через base
+
 
 def show_news(request):
     news = NewsPost.objects.all()
     imgs = ImageNewsPost.objects.all()
     comments = CommentPost.objects.all()
     authors = UserNews.objects.all()
-    params = ParamsProject.objects.all() # TODO сделать так чтобы он работал через base
 
     if request.user.is_authenticated:
         name_menu = ['show', 'sign out']
@@ -31,6 +33,7 @@ def show_news(request):
 
     context = {
         'title': 'show news',
+        'params_page': params_page.values(),
         'list_menu': list_menu,
         'news': news.values(),
         'imgs': imgs.values(),
@@ -41,18 +44,6 @@ def show_news(request):
     return render(request, 'show.html', context=context)
 
 
-def add_news(request):
-    name_menu = ['show', 'sign in', 'sign up']
-    url_menu = ['show news', 'sign in', 'sign up']
-    list_menu = [[name, url] for name, url in zip(name_menu, url_menu)]
-
-    context = {
-        'title': 'add news',
-        'list_menu': list_menu
-    }
-    return render(request, 'add.html', context=context)
-
-
 def sign_in(request):
     name_menu = ['show', 'sign in', 'sign up']
     url_menu = ['show news', 'sign in', 'sign up']
@@ -60,6 +51,7 @@ def sign_in(request):
 
     context = {
         'title': 'sign in',
+        'params_page': params_page.values(),
         'list_menu': list_menu
     }
     if request.method == "POST":
@@ -91,6 +83,7 @@ def sign_up(request):
 
     context = {
         'title': 'sign up',
+        'params_page': params_page.values(),
         'list_menu': list_menu
     }
     if request.user.is_authenticated:
@@ -115,11 +108,11 @@ def sign_up(request):
                         context['emailForNotCorrectPass'] = log_user.email
                     return render(request, 'sign up.html', context=context)
             else:
-                if check_user.values('ban_time')[0]['ban_time'].strftime(
+                if check_user.values()[0]['ban_time'].strftime(
                         '%d-%m-%Y %H:%M:%S') < datetime.datetime.now().strftime('%d-%m-%Y %H:%M:%S'):
                     check_user.update(ban=0)
                 else:
-                    context['banUserNotExists'] = check_user.values('ban_time')[0]['ban_time']
+                    context['banUserNotExists'] = check_user.values()[0]['ban_time']
 
     return render(request, 'sign up.html', context=context)
 
@@ -130,6 +123,7 @@ def sign_out(request):
     list_menu = [[name, url] for name, url in zip(name_menu, url_menu)]
     context = {
         'title': 'sign out',
+        'params_page': params_page.values(),
         'list_menu': list_menu
     }
     logout(request)

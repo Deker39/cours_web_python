@@ -33,3 +33,12 @@ class ParamsProject(Model):
     size_text = CharField(max_length=100)
 
 
+class PostCommentCount(Model):
+    id = IntegerField(primary_key=True)
+    news = ForeignKey('NewsPost', on_delete=CASCADE, related_name='news_comment_counts')
+    comment_count = IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'news_comment_count'
+
