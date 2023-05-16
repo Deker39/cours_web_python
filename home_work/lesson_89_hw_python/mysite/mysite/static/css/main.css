@@ -1,0 +1,96 @@
+body{
+    background-color: #ffffff;
+}
+.header{
+     background-color: #000000;
+}
+.footer{
+    background-color: #000000;
+}
+.header-link{
+  padding:22px;
+
+}
+#backed{
+    color: white;
+    background-image: url("../header_img/shopping_cart_48dp.png");
+    background-repeat: no-repeat;
+}
+#user{
+    background-image: url("../header_img/user_48dp.png");
+    background-repeat: no-repeat;
+}
+.cont-page{
+    list-style-type: none;
+    padding: 0.5rem;
+    margin-bottom: 0px;
+}
+.cont-page li a{
+    text-decoration: none;
+    color: white;
+}
+.cont-page li{
+    padding: 2px;
+}
+.cont-page li a:hover{
+    text-decoration: underline;
+    color: #61a9ea;
+
+}
+.cont-img{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.cont-img a{
+    padding:35px;
+    margin: 10px;
+}
+#face{
+    background-image: url('../footer_img/fb_gray.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#inst{
+    background-image: url('../footer_img/insta_gray.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+#youtube{
+    background-image: url('../footer_img/youtube_gray.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.cont-img #face:hover{
+    background-image: url('../footer_img/fb.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+}
+.cont-img #inst:hover{
+    background-image: url('../footer_img/insta.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+}
+.cont-img #youtube:hover{
+    background-image: url('../footer_img/youtube.png');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+}
