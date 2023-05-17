@@ -51,10 +51,15 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mysite',
+        'HOST': '127.0.0.1',
+        'USER': "root",
+        'PASSWORD': '26091998Qwe',
+        'PORT': '3306'
     }
 }
+
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -84,7 +89,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 MEDIA_URL = 'media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'django-simple-shop/media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'mysite/media')
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "mysite/static")]
 
