@@ -5,7 +5,7 @@
     <div class="row mt-5">
     {% for card in list_product %}
             <div class="card col-4 m-2 p-0" style="width: 12rem;">
-              <img src="../media/shop/{{ card.main_image }}" class="card-img-top" alt="{{ main_image }}">
+              <img src="../media/{{ card.main_image }}" class="card-img-top" alt="{{ main_image }}">
               <div class="card-body">
                 <p class="card-title fs-5">{{ card.title }}</p>
                 <p class="card-text">{{ card.price }}$</p>

@@ -12,7 +12,13 @@
       <div class="d-flex me-3">
           <a id='backed' class="header-link" href=""></a>
           <span class="border-end border-white border-opacity-75 border-5 rounded mx-3"></span>
-          <a id='user'  class="header-link" href="{%  url 'login' %}"></a>
+          <a id='user'  class="header-link" href="{% if user == True %}
+                                                        {%  url 'personal_page' %}
+                                                    {% else %}
+                                                        {%  url 'login' %}
+                                                    {% endif %}"></a>
+
+
       </div>
 
 

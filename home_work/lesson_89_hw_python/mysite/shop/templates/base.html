@@ -14,9 +14,11 @@
 <body class="d-flex flex-column">
     {% include 'header.html' %}
     <div class="row m-2 mt-5">
-            <nav class="col-3 pt-2 mb-5">
-                {% include 'list_catalog.html' %}
-            </nav>
+            {% if title == 'main page' %}
+                <nav class="col-3 pt-2 mb-5">
+                    {% include 'list_catalog.html' %}
+                </nav>
+            {% endif %}
             <div class="container col pt-2 mb-5">
                {% block content %}
                {% endblock %}

@@ -2,7 +2,11 @@ from django.shortcuts import *
 from django.contrib.auth import authenticate, login, logout
 from .models import *
 from django.db.models import Q
+from django.contrib.auth.models import User
 import datetime
+
+
+# TODO если пользователь авторизован то сменить адрес на лисную страницу
 
 
 def index(request):
@@ -20,7 +24,6 @@ def index(request):
 
 
 def signin(request):
-
     context = {
         'title': 'sign in',
     }
@@ -35,6 +38,7 @@ def signin(request):
             user = authenticate(username=log_user.email, password=log_user.password)
             if user is not None:
                 login(request, user)
+                context['user'] = False
                 return redirect('index')
             else:
                 if not User.objects.filter(email=log_user.email):
@@ -46,44 +50,40 @@ def signin(request):
 
 
 def register(request):
-
     context = {
         'title': 'sign up',
     }
-    if request.user.is_authenticated:
-        return redirect('/')
-    else:
-        pass
-        # if request.method == "POST":
-        #     log_user = UserNews()
-        #     log_user.email = request.POST.get('emailAddressInput')
-        #     log_user.password = request.POST.get('passwordInput')
-        #     check_user = UserNews.objects.filter(Q(email=log_user.email) &
-        #                                          Q(ban=1))
-        #
-        #     if not check_user:
-        #         user = authenticate(username=log_user.email, password=log_user.password)
-        #         if user is not None:
-        #             login(request, user)
-        #             return redirect('show news')
-        #         else:
-        #             if not UserNews.objects.filter(email=log_user.email):
-        #                 context['emailNotExists'] = f'{log_user.email}'
-        #             else:
-        #                 context['emailForNotCorrectPass'] = log_user.email
-        #             return render(request, 'sign up.html', context=context)
-        #     else:
-        #         if check_user.values()[0]['ban_time'].strftime(
-        #                 '%d-%m-%Y %H:%M:%S') < datetime.datetime.now().strftime('%d-%m-%Y %H:%M:%S'):
-        #             check_user.update(ban=0)
-        #         else:
-        #             context['banUserNotExists'] = check_user.values()[0]['ban_time']
+
+    if request.method == "POST":
+        new_user = User()
+        new_user.first_name = request.POST.get('firstNameInput')
+        new_user.last_name = request.POST.get('lastNameInput')
+        new_user.email = request.POST.get('emailAddressInput')
+        new_user.password = request.POST.get('passwordInput')
+        check_user = User.objects.filter(Q(first_name=new_user.first_name) &
+                                         Q(last_name=new_user.last_name))
+        if check_user:
+            context['firstAndLastNameToExists'] = f'{new_user.first_name} {new_user.last_name}'
+            return render(request, 'sign in.html', context=context)
+        else:
+            user = User.objects.create_user(username=new_user.email, password=new_user.password, email=new_user.email)
+            user.save()
+            new_user.save()
+            return redirect('index',)
 
     return render(request, 'entrance_page.html', context=context)
 
 
 def signout(request):
     pass
+
+
+def personal_info(request):
+    context = {
+
+    }
+    return render(request, 'personal_page.html', context=context)
+
 #     name_menu = ['show']
 #     url_menu = ['show news']
 #     list_menu = [[name, url] for name, url in zip(name_menu, url_menu)]
@@ -97,4 +97,3 @@ def signout(request):
 
 def change_password(request):
     pass
-

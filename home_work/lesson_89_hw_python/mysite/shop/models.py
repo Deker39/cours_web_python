@@ -1,3 +1,5 @@
+import os.path
+
 from django.db.models import *
 import random
 import string
@@ -10,21 +12,37 @@ class User(Model):
     password = CharField(max_length=255)
     date_create = DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return f'{self.first_name}, {self.last_name}'
+
 
 class CatalogProduct(Model):
     title = CharField(max_length=255)
+
+    def __str__(self):
+        return str(self.title).title()
+
+
+def product_image_directory_path(instance, filename):
+    return os.path.join('shop', str(instance.catalog), str(instance.title), filename)
+
+
+def product_image_directory_path_path(instance, filename):
+    return os.path.join('shop', str(instance.products.catalog), str(instance.products.title), filename)
 
 
 class Product(Model):
     title = CharField(max_length=255)
     price = DecimalField(max_digits=10, decimal_places=2)
-    genre = CharField(max_length=255)
+    catalog = ForeignKey(CatalogProduct, on_delete=CASCADE, related_name='catalog')
     developer = CharField(max_length=255)
     platform = CharField(max_length=255)
     language = CharField(max_length=255)
-    description = CharField(max_length=255)
-    main_image = ImageField(upload_to='shop/')
-    catalog = ForeignKey(CatalogProduct, on_delete=CASCADE, related_name='catalog')
+    description = CharField(max_length=1000)
+    main_image = ImageField(upload_to=product_image_directory_path)
+
+    def __str__(self):
+        return f'{self.title}, {self.catalog}'
 
 
 class ProductSystemRequirement(Model):
@@ -47,7 +65,7 @@ class ProductKey(Model):
 
 class ProductPhoto(Model):
     products = ForeignKey(Product, on_delete=CASCADE, related_name='image')
-    image = ImageField(upload_to='shop/')
+    image = ImageField(upload_to=product_image_directory_path_path)
 
 
 class CommentProduct(Model):
