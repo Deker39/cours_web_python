@@ -1,9 +1,11 @@
 {% extends "./base.html" %}
 {#TODO здесь изменнеия персональный данных и пароля отдельно#}
 {% block content %}
-    <h1>personal page</h1>
-    <h1>personal page</h1>
-    <h1>personal page</h1><h1>personal page</h1>
-    <h1>personal page</h1>
-{% endblock %}
+{% if title == 'personal data' %}
+<h1>personal data</h1>
+{% endif %}
+{% if title == 'change password' %}
+<h1>change password</h1>
+{% endif %}
 
+{% endblock %}

@@ -1,9 +1,8 @@
 from django.contrib import admin
 from .models import *
 
-admin.site.register(User)
-admin.site.register(CatalogProduct)
-# admin.site.register(ProductSystemRequirement)
+admin.site.register(ShopUser)
+# admin.site.register(CatalogProduct)
 admin.site.register(ProductKey)
 admin.site.register(CommentProduct)
 admin.site.register(Order)
@@ -24,4 +23,13 @@ class SystemRequirementInline(admin.StackedInline):
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     inlines = [ImageInline, SystemRequirementInline]
+    list_display = ("title",)
+    prepopulated_fields = {"slug": ("title",)}
 
+
+class CatalogAdmin(admin.ModelAdmin):
+    list_display = ("title",)
+    prepopulated_fields = {"slug": ("title",)}
+
+
+admin.site.register(CatalogProduct, CatalogAdmin)

@@ -1,11 +1,11 @@
 import os.path
-
+from django.urls import reverse
 from django.db.models import *
 import random
 import string
 
 
-class User(Model):
+class ShopUser(Model):
     first_name = CharField(max_length=255)
     last_name = CharField(max_length=255)
     email = CharField(max_length=255)
@@ -18,9 +18,13 @@ class User(Model):
 
 class CatalogProduct(Model):
     title = CharField(max_length=255)
+    slug = SlugField(default="", null=False)
 
     def __str__(self):
         return str(self.title).title()
+
+    def get_absolute_url(self):
+        return reverse('list catalog', args=[self.slug])
 
 
 def product_image_directory_path(instance, filename):
@@ -40,9 +44,13 @@ class Product(Model):
     language = CharField(max_length=255)
     description = CharField(max_length=1000)
     main_image = ImageField(upload_to=product_image_directory_path)
+    slug = SlugField(default="", null=False)
 
     def __str__(self):
         return f'{self.title}, {self.catalog}'
+
+    def get_absolute_url(self):
+        return reverse('product', args=[self.slug])
 
 
 class ProductSystemRequirement(Model):
@@ -69,14 +77,14 @@ class ProductPhoto(Model):
 
 
 class CommentProduct(Model):
-    auth = ForeignKey(User, on_delete=CASCADE, related_name='auth')
+    auth = ForeignKey(ShopUser, on_delete=CASCADE, related_name='auth')
     product = ForeignKey(Product, on_delete=CASCADE, related_name='products')
     content = CharField(max_length=100)
     date = DateTimeField(auto_now=True)
 
 
 class Order(Model):
-    user = ForeignKey(User, on_delete=CASCADE, related_name='user')
+    user = ForeignKey(ShopUser, on_delete=CASCADE, related_name='user')
     total_cost = DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     complete = BooleanField(default=False)
     quantity = IntegerField(default=0)

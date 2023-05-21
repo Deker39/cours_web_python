@@ -1,25 +1,22 @@
 <nav class="navbar fixed-top header" data-bs-theme="dark">
   <div class="container-fluid">
-      <div>
-           <a class="navbar-brand fs-3" href="/">Mega Shop</a>
+    <div>
+      <a class="navbar-brand fs-3" href="/">Mega Shop</a>
+    </div>
+    <form class="d-flex " role="search">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="product search...." aria-label="Search">
+        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
       </div>
-        <form class="d-flex " role="search">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="product search...." aria-label="Search">
-              <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
-            </div>
-        </form>
-      <div class="d-flex me-3">
-          <a id='backed' class="header-link" href=""></a>
-          <span class="border-end border-white border-opacity-75 border-5 rounded mx-3"></span>
-          <a id='user'  class="header-link" href="{% if user == True %}
-                                                        {%  url 'personal_page' %}
-                                                    {% else %}
-                                                        {%  url 'login' %}
-                                                    {% endif %}"></a>
+    </form>
+    <div class="d-flex me-3">
+      <a id='backed' class="header-link" href=""></a>
+      <span class="border-end border-white border-opacity-75 border-5 rounded mx-3"></span>
+      <a id='user' class="header-link"
+        href="{% if request.user.is_authenticated %}{%  url 'personal page' %}{% else %}{%  url 'login' %}{% endif %}"></a>
 
 
-      </div>
+    </div>
 
 
   </div>

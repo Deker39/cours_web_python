@@ -1,6 +1,22 @@
 {% extends "./base.html" %}
+{% block content %}
 <div class="mt-5">
-{#    TODO написать условия дял Delete page, exit page and successful page #}
-    <h1>status page</h1>
+    {# TODO написать условия дял Delete page, exit page and successful page #}
+    {% if title == 'sign out' %}
+    <h1>Exit</h1>
 
+
+    {% endif %}
+    {% if title == 'delete' %}
+    <h1>Delete account{{ user_del }}</h1>
+    {% endif %}
+
+    {% if title == 'successful' %}
+    <h1>Successful Page</h1>
+    {% endif %}
 </div>
+
+<script>
+    setTimeout(() => window.location.href = '/', 500);
+</script>
+{% endblock %}

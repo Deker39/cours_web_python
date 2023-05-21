@@ -1,20 +1,71 @@
 {% extends "./base.html" %}
 {#TODO здесь товары с каждой категории#}
 {% block content %}
-    {{ list_product_day }}
-    <div class="row mt-5">
-    {% for card in list_product %}
-            <div class="card col-4 m-2 p-0" style="width: 12rem;">
-              <img src="../media/{{ card.main_image }}" class="card-img-top" alt="{{ main_image }}">
-              <div class="card-body">
-                <p class="card-title fs-5">{{ card.title }}</p>
-                <p class="card-text">{{ card.price }}$</p>
-                <a href="#" class="btn btn-primary">BUY</a>
-              </div>
-            </div>
+<style>
+  #pd {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+  }
 
-    {% endfor %}
-     </div>
+  #pd img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+
+  #pd img.active {
+    opacity: 1;
+  }
+</style>
+<div id="pd" class="d-flex justify-content-center border border-secondary-subtle border-3">
+  {% for pd in list_product_day %}
+  <img id="mainImage" src='../media/{{ pd.main_image }}' alt="Main Image" class="active">
+
+  {% endfor %}
+  {# <img id="mainImage" src='../static/prod_day.png' alt="Main Image">#}
+</div>
+<div class="">
+
+  <script>
+    $(document).ready(function () {
+      setInterval(function () {
+        var $activeImage = $('#pd img.active');
+        var $nextImage = $activeImage.next('img');
+
+        if ($nextImage.length === 0) {
+          $nextImage = $('#pd img:first');
+        }
+
+        $activeImage.removeClass('active');
+        $nextImage.addClass('active');
+      }, 2000);
+    });
+  </script>
+</div>
+<div class="row mt-5">
+  {% for card in list_product %}
+    <div class="card col-4 m-2 p-0" style="width: 12rem;">
+        <img src="../media/{{ card.main_image }}" class="card-img-top" alt="{{ main_image }}" id="main-card-{{ card.catalog }}/{{ card.slug }}">
+        <div class="card-body">
+          <p class="card-title fs-5">{{ card.title }}</p>
+          <p class="card-text">{{ card.price }}$</p>
+        </div>
+      </div>
+  {% endfor %}
+
+<script>
+$('[id^="main-card-"]').click(function() {
+let cardId = $(this).attr('id');
+let link = cardId.slice(10)
+    console.log(link)
+window.location.href = link;
+ });
+</script>
+</div>
 
 
 

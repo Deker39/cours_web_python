@@ -40,7 +40,7 @@ class Menu(models.Model):
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=100, db_index=True,verbose_name='category')
+    name = models.CharField(max_length=100, db_index=True, verbose_name='category')
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='URL')
 
     def __str__(self):
