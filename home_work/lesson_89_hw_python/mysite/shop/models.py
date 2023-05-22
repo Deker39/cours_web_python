@@ -82,16 +82,18 @@ class CommentProduct(Model):
     content = CharField(max_length=100)
     date = DateTimeField(auto_now=True)
 
-
+# TODO переделать таблицы заказов не правильная схема связи 
 class Order(Model):
     user = ForeignKey(ShopUser, on_delete=CASCADE, related_name='user')
     total_cost = DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     complete = BooleanField(default=False)
-    quantity = IntegerField(default=0)
     date_order = DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return f'{self.user}'
+
     def calculate_total_cost(self):
-        total_cost = self.orderslist_set.aggregate(total=Sum('product__price'))['total']
+        total_cost = self.orderslist__set.aggregate(total=Sum('product__price'))['total']
         self.total_cost = total_cost or 0
         self.save()
 

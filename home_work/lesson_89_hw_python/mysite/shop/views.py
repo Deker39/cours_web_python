@@ -1,11 +1,10 @@
 import re
-
 from django.shortcuts import *
 from django.contrib.auth import authenticate, login, logout
 from .models import *
 from django.db.models import Q
 from django.contrib.auth.models import User
-from jinja2 import Environment
+from django.http import JsonResponse
 import datetime
 
 
@@ -28,6 +27,22 @@ def index(request):
     return render(request, 'main_page.html', context=context)
 
 
+def basket(request):
+    orders = Order.objects.filter(user_id=ShopUser.objects.get(email=request.user.username).id)
+    list_order = OrdersList.objects.filter(order_id__in=orders.values('id'))
+    list_product = Product.objects.filter(id__in=list_order.values('product_id'))
+    orders.first().calculate_total_cost()
+
+    context = {
+        'title': 'basket',
+        'orders': orders,
+        'list_order': list_order,
+        'list_product': list_product
+
+    }
+    return render(request, 'basket_page.html', context=context)
+
+
 def list_catalog(request, cat_slug):
     catalog = CatalogProduct.objects.all()
     product_cat = Product.objects.filter(catalog_id=catalog.get(slug=cat_slug))
@@ -46,6 +61,17 @@ def product(request, cat_slug, prod_slug):
     product_photo = ProductPhoto.objects.filter(products_id=product_cat.id)
     product_info = ProductSystemRequirement.objects.filter(products_id=product_cat.id).first()
     also_product_cat = Product.objects.filter(catalog_id=catalog.get(slug=cat_slug)).exclude(slug=prod_slug)
+    if request.method == 'POST':
+        order = Order()
+        order.complete = False
+        order.user_id = ShopUser.objects.get(email=request.user.username).id
+        order.save()
+        product_id = request.POST.get('product_id')
+        order_list = OrdersList()
+        order_list.product_id = product_id
+        order_list.order_id = order.id
+        order_list.save()
+
     context = {
         'title': f'product {product_cat.title}',
         'list_catalog': catalog,
@@ -53,8 +79,10 @@ def product(request, cat_slug, prod_slug):
         'product_photo': product_photo,
         'product_info': product_info,
         'cat_prduct': cat_prduct,
-        'also_product_cat': also_product_cat
+        'also_product_cat': also_product_cat,
+
     }
+
     return render(request, "product_page.html", context)
 
 
@@ -157,13 +185,6 @@ def orders(request):
         'title': 'orders'
     }
     return render(request, "order_page.html", context=context)
-
-
-def basket_shop(request):
-    context = {
-        'title': 'basket'
-    }
-    return render(request, "basket_page.html", context=context)
 
 
 def change_personal_data(request):

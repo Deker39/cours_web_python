@@ -10,7 +10,7 @@
       </div>
     </form>
     <div class="d-flex me-3">
-      <a id='backed' class="header-link" href=""></a>
+      <a id='backed' class="header-link" href="{% url 'basket' %}"></a>
       <span class="border-end border-white border-opacity-75 border-5 rounded mx-3"></span>
       <a id='user' class="header-link"
         href="{% if request.user.is_authenticated %}{%  url 'personal page' %}{% else %}{%  url 'login' %}{% endif %}"></a>
