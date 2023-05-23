@@ -4,8 +4,8 @@
 <style>
   #pd {
     position: relative;
-    width: 100%;
-    height: 300px;
+    width: 90%;
+    height: 400px;
     overflow: hidden;
   }
 
@@ -21,10 +21,9 @@
     opacity: 1;
   }
 </style>
-<div id="pd" class="d-flex justify-content-center border border-secondary-subtle border-3">
+<div id="pd" class="d-flex justify-content-center border border-secondary-subtle border-3 mt-5">
   {% for pd in list_product_day %}
   <img id="mainImage" src='../media/{{ pd.main_image }}' alt="Main Image" class="active">
-
   {% endfor %}
   {# <img id="mainImage" src='../static/prod_day.png' alt="Main Image">#}
 </div>

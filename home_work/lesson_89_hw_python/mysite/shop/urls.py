@@ -6,11 +6,12 @@ urlpatterns = [
 
 
     path('successful/', views.successful, name='successful'),
+    path('successful change password/', views.successful_change_password, name='successful change password'),
     path('delete account/', views.delete_account, name='delete account'),
     path('personal page/', views.personal_info, name='personal page'),
     path("personal data/", views.change_personal_data, name="personal data"),
     path("change password/", views.change_password, name="change password"),
-    path("orders/", views.orders, name="orders"),
+    path('checkout/', views.checkout, name='checkout'),
     path('basket/', views.basket, name='basket'),
     path("register/", views.register, name="register"),
     path("login/", views.signin, name="login"),

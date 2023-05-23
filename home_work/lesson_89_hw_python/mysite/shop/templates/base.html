@@ -17,9 +17,10 @@
 
 </head>
 
-<body class="d-flex flex-column">
+<body class="d-flex flex-column ">
     {% include 'header.html' %}
-    <div class="row m-2 mt-5">
+    <div class="container">
+        <div class="row m-2 mt-5">
         {% if title == 'main page' or title|regex_match:'^list catalog .+$' or title == 'product' %}
         <nav class="col-3 pt-2 mb-5">
             {% include 'list_catalog.html' %}
@@ -29,7 +30,7 @@
             {% block content %}
             {% endblock %}
         </div>
-
+    </div>
     </div>
     {% include 'footer.html' %}
 </body>

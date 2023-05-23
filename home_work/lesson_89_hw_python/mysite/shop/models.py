@@ -10,6 +10,7 @@ class ShopUser(Model):
     last_name = CharField(max_length=255)
     email = CharField(max_length=255)
     password = CharField(max_length=255)
+    phone = CharField(max_length=255)
     date_create = DateTimeField(auto_now=True)
 
     def __str__(self):
@@ -62,15 +63,6 @@ class ProductSystemRequirement(Model):
     free_hard_disk_space = CharField(max_length=255)
 
 
-class ProductKey(Model):
-    products = ForeignKey(Product, on_delete=CASCADE, related_name='p_key')
-    key = CharField(max_length=255)
-
-    def generate_rand_ket(self):
-        self.total_cost = ''.join(random.choice(string.ascii_letters + string.digits) for i in range(10)).upper()
-        self.save()
-
-
 class ProductPhoto(Model):
     products = ForeignKey(Product, on_delete=CASCADE, related_name='image')
     image = ImageField(upload_to=product_image_directory_path_path)
@@ -82,26 +74,38 @@ class CommentProduct(Model):
     content = CharField(max_length=100)
     date = DateTimeField(auto_now=True)
 
-# TODO переделать таблицы заказов не правильная схема связи 
+
 class Order(Model):
     user = ForeignKey(ShopUser, on_delete=CASCADE, related_name='user')
-    total_cost = DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    total_amount = DecimalField(max_digits=10, decimal_places=2, default=0)
     complete = BooleanField(default=False)
     date_order = DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'{self.user}'
-
-    def calculate_total_cost(self):
-        total_cost = self.orderslist__set.aggregate(total=Sum('product__price'))['total']
-        self.total_cost = total_cost or 0
-        self.save()
+        return f"Order {self.id} by {self.user.first_name} {self.user.last_name}"
 
 
 class OrdersList(Model):
     order = ForeignKey(Order, on_delete=CASCADE, related_name='order')
-    product = ForeignKey(Product, on_delete=CASCADE, related_name='p')
+    product = ForeignKey(Product, on_delete=CASCADE)
+    quantity = PositiveIntegerField(default=1)
+
+    def __str__(self):
+        return f"OrderItem {self.id} - {self.product.title} ({self.quantity})"
+
+    def calculate_item_total(self):
+        return self.product.price * self.quantity
 
 
 class ProductsDay(Model):
     product = ForeignKey(Product, on_delete=CASCADE, related_name='prod')
+
+
+def generate_rand_key():
+    return ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(10)).upper()
+
+
+class ProductKey(Model):
+    products = ForeignKey(Product, on_delete=CASCADE, related_name='p_key')
+    key = CharField(max_length=255)
+    order = ForeignKey(Order, on_delete=CASCADE)

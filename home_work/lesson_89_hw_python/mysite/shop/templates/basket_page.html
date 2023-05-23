@@ -4,7 +4,7 @@
 
     <div class="d-flex flex-column bg-body-tertiary p-3 m-3">
         <div>
-            <h1>Basket</h1>
+            <h1>Basket:</h1>
         </div>
         <div class="bg-body-secondary p-3">
             {% for prod in list_product %}
@@ -14,10 +14,14 @@
                     <h4>{{ prod.price }}$</h4>
                 </div>
             {% endfor %}
+            {% if checkOrder == True %}
+                <div class="d-flex justify-content-end m-2">
+                    <a href="{% url 'checkout' %}" class="btn btn-primary">{{ order.total_amount }} Buy</a>
+                </div>
+            {% else %}
+                <h4>You have not selected any product yet. <a href="/">Go back to main page</a></h4>
+            {% endif %}
 
-            <div class="d-flex justify-content-end m-2">
-                <a href="#" class="btn btn-primary">{{ orders.0.total.cost }}Buy</a>
-            </div>
 
         </div>
 
