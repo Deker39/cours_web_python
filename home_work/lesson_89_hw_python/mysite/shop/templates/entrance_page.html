@@ -47,6 +47,10 @@
           <input type="email" class="form-control" id="emailAddressInput" name="emailAddressInput">
           <label for="emailAddressInput">Email address</label>
         </div>
+          <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="phoneInput" name="phoneInput">
+          <label for="phoneInput">Phone number</label>
+        </div>
         <div class="form-floating mb-3">
           <input type="password" class="form-control" id="passwordInput" name="passwordInput">
           <label for="passwordInput">Password</label>
@@ -87,30 +91,33 @@
      </div>
 {% endif %}
 <script>
+  let passwordInput = $('#passwordInput')
+  let repeatPasswordInput = $('#repeatPasswordInput')
   $(document).ready(function () {
     $('#formSignIn').submit(function (event) {
-      if ($('#passwordInput').val() !== $('#repeatPasswordInput').val()) {
-        $('#repeatPasswordInput').addClass('is-invalid')
+      if (passwordInput.val() !== repeatPasswordInput.val()) {
+        repeatPasswordInput.addClass('is-invalid')
         event.preventDefault();
       } else {
-        $('#repeatPasswordInput').removeClass('is-invalid')
-        $('#repeatPasswordInput').addClass('is-valid')
+        repeatPasswordInput.removeClass('is-invalid')
+        repeatPasswordInput.addClass('is-valid')
       }
     });
     $('#changePassword').submit(function (event) {
-      if ($('#passwordInput').val() !== $('#repeatPasswordInput').val()) {
-        $('#repeatPasswordInput').addClass('is-invalid')
+          if (passwordInput.val() == {{ old_pass }}) {
+        passwordInput.addClass('is-invalid')
         event.preventDefault();
       } else {
-        $('#repeatPasswordInput').removeClass('is-invalid')
-          $('#repeatPasswordInput').addClass('is-valid')
+        passwordInput.removeClass('is-invalid')
+          passwordInput.addClass('is-valid')
       }
-      if ($('#passwordInput').val() == {{ old_pass }}) {
-        $('#passwordInput').addClass('is-invalid')
+
+      if (passwordInput.val() !==  repeatPasswordInput.val()) {
+         repeatPasswordInput.addClass('is-invalid')
         event.preventDefault();
       } else {
-        $('#passwordInput').removeClass('is-invalid')
-          $('#passwordInput').addClass('is-valid')
+         repeatPasswordInput.removeClass('is-invalid')
+           repeatPasswordInput.addClass('is-valid')
       }
     });
   });

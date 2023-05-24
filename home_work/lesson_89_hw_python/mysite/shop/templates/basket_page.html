@@ -1,5 +1,4 @@
 {% extends "./base.html" %}
-{#TODO здесь корзина что купили #}
 {% block content %}
 
     <div class="d-flex flex-column bg-body-tertiary p-3 m-3">
@@ -12,6 +11,7 @@
                     <img src="../media/{{ prod.main_image }}" alt="{{ prod.main_image }}" style="width: 100px;">
                     <h4>{{ prod.title }}</h4>
                     <h4>{{ prod.price }}$</h4>
+                    <a href="{{ prod.slug }}" id="del" class="mb-1"></a>
                 </div>
             {% endfor %}
             {% if checkOrder == True %}

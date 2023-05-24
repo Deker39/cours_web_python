@@ -67,6 +67,9 @@ class ProductPhoto(Model):
     products = ForeignKey(Product, on_delete=CASCADE, related_name='image')
     image = ImageField(upload_to=product_image_directory_path_path)
 
+    def __str__(self):
+        return f'{self.products}, {self.image}'
+
 
 class CommentProduct(Model):
     auth = ForeignKey(ShopUser, on_delete=CASCADE, related_name='auth')

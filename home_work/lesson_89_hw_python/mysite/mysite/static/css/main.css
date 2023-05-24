@@ -1,5 +1,4 @@
 body{
-    max-width: 50%;
     background-color: #ffffff;
 }
 .header{
@@ -10,11 +9,22 @@ body{
 }
 .header-link{
   padding:22px;
+}
+.secret{
+    display: none;
 
 }
+#del{
+    background-image: url("../del_basket_48dp.png");
+    background-repeat: no-repeat;
+    padding:25px;
+}
 #backed{
-    color: white;
     background-image: url("../header_img/shopping_cart_48dp.png");
+    background-repeat: no-repeat;
+}
+#backed_complete{
+    background-image: url("../header_img/shopping_cart_add_48dp.png");
     background-repeat: no-repeat;
 }
 #user{
@@ -95,4 +105,22 @@ body{
     background-size: cover;
 
 }
+ #pd {
+    position: relative;
+    /*width: 70%;*/
+    height: 300px;
+    overflow: hidden;
+  }
+
+  #pd img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+
+  #pd img.active {
+    opacity: 1;
+  }
 

@@ -4,25 +4,39 @@ from django.contrib.auth import authenticate, login, logout
 from .models import *
 from django.db.models import Q
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
 from django.http import JsonResponse
 import datetime
 
+name_menu = ['personal data', 'basket', 'my orders', 'password change', 'exit', 'delete account']
+url_menu = ['personal data', 'basket', 'checkout', 'change password', 'logout', 'delete account']
+global personal_list_info
+personal_list_info = [[name, url] for name, url in zip(name_menu, url_menu)]
 
-# TODO если пользователь авторизован то сменить адрес на лисную страницу
+
+def cart_checkout(request):
+    if request.user.is_authenticated:
+        user_id = ShopUser.objects.get(email=request.user.username).id
+        check_order_t = Order.objects.filter(user_id=user_id, complete=0, total_amount=0).first()
+        check_order = Order.objects.filter(user_id=user_id, complete=0).first()
+        return True if check_order_t or check_order_t is None and check_order is None else False
+    return False
+
 
 def index(request):
     catalog = CatalogProduct.objects.all()
     product_all = Product.objects.all()
     product_day = ProductsDay.objects.all()
-    p = []
-    for i in product_day:
-        p.append(Product.objects.get(id=i.product_id))
+    product_day_info = Product.objects.filter(id__in=product_day.values('product_id'))
+    product_dat_photo = ProductPhoto.objects.filter(products_id__in=product_day_info.values('id'))
+    prod_day = [[info, photo] for info, photo in zip(product_day_info, product_dat_photo)]
 
     context = {
         'title': 'main page',
         'list_catalog': catalog,
         'list_product': product_all,
-        'list_product_day': p,
+        'list_product_day': prod_day,
+        'check_order': cart_checkout(request)
     }
     return render(request, 'main_page.html', context=context)
 
@@ -31,6 +45,8 @@ def basket(request):
 
     context = {
         'title': 'basket',
+        'personal_list_info': personal_list_info,
+        'check_order': cart_checkout(request)
     }
 
     user_id = ShopUser.objects.get(email=request.user.username).id
@@ -38,18 +54,36 @@ def basket(request):
     if check_order:
         order = check_order
         list_order = OrdersList.objects.filter(order=order)
-        list_product = Product.objects.filter(id__in=list_order.values('product_id'))
-        total_amount = sum([i.calculate_item_total() for i in list_order])
-        order.total_amount = total_amount
-        order.save()
-        context['order'] = order
-        context['list_order'] = list_order
-        context['list_product'] = list_product
-        context['checkOrder'] = True
+        if list_order:
+            list_product = Product.objects.filter(id__in=list_order.values('product_id'))
+            total_amount = sum([i.calculate_item_total() for i in list_order])
+            order.total_amount = total_amount
+            order.save()
+            context['order'] = order
+            context['list_order'] = list_order
+            context['list_product'] = list_product
+            context['checkOrder'] = True
     else:
         context['checkOrder'] = False
 
     return render(request, 'basket_page.html', context=context)
+
+
+def delete_prod(request, prod_slug):
+
+    user_id = ShopUser.objects.get(email=request.user.username).id
+    check_order = Order.objects.filter(Q(user_id=user_id) & Q(complete=0)).first()
+    prod = Product.objects.get(slug=prod_slug)
+    del_prod = OrdersList.objects.get(order=check_order, product_id=prod.id)
+
+    if check_order:
+        del_prod.delete()
+        list_order = OrdersList.objects.filter(order=check_order)
+        total_amount = sum([i.calculate_item_total() for i in list_order])
+        check_order.total_amount = total_amount
+        check_order.save()
+
+    return redirect(basket)
 
 
 def checkout(request):
@@ -87,7 +121,8 @@ def list_catalog(request, cat_slug):
     context = {
         'title': f'list catalog {catalog.get(slug=cat_slug)}',
         'list_catalog': catalog,
-        'product': product_cat
+        'product': product_cat,
+        'check_order': cart_checkout(request)
     }
     return render(request, "search_product.html", context)
 
@@ -126,6 +161,7 @@ def product(request, cat_slug, prod_slug):
         'product_info': product_info,
         'cat_prduct': cat_prduct,
         'also_product_cat': also_product_cat,
+        'check_order': cart_checkout(request)
 
     }
 
@@ -169,6 +205,7 @@ def register(request):
         new_user.last_name = request.POST.get('lastNameInput')
         new_user.email = request.POST.get('emailAddressInput')
         new_user.password = request.POST.get('passwordInput')
+        new_user.phone = request.POST.get('phoneInput')
         check_user = ShopUser.objects.filter(Q(first_name=new_user.first_name) &
                                              Q(last_name=new_user.last_name))
         if check_user:
@@ -208,36 +245,47 @@ def delete_account(request):
 
 
 def successful(request):
-    user_id = ShopUser.objects.get(email=request.user.username).id
-    order = Order.objects.filter(user_id=user_id, complete=False).last()
+    user = ShopUser.objects.get(email=request.user.username)
+    order = Order.objects.filter(user_id=user.id, complete=False).last()
     list_order = OrdersList.objects.filter(order=order)
     prod_keys = ProductKey.objects.filter(order=order, products__in=list_order.values('product_id'))
     list_product = Product.objects.filter(id__in=list_order.values('product_id'))
     order.complete = True
     order.save()
-    list_game_key = [[prod.title, prod_key.key ] for prod, prod_key in zip(prod_keys, list_product)]
+    list_game_key = [[prod.title, prod_key.key] for prod, prod_key in zip(list_product, prod_keys)]
+    split_lines = [f'Game: {prod.title} - > key: {prod_key.key}' for prod, prod_key in zip(list_product, prod_keys)]
+    send_mail('Buy a game', split_lines[0], 'bigtigerlesha@gmail.com', (user.email,), fail_silently=False)
     context = {
         'title': 'successful',
         'list_game_key': list_game_key,
+        'check_order': cart_checkout(request)
     }
     return render(request, "status_page.html", context=context)
 
 
 def personal_info(request):
-    name_menu = ['personal data', 'basket', 'my orders', 'password change', 'exit', 'delete account']
-    url_menu = ['personal data', 'basket', 'checkout', 'change password', 'logout', 'delete account']
-    list_menu = [[name, url] for name, url in zip(name_menu, url_menu)]
-
     context = {
-        'personal_list': list_menu
+        'personal_list': personal_list_info,
+        'check_order': cart_checkout(request)
 
     }
-    return render(request, 'user_page.html', context=context)
+    return render(request, 'personal_info_menu.html', context=context)
 
 
 def change_personal_data(request):
+    user = ShopUser.objects.get(email=request.user.username)
+    if request.method == "POST":
+        user.first_name = request.POST.get('firstNameInput')
+        user.last_name = request.POST.get('lastNameInput')
+        user.email = request.POST.get('emailInput')
+        user.phone = request.POST.get('phoneInput')
+        user.save()
+
     context = {
-        'title': 'personal data'
+        'title': 'personal data',
+        'user': user,
+        'personal_list_info': personal_list_info,
+        'check_order': cart_checkout(request)
     }
     return render(request, "personal_page.html", context=context)
 
@@ -247,10 +295,11 @@ def change_password(request):
     if request.method == "POST":
         user.password = request.POST.get('passwordInput')
         user.save()
-        redirect(successful_change_password)
+        return redirect(successful_change_password)
     context = {
         'title': 'change password',
-        'old_pass': user.password
+        'old_pass': user.password,
+        'check_order': cart_checkout(request)
     }
     return render(request, "entrance_page.html", context=context)
 

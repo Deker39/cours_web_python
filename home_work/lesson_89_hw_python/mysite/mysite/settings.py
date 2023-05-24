@@ -93,3 +93,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'mysite/media')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "mysite/static")]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'bigtigerlesha@gmail.com'  # ваш адрес электронной почты
+EMAIL_HOST_PASSWORD = 'dvhrjnbyslwgkdgk'  # ваш пароль от электронной почты
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+# dvhrjnbyslwgkdgk
