@@ -53,15 +53,15 @@
         </div>
     </div>
     <script>
-        const expireDateInput = document.getElementById('expireDateInput');
-
-        expireDateInput.addEventListener('input', function(event) {
-          const input = event.target;
-          const inputValue = input.value;
-
-          if (inputValue.length === 2) {
-            input.value = inputValue + '/';
-          }
-        });
+        {#const expireDateInput = document.getElementById('expireDateInput');#}
+        {##}
+        {#expireDateInput.addEventListener('input', function(event) {#}
+        {#  const input = event.target;#}
+        {#  const inputValue = input.value;#}
+        {##}
+        {#  if (inputValue.length === 2) {#}
+        {#    input.value = inputValue + '/';#}
+        {#  }#}
+        {#});#}
     </script>
 {% endblock %}

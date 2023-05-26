@@ -1,6 +1,9 @@
 body{
     background-color: #ffffff;
 }
+.free-place{
+     min-height: 90vh;
+}
 .header{
      background-color: #000000;
 }

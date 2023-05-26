@@ -23,22 +23,49 @@ def cart_checkout(request):
     return False
 
 
+def creat_data_to_list_catalog():
+    return CatalogProduct.objects.all()
+
+
 def index(request):
-    catalog = CatalogProduct.objects.all()
     product_all = Product.objects.all()
     product_day = ProductsDay.objects.all()
-    product_day_info = Product.objects.filter(id__in=product_day.values('product_id'))
-    product_dat_photo = ProductPhoto.objects.filter(products_id__in=product_day_info.values('id'))
-    prod_day = [[info, photo] for info, photo in zip(product_day_info, product_dat_photo)]
+    product_day_info = Product.objects.filter(id__in=product_day.values('product_id')).values_list('title', flat=True)
+    product_dat_photo = ProductPhoto.objects.filter(products_id__in=product_day_info.values('id')).values_list('image', flat=True)
+    kek1 = list(product_day_info)
+    kek2 = list(product_dat_photo)
+    prod_day = []
+
+    # if request.method == "POST":
+    #     search = request.POST.get('searchInput')
+    #     return redirect(search_prod, search=search)
+
+    for x in kek1:
+        for y in kek2[kek1.index(x) * 3:kek1.index(x) * 3 + 3]:
+            prod_day.append({'title': x, 'image': y})
 
     context = {
         'title': 'main page',
-        'list_catalog': catalog,
+        'list_catalog': creat_data_to_list_catalog(),
         'list_product': product_all,
         'list_product_day': prod_day,
         'check_order': cart_checkout(request)
     }
     return render(request, 'main_page.html', context=context)
+
+
+def search_prod(request, search_slug):
+    search_products = Product.objects.filter(title__icontains=search_slug)
+
+    context = {
+        'title': 'search product',
+        'list_catalog': creat_data_to_list_catalog(),
+        'product': search_products,
+        'world': search_slug,
+        'check_order': cart_checkout(request)
+    }
+
+    return render(request, 'search_product_page.html', context=context)
 
 
 def basket(request):
@@ -124,7 +151,7 @@ def list_catalog(request, cat_slug):
         'product': product_cat,
         'check_order': cart_checkout(request)
     }
-    return render(request, "search_product.html", context)
+    return render(request, "catalog_product.html", context)
 
 
 def product(request, cat_slug, prod_slug):
@@ -138,7 +165,7 @@ def product(request, cat_slug, prod_slug):
     if request.method == 'POST':
         user_id = ShopUser.objects.get(email=request.user.username).id
         check_order = Order.objects.filter(Q(user_id=user_id) & Q(complete=0)).first()
-        print(check_order)
+
         if check_order:
             order = check_order
         else:
@@ -152,6 +179,7 @@ def product(request, cat_slug, prod_slug):
         order_list.product_id = product_id
         order_list.order_id = order.id
         order_list.save()
+        return redirect('product', cat_slug=cat_slug, prod_slug=prod_slug)
 
     context = {
         'title': f'product {product_cat.title}',
@@ -164,7 +192,6 @@ def product(request, cat_slug, prod_slug):
         'check_order': cart_checkout(request)
 
     }
-
     return render(request, "product_page.html", context)
 
 

@@ -4,9 +4,9 @@
       <div class="carousel-inner">
           {% for pd in list_product_day %}
         <div class="carousel-item">
-          <img src="../media/{{ pd.1.image }}" class="d-block w-100" alt="...">
+          <img src="../media/{{ pd.image }}" class="d-block w-100" alt="{{ pd.image }}">
           <div class="carousel-caption d-none d-md-block">
-            <h4>{{ pd.0.title }}</h4>
+            <h4>{{ pd.title }}</h4>
           </div>
         </div>
              {% endfor %}
@@ -34,12 +34,6 @@
 </div>
 
 <script>
-    $('.carousel-item').first().addClass('active')
 
-    $('[id^="main-card-"]').click(function() {
-    let cardId = $(this).attr('id');
-    let link = cardId.slice(10)
-    window.location.href = link;
-     });
 </script>
 {% endblock %}

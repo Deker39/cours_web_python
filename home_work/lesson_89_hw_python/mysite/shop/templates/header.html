@@ -4,8 +4,10 @@
       <a class="navbar-brand fs-3" href="/">Mega Shop</a>
     </div>
     <form class="d-flex " role="search" method="post">
+        {% csrf_token %}
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="product search...." aria-label="Search">
+        <input type="text" name="searchInput" class="form-control" placeholder="product search...."
+               aria-label="Search" style="color: black">
         <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
       </div>
     </form>
