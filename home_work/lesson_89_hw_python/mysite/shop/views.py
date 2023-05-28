@@ -1,6 +1,7 @@
 import re
 from django.shortcuts import *
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.hashers import make_password
 from .models import *
 from django.db.models import Q
 from django.contrib.auth.models import User
@@ -9,7 +10,7 @@ from django.http import JsonResponse
 import datetime
 
 name_menu = ['personal data', 'basket', 'my orders', 'password change', 'exit', 'delete account']
-url_menu = ['personal data', 'basket', 'checkout', 'change password', 'logout', 'delete account']
+url_menu = ['personal data', 'basket', 'history checkout', 'change password', 'logout', 'delete account']
 global personal_list_info
 personal_list_info = [[name, url] for name, url in zip(name_menu, url_menu)]
 
@@ -36,10 +37,6 @@ def index(request):
     kek2 = list(product_dat_photo)
     prod_day = []
 
-    # if request.method == "POST":
-    #     search = request.POST.get('searchInput')
-    #     return redirect(search_prod, search=search)
-
     for x in kek1:
         for y in kek2[kek1.index(x) * 3:kek1.index(x) * 3 + 3]:
             prod_day.append({'title': x, 'image': y})
@@ -54,15 +51,15 @@ def index(request):
     return render(request, 'main_page.html', context=context)
 
 
-def search_prod(request, search_slug):
-    search_products = Product.objects.filter(title__icontains=search_slug)
+def search_prod(request, search_str):
+    search_products = Product.objects.filter(title__icontains=search_str)
 
     context = {
         'title': 'search product',
         'list_catalog': creat_data_to_list_catalog(),
         'product': search_products,
-        'world': search_slug,
-        'check_order': cart_checkout(request)
+        'world': search_str,
+        'check_order': cart_checkout(request),
     }
 
     return render(request, 'search_product_page.html', context=context)
@@ -113,11 +110,42 @@ def delete_prod(request, prod_slug):
     return redirect(basket)
 
 
+def history_checkout(request):
+    user = ShopUser.objects.get(email=request.user.username)
+    check_orders = Order.objects.filter(user=user, complete=True)
+    old_list = []
+
+    context = {
+        'title': 'history checkout',
+        'history_orders': check_orders,
+        'orders_list': old_list,
+        'check_order': cart_checkout(request),
+
+    }
+
+    if check_orders:
+        for order in check_orders:
+            order_data = {
+                'id': order.id,
+                'date_order': order.date_order,
+                'total_amount': order.total_amount,
+                'products': []
+            }
+            orders_list = OrdersList.objects.filter(order=order)
+            for item in orders_list:
+                prod = Product.objects.get(id=item.product_id)
+                order_data['products'].append(prod)
+            old_list.append(order_data)
+    else:
+        context['purchaseNoHistory'] = True
+
+    return render(request, 'history_checkout_page.html', context=context)
+
+
 def checkout(request):
     user_shop = ShopUser.objects.get(email=request.user.username)
     order = Order.objects.filter(Q(user_id=user_shop.id) & Q(complete=0)).first()
     if order:
-
         list_order = OrdersList.objects.filter(order=order)
         list_product = Product.objects.filter(id__in=list_order.values('product_id'))
         if request.method == "POST":
@@ -143,7 +171,7 @@ def checkout(request):
 
 
 def list_catalog(request, cat_slug):
-    catalog = CatalogProduct.objects.all()
+    catalog = creat_data_to_list_catalog()
     product_cat = Product.objects.filter(catalog_id=catalog.get(slug=cat_slug))
     context = {
         'title': f'list catalog {catalog.get(slug=cat_slug)}',
@@ -156,7 +184,7 @@ def list_catalog(request, cat_slug):
 
 def product(request, cat_slug, prod_slug):
 
-    catalog = CatalogProduct.objects.all()
+    catalog = creat_data_to_list_catalog()
     cat_prduct = CatalogProduct.objects.filter(slug=cat_slug).first()
     product_cat = Product.objects.filter(slug=prod_slug).first()
     product_photo = ProductPhoto.objects.filter(products_id=product_cat.id)
@@ -179,8 +207,16 @@ def product(request, cat_slug, prod_slug):
         order_list.product_id = product_id
         order_list.order_id = order.id
         order_list.save()
+
+        list_order = OrdersList.objects.filter(order=order)
+        if list_order:
+            total_amount = sum([i.calculate_item_total() for i in list_order])
+            order.total_amount = total_amount
+            order.save()
+
         return redirect('product', cat_slug=cat_slug, prod_slug=prod_slug)
 
+    print(cart_checkout(request))
     context = {
         'title': f'product {product_cat.title}',
         'list_catalog': catalog,
@@ -318,14 +354,18 @@ def change_personal_data(request):
 
 
 def change_password(request):
-    user = ShopUser.objects.get(email=request.user.username)
+    user_shop = ShopUser.objects.get(email=request.user.username)
+    user = User.objects.get(username=request.user.username)
     if request.method == "POST":
-        user.password = request.POST.get('passwordInput')
+        user_shop.password = request.POST.get('passwordInput')
+        user.password = make_password(user_shop.password)
+        user_shop.save()
         user.save()
+
         return redirect(successful_change_password)
     context = {
         'title': 'change password',
-        'old_pass': user.password,
+        'old_pass': user_shop.password,
         'check_order': cart_checkout(request)
     }
     return render(request, "entrance_page.html", context=context)

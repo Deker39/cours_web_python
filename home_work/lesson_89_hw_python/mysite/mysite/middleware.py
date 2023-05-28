@@ -6,9 +6,9 @@ class SearchMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        if request.method == "POST":
-            search_slug = request.POST.get('searchInput')
-            return redirect('search prod', search_slug=search_slug)
+        if request.method == "POST" and 'searchInput' in request.POST:
+            search_str = request.POST.get('searchInput')
+            return redirect('search prod', search_str=search_str)
 
         response = self.get_response(request)
         return response
