@@ -16,12 +16,15 @@ personal_list_info = [[name, url] for name, url in zip(name_menu, url_menu)]
 
 
 def cart_checkout(request):
-    if request.user.is_authenticated:
-        user_id = ShopUser.objects.get(email=request.user.username).id
-        check_order_t = Order.objects.filter(user_id=user_id, complete=0, total_amount=0).first()
-        check_order = Order.objects.filter(user_id=user_id, complete=0).first()
-        return True if check_order_t or check_order_t is None and check_order is None else False
-    return False
+    if request.user.is_staff:
+        logout(request)
+    else:
+        if request.user.is_authenticated:
+            user_id = ShopUser.objects.get(email=request.user.username).id
+            check_order_t = Order.objects.filter(user_id=user_id, complete=0, total_amount=0).first()
+            check_order = Order.objects.filter(user_id=user_id, complete=0).first()
+            return True if check_order_t or check_order_t is None and check_order is None else False
+        return False
 
 
 def creat_data_to_list_catalog():
@@ -185,12 +188,22 @@ def list_catalog(request, cat_slug):
 def product(request, cat_slug, prod_slug):
 
     catalog = creat_data_to_list_catalog()
-    cat_prduct = CatalogProduct.objects.filter(slug=cat_slug).first()
+    cat_product = CatalogProduct.objects.filter(slug=cat_slug).first()
     product_cat = Product.objects.filter(slug=prod_slug).first()
     product_photo = ProductPhoto.objects.filter(products_id=product_cat.id)
     product_info = ProductSystemRequirement.objects.filter(products_id=product_cat.id).first()
     also_product_cat = Product.objects.filter(catalog_id=catalog.get(slug=cat_slug)).exclude(slug=prod_slug)
-    if request.method == 'POST':
+    comments = CommentProduct.objects.filter(product_id=product_cat.id)
+    authors = ShopUser.objects.all()
+
+    if request.method == 'POST' and 'commentInput' in request.POST:
+        new_comment = CommentProduct()
+        new_comment.auth_id = ShopUser.objects.get(email=request.user.username).id
+        new_comment.product_id = Product.objects.get(slug=prod_slug).id
+        new_comment.content = request.POST.get('commentInput')
+        False if new_comment.content == '' or new_comment.content == ' ' else new_comment.save()
+
+    if request.method == 'POST' and 'product_id' in request.POST:
         user_id = ShopUser.objects.get(email=request.user.username).id
         check_order = Order.objects.filter(Q(user_id=user_id) & Q(complete=0)).first()
 
@@ -216,14 +229,16 @@ def product(request, cat_slug, prod_slug):
 
         return redirect('product', cat_slug=cat_slug, prod_slug=prod_slug)
 
-    print(cart_checkout(request))
+
     context = {
         'title': f'product {product_cat.title}',
         'list_catalog': catalog,
         'product': product_cat,
         'product_photo': product_photo,
         'product_info': product_info,
-        'cat_prduct': cat_prduct,
+        'cat_product': cat_product,
+        'comments': comments,
+        'authors': authors,
         'also_product_cat': also_product_cat,
         'check_order': cart_checkout(request)
 
@@ -269,10 +284,10 @@ def register(request):
         new_user.email = request.POST.get('emailAddressInput')
         new_user.password = request.POST.get('passwordInput')
         new_user.phone = request.POST.get('phoneInput')
-        check_user = ShopUser.objects.filter(Q(first_name=new_user.first_name) &
-                                             Q(last_name=new_user.last_name))
+        check_user = User.objects.filter(username=new_user.email)
+
         if check_user:
-            context['firstAndLastNameToExists'] = f'{new_user.first_name} {new_user.last_name}'
+            context['emailToExists'] = f'{new_user.email}'
             return render(request, 'entrance_page.html', context=context)
         else:
             user = User.objects.create_user(username=new_user.email, password=new_user.password, email=new_user.email)
